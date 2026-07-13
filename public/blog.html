@@ -10,6 +10,7 @@
 </template>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>html,body{background:#aab1c2;margin:0}</style>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -105,7 +106,7 @@
       <sc-for list="{{ posts }}" as="post" hint-placeholder-count="2">
         <div style="display: flex; flex-direction: column; gap: 16px; background: #ffffff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 28px;">
           <div style="width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden;">
-            <image-slot id="{{ post.slotId }}" shape="rect" placeholder="Drop a cover image" style="width:100%;height:100%"></image-slot>
+            <img src="{{ post.coverImg }}" alt="{{ post.title }}" style="width:100%;height:100%;object-fit:cover;display:block;" />
           </div>
           <span style="align-self: flex-start; font-size: 12px; font-weight: 600; color: {{ post.tagColor }}; background: {{ post.tagBg }}; padding: 5px 12px; border-radius: 16px;">{{ post.tag }}</span>
           <a href="{{ post.href }}" style="font-size: 20px; font-weight: 700; color: #1c2030; line-height: 1.35;">{{ post.title }}</a>
@@ -334,6 +335,7 @@ class Component extends DCLogic {
       readTime: p.readTime,
       href: `BlogPost.dc.html?post=${p.slug}`,
       slotId: `blog-cover-${p.slug}`,
+      coverImg: ({ 'ai-in-2026': 'assets/blog-ai-coding-cover.png', 'a-decade-of-moving': 'assets/blog-post-cover.png' })[p.slug],
       coverBg: `linear-gradient(155deg, oklch(55% 0.15 ${p.hue}) 0%, oklch(42% 0.15 ${p.hue}) 100%)`,
       tagColor: `oklch(30% 0.16 ${p.hue})`,
       tagBg: `oklch(52% 0.16 ${p.hue} / 0.14)`,

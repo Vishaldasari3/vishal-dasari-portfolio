@@ -10,6 +10,7 @@
 </template>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>html,body{background:#aab1c2;margin:0}</style>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -103,7 +104,7 @@
   <!-- body -->
   <div style="max-width: 780px; margin: 0 auto; padding: 56px 56px 100px; display: flex; flex-direction: column; gap: 22px;">
     <div style="width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; margin-bottom: 8px;">
-      <image-slot id="{{ post.slotId }}" shape="rect" placeholder="Drop a cover image" style="width:100%;height:100%"></image-slot>
+      <img src="{{ post.coverImg }}" alt="{{ post.title }}" style="width:100%;height:100%;object-fit:cover;display:block;" />
     </div>
     <sc-for list="{{ post.paragraphs }}" as="para" hint-placeholder-count="6">
       <div style="font-size: 17px; color: #3d4356; line-height: 1.85;">{{ para }}</div>
@@ -333,6 +334,7 @@ class Component extends DCLogic {
         readTime: p.readTime,
         paragraphs: p.paragraphs,
         slotId: `blog-cover-${slug}`,
+        coverImg: ({ 'ai-in-2026': 'assets/blog-ai-coding-cover.png', 'a-decade-of-moving': 'assets/blog-post-cover.png' })[slug],
         coverBg: `linear-gradient(155deg, oklch(55% 0.15 ${p.hue}) 0%, oklch(38% 0.15 ${p.hue}) 100%)`,
       },
       headerBgCanvas: this.headerBgCanvas,
