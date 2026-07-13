@@ -28,28 +28,27 @@
     a:hover { color: #24399e; }
 
     @media (max-width: 900px) {
-      #bl-grid { grid-template-columns: 1fr !important; }
-      #bl-nav-items { gap: 20px !important; }
+      #bp-nav-items { gap: 20px !important; }
     }
     @media (max-width: 480px) {
-      #bl-nav-items { gap: 12px !important; flex-wrap: wrap !important; justify-content: center !important; }
-      #bl-nav-items a, #bl-nav-items span { font-size: 14px !important; }
+      #bp-nav-items { gap: 12px !important; flex-wrap: wrap !important; justify-content: center !important; }
+      #bp-nav-items a, #bp-nav-items span { font-size: 14px !important; }
     }
 
     @media (max-width: 1180px) {
-      #bl-header-row { padding: 18px 20px !important; gap: 12px !important; }
-      #bl-header-row a[href="/"] svg { width: 40px !important; height: 24px !important; }
-      #bl-header-row a[href="/"] span { font-size: 15px !important; }
-      #bl-nav-items { gap: 1px !important; padding: 5px !important; }
-      #bl-nav-items a, #bl-nav-items span { font-size: 12.5px !important; padding: 7px 9px !important; }
+      #bp-header-row { padding: 18px 20px !important; gap: 12px !important; }
+      #bp-header-row a[href="/"] svg { width: 40px !important; height: 24px !important; }
+      #bp-header-row a[href="/"] span { font-size: 15px !important; }
+      #bp-nav-items { gap: 1px !important; padding: 5px !important; }
+      #bp-nav-items a, #bp-nav-items span { font-size: 12.5px !important; padding: 7px 9px !important; }
     }
     @media (max-width: 860px) {
-      #bl-header-row { flex-direction: column !important; align-items: center !important; padding: 20px 24px 16px !important; }
-      #bl-header-grid { width: 100% !important; flex: none !important; }
-      #bl-header-spacer { height: 150px !important; }
+      #bp-header-row { flex-direction: column !important; align-items: center !important; padding: 20px 24px 16px !important; }
+      #bp-header-grid { width: 100% !important; flex: none !important; }
+      #bp-header-spacer { height: 150px !important; }
     }
     @media (max-width: 640px) {
-      #bl-nav-items { flex-wrap: wrap !important; justify-content: center !important; }
+      #bp-nav-items { flex-wrap: wrap !important; justify-content: center !important; }
     }
   </style>
 </helmet>
@@ -57,7 +56,7 @@
 <div style="min-height: 100vh; background: #f4f5f9;">
 
   <!-- header -->
-  <div id="bl-header-row" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; padding: 14px 56px; position: fixed; top: 0; left: 0; right: 0; width: 100%; background: #fff; border-bottom: 1.5px solid #c9d0e8; box-shadow: {{ headerShadow }}; z-index: 50;">
+  <div id="bp-header-row" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; padding: 14px 56px; position: fixed; top: 0; left: 0; right: 0; width: 100%; background: #fff; border-bottom: 1.5px solid #c9d0e8; box-shadow: {{ headerShadow }}; z-index: 50;">
     <canvas ref="{{ headerBgCanvas }}" style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 640px; height: 120px; pointer-events: none; z-index: 0;"></canvas>
     <a href="/" style="display: flex; align-items: center; gap: 8px; z-index: 1; flex-shrink: 0; transform: scale({{ navScale }}); transform-origin: left center; transition: transform 0.3s ease;">
       <svg width="52" height="31" viewBox="0 0 160 94" style="overflow: visible;">
@@ -72,8 +71,8 @@
       </svg>
       <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 19px; line-height: 1.4; color: #22264a;">Vishal Dasari</span>
     </a>
-    <div id="bl-header-grid" style="flex: 1; display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 16px; z-index: 1;">
-      <div id="bl-nav-items" style="display: flex; align-items: center; gap: 4px; white-space: nowrap; background: rgba(255,255,255,0.6); backdrop-filter: blur(16px); border: 1px solid rgba(44,70,201,0.12); padding: 7px; border-radius: 999px; box-shadow: 0 10px 26px rgba(28,32,48,0.08); justify-self: center;; transform: scale({{ navScale }}); transform-origin: center; transition: transform 0.3s ease;">
+    <div id="bp-header-grid" style="flex: 1; display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 16px; z-index: 1;">
+      <div id="bp-nav-items" style="display: flex; align-items: center; gap: 4px; white-space: nowrap; background: rgba(255,255,255,0.6); backdrop-filter: blur(16px); border: 1px solid rgba(44,70,201,0.12); padding: 7px; border-radius: 999px; box-shadow: 0 10px 26px rgba(28,32,48,0.08); justify-self: center;; transform: scale({{ navScale }}); transform-origin: center; transition: transform 0.3s ease;">
         <a href="/about" style="font-size: 14px; font-weight: 500; color: #9096a8; padding: 9px 16px; border-radius: 20px; transition: color 0.15s, background 0.15s;" style-hover="color: #3654e0; background: #f4f5f9;">About</a>
         <a href="/experience" style="font-size: 14px; font-weight: 500; color: #9096a8; padding: 9px 16px; border-radius: 20px; transition: color 0.15s, background 0.15s;" style-hover="color: #3654e0; background: #f4f5f9;">Experience</a>
         <a href="/certifications" style="font-size: 14px; font-weight: 500; color: #9096a8; padding: 9px 16px; border-radius: 20px; transition: color 0.15s, background 0.15s;" style-hover="color: #3654e0; background: #f4f5f9;">Certs</a>
@@ -82,47 +81,41 @@
       </div>
       <div style="position: relative; display: flex; align-items: center; justify-self: end; transform: scale({{ navScale }}); transform-origin: right center; transition: transform 0.3s ease;">
         <canvas ref="{{ chromaRingCanvas }}" style="position: absolute; width: 116px; height: 54px; left: 50%; top: 50%; transform: translate(-50%,-50%); pointer-events: none;"></canvas>
-        <span style="position: relative; font-size: 14px; font-weight: 600; color: #fff; background: linear-gradient(135deg, #4a63e8, #2c46c9); padding: 10px 20px; border-radius: 999px; box-shadow: 0 4px 14px rgba(44,70,201,0.4);">Blog</span>
+        <a href="/blog" style="position: relative; font-size: 14px; font-weight: 600; color: #fff; background: linear-gradient(135deg, #4a63e8, #2c46c9); padding: 10px 20px; border-radius: 999px; box-shadow: 0 4px 14px rgba(44,70,201,0.4);">Blog</a>
       </div>
     </div>
   </div>
 
-  <div id="bl-header-spacer" style="height: 82px;"></div>
+  <div id="bp-header-spacer" style="height: 82px;"></div>
 
   <!-- hero band -->
-  <div style="background: #f4f5fb; background-image: radial-gradient(rgba(54,84,224,0.1) 1px, transparent 1px); background-size: 22px 22px; padding: 36px 56px 40px; position: relative; overflow: hidden; border-bottom: 1.5px solid #dde1f0; box-shadow: 0 6px 20px rgba(28,32,48,0.05);">
-    <canvas ref="{{ heroIcosaCanvas }}" style="position: absolute; right: 40px; top: -20px; width: 220px; height: 220px; pointer-events: none;"></canvas>
-    <div style="max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; position: relative; z-index: 1;">
-      <span style="display: inline-flex; align-items: center; width: fit-content; font-size: 13px; font-weight: 600; color: #3654e0; letter-spacing: 1.5px; text-transform: uppercase;">Blog</span>
-      <div style="font-size: clamp(38px, 4.2vw, 54px); font-weight: 700; color: #1c2030; line-height: 1.1; letter-spacing: -1px;">Tech notes &amp; life notes.</div>
-      <div style="font-size: 16px; color: #6b7290; line-height: 1.65; max-width: 480px;">A mix of what I'm building with and what I'm thinking about &mdash; engineering, AI, and the occasional life update.</div>
+  <div style="background: {{ post.coverBg }}; padding: 40px 56px 47px;">
+    <div style="max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px;">
+      <a href="/blog" style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); width: fit-content;">
+        <svg width="14" height="11" viewBox="0 0 16 12" fill="none"><path d="M15 6H2M6 1 1 6l5 5" stroke="rgba(255,255,255,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All posts
+      </a>
+      <span style="align-self: flex-start; font-size: 12px; font-weight: 600; color: #ffffff; background: rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 16px;">{{ post.tag }}</span>
+      <div style="font-size: clamp(28px, 3.6vw, 44px); font-weight: 700; color: #ffffff; line-height: 1.15; letter-spacing: -0.5px;">{{ post.title }}</div>
+      <div style="font-size: 14px; color: rgba(255,255,255,0.75);">{{ post.date }} &middot; {{ post.readTime }}</div>
     </div>
   </div>
 
-  <!-- posts -->
-  <div style="max-width: 1100px; margin: 0 auto; padding: 64px 56px 100px;">
-    <div id="bl-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+  <!-- body -->
+  <div style="max-width: 780px; margin: 0 auto; padding: 56px 56px 100px; display: flex; flex-direction: column; gap: 22px;">
+    <div style="width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; margin-bottom: 8px;">
+      <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg, #d7dbe8, #d7dbe8 12px, #ccd1e2 12px, #ccd1e2 24px);color:#5a6180;font-family:monospace;font-size:13px;">cover image: drop here</div>
+    </div>
+    <sc-for list="{{ post.paragraphs }}" as="para" hint-placeholder-count="6">
+      <div style="font-size: 17px; color: #3d4356; line-height: 1.85;">{{ para }}</div>
+    </sc-for>
 
-      <sc-for list="{{ posts }}" as="post" hint-placeholder-count="2">
-        <div style="display: flex; flex-direction: column; gap: 16px; background: #ffffff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 28px;">
-          <div style="width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; background: {{ post.coverBg }};">
-            <sc-if value="{{ post.coverImg }}" hint-placeholder-val="{{ true }}">
-              <img src="{{ post.coverImg }}" alt="{{ post.title }}" style="width:100%;height:100%;object-fit:cover;display:block;" />
-            </sc-if>
-          </div>
-          <span style="align-self: flex-start; font-size: 12px; font-weight: 600; color: {{ post.tagColor }}; background: {{ post.tagBg }}; padding: 5px 12px; border-radius: 16px;">{{ post.tag }}</span>
-          <a href="{{ post.href }}" style="font-size: 20px; font-weight: 700; color: #1c2030; line-height: 1.35;">{{ post.title }}</a>
-          <div style="font-size: 15px; color: #7a8199; line-height: 1.7;">{{ post.excerpt }}</div>
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <div style="font-size: 13px; color: #9096a8;">{{ post.date }} &middot; {{ post.readTime }}</div>
-            <a href="{{ post.href }}" style="display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #3654e0;">
-              Read
-              <svg width="14" height="11" viewBox="0 0 16 12" fill="none"><path d="M1 6h13M9 1l5 5-5 5" stroke="#3654e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          </div>
-        </div>
-      </sc-for>
-
+    <div style="display: flex; align-items: center; gap: 16px; margin-top: 24px; padding-top: 24px; border-top: 1px solid #e6e8f0;">
+      <div style="width: 44px; height: 44px; border-radius: 50%; background: #eef0fb; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #2c46c9;">VD</div>
+      <div>
+        <div style="font-size: 15px; font-weight: 600; color: #1c2030;">Vishal Dasari</div>
+        <div style="font-size: 13px; color: #9096a8;">Senior Software Engineer</div>
+      </div>
     </div>
   </div>
 
@@ -166,7 +159,6 @@ class Component extends DCLogic {
   state = { t: 0 };
   headerBgCanvas = React.createRef();
   chromaRingCanvas = React.createRef();
-  heroIcosaCanvas = React.createRef();
   footerCanvas = React.createRef();
 
   componentDidMount() {
@@ -282,23 +274,6 @@ class Component extends DCLogic {
         posF.needsUpdate = true;
       } });
     }
-
-    const heroIcosaCanvas = this.heroIcosaCanvas.current;
-    if (heroIcosaCanvas) {
-      const rectI = heroIcosaCanvas.getBoundingClientRect();
-      const wI = rectI.width || 220, hI = rectI.height || 220;
-      const rendererI = new THREE.WebGLRenderer({ canvas: heroIcosaCanvas, alpha: true, antialias: true });
-      rendererI.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
-      rendererI.setSize(wI, hI, false);
-      const sceneI = new THREE.Scene();
-      const cameraI = new THREE.PerspectiveCamera(50, wI / hI, 0.1, 100);
-      cameraI.position.z = 3.4;
-      const geoI = new THREE.IcosahedronGeometry(1, 0);
-      const matI = new THREE.MeshBasicMaterial({ color: 0x3654e0, wireframe: true, transparent: true, opacity: 0.25 });
-      const meshI = new THREE.Mesh(geoI, matI);
-      sceneI.add(meshI);
-      renderers.push({ renderer: rendererI, scene: sceneI, camera: cameraI, update: () => { meshI.rotation.y += 0.004; meshI.rotation.x += 0.001; } });
-    }
     const animate = () => {
       clockState.t += 0.016;
       renderers.forEach((r) => { r.update(); r.renderer.render(r.scene, r.camera); });
@@ -307,57 +282,62 @@ class Component extends DCLogic {
     animate();
   }
 
-  postData = [
-    {
-      slug: 'ai-in-2026',
-      title: 'What Coding With AI Agents Actually Looks Like in 2026',
-      excerpt: 'A year ago I was still reviewing every line. Now most of my day is spent deciding what to build, not typing it out. Here\u2019s what actually changed on my team.',
-      tag: 'Tech',
-      hue: 264,
-      date: 'Jul 2026',
-      readTime: '6 min read',
-    },
-    {
-      slug: 'a-decade-of-moving',
-      title: 'What Ten Years of Moving Countries Taught Me About Career Growth',
-      excerpt: 'From an internship in Hyderabad to a cloud migration project in Wilmington \u2014 a few honest reflections on restarting, again and again.',
-      tag: 'Personal',
-      hue: 340,
-      date: 'Jun 2026',
-      readTime: '5 min read',
-    },
-    {
-      slug: 'ai-agents-reshaping-tech',
+  postData = {
+    'ai-agents-reshaping-tech': {
       title: 'How AI Agents Are Reshaping Programming and Technology Automation',
-      excerpt: 'From autocomplete to owning whole workflows: what changes when agents start making judgment calls instead of just suggesting code.',
       tag: 'Tech',
       hue: 200,
       date: 'Jul 2026',
       readTime: '6 min read',
+      paragraphs: [
+        'Automation used to mean scripts: fixed, deterministic steps that ran the same way every time. Agents are a different kind of automation \u2014 they read context, make judgment calls, and adapt the plan mid-task. That difference is showing up everywhere in how software gets built and operated.',
+        'On the programming side, the shift is from writing every line to directing outcomes. An agent can scaffold a service, wire up tests, and open a pull request on its own; the engineer\u2019s job moves toward specifying intent clearly and reviewing what comes back. Teams that describe problems precisely get dramatically better results than teams that hand over vague tickets.',
+        'The bigger change is outside pure coding. Agents are starting to own entire workflows \u2014 triaging incidents, provisioning infrastructure, reconciling data between systems \u2014 tasks that used to need a human to stitch several tools together by hand. That\u2019s real automation, not just autocomplete.',
+        'None of this removes the need for engineering judgment. Agents are confident even when wrong, so the humans in the loop matter more, not less \u2014 for architecture decisions, for catching subtle failure modes, and for deciding which parts of a system are too risky to hand off.',
+        'The tooling is still young. Guardrails, permissions, and observability for what an agent actually did are lagging behind the raw capability, and that gap is where most of the current risk lives.',
+        'My take: agents are becoming a real layer of the stack, not a novelty. The engineers and teams getting ahead are the ones treating "working with agents well" as its own skill \u2014 worth investing in the same way we once invested in learning a new framework.',
+      ],
     },
-  ];
+  };
 
   renderVals() {
-    const posts = this.postData.map((p) => ({
-      title: p.title,
-      excerpt: p.excerpt,
-      tag: p.tag,
-      date: p.date,
-      readTime: p.readTime,
-      href: `/blog/${p.slug}`,
-      slotId: `blog-cover-${p.slug}`,
-      coverImg: ({ 'ai-in-2026': 'assets/blog-ai-coding-cover.png', 'a-decade-of-moving': 'assets/blog-post-cover.png' })[p.slug],
-      coverBg: `linear-gradient(155deg, oklch(55% 0.15 ${p.hue}) 0%, oklch(42% 0.15 ${p.hue}) 100%)`,
-      tagColor: `oklch(30% 0.16 ${p.hue})`,
-      tagBg: `oklch(52% 0.16 ${p.hue} / 0.14)`,
-    }));
-    const flourishCycle = 3.4;
-    const flourishTm = (this.state.t % flourishCycle) / flourishCycle;
-    const flourishFraction = (1 - Math.cos(Math.PI * 2 * flourishTm)) / 2;
-    const flourishOffset = 140 * (1 - flourishFraction);
-    const flourishDotX = (1 - flourishFraction) * (1 - flourishFraction) * 14 + 2 * (1 - flourishFraction) * flourishFraction * 80 + flourishFraction * flourishFraction * 146;
-    const flourishDotY = (1 - flourishFraction) * (1 - flourishFraction) * 78 + 2 * (1 - flourishFraction) * flourishFraction * 96 + flourishFraction * flourishFraction * 76;
-    return { posts, flourishOffset, flourishDotX, flourishDotY, headerBgCanvas: this.headerBgCanvas, chromaRingCanvas: this.chromaRingCanvas, footerCanvas: this.footerCanvas, heroIcosaCanvas: this.heroIcosaCanvas, navScale: this.state.scrolled ? 0.88 : 1, headerShadow: this.state.scrolled ? '0 6px 22px rgba(28,32,48,0.12)' : '0 4px 16px rgba(28,32,48,0.06)' };
+    const slug = 'ai-agents-reshaping-tech';
+    const p = this.postData[slug];
+    return {
+      post: {
+        title: p.title,
+        tag: p.tag,
+        date: p.date,
+        readTime: p.readTime,
+        paragraphs: p.paragraphs,
+        slotId: `blog-cover-${slug}`,
+        coverImg: null,
+        coverBg: `linear-gradient(155deg, oklch(55% 0.15 ${p.hue}) 0%, oklch(38% 0.15 ${p.hue}) 100%)`,
+      },
+      headerBgCanvas: this.headerBgCanvas,
+      chromaRingCanvas: this.chromaRingCanvas,
+      footerCanvas: this.footerCanvas,
+      navScale: this.state.scrolled ? 0.88 : 1,
+      headerShadow: this.state.scrolled ? '0 6px 22px rgba(28,32,48,0.12)' : '0 4px 16px rgba(28,32,48,0.06)',
+      flourishOffset: (() => {
+        const cycle = 3.4;
+        const tm = (this.state.t % cycle) / cycle;
+        const fraction = (1 - Math.cos(Math.PI * 2 * tm)) / 2;
+        return 140 * (1 - fraction);
+      })(),
+      flourishDotX: (() => {
+        const cycle = 3.4;
+        const tm = (this.state.t % cycle) / cycle;
+        const f = (1 - Math.cos(Math.PI * 2 * tm)) / 2;
+        return (1 - f) * (1 - f) * 14 + 2 * (1 - f) * f * 80 + f * f * 146;
+      })(),
+      flourishDotY: (() => {
+        const cycle = 3.4;
+        const tm = (this.state.t % cycle) / cycle;
+        const f = (1 - Math.cos(Math.PI * 2 * tm)) / 2;
+        return (1 - f) * (1 - f) * 78 + 2 * (1 - f) * f * 96 + f * f * 76;
+      })(),
+    };
   }
 }
 
