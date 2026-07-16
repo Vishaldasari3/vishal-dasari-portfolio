@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>html,body{background:#aab1c2 !important;margin:0}</style>
+<style>html,body{background:#aab1c2 !important;margin:0}
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes badgesheen { 0% { transform: translateX(-130%) skewX(-12deg); } 15% { transform: translateX(130%) skewX(-12deg); } 100% { transform: translateX(130%) skewX(-12deg); } }
+    .logo-badge::before { content: ''; position: absolute; inset: -55%; background: conic-gradient(from 0deg, #7c3aed, #4f7cff, #06d6f0, #4f7cff, #7c3aed); animation: spin 5s linear infinite; z-index: 0; }
+    .logo-badge::after { content: ''; position: absolute; inset: 0; z-index: 3; background: linear-gradient(115deg, transparent 32%, rgba(255,255,255,.28) 46%, transparent 60%); transform: translateX(-130%) skewX(-12deg); animation: badgesheen 6s ease-in-out 2s infinite; pointer-events: none; }
+    .logo:hover .logo-badge { transform: scale(1.07) rotate(-2deg); box-shadow: 0 12px 28px -10px rgba(79,124,255,.7); transition: transform 0.4s cubic-bezier(.22,1,.36,1), box-shadow 0.4s; }
+    @media (prefers-reduced-motion: reduce) {
+      .logo-badge::before, .logo-badge::after { animation: none !important; }
+      .logo:hover .logo-badge { transform: none !important; box-shadow: none !important; transition: none !important; }
+    }
+  </style>
 <template id="__bundler_thumbnail" data-bg-color="#aab1c2">
   <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <rect width="100" height="100" fill="#aab1c2"/>
@@ -21,6 +31,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script src="/cursor-effects.js"></script>
   <style>
     body { margin: 0; background: #f4f5f9; }
     * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -37,8 +48,9 @@
     }
 
     @media (max-width: 1180px) {
+      #vd-logo-badge { width: 34px !important; height: 34px !important; font-size: 13px !important; } #vd-logo-word { font-size: 11px !important; }
       #bl-header-row { padding: 18px 20px !important; gap: 12px !important; }
-      #bl-header-row a[href="/"] svg { width: 40px !important; height: 24px !important; }
+      #bl-header-row a[href="/"] 
       #bl-header-row a[href="/"] span { font-size: 15px !important; }
       #bl-nav-items { gap: 1px !important; padding: 5px !important; }
       #bl-nav-items a, #bl-nav-items span { font-size: 12.5px !important; padding: 7px 9px !important; }
@@ -59,18 +71,12 @@
   <!-- header -->
   <div id="bl-header-row" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; padding: 14px 56px; position: fixed; top: 0; left: 0; right: 0; width: 100%; background: #fff; border-bottom: 1.5px solid #c9d0e8; box-shadow: {{ headerShadow }}; z-index: 50;">
     <canvas ref="{{ headerBgCanvas }}" style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 640px; height: 120px; pointer-events: none; z-index: 0;"></canvas>
-    <a href="/" style="display: flex; align-items: center; gap: 8px; z-index: 1; flex-shrink: 0; transform: scale({{ navScale }}); transform-origin: left center; transition: transform 0.3s ease;">
-      <svg width="52" height="31" viewBox="0 0 160 94" style="overflow: visible;">
-        <defs>
-          <linearGradient id="vdGrad3b" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#3654e0"/>
-            <stop offset="100%" stop-color="#1f3aa8"/>
-          </linearGradient>
-        </defs>
-        <path d="M20 14 L46 64 L74 14" fill="none" stroke="url(#vdGrad3b)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M74 14 V64 Q116 64 116 39 Q116 14 74 14" fill="none" stroke="url(#vdGrad3b)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 19px; line-height: 1.4; color: #22264a;">Vishal Dasari</span>
+    <a href="/" class="logo" style="display: flex; align-items: center; gap: 10px; z-index: 1; flex-shrink: 0; transform: scale({{ navScale }}); transform-origin: left center; transition: transform 0.3s ease; text-decoration: none;">
+      <span id="vd-logo-badge" class="logo-badge" style="position: relative; overflow: hidden; width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0;">
+        <span style="position: absolute; inset: 2px; border-radius: 10px; background: #171130; z-index: 1;"></span>
+        <span style="position: relative; z-index: 2; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: #fff;">VD</span>
+      </span>
+      <span id="vd-logo-word" style="font-weight: 600; font-size: 12.5px; line-height: 1.18; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; color: #22264a;">Vishal<br/>Dasari</span>
     </a>
     <div id="bl-header-grid" style="flex: 1; display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 16px; z-index: 1;">
       <div id="bl-nav-items" style="display: flex; align-items: center; gap: 4px; white-space: nowrap; background: rgba(255,255,255,0.6); backdrop-filter: blur(16px); border: 1px solid rgba(44,70,201,0.12); padding: 7px; border-radius: 999px; box-shadow: 0 10px 26px rgba(28,32,48,0.08); justify-self: center;; transform: scale({{ navScale }}); transform-origin: center; transition: transform 0.3s ease;">
@@ -101,6 +107,20 @@
 
   <!-- posts -->
   <div style="max-width: 1100px; margin: 0 auto; padding: 64px 56px 100px;">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 32px;">
+      <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+        <sc-for list="{{ tagFilters }}" as="tf" hint-placeholder-count="3">
+          <button onClick="{{ tf.onClick }}" style="font-size: 14px; font-weight: 600; padding: 9px 18px; border-radius: 20px; border: none; cursor: pointer; background: {{ tf.bg }}; color: {{ tf.color }}; transition: background 0.15s, color 0.15s;">{{ tf.label }}</button>
+        </sc-for>
+      </div>
+      <input type="text" placeholder="Search posts…" value="{{ searchQuery }}" onChange="{{ onSearchChange }}" style="font-size: 14px; padding: 10px 16px; border-radius: 20px; border: 1px solid #e6e8f0; background: #fff; color: #1c2030; min-width: 220px; outline: none;" />
+    </div>
+    <sc-if value="{{ hasNoResults }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 80px 20px; text-align: center;">
+        <div style="font-size: 19px; font-weight: 700; color: #1c2030;">No posts found</div>
+        <div style="font-size: 15px; color: #9096a8;">Try a different keyword or tag.</div>
+      </div>
+    </sc-if>
     <div id="bl-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
 
       <sc-for list="{{ posts }}" as="post" hint-placeholder-count="2">
@@ -163,7 +183,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { t: 0 };
+  state = { t: 0, activeTag: 'All', searchQuery: '' };
   headerBgCanvas = React.createRef();
   chromaRingCanvas = React.createRef();
   heroIcosaCanvas = React.createRef();
@@ -346,18 +366,33 @@ class Component extends DCLogic {
       readTime: p.readTime,
       href: `/blog/${p.slug}`,
       slotId: `blog-cover-${p.slug}`,
-      coverImg: ({ 'ai-in-2026': 'assets/blog-ai-coding-cover.png', 'a-decade-of-moving': 'assets/blog-post-cover.png' })[p.slug],
+      coverImg: ({ 'ai-in-2026': 'assets/blog-ai-coding-cover.png', 'a-decade-of-moving': 'assets/blog-post-cover.png', 'ai-agents-reshaping-tech': 'assets/blog-ai-agents-cover.png' })[p.slug],
       coverBg: `linear-gradient(155deg, oklch(55% 0.15 ${p.hue}) 0%, oklch(42% 0.15 ${p.hue}) 100%)`,
       tagColor: `oklch(30% 0.16 ${p.hue})`,
       tagBg: `oklch(52% 0.16 ${p.hue} / 0.14)`,
     }));
+    const tags = ['All', ...Array.from(new Set(this.postData.map((p) => p.tag)))];
+    const activeTag = this.state.activeTag;
+    const tagFilters = tags.map((t) => ({
+      label: t,
+      active: t === activeTag,
+      bg: t === activeTag ? '#2c46c9' : 'rgba(44,70,201,0.08)',
+      color: t === activeTag ? '#ffffff' : '#3d4356',
+      onClick: () => this.setState({ activeTag: t }),
+    }));
+    const tagFiltered = activeTag === 'All' ? posts : posts.filter((p) => p.tag === activeTag);
+    const query = this.state.searchQuery.trim().toLowerCase();
+    const filteredPosts = !query ? tagFiltered : tagFiltered.filter((p) =>
+      p.title.toLowerCase().includes(query) || p.excerpt.toLowerCase().includes(query) || p.tag.toLowerCase().includes(query)
+    );
+    const onSearchChange = (e) => this.setState({ searchQuery: e.target.value });
     const flourishCycle = 3.4;
     const flourishTm = (this.state.t % flourishCycle) / flourishCycle;
     const flourishFraction = (1 - Math.cos(Math.PI * 2 * flourishTm)) / 2;
     const flourishOffset = 140 * (1 - flourishFraction);
     const flourishDotX = (1 - flourishFraction) * (1 - flourishFraction) * 14 + 2 * (1 - flourishFraction) * flourishFraction * 80 + flourishFraction * flourishFraction * 146;
     const flourishDotY = (1 - flourishFraction) * (1 - flourishFraction) * 78 + 2 * (1 - flourishFraction) * flourishFraction * 96 + flourishFraction * flourishFraction * 76;
-    return { posts, flourishOffset, flourishDotX, flourishDotY, headerBgCanvas: this.headerBgCanvas, chromaRingCanvas: this.chromaRingCanvas, footerCanvas: this.footerCanvas, heroIcosaCanvas: this.heroIcosaCanvas, navScale: this.state.scrolled ? 0.88 : 1, headerShadow: this.state.scrolled ? '0 6px 22px rgba(28,32,48,0.12)' : '0 4px 16px rgba(28,32,48,0.06)' };
+    return { posts: filteredPosts, hasNoResults: filteredPosts.length === 0, tagFilters, searchQuery: this.state.searchQuery, onSearchChange, flourishOffset, flourishDotX, flourishDotY, headerBgCanvas: this.headerBgCanvas, chromaRingCanvas: this.chromaRingCanvas, footerCanvas: this.footerCanvas, heroIcosaCanvas: this.heroIcosaCanvas, navScale: this.state.scrolled ? 0.88 : 1, headerShadow: this.state.scrolled ? '0 6px 22px rgba(28,32,48,0.12)' : '0 4px 16px rgba(28,32,48,0.06)' };
   }
 }
 
