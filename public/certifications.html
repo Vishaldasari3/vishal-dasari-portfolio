@@ -20,11 +20,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script src="./image-slot.js"></script>
   <style>
     body { margin: 0; background: #f4f5f9; }
     * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
     a { color: #3654e0; text-decoration: none; }
     a:hover { color: #24399e; }
+
 
     @media (max-width: 900px) {
       #cert-grid { grid-template-columns: 1fr !important; }
@@ -51,7 +53,14 @@
     @media (max-width: 640px) {
       #cert-nav-items { flex-wrap: wrap !important; justify-content: center !important; }
     }
-  </style>
+  
+    @media (max-width: 640px) {
+      div[style*="56px 40px"], div[style*="56px 100px"], div[style*="56px 47px"] { padding-left: 20px !important; padding-right: 20px !important; }
+    }
+    @media (max-width: 480px) {
+      div[style*="56px 40px"], div[style*="56px 100px"], div[style*="56px 47px"] { padding-left: 16px !important; padding-right: 16px !important; }
+    }
+</style>
 </helmet>
 
 <div style="min-height: 100vh; background: #f4f5f9;">
@@ -85,7 +94,7 @@
       </div>
       <div style="position: relative; display: flex; align-items: center; justify-self: end; transform: scale({{ navScale }}); transform-origin: right center; transition: transform 0.3s ease;">
         <canvas ref="{{ blogFxCanvas }}" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; border-radius: 999px; overflow: hidden;"></canvas>
-        <a href="/blog" style="position: relative; font-size: 14px; font-weight: 700; font-family: 'Syne', sans-serif; color: #22262f; background: linear-gradient(135deg, #c4c9d9, #8a90a8 50%, #c4c9d9); padding: 10px 22px; border-radius: 999px; box-shadow: 0 6px 18px rgba(24,28,48,0.3); transition: transform 0.15s; overflow: hidden; display: inline-block;" style-hover="transform: translateY(-2px); box-shadow: 0 6px 18px rgba(24,28,48,0.3), 0 0 22px rgba(255,255,255,0.55);">Blog ↗</a>
+        <a href="/blog" style="position: relative; font-size: 14px; font-weight: 700; font-family: 'Poppins', sans-serif; color: #22262f; background: linear-gradient(135deg, #c4c9d9, #8a90a8 50%, #c4c9d9); padding: 12px 22px; border-radius: 999px; box-shadow: 0 6px 18px rgba(24,28,48,0.3); transition: transform 0.15s; display: inline-block; line-height: 1.3;" style-hover="transform: translateY(-2px); box-shadow: 0 6px 18px rgba(24,28,48,0.3), 0 0 22px rgba(255,255,255,0.55);">Blog ↗</a>
       </div>
     </div>
   </div>
@@ -107,12 +116,32 @@
     <div id="cert-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
 
       <sc-for list="{{ certs }}" as="cert" hint-placeholder-count="6">
-        <div style="background: #ffffff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 16px;">
+        <div onMouseEnter="{{ cert.onZoomIn }}" onMouseLeave="{{ cert.onZoomOut }}" style="background: #ffffff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 16px; transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;" style-hover="transform: translateY(-8px) scale(1.02); box-shadow: 0 24px 48px rgba(28, 32, 48, 0.16); border-color: #b9c2ee;">
           <div style="display: flex; align-items: flex-start; gap: 16px;">
-            <div style="width: 48px; height: 48px; border-radius: 12px; background: {{ cert.badgeBg }}; color: {{ cert.badgeText }}; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; flex-shrink: 0;">{{ cert.initials }}</div>
+            <div style="width: 96px; height: 96px; border-radius: 16px; background: #ffffff; border: 1px solid #e6e8f0; flex-shrink: 0; overflow: hidden; padding: 8px; box-sizing: border-box; position: relative;">
+              <canvas ref="{{ cert.canvasRef }}" style="position: absolute; inset: -14px; pointer-events: none; z-index: 0;"></canvas>
+              <sc-if value="{{ cert.isIbm }}" hint-placeholder-val="{{ false }}">
+                <img src="assets/ibm-logo.png" alt="IBM logo" style="width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 1;"/>
+              </sc-if>
+              <sc-if value="{{ cert.isMicrosoft }}" hint-placeholder-val="{{ false }}">
+                <img src="assets/ms-ai-fest-logo.png" alt="Microsoft AI Skills Fest logo" style="width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 1;"/>
+              </sc-if>
+              <sc-if value="{{ cert.isHcl }}" hint-placeholder-val="{{ false }}">
+                <img src="assets/hcl-logo.png" alt="HCL logo" style="width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 1;"/>
+              </sc-if>
+              <sc-if value="{{ cert.isOracle }}" hint-placeholder-val="{{ false }}">
+                <img src="assets/oracle-logo.png" alt="Oracle Certified Professional logo" style="width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 1;"/>
+              </sc-if>
+              <sc-if value="{{ cert.isAws }}" hint-placeholder-val="{{ false }}">
+                <img src="assets/aws-cert-logo.png" alt="AWS Certified Developer Associate logo" style="width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 1;"/>
+              </sc-if>
+              <sc-if value="{{ cert.isSlot }}" hint-placeholder-val="{{ true }}">
+                <image-slot id="cert-logo-{{ cert.id }}" shape="rounded" radius="10" fit="contain" placeholder="{{ cert.issuer }} logo" style="position: relative; z-index: 1; display: block;"></image-slot>
+              </sc-if>
+            </div>
             <div style="display: flex; flex-direction: column; gap: 4px;">
-              <div style="font-size: 16px; font-weight: 600; color: #1c2030; line-height: 1.35;">{{ cert.title }}</div>
-              <div style="font-size: 14px; color: #7a8199;">{{ cert.issuer }}</div>
+              <div style="font-size: 19px; font-weight: 600; color: #1c2030; line-height: 1.35;">{{ cert.title }}</div>
+              <div style="font-size: 16px; color: #7a8199;">{{ cert.issuer }}</div>
             </div>
           </div>
 
@@ -319,6 +348,50 @@ class Component extends DCLogic {
       } });
     }
 
+    // Shared single WebGL context for all card icosahedrons — rendered offscreen
+    // then blitted onto each card's plain 2D canvas (avoids exhausting the
+    // browser's concurrent WebGL-context limit from one renderer per card).
+    this.cardZoom = this.cardZoom || [];
+    if (!this._sharedCardGL) {
+      const glCanvas = document.createElement('canvas');
+      const renderer = new THREE.WebGLRenderer({ canvas: glCanvas, alpha: true, antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+      const geo = new THREE.IcosahedronGeometry(1, 0);
+      const mat = new THREE.MeshBasicMaterial({ color: 0x3654e0, wireframe: true, transparent: true, opacity: 0.22 });
+      const mesh = new THREE.Mesh(geo, mat);
+      scene.add(mesh);
+      this._sharedCardGL = { glCanvas, renderer, scene, camera, mesh };
+    }
+    const shared = this._sharedCardGL;
+    renderers.push({ renderer: { render: () => {} }, scene: null, camera: null, update: () => {
+      (this.cardCanvases || []).forEach((canvas, idx) => {
+        if (!canvas) return;
+        this.cardZoom[idx] = this.cardZoom[idx] || { cur: 1, target: 1 };
+        const zoomState = this.cardZoom[idx];
+        zoomState.cur += (zoomState.target - zoomState.cur) * 0.12;
+        const rectC = canvas.getBoundingClientRect();
+        const wC = Math.max(1, Math.round(rectC.width || 124));
+        const hC = Math.max(1, Math.round(rectC.height || 124));
+        shared.renderer.setSize(wC, hC, false);
+        shared.camera.aspect = wC / hC;
+        shared.camera.position.z = 3 - (zoomState.cur - 1) * 1.1;
+        shared.camera.updateProjectionMatrix();
+        shared.mesh.rotation.y += 0.006;
+        shared.mesh.rotation.x += 0.003;
+        shared.mesh.scale.setScalar(zoomState.cur);
+        shared.renderer.render(shared.scene, shared.camera);
+        const ctx2d = canvas.getContext('2d');
+        if (ctx2d) {
+          if (canvas.width !== wC) canvas.width = wC;
+          if (canvas.height !== hC) canvas.height = hC;
+          ctx2d.clearRect(0, 0, wC, hC);
+          ctx2d.drawImage(shared.glCanvas, 0, 0, wC, hC);
+        }
+      });
+    } });
+
     const heroIcosaCanvas = this.heroIcosaCanvas.current;
     if (heroIcosaCanvas) {
       const rectI = heroIcosaCanvas.getBoundingClientRect();
@@ -345,6 +418,24 @@ class Component extends DCLogic {
 
   certData = [
     {
+      title: 'Oracle Certified Professional, Java SE 6 Programmer',
+      issuer: 'Oracle',
+      initials: 'OR',
+      hue: 340,
+      dateLine: 'Issued Dec 2014',
+      url: 'https://www.credly.com/badges/52eb2a7f-63b1-4c54-b4ab-526a04508538/linked_in',
+      skills: ['Java SE', 'Object-Oriented Programming', 'Core Java'],
+    },
+    {
+      title: 'AWS Certified Developer \u2013 Associate',
+      issuer: 'Amazon Web Services (AWS)',
+      initials: 'AWS',
+      hue: 230,
+      dateLine: 'Issued Aug 2022 \u00b7 Expires Aug 2025',
+      url: 'https://www.credly.com/badges/f8d81104-7adb-4b20-a226-496688c27bb3/linked_in_profile',
+      skills: ['AWS Lambda', 'DynamoDB', 'Cloud Development', 'CI/CD'],
+    },
+    {
       title: 'AI Skills Fest 2026',
       issuer: 'Microsoft',
       initials: 'MS',
@@ -354,29 +445,13 @@ class Component extends DCLogic {
       skills: ['Artificial Intelligence', 'Applied AI', 'Generative AI Tools', 'AI Agents', 'Workflow Automation', 'Prompt Engineering'],
     },
     {
-      title: 'AWS Certified Developer \u2013 Associate',
-      issuer: 'Amazon Web Services (AWS)',
-      initials: 'AWS',
-      hue: 230,
-      dateLine: 'Issued Aug 2022 \u00b7 Expires Aug 2025',
-      url: 'https://www.credly.com/badges/f8d81104-7adb-4b20-a226-496688c27bb3/linked_in_profile',
-    },
-    {
-      title: 'Build a Face Recognition Application using Python',
-      issuer: 'HCL GUVI',
-      initials: 'HG',
-      hue: 264,
-      dateLine: 'Issued Apr 2021',
-      credentialId: '1S8919K5e072680BL6',
-      url: 'https://www.guvi.in/verify-certificate?id=1S8919K5e072680BL6',
-    },
-    {
       title: 'Machine Learning with Python \u2014 Level 1',
       issuer: 'IBM',
       initials: 'IBM',
       hue: 305,
       dateLine: 'Issued Oct 2020',
       url: 'https://www.credly.com/badges/d7306259-7f46-452b-ad6d-d018bfa8b266?source=linked_in_profile',
+      skills: ['Machine Learning', 'Python', 'Scikit-learn'],
     },
     {
       title: 'Python for Data Science',
@@ -385,26 +460,40 @@ class Component extends DCLogic {
       hue: 160,
       dateLine: 'Issued Aug 2020',
       url: 'https://www.credly.com/badges/51fbee59-d6ef-47d5-97e4-caa17f87e3f8?source=linked_in_profile',
+      skills: ['Python', 'Data Science', 'Pandas', 'NumPy'],
     },
     {
-      title: 'Oracle Certified Professional, Java SE 6 Programmer',
-      issuer: 'Oracle',
-      initials: 'OR',
-      hue: 340,
-      dateLine: 'Issued Dec 2014',
-      url: 'https://www.credly.com/badges/52eb2a7f-63b1-4c54-b4ab-526a04508538/linked_in',
+      title: 'Build a Face Recognition Application using Python',
+      issuer: 'HCL GUVI',
+      initials: 'GV',
+      hue: 264,
+      dateLine: 'Issued Apr 2021',
+      credentialId: '1S8919K5e072680BL6',
+      url: 'https://www.guvi.in/verify-certificate?id=1S8919K5e072680BL6',
+      skills: ['Computer Vision', 'OpenCV', 'Python'],
     },
   ];
 
   renderVals() {
-    const certs = this.certData.map((c) => ({
+    this.cardCanvases = this.cardCanvases || [];
+    this.cardZoom = this.cardZoom || [];
+    const certs = this.certData.map((c, i) => ({
+      canvasRef: (el) => { this.cardCanvases[i] = el; },
+      onZoomIn: () => { this.cardZoom[i] = this.cardZoom[i] || { cur: 1, target: 1 }; this.cardZoom[i].target = 1.5; },
+      onZoomOut: () => { this.cardZoom[i] = this.cardZoom[i] || { cur: 1, target: 1 }; this.cardZoom[i].target = 1; },
       title: c.title,
       issuer: c.issuer,
       initials: c.initials,
       dateLine: c.dateLine,
       url: c.url,
-      badgeBg: `oklch(52% 0.16 ${c.hue} / 0.14)`,
-      badgeText: `oklch(30% 0.16 ${c.hue})`,
+      id: (c.title || '').replace(/[^a-z0-9]+/gi, '-').toLowerCase(),
+      isIbm: c.issuer === 'IBM',
+      isNotIbm: c.issuer !== 'IBM',
+      isMicrosoft: c.issuer === 'Microsoft',
+      isHcl: c.issuer === 'HCL GUVI',
+      isOracle: c.issuer === 'Oracle',
+      isAws: c.issuer.indexOf('Amazon') === 0,
+      isSlot: c.issuer !== 'IBM' && c.issuer !== 'Microsoft' && c.issuer !== 'HCL GUVI' && c.issuer !== 'Oracle' && c.issuer.indexOf('Amazon') !== 0,
       hasId: !!c.credentialId,
       credentialId: c.credentialId || '',
       hasSkills: !!(c.skills && c.skills.length),
@@ -416,7 +505,7 @@ class Component extends DCLogic {
     const flourishOffset = 140 * (1 - flourishFraction);
     const flourishDotX = (1 - flourishFraction) * (1 - flourishFraction) * 14 + 2 * (1 - flourishFraction) * flourishFraction * 80 + flourishFraction * flourishFraction * 146;
     const flourishDotY = (1 - flourishFraction) * (1 - flourishFraction) * 78 + 2 * (1 - flourishFraction) * flourishFraction * 96 + flourishFraction * flourishFraction * 76;
-    return { certs, flourishOffset, flourishDotX, flourishDotY, headerBgCanvas: this.headerBgCanvas, chromaRingCanvas: this.chromaRingCanvas, blogFxCanvas: this.blogFxCanvas, footerCanvas: this.footerCanvas, heroIcosaCanvas: this.heroIcosaCanvas, navScale: this.state.scrolled ? 0.88 : 1, headerShadow: this.state.scrolled ? '0 6px 22px rgba(28,32,48,0.12)' : '0 4px 16px rgba(28,32,48,0.06)' };
+    return { certs, flourishOffset, flourishDotX, flourishDotY, headerBgCanvas: this.headerBgCanvas, chromaRingCanvas: this.chromaRingCanvas, blogFxCanvas: this.blogFxCanvas, footerCanvas: this.footerCanvas, heroIcosaCanvas: this.heroIcosaCanvas, navScale: this.state.scrolled ? 0.88 : 1, headerShadow: this.state.scrolled ? '0 6px 22px rgba(28,32,48,0.12)' : '0 4px 16px rgba(28,32,48,0.06)', };
   }
 }
 
