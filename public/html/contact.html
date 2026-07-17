@@ -40,16 +40,19 @@
     #ct-left { min-height: unset !important; padding: 48px 32px !important; }
   }
   @media (max-width: 480px) {
-    #site-nav-items { gap: 12px !important; flex-wrap: wrap !important; justify-content: center !important; }
-    #site-nav-items a { font-size: 14px !important; }
+    #site-nav-items { gap: 4px !important; flex-wrap: nowrap !important; justify-content: flex-start !important; }
+    #site-nav-items a { font-size: 12px !important; padding: 6px 8px !important; }
   }
   @media (max-width: 1180px) {
     #site-header-row { padding: 18px 20px !important; gap: 12px !important; }
   }
   @media (max-width: 860px) {
-    #site-header-row { flex-direction: column !important; align-items: center !important; padding: 20px 24px 16px !important; }
-    #site-header-grid { width: 100% !important; flex: none !important; }
-    #site-header-spacer { height: 150px !important; }
+    #site-header-row { flex-wrap: wrap !important; row-gap: 10px !important; padding: 14px 16px !important; justify-content: space-between !important; }
+    #site-header-grid { display: contents !important; }
+    #site-nav-items { flex: 1 1 auto !important; min-width: 0 !important; width: auto !important; max-width: none !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; justify-self: unset !important; gap: 2px !important; padding: 5px !important; }
+    #site-nav-items a { padding: 7px 10px !important; font-size: 12.5px !important; white-space: nowrap !important; }
+    #site-header-grid > div:last-child { flex: 1 1 100% !important; order: 3 !important; justify-content: center !important; }
+    #site-header-spacer { height: 132px !important; }
   }
   @media (max-width: 640px) {
     #site-nav-items { flex-wrap: wrap !important; justify-content: center !important; }
@@ -62,6 +65,7 @@
   .hv10:hover { transform: translateX(4px); background: rgba(255,255,255,0.13); border-color: rgba(255,255,255,0.28); }
   .hv11:hover, .hv12:hover, .hv13:hover { transform: translateY(-3px); background: rgba(255,255,255,0.26); box-shadow: 0 0 18px rgba(255,255,255,0.55); }
   .hv14:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(54,84,224,0.42); }
+  @keyframes ct-spin { to { transform: rotate(360deg); } }
 </style>
 </head>
 <body data-page="contact">
@@ -184,8 +188,9 @@
     </div>
 
     <button id="ct-send" class="hv14" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(135deg, #3654e0 0%, #2c46c9 100%); color: #ffffff; font-weight: 600; font-size: 15.5px; padding: 16px 26px; border-radius: 14px; border: none; cursor: pointer; margin-top: 6px; box-shadow: 0 14px 30px rgba(54,84,224,0.32); transition: transform 0.2s, box-shadow 0.2s; position: relative; z-index: 1;">
+      <svg id="ct-spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" style="display: none; animation: ct-spin 0.7s linear infinite;"><circle cx="12" cy="12" r="9" stroke="rgba(255,255,255,0.35)" stroke-width="3"/><path d="M21 12a9 9 0 0 0-9-9" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/></svg>
       <span id="ct-send-label">Send Message</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      <svg id="ct-send-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
     </button>
     <div class="cf-turnstile" data-sitekey="0x4AAAAAAD4AxnTPERnJq4UL" style="position: relative; z-index: 1;"></div>
 

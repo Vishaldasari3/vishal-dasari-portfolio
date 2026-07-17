@@ -53,8 +53,11 @@
     #vd-header { padding: 0 8px !important; gap: 12px !important; }
   }
   @media (max-width: 860px) {
-    #vd-header { flex-direction: column !important; align-items: center !important; }
-    #vd-header-grid { width: 100% !important; flex: none !important; }
+    #vd-header { flex-wrap: wrap !important; row-gap: 10px !important; justify-content: space-between !important; }
+    #vd-header-grid { display: contents !important; }
+    #vd-nav-items { flex: 1 1 auto !important; min-width: 0 !important; width: auto !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; justify-self: unset !important; gap: 2px !important; padding: 5px !important; }
+    #vd-nav-items a { padding: 7px 10px !important; font-size: 12.5px !important; white-space: nowrap !important; }
+    #vd-header-grid > div:last-child { flex: 1 1 100% !important; order: 3 !important; justify-content: center !important; }
   }
   @media (max-width: 900px) {
     #vd-card {
@@ -63,7 +66,7 @@
       padding: 28px 24px 48px !important; gap: 28px !important;
     }
     #vd-header { position: static !important; width: 100% !important; top: auto !important; left: auto !important; right: auto !important; order: 0 !important; }
-    #vd-nav-items { flex-wrap: wrap !important; justify-content: center !important; }
+    #vd-nav-items { flex-wrap: nowrap !important; }
     #vd-headshot-wrap { position: static !important; width: 62% !important; max-width: 300px !important; height: auto !important; transform: none !important; order: 2 !important; }
     #vd-name-block { position: static !important; max-width: 100% !important; align-items: center !important; text-align: center !important; order: 1 !important; }
     #vd-name-block > div:first-child { text-align: center !important; }

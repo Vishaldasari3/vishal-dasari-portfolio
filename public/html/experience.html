@@ -39,8 +39,8 @@
     #ex-modal-panel { width: 92% !important; padding: 32px 24px !important; }
   }
   @media (max-width: 480px) {
-    #site-nav-items { gap: 12px !important; flex-wrap: wrap !important; justify-content: center !important; }
-    #site-nav-items a { font-size: 14px !important; }
+    #site-nav-items { gap: 4px !important; flex-wrap: nowrap !important; justify-content: flex-start !important; }
+    #site-nav-items a { font-size: 12px !important; padding: 6px 8px !important; }
   }
   @media (max-width: 1180px) {
     #site-header-row { padding: 18px 20px !important; gap: 12px !important; }
@@ -48,12 +48,15 @@
     #site-nav-items a, #site-nav-items span { font-size: 12.5px !important; padding: 7px 9px !important; }
   }
   @media (max-width: 860px) {
-    #site-header-row { flex-direction: column !important; align-items: center !important; padding: 20px 24px 16px !important; }
-    #site-header-grid { width: 100% !important; flex: none !important; }
-    #site-header-spacer { height: 150px !important; }
+    #site-header-row { flex-wrap: wrap !important; row-gap: 10px !important; padding: 14px 16px !important; justify-content: space-between !important; }
+    #site-header-grid { display: contents !important; }
+    #site-nav-items { flex: 1 1 auto !important; min-width: 0 !important; width: auto !important; max-width: none !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; justify-self: unset !important; gap: 2px !important; padding: 5px !important; }
+    #site-nav-items a { padding: 7px 10px !important; font-size: 12.5px !important; white-space: nowrap !important; }
+    #site-header-grid > div:last-child { flex: 1 1 100% !important; order: 3 !important; justify-content: center !important; }
+    #site-header-spacer { height: 132px !important; }
   }
   @media (max-width: 640px) {
-    #site-nav-items { flex-wrap: wrap !important; justify-content: center !important; }
+    #site-nav-items { flex-wrap: nowrap !important; justify-content: flex-start !important; }
   }
   .hv40:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(44,70,201,0.12); }
   .hv41:hover, .hv42:hover, .hv43:hover { transform: translateY(-3px) scale(1.08); box-shadow: 0 6px 16px rgba(54,84,224,0.35), 0 0 14px rgba(54,84,224,0.4); }
