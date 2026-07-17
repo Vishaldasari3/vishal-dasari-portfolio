@@ -18,3 +18,18 @@
 .hv7:hover { transform: translateY(-3px) scale(1.08); box-shadow: 0 6px 16px rgba(54,84,224,0.35), 0 0 14px rgba(54,84,224,0.4); }
 .hv8:hover { transform: translateY(-3px) scale(1.08); box-shadow: 0 6px 16px rgba(54,84,224,0.35), 0 0 14px rgba(54,84,224,0.4); }
 .hv9:hover { transform: translateY(-3px) scale(1.08); box-shadow: 0 6px 16px rgba(54,84,224,0.35), 0 0 14px rgba(54,84,224,0.4); }
+
+.cert-logo-box.logo-badge::before { animation-duration: 8s; opacity: 0.55; }
+.cert-logo-box.logo-badge::after { animation-duration: 9s; }
+
+@media (max-width: 1180px) {
+  #vd-logo-badge { width: 38px !important; height: 38px !important; font-size: 14px !important; }
+  #vd-logo-word { font-size: 12px !important; }
+}
+
+@media (max-width: 860px) {
+  #site-header-row { flex-wrap: wrap !important; justify-content: center !important; row-gap: 12px !important; }
+  #site-header-grid { display: flex !important; flex-direction: column !important; align-items: center !important; width: 100% !important; gap: 12px !important; order: 3 !important; }
+  #site-nav-items { flex-wrap: wrap !important; justify-content: center !important; width: auto !important; max-width: 100%; }
+  #site-header-grid > div:last-child { justify-content: center !important; }
+}

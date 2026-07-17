@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <link rel="stylesheet" href="partials/partials.css">
 <style>
   html, body { margin: 0; background: #f4f5f9; }
@@ -25,8 +26,6 @@
     #site-nav-items a { font-size: 14px !important; }
   }
   @media (max-width: 1180px) {
-    #vd-logo-badge { width: 34px !important; height: 34px !important; font-size: 13px !important; }
-    #vd-logo-word { font-size: 11px !important; }
     #site-header-row { padding: 18px 20px !important; gap: 12px !important; }
   }
   @media (max-width: 860px) {
@@ -130,6 +129,10 @@
     </div>
 
     <div id="ct-field-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+      <div style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
+        <label for="ct-hp">Leave this field empty</label>
+        <input type="text" id="ct-hp" name="_gotcha" tabindex="-1" autocomplete="off" />
+      </div>
       <div>
         <div style="position: relative;">
           <input type="text" placeholder=" " id="ct-name" name="name" style="width: 100%; border: 1.5px solid #e6e8f0; border-radius: 12px; padding: 20px 16px 8px; font-size: 14px; color: #1c2030; background: #fafbfd;" />
@@ -166,6 +169,7 @@
       <span id="ct-send-label">Send Message</span>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
     </button>
+    <div class="g-recaptcha" data-sitekey="6Lel41ctAAAAAPeMwemqT9W11d1yr6tJZ0VVNCVE" style="position: relative; z-index: 1;"></div>
 
     <div id="ct-sent-msg" style="display: none; font-size: 14px; color: #1f8a5b; background: #e9f7ef; border-radius: 10px; padding: 12px 16px;">Thanks &mdash; this is a demo form, but your message would be on its way!</div>
     <div id="ct-top-error" style="display: none; font-size: 14px; color: #e0435a; background: #fdecee; border-radius: 10px; padding: 12px 16px;">Please fix the highlighted fields above.</div>

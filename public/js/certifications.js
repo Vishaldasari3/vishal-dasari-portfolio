@@ -58,11 +58,12 @@
     if (heroCanvas && window.createIcosaScene) window.createIcosaScene(heroCanvas, 0.25);
 
     const grid = document.getElementById('cert-grid');
-    grid.innerHTML = certData.map((c) => `
+    grid.innerHTML = certData.map((c, i) => `
       <div class="cert-card" style="background: #ffffff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 16px; transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;">
         <div style="display: flex; align-items: flex-start; gap: 16px;">
-          <div style="width: 96px; height: 96px; border-radius: 16px; background: #ffffff; border: 1px solid #e6e8f0; flex-shrink: 0; overflow: hidden; padding: 8px;">
-            <img src="${c.logo}" alt="${esc(c.issuer)} logo" style="width: 100%; height: 100%; object-fit: contain;" />
+          <div class="cert-logo-box logo-badge" style="position: relative; width: 96px; height: 96px; border-radius: 16px; flex-shrink: 0; overflow: hidden;">
+            <span style="position: absolute; inset: 2px; border-radius: 14px; background: #ffffff; z-index: 1;"></span>
+            <img src="${c.logo}" alt="${esc(c.issuer)} logo" style="position: relative; z-index: 2; width: 100%; height: 100%; object-fit: contain; padding: 8px; box-sizing: border-box;" />
           </div>
           <div style="display: flex; flex-direction: column; gap: 4px;">
             <div style="font-size: 19px; font-weight: 600; color: #1c2030; line-height: 1.35;">${esc(c.title)}</div>

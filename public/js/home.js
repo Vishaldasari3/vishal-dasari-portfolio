@@ -21,7 +21,6 @@
   const introBlock = document.getElementById('vd-intro-block');
   const card = document.getElementById('vd-card');
   const orb1 = document.getElementById('vd-orb1');
-  const orb2 = document.getElementById('vd-orb2');
   const nameLine1El = document.getElementById('vd-name-line1');
   const nameLine2El = document.getElementById('vd-name-line2');
   const roleLineEl = document.getElementById('vd-role-line');
@@ -52,18 +51,6 @@
 
   function tick() {
     t = (Date.now() - startTime) / 1000;
-
-    const breathe = Math.sin(t * 0.35) * 6;
-    card.style.background = `linear-gradient(155deg, #b6bfd8 0%, #aeb8d2 ${55 + breathe}%, #a7b2cd 100%)`;
-
-    const orb1X = -60 + Math.sin(t * 0.25) * 18;
-    const orb1Y = -80 + Math.cos(t * 0.2) * 14;
-    const orb2X = -50 + Math.cos(t * 0.22) * 16;
-    const orb2Y = -70 + Math.sin(t * 0.28) * 12;
-    orb1.style.right = orb1X + 'px';
-    orb1.style.top = orb1Y + 'px';
-    orb2.style.left = orb2X + 'px';
-    orb2.style.bottom = orb2Y + 'px';
 
     const bob = Math.sin(t * 1.1) * 6;
     const parX = mx * 10;
@@ -104,6 +91,29 @@
 
   function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
+  function equalizeLogoLines() {
+    const l1 = document.getElementById('vd-logo-line1');
+    const l2 = document.getElementById('vd-logo-line2');
+    if (!l1 || !l2) return;
+    l1.style.letterSpacing = '1.36px';
+    l2.style.letterSpacing = '0.06em';
+    const measure = () => {
+      const w1 = l1.getBoundingClientRect().width;
+      const w2 = l2.getBoundingClientRect().width;
+      if (!w1 || !w2) return;
+      const narrower = w1 < w2 ? l1 : l2;
+      const wider = w1 < w2 ? w2 : w1;
+      const narrowerWidth = Math.min(w1, w2);
+      if (wider - narrowerWidth < 0.5) return;
+      const chars = narrower.textContent.length;
+      const extraPerGap = (wider - narrowerWidth) / (chars - 1);
+      const base = narrower === l1 ? 1.36 : parseFloat(getComputedStyle(l2).letterSpacing);
+      narrower.style.letterSpacing = `${base + extraPerGap}px`;
+    };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => requestAnimationFrame(measure));
+    else requestAnimationFrame(measure);
+  }
+
   let startTime;
 
   function startTypewriters() {
@@ -134,6 +144,7 @@
 
   function init() {
     startTime = Date.now();
+    equalizeLogoLines();
     requestAnimationFrame(() => requestAnimationFrame(() => { mounted = true; applyEntrance(); }));
     setTimeout(() => { mounted = true; applyEntrance(); }, 300);
 
@@ -144,6 +155,8 @@
       if (s !== scrolled) { scrolled = s; applyScroll(); }
     }, { passive: true });
     applyScroll();
+
+    window.addEventListener('resize', equalizeLogoLines, { passive: true });
 
     headshotWrap.addEventListener('mousemove', (e) => {
       const rect = headshotWrap.getBoundingClientRect();

@@ -32,6 +32,8 @@
     setActiveNav();
     initHeaderScroll();
     initSharedScenes();
+    equalizeLogoLines();
+    window.addEventListener('resize', equalizeLogoLines, { passive: true });
     if (window.__onPartialsReady) window.__onPartialsReady();
   }
 
@@ -79,6 +81,29 @@
     if (window.SharedScenes) window.SharedScenes.waitForThree(cb);
     else if (window.THREE) cb();
     else requestAnimationFrame(() => waitForThree(cb));
+  }
+
+  function equalizeLogoLines() {
+    const l1 = document.getElementById('vd-logo-line1');
+    const l2 = document.getElementById('vd-logo-line2');
+    if (!l1 || !l2) return;
+    l1.style.letterSpacing = '1.36px';
+    l2.style.letterSpacing = '0.06em';
+    const measure = () => {
+      const w1 = l1.getBoundingClientRect().width;
+      const w2 = l2.getBoundingClientRect().width;
+      if (!w1 || !w2) return;
+      const narrower = w1 < w2 ? l1 : l2;
+      const wider = w1 < w2 ? w2 : w1;
+      const narrowerWidth = Math.min(w1, w2);
+      if (wider - narrowerWidth < 0.5) return;
+      const chars = narrower.textContent.length;
+      const extraPerGap = (wider - narrowerWidth) / (chars - 1);
+      const base = narrower === l1 ? 1.36 : parseFloat(getComputedStyle(l2).letterSpacing);
+      narrower.style.letterSpacing = `${base + extraPerGap}px`;
+    };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => requestAnimationFrame(measure));
+    else requestAnimationFrame(measure);
   }
 
   function initSharedScenes() {
