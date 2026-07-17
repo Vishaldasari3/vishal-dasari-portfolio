@@ -1,0 +1,20 @@
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes badgesheen { 0% { transform: translateX(-130%) skewX(-12deg); } 15% { transform: translateX(130%) skewX(-12deg); } 100% { transform: translateX(130%) skewX(-12deg); } }
+.logo-badge::before { content: ''; position: absolute; inset: -55%; background: conic-gradient(from 0deg, #7c3aed, #4f7cff, #06d6f0, #4f7cff, #7c3aed); animation: spin 5s linear infinite; z-index: 0; }
+.logo-badge::after { content: ''; position: absolute; inset: 0; z-index: 3; background: linear-gradient(115deg, transparent 32%, rgba(255,255,255,.28) 46%, transparent 60%); transform: translateX(-130%) skewX(-12deg); animation: badgesheen 6s ease-in-out 2s infinite; pointer-events: none; }
+.logo:hover .logo-badge { transform: scale(1.07) rotate(-2deg); box-shadow: 0 12px 28px -10px rgba(79,124,255,.7); transition: transform 0.4s cubic-bezier(.22,1,.36,1), box-shadow 0.4s; }
+@media (prefers-reduced-motion: reduce) {
+  .logo-badge::before, .logo-badge::after { animation: none !important; }
+  .logo:hover .logo-badge { transform: none !important; box-shadow: none !important; transition: none !important; }
+}
+
+/* generated hover rules for header/footer partials */
+.hv1:hover { color: #3654e0; background: #f4f5f9; }
+.hv2:hover { color: #3654e0; background: #f4f5f9; }
+.hv3:hover { color: #3654e0; background: #f4f5f9; }
+.hv4:hover { color: #3654e0; background: #f4f5f9; }
+.hv5:hover { color: #3654e0; background: #f4f5f9; }
+.hv6:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(24,28,48,0.3), 0 0 22px rgba(255,255,255,0.55); }
+.hv7:hover { transform: translateY(-3px) scale(1.08); box-shadow: 0 6px 16px rgba(54,84,224,0.35), 0 0 14px rgba(54,84,224,0.4); }
+.hv8:hover { transform: translateY(-3px) scale(1.08); box-shadow: 0 6px 16px rgba(54,84,224,0.35), 0 0 14px rgba(54,84,224,0.4); }
+.hv9:hover { transform: translateY(-3px) scale(1.08); box-shadow: 0 6px 16px rgba(54,84,224,0.35), 0 0 14px rgba(54,84,224,0.4); }

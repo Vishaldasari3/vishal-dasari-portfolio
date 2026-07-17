@@ -1,42 +1,52 @@
 # Vishal Dasari Portfolio — Next.js
 
+Static, framework-free HTML/JS site served through Next.js rewrites (so it deploys anywhere Next.js does, with clean URLs).
+
 ## Run it
 
     npm install
     npm run dev
 
-Open http://localhost:3000 — routes: `/`, `/about`, `/experience`, `/certifications`, `/tech-stack`, `/contact`, `/blog`, `/blog-post`.
+Open http://localhost:3000 — routes: `/`, `/about`, `/experience`, `/certifications`, `/tech-stack`, `/contact`, `/blog`, `/blog/<slug>`.
 
-## How this is built
+## Structure
 
-Each route is a Next.js **Route Handler** (`app/<route>/route.js`) that reads a pre-built, fully self-contained HTML file from `/public` and serves it as the response — see any `route.js` for the ~10 lines that do this. Each HTML file already has all CSS, JS (including the three.js effects), and images (as base64) inlined, so every page runs with zero extra build step or asset pipeline.
-
-**Why not plain React/JSX components?** The original designs use a template runtime (custom `{{ }}` bindings, a `DCLogic` class per page, inline `style-hover` attributes) that doesn't map 1:1 onto JSX — converting ~8 pages of three.js canvas work and animation logic to idiomatic hooks/components line-by-line was out of scope for this export. What you have here is the exact, working, pixel-perfect design, wired into real Next.js routing.
-
-## Editing a page
-
-Open the relevant file in `/public` (e.g. `public/about.html`) — it's a single self-contained HTML file, editable directly (search for the text/style you want to change). There are no separate CSS/JS/image files to track down.
-
-## Converting a page to real JSX (optional)
-
-If you want a given page as idiomatic React instead of static HTML:
-1. Pull the markup inside `<body>` into a `.jsx`/`.tsx` component, converting `style="a: b; c: d;"` strings to `style={{ a: 'b', c: 'd' }}` objects.
-2. Move any `<script>` logic into a `useEffect` (mark the file `'use client'`).
-3. Replace the route's `route.js` with a `page.js` rendering that component.
-
-## Project structure
-
-    app/
-      route.js                 → "/"          (home.html)
-      about/route.js           → "/about"
-      experience/route.js      → "/experience"
-      certifications/route.js  → "/certifications"
-      tech-stack/route.js      → "/tech-stack"
-      contact/route.js         → "/contact"
-      blog/route.js            → "/blog"
-      blog-post/route.js       → "/blog-post"
-      layout.js                 root layout (used only by not-found.js)
-      not-found.js               404 page
     public/
-      home.html, about.html, experience.html, certifications.html,
-      tech-stack.html, contact.html, blog.html, blog-post.html
+      home.html / js/home.js           Landing page markup + behavior
+      about.html                       (no page-specific JS)
+      experience.html / js/experience.js
+      certifications.html / js/certifications.js
+      tech-stack.html / js/tech-stack.js
+      contact.html / js/contact.js
+      blog.html / js/blog.js            Blog index (list, search, tag filter)
+      blogs/
+        blog-<slug>.html                One shell per post (uses js/blog-post.js)
+      js/
+        blog-post.js                    Shared blog-post page logic
+        common.js                       Injects header/footer, active-nav state
+        blog-posts-data.js              Blog post content (title, body, meta)
+        cursor-effects.js               Shared cursor micro-interactions
+      partials/
+        header.html, footer.html        Shared header/footer markup
+        partials.css                    Shared keyframes/utility CSS
+      assets/                           Images, logos, icons
+
+Every page is plain HTML with an external `<script src="js/*.js">` — no inline
+JS, no build step for the page content. `js/common.js` fetches `partials/header.html`
+and `partials/footer.html` and injects them into each page's `#site-header` /
+`#site-footer` slots, resolving partial/asset paths relative to its own script
+location so it works both at the root and under `public/blogs/`.
+
+## Adding a blog post
+
+1. Add an entry to `public/partials/blog-posts-data.js` (title, tag, date,
+   cover image, paragraphs).
+2. Copy `public/blogs/blog-ai-in-2026.html`, rename to `blog-<slug>.html`,
+   and update `data-slug="<slug>"` on `<body>`.
+3. Add a card for it in `public/blog.js`'s `postData` array.
+4. Add the route in `next.config.js` rewrites (see below).
+
+## Routing
+
+`next.config.js` rewrites clean URLs to the matching static file in `public/`.
+`/blog/<slug>` maps to `public/blogs/blog-<slug>.html`.
