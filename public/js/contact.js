@@ -95,11 +95,23 @@
       }
 
       // Google reCAPTCHA (Formspree checks g-recaptcha-response server-side).
-      const captchaResponse = window.grecaptcha ? window.grecaptcha.getResponse() : '';
-      if (document.querySelector('.g-recaptcha') && document.querySelector('.g-recaptcha').getAttribute('data-sitekey') !== 'YOUR_RECAPTCHA_SITE_KEY' && !captchaResponse) {
-        document.getElementById('ct-top-error').textContent = 'Please complete the reCAPTCHA check.';
-        document.getElementById('ct-top-error').style.display = 'block';
-        return;
+      const captchaEl = document.querySelector('.g-recaptcha');
+      const captchaConfigured = captchaEl && captchaEl.getAttribute('data-sitekey') !== 'YOUR_RECAPTCHA_SITE_KEY';
+      if (captchaConfigured) {
+        if (!window.grecaptcha || typeof window.grecaptcha.getResponse !== 'function') {
+          document.getElementById('ct-top-error').textContent = 'reCAPTCHA didn\u2019t load \u2014 check your connection and that this domain is allowed for the site key, then retry.';
+          document.getElementById('ct-top-error').style.display = 'block';
+          return;
+        }
+        const captchaResponse = window.grecaptcha.getResponse();
+        if (!captchaResponse) {
+          document.getElementById('ct-top-error').textContent = 'Please complete the reCAPTCHA check.';
+          document.getElementById('ct-top-error').style.display = 'block';
+          return;
+        }
+        window.__ctCaptchaResponse = captchaResponse;
+      } else {
+        window.__ctCaptchaResponse = '';
       }
 
       if (FORMSPREE_FORM_ID === 'YOUR_FORM_ID') {
@@ -120,7 +132,7 @@
             subject: document.getElementById('ct-subject').value,
             message: document.getElementById('ct-message').value,
             _gotcha: '',
-            'g-recaptcha-response': captchaResponse,
+            'g-recaptcha-response': window.__ctCaptchaResponse || '',
           }),
         });
         if (!res.ok) throw new Error('Formspree responded ' + res.status);

@@ -1,4 +1,5 @@
 (function () {
+  const SCRIPT_SRC = document.currentScript.src;
   function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
   function init() {
@@ -13,8 +14,9 @@
     document.getElementById('bp-tag').textContent = p.tag;
     document.getElementById('bp-title').textContent = p.title;
     document.getElementById('bp-meta').textContent = `${p.date} \u00b7 ${p.readTime}`;
-    const rootBase = new URL('../', document.currentScript ? document.currentScript.src : location.href);
-    document.getElementById('bp-cover').src = new URL(p.coverImg, rootBase).href;
+    const scriptSrc = SCRIPT_SRC;
+    const publicRoot = new URL('../', scriptSrc); // public/js/ -> public/
+    document.getElementById('bp-cover').src = new URL(p.coverImg, publicRoot).href;
     document.getElementById('bp-cover').alt = p.title;
     document.getElementById('bp-body').innerHTML = p.paragraphs.map((para) =>
       `<div style="font-size: 17px; color: #3d4356; line-height: 1.85;">${esc(para)}</div>`

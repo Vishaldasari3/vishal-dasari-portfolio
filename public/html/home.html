@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S73TQJT3TC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-S73TQJT3TC');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vishal Dasari — Senior Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<script src="../js/cursor-effects.js"></script>
+<style>
+  html, body { margin: 0; background: #aeb8d2; }
+  * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+  a { color: #3654e0; text-decoration: none; }
+  a:hover { color: #24399e; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes badgesheen { 0% { transform: translateX(-130%) skewX(-12deg); } 15% { transform: translateX(130%) skewX(-12deg); } 100% { transform: translateX(130%) skewX(-12deg); } }
+  .logo-badge::before { content: ''; position: absolute; inset: -55%; background: conic-gradient(from 0deg, #7c3aed, #4f7cff, #06d6f0, #4f7cff, #7c3aed); animation: spin 5s linear infinite; z-index: 0; }
+  .logo-badge::after { content: ''; position: absolute; inset: 0; z-index: 3; background: linear-gradient(115deg, transparent 32%, rgba(255,255,255,.28) 46%, transparent 60%); transform: translateX(-130%) skewX(-12deg); animation: badgesheen 6s ease-in-out 2s infinite; pointer-events: none; }
+  .logo:hover .logo-badge { transform: scale(1.07) rotate(-2deg); box-shadow: 0 12px 28px -10px rgba(79,124,255,.7); transition: transform 0.4s cubic-bezier(.22,1,.36,1), box-shadow 0.4s; }
+  @media (prefers-reduced-motion: reduce) {
+    .logo-badge::before, .logo-badge::after { animation: none !important; }
+    .logo:hover .logo-badge { transform: none !important; box-shadow: none !important; transition: none !important; }
+  }
+
+  #vd-header a:not(.logo):hover { color: #1c2030 !important; background: rgba(255,255,255,0.5) !important; }
+  #vd-social a:hover { transform: translateY(-4px) scale(1.08); box-shadow: 0 10px 20px rgba(28,32,48,0.18), 0 0 18px rgba(54,84,224,0.45); }
+  #vd-about-link svg { transition: transform 0.2s; }
+  #vd-about-link:hover svg { transform: translateX(5px); }
+
+  @media (max-width: 1180px) {
+    #vd-logo-badge { width: 38px !important; height: 38px !important; font-size: 14px !important; } #vd-logo-word { font-size: 12px !important; }
+    #vd-header { padding: 0 8px !important; gap: 12px !important; }
+  }
+  @media (max-width: 860px) {
+    #vd-header { flex-direction: column !important; align-items: center !important; }
+    #vd-header-grid { width: 100% !important; flex: none !important; }
+  }
+  @media (max-width: 900px) {
+    #vd-card {
+      aspect-ratio: unset !important; min-height: 100vh !important; display: flex !important;
+      flex-direction: column !important; align-items: center !important; justify-content: flex-start !important;
+      padding: 28px 24px 48px !important; gap: 28px !important;
+    }
+    #vd-header { position: static !important; width: 100% !important; top: auto !important; left: auto !important; right: auto !important; order: 0 !important; }
+    #vd-nav-items { flex-wrap: wrap !important; justify-content: center !important; }
+    #vd-headshot-wrap { position: static !important; width: 62% !important; max-width: 300px !important; height: auto !important; transform: none !important; order: 2 !important; }
+    #vd-name-block { position: static !important; max-width: 100% !important; align-items: center !important; text-align: center !important; order: 1 !important; }
+    #vd-name-block > div:first-child { text-align: center !important; }
+    #vd-name-block > div:first-child > div { font-size: 42px !important; }
+    #vd-intro-block { position: static !important; width: 100% !important; max-width: 440px !important; align-items: center !important; text-align: center !important; order: 3 !important; }
+  }
+  @media (max-width: 480px) {
+    #vd-nav-items { gap: 4px !important; }
+    #vd-nav-items a { font-size: 13px !important; padding: 6px 10px !important; }
+    #vd-headshot-wrap { width: 74% !important; }
+  }
+</style>
+</head>
+<body>
+
+<div style="min-height: 100vh;">
+  <div id="vd-card" style="width: 100%; min-height: 100vh; overflow: hidden; position: relative; background: #aeb8d2;">
+
+    <div id="vd-orb1" style="position: absolute; top: -80px; right: -60px; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0) 70%); pointer-events: none; z-index: 0;"></div>
+    <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.14) 1px, transparent 1px); background-size: 26px 26px; opacity: 0.35; pointer-events: none; z-index: 0;"></div>
+
+    <!-- header -->
+    <div id="vd-header" style="position: fixed; top: 24px; left: 56px; right: 56px; display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; padding: 8px 16px; border-radius: 20px; background: transparent; box-shadow: none; opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease 0.05s, transform 0.35s ease, top 0.35s ease, background 0.35s ease, box-shadow 0.35s ease; z-index: 50;">
+      <canvas id="vd-header-bg-canvas" style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 640px; height: 140px; pointer-events: none; z-index: 0;"></canvas>
+
+      <a href="/" class="logo" style="display: flex; align-items: center; gap: 10px; z-index: 1; flex-shrink: 0; transform-origin: left center; transition: transform 0.35s ease; text-decoration: none;">
+        <span id="vd-logo-badge" class="logo-badge" style="position: relative; overflow: hidden; width: 46px; height: 46px; border-radius: 13px; flex-shrink: 0;">
+          <span style="position: absolute; inset: 2px; border-radius: 11px; background: #171130; z-index: 1;"></span>
+          <span style="position: relative; z-index: 2; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; color: #fff;">VD</span>
+        </span>
+        <span id="vd-logo-word" style="font-weight: 600; font-size: 14px; line-height: 1.18; text-transform: uppercase; white-space: nowrap; color: #22264a; display: flex; flex-direction: column; align-items: flex-start;"><span id="vd-logo-line1">Vishal</span><span id="vd-logo-line2">Dasari</span></span>
+      </a>
+
+      <div id="vd-header-grid" style="flex: 1; display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 16px; z-index: 1;">
+        <div id="vd-nav-items" style="display: flex; align-items: center; gap: 4px; white-space: nowrap; background: rgba(255,255,255,0.5); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.65); padding: 7px; border-radius: 999px; box-shadow: 0 10px 26px rgba(40,50,90,0.16); justify-self: center; transition: padding 0.35s ease;">
+          <a href="/about" style="font-size: 14px; font-weight: 500; color: #3a3f5c; padding: 9px 16px; border-radius: 20px; transition: color 0.15s, background 0.15s, padding 0.35s ease;">About</a>
+          <a href="/experience" style="font-size: 14px; font-weight: 500; color: #3a3f5c; padding: 9px 16px; border-radius: 20px; transition: color 0.15s, background 0.15s, padding 0.35s ease;">Experience</a>
+          <a href="/certifications" style="font-size: 14px; font-weight: 500; color: #3a3f5c; padding: 9px 16px; border-radius: 20px; transition: color 0.15s, background 0.15s, padding 0.35s ease;">Certs</a>
+          <a href="/tech-stack" style="font-size: 14px; font-weight: 500; color: #3a3f5c; padding: 9px 16px; border-radius: 20px; transition: color 0.15s, background 0.15s, padding 0.35s ease;">Tech Stack</a>
+          <a href="/contact" style="font-size: 14px; font-weight: 500; color: #3a3f5c; padding: 9px 16px; border-radius: 20px; transition: color 0.15s, background 0.15s, padding 0.35s ease;">Contact</a>
+        </div>
+        <div style="position: relative; display: flex; align-items: center; justify-self: end;">
+          <canvas id="vd-blog-fx-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; border-radius: 999px; overflow: hidden;"></canvas>
+          <a href="/blog" data-cursor-label="BLOG" style="position: relative; font-size: 14px; font-weight: 700; font-family: 'Poppins', sans-serif; color: #22262f; background: linear-gradient(135deg, #c4c9d9, #8a90a8 50%, #c4c9d9); padding: 12px 22px; border-radius: 999px; box-shadow: 0 6px 18px rgba(24,28,48,0.3); transition: transform 0.15s; display: inline-block; line-height: 1.3;">Blog ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- headshot -->
+    <div id="vd-headshot-wrap" style="position: absolute; bottom: 0; left: 51%; width: 41%; height: 105%; display: flex; align-items: flex-end; justify-content: center; z-index: 1; opacity: 0; transition: opacity 0.8s ease 0.15s, transform 0.35s ease-out;">
+      <img src="../assets/headshot.png" alt="Vishal Dasari" style="max-width: 100%; max-height: 100%; display: block;" />
+    </div>
+
+    <!-- left name block -->
+    <div id="vd-name-block" style="position: absolute; left: 56px; top: 38%; display: flex; flex-direction: column; gap: 28px; max-width: 30%; z-index: 2; opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease 0.25s, transform 0.7s ease 0.25s;">
+      <div>
+        <div id="vd-name-line1" style="font-size: clamp(40px, 4.6vw, 68px); font-weight: 700; color: #f5f6fa; line-height: 1.02; letter-spacing: -1px;"></div>
+        <div id="vd-name-line2" style="font-size: clamp(40px, 4.6vw, 68px); font-weight: 700; color: #f5f6fa; line-height: 1.02; letter-spacing: -1px; white-space: nowrap;"></div>
+      </div>
+      <div style="width: 64px; height: 5px; background: #3654e0; border-radius: 3px;"></div>
+
+      <div id="vd-social" style="display: flex; align-items: center; gap: 18px; margin-top: 12px;">
+        <a href="https://github.com/Vishaldasari3" target="_blank" style="width: 40px; height: 40px; border-radius: 50%; background: #eef0f5; display: flex; align-items: center; justify-content: center; transition: transform 0.2s, box-shadow 0.2s; overflow: hidden;">
+          <img src="../assets/icon-github.png" alt="GitHub" style="width: 100%; height: 100%; object-fit: cover;" />
+        </a>
+        <a href="https://www.linkedin.com/in/vishaldasari3/" target="_blank" style="width: 40px; height: 40px; border-radius: 50%; background: #eef0f5; display: flex; align-items: center; justify-content: center; transition: transform 0.2s, box-shadow 0.2s; overflow: hidden;">
+          <img src="../assets/icon-linkedin.png" alt="LinkedIn" style="width: 100%; height: 100%; object-fit: cover;" />
+        </a>
+        <a href="https://topmate.io/vishal_dasari3" target="_blank" style="width: 40px; height: 40px; border-radius: 50%; background: #eef0f5; display: flex; align-items: center; justify-content: center; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;">
+          <img src="../assets/icon-topmate.png" alt="Topmate" style="width: 100%; height: 100%; object-fit: cover;" />
+        </a>
+      </div>
+    </div>
+
+    <!-- right intro block -->
+    <div id="vd-intro-block" style="position: absolute; right: 40px; top: 38%; width: 27%; display: flex; flex-direction: column; gap: 16px; z-index: 2; opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease 0.4s, transform 0.7s ease 0.4s;">
+      <div id="vd-role-line" style="font-size: clamp(24px, 2vw, 32px); font-weight: 600; color: #f4f5f9; line-height: 1.35; min-height: 2.7em;"></div>
+      <div style="font-size: 15px; color: #3f4560; line-height: 1.7;">I’m passionate about technology, data science, problem-solving, AI and learning. Experienced Associate Software Engineer with a demonstrated history of working in financial services and Logistics domains. Skilled in Object Oriented programming languages(Python,Java), SQL Database, Web Applications, backend Development, AWS and leveraging AI..</div>
+      <a href="/about" id="vd-about-link" style="display: inline-flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 600; color: #3654e0; text-decoration: underline; margin-top: 8px;">
+        About Me.
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M1 6h13M9 1l5 5-5 5" stroke="#3654e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<script src="../js/home.js"></script>
+</body>
+</html>
