@@ -32,6 +32,19 @@
   #site-header-grid { display: contents !important; }
   #site-nav-items { flex: 1 1 auto !important; min-width: 0 !important; width: auto !important; max-width: none !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; justify-self: unset !important; gap: 2px !important; padding: 5px !important; }
   #site-nav-items a { padding: 7px 10px !important; font-size: 12.5px !important; white-space: nowrap !important; }
-  #site-header-grid > div:last-child { flex: 1 1 100% !important; order: 3 !important; justify-content: center !important; }
+  #site-header-grid > div:last-child { flex: 1 1 100% !important; order: 3 !important; justify-content: flex-end !important; }
+  .hv6 { font-size: 12px !important; padding: 8px 14px !important; }
   #site-header-spacer { height: 132px !important; }
+}
+
+@media (max-width: 860px) {
+  #site-footer-card { padding: 14px 18px !important; gap: 10px !important; flex-wrap: nowrap !important; justify-content: space-between !important; }
+  #site-footer-brand { order: 1 !important; }
+  #site-footer-name { font-size: 11px !important; }
+  #site-footer-brand .logo-badge { width: 26px !important; height: 26px !important; }
+  #site-footer-social-label { display: none !important; }
+}
+@media (max-width: 600px) {
+  #site-footer-card { flex-wrap: wrap !important; justify-content: center !important; padding: 14px 16px !important; }
+  #site-footer-tagline { display: none !important; }
 }
