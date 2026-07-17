@@ -3,7 +3,7 @@
     {
       title: 'Oracle Certified Professional, Java SE 6 Programmer',
       issuer: 'Oracle',
-      logo: 'assets/oracle-logo.png',
+      logo: '../assets/oracle-logo.png',
       dateLine: 'Issued Dec 2014',
       url: 'https://www.credly.com/badges/52eb2a7f-63b1-4c54-b4ab-526a04508538/linked_in',
       skills: ['Java SE', 'Object-Oriented Programming', 'Core Java'],
@@ -11,7 +11,7 @@
     {
       title: 'AWS Certified Developer \u2013 Associate',
       issuer: 'Amazon Web Services (AWS)',
-      logo: 'assets/aws-cert-logo.png',
+      logo: '../assets/aws-cert-logo.png',
       dateLine: 'Issued Aug 2022 \u00b7 Expires Aug 2025',
       url: 'https://www.credly.com/badges/f8d81104-7adb-4b20-a226-496688c27bb3/linked_in_profile',
       skills: ['AWS Lambda', 'DynamoDB', 'Cloud Development', 'CI/CD'],
@@ -19,7 +19,7 @@
     {
       title: 'AI Skills Fest 2026',
       issuer: 'Microsoft',
-      logo: 'assets/ms-ai-fest-logo.png',
+      logo: '../assets/ms-ai-fest-logo.png',
       dateLine: 'Issued Jun 2026',
       url: 'https://www.credly.com/badges/ec2dc74a-8b6e-4145-adec-252a12bfe392/linked_in_profile',
       skills: ['Artificial Intelligence', 'Applied AI', 'Generative AI Tools', 'AI Agents', 'Workflow Automation', 'Prompt Engineering'],
@@ -27,7 +27,7 @@
     {
       title: 'Machine Learning with Python \u2014 Level 1',
       issuer: 'IBM',
-      logo: 'assets/ibm-logo.png',
+      logo: '../assets/ibm-logo.png',
       dateLine: 'Issued Oct 2020',
       url: 'https://www.credly.com/badges/d7306259-7f46-452b-ad6d-d018bfa8b266?source=linked_in_profile',
       skills: ['Machine Learning', 'Python', 'Scikit-learn'],
@@ -35,7 +35,7 @@
     {
       title: 'Python for Data Science',
       issuer: 'IBM',
-      logo: 'assets/ibm-logo.png',
+      logo: '../assets/ibm-logo.png',
       dateLine: 'Issued Aug 2020',
       url: 'https://www.credly.com/badges/51fbee59-d6ef-47d5-97e4-caa17f87e3f8?source=linked_in_profile',
       skills: ['Python', 'Data Science', 'Pandas', 'NumPy'],
@@ -43,7 +43,7 @@
     {
       title: 'Build a Face Recognition Application using Python',
       issuer: 'HCL GUVI',
-      logo: 'assets/hcl-logo.png',
+      logo: '../assets/hcl-logo.png',
       dateLine: 'Issued Apr 2021',
       credentialId: '1S8919K5e072680BL6',
       url: 'https://www.guvi.in/verify-certificate?id=1S8919K5e072680BL6',

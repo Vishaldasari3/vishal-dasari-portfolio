@@ -8,7 +8,7 @@
       hue: 264,
       date: 'Jul 2026',
       readTime: '6 min read',
-      coverImg: 'assets/blog-ai-coding-cover.png',
+      coverImg: '../assets/blog-ai-coding-cover.jpg',
     },
     {
       slug: 'a-decade-of-moving',
@@ -18,7 +18,7 @@
       hue: 340,
       date: 'Jun 2026',
       readTime: '5 min read',
-      coverImg: 'assets/blog-post-cover.png',
+      coverImg: '../assets/blog-post-cover.jpg',
     },
     {
       slug: 'ai-agents-reshaping-tech',
@@ -28,7 +28,7 @@
       hue: 200,
       date: 'Jul 2026',
       readTime: '6 min read',
-      coverImg: 'assets/blog-ai-agents-cover.png',
+      coverImg: '../assets/blog-ai-agents-cover.jpg',
     },
   ];
 
