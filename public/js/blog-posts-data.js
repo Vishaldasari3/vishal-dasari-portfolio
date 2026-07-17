@@ -5,7 +5,7 @@ window.BLOG_POSTS = {
     hue: 264,
     date: 'Jul 2026',
     readTime: '6 min read',
-    coverImg: 'assets/blog-ai-coding-cover.png',
+    coverImg: 'assets/blog-ai-coding-cover.jpg',
     paragraphs: [
       'A year ago I was still reading every line an assistant suggested before touching it. Now most of my day is spent deciding what should get built and reviewing outcomes, not typing syntax. That shift happened faster than I expected, and it changed how I think about my own job.',
       'The biggest change on my team hasn\u2019t been speed \u2014 it\u2019s been the shape of the work. Tickets that used to be "implement X" are now "decide whether X is the right thing to build." Agents handle the scaffolding, the boilerplate, the first draft of a migration script. What\u2019s left for me is judgment: does this match the architecture we actually want, does it hold up under load, does it make sense to the next engineer who touches it.',
@@ -21,7 +21,7 @@ window.BLOG_POSTS = {
     hue: 340,
     date: 'Jun 2026',
     readTime: '5 min read',
-    coverImg: 'assets/blog-post-cover.png',
+    coverImg: 'assets/blog-post-cover.jpg',
     paragraphs: [
       'My first real engineering work was an internship at a defense research lab in Hyderabad, building a GUI to watch sensor data come in. I had no idea that job would be the first of five, across three countries, over the next decade.',
       'Each move reset something. New codebase, new team norms, sometimes a new tech stack entirely \u2014 AngularJS to Angular, on-prem Oracle to managed Postgres, a monolith to services on EKS. Every time, I was the newest person in the room again, and every time that stung a little, even after it stopped being new.',
@@ -36,7 +36,7 @@ window.BLOG_POSTS = {
     hue: 200,
     date: 'Jul 2026',
     readTime: '6 min read',
-    coverImg: 'assets/blog-ai-agents-cover.png',
+    coverImg: 'assets/blog-ai-agents-cover.jpg',
     paragraphs: [
       'Automation used to mean scripts: fixed, deterministic steps that ran the same way every time. Agents are a different kind of automation \u2014 they read context, make judgment calls, and adapt the plan mid-task. That difference is showing up everywhere in how software gets built and operated.',
       'On the programming side, the shift is from writing every line to directing outcomes. An agent can scaffold a service, wire up tests, and open a pull request on its own; the engineer\u2019s job moves toward specifying intent clearly and reviewing what comes back. Teams that describe problems precisely get dramatically better results than teams that hand over vague tickets.',
