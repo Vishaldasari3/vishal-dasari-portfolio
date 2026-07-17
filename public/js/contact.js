@@ -29,6 +29,7 @@
         document.getElementById('ct-' + f + '-error').style.display = 'none';
         document.getElementById('ct-sent-msg').style.display = 'none';
         document.getElementById('ct-top-error').style.display = 'none';
+        sendLabel.textContent = 'Send Message';
       });
       if (f !== 'message') {
         el.addEventListener('keydown', (e) => {
