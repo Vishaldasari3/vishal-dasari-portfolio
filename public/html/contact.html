@@ -26,7 +26,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <link rel="stylesheet" href="../partials/partials.css">
 <style>
   html, body { margin: 0; background: #f4f5f9; }
@@ -187,7 +187,7 @@
       <span id="ct-send-label">Send Message</span>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
     </button>
-    <div class="g-recaptcha" data-sitekey="6Le9uVgtAAAAAIe--40aqDPYV_q4JgQe0-j1ohvw" style="position: relative; z-index: 1;"></div>
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAAD4AxnTPERnJq4UL" style="position: relative; z-index: 1;"></div>
 
     <div id="ct-sent-msg" style="display: none; font-size: 14px; color: #1f8a5b; background: #e9f7ef; border-radius: 10px; padding: 12px 16px;">Thanks &mdash; this is a demo form, but your message would be on its way!</div>
     <div id="ct-top-error" style="display: none; font-size: 14px; color: #e0435a; background: #fdecee; border-radius: 10px; padding: 12px 16px;">Please fix the highlighted fields above.</div>

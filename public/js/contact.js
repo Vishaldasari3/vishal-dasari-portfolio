@@ -94,18 +94,14 @@
         return;
       }
 
-      // Google reCAPTCHA (Formspree checks g-recaptcha-response server-side).
-      const captchaEl = document.querySelector('.g-recaptcha');
-      const captchaConfigured = captchaEl && captchaEl.getAttribute('data-sitekey') !== 'YOUR_RECAPTCHA_SITE_KEY';
+      // Cloudflare Turnstile (Formspree checks cf-turnstile-response server-side).
+      const captchaEl = document.querySelector('.cf-turnstile');
+      const captchaConfigured = captchaEl && !!captchaEl.getAttribute('data-sitekey');
       if (captchaConfigured) {
-        if (!window.grecaptcha || typeof window.grecaptcha.getResponse !== 'function') {
-          document.getElementById('ct-top-error').textContent = 'reCAPTCHA didn\u2019t load \u2014 check your connection and that this domain is allowed for the site key, then retry.';
-          document.getElementById('ct-top-error').style.display = 'block';
-          return;
-        }
-        const captchaResponse = window.grecaptcha.getResponse();
+        const captchaInput = document.querySelector('[name="cf-turnstile-response"]');
+        const captchaResponse = captchaInput ? captchaInput.value : '';
         if (!captchaResponse) {
-          document.getElementById('ct-top-error').textContent = 'Please complete the reCAPTCHA check.';
+          document.getElementById('ct-top-error').textContent = 'Please complete the verification check.';
           document.getElementById('ct-top-error').style.display = 'block';
           return;
         }
@@ -132,7 +128,7 @@
             subject: document.getElementById('ct-subject').value,
             message: document.getElementById('ct-message').value,
             _gotcha: '',
-            'g-recaptcha-response': window.__ctCaptchaResponse || '',
+            'cf-turnstile-response': window.__ctCaptchaResponse || '',
           }),
         });
         if (!res.ok) throw new Error('Formspree responded ' + res.status);
@@ -141,7 +137,7 @@
         document.getElementById('ct-top-error').style.display = 'none';
         sendLabel.textContent = 'Sent!';
         fields.forEach((f) => { document.getElementById('ct-' + f).value = ''; });
-        if (window.grecaptcha) window.grecaptcha.reset();
+        if (window.turnstile) window.turnstile.reset();
       } catch (err) {
         console.error(err);
         document.getElementById('ct-top-error').textContent = 'Something went wrong sending your message \u2014 please try again or email directly.';
