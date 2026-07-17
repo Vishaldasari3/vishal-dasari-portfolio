@@ -27,6 +27,8 @@
       el.addEventListener('input', () => {
         el.style.borderColor = borderDefault;
         document.getElementById('ct-' + f + '-error').style.display = 'none';
+        document.getElementById('ct-sent-msg').style.display = 'none';
+        document.getElementById('ct-top-error').style.display = 'none';
       });
       if (f !== 'message') {
         el.addEventListener('keydown', (e) => {
