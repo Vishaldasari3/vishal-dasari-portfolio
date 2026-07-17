@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S73TQJT3TC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-S73TQJT3TC');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog — Vishal Dasari</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<link rel="stylesheet" href="../../partials/partials.css">
+<style>
+  html, body { margin: 0; background: #f4f5f9; }
+  * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+  a { color: #3654e0; text-decoration: none; }
+  a:hover { color: #24399e; }
+
+  @media (max-width: 480px) {
+    #site-nav-items { gap: 12px !important; flex-wrap: wrap !important; justify-content: center !important; }
+    #site-nav-items a { font-size: 14px !important; }
+  }
+  @media (max-width: 1180px) {
+    #site-header-row { padding: 18px 20px !important; gap: 12px !important; }
+    #site-nav-items { gap: 1px !important; padding: 5px !important; }
+    #site-nav-items a, #site-nav-items span { font-size: 12.5px !important; padding: 7px 9px !important; }
+  }
+  @media (max-width: 860px) {
+    #site-header-row { flex-direction: column !important; align-items: center !important; padding: 20px 24px 16px !important; }
+    #site-header-grid { width: 100% !important; flex: none !important; }
+    #site-header-spacer { height: 150px !important; }
+  }
+  @media (max-width: 640px) {
+    #site-nav-items { flex-wrap: wrap !important; justify-content: center !important; }
+  }
+</style>
+</head>
+<body data-page="blog" data-slug="ai-agents-reshaping-tech">
+
+<div id="site-header"></div>
+<div id="site-header-spacer" style="height: 82px;"></div>
+
+<!-- hero band -->
+<div id="bp-hero" style="padding: 40px 56px 47px;">
+  <div style="max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px;">
+    <a href="/blog" style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); width: fit-content;">
+      <svg width="14" height="11" viewBox="0 0 16 12" fill="none"><path d="M15 6H2M6 1 1 6l5 5" stroke="rgba(255,255,255,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      All posts
+    </a>
+    <span id="bp-tag" style="align-self: flex-start; font-size: 12px; font-weight: 600; color: #ffffff; background: rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 16px;"></span>
+    <div id="bp-title" style="font-size: clamp(28px, 3.6vw, 44px); font-weight: 700; color: #ffffff; line-height: 1.15; letter-spacing: -0.5px;"></div>
+    <div id="bp-meta" style="font-size: 14px; color: rgba(255,255,255,0.75);"></div>
+  </div>
+</div>
+
+<!-- body -->
+<div style="max-width: 780px; margin: 0 auto; padding: 56px 56px 100px; display: flex; flex-direction: column; gap: 22px;">
+  <div style="width: 100%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; margin-bottom: 8px;">
+    <img id="bp-cover" alt="" style="width:100%;height:100%;object-fit:cover;display:block;" />
+  </div>
+  <div id="bp-body" style="display: flex; flex-direction: column; gap: 22px;"></div>
+
+  <div style="display: flex; align-items: center; gap: 16px; margin-top: 24px; padding-top: 24px; border-top: 1px solid #e6e8f0;">
+    <div style="width: 44px; height: 44px; border-radius: 50%; background: #eef0fb; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #2c46c9;">VD</div>
+    <div>
+      <div style="font-size: 15px; font-weight: 600; color: #1c2030;">Vishal Dasari</div>
+      <div style="font-size: 13px; color: #9096a8;">Senior Software Engineer</div>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+
+<script src="../../js/three-scenes.js"></script>
+<script src="../../js/common.js"></script>
+<script src="../../js/cursor-effects.js"></script>
+<script src="../../js/blog-posts-data.js"></script>
+<script src="../../js/blog-post.js"></script>
+</body>
+</html>
