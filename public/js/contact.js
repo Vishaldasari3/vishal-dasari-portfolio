@@ -124,6 +124,9 @@
 
       sendBtn.disabled = true;
       sendLabel.textContent = 'Sending\u2026';
+      document.getElementById('ct-spinner').style.display = 'inline-block';
+      document.getElementById('ct-send-icon').style.display = 'none';
+      fields.forEach((f) => { document.getElementById('ct-' + f).disabled = true; });
       try {
         const res = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
           method: 'POST',
@@ -151,6 +154,9 @@
         sendLabel.textContent = 'Send Message';
       } finally {
         sendBtn.disabled = false;
+        document.getElementById('ct-spinner').style.display = 'none';
+        document.getElementById('ct-send-icon').style.display = '';
+        fields.forEach((f) => { document.getElementById('ct-' + f).disabled = false; });
       }
     });
   }
