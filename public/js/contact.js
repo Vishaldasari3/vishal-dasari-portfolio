@@ -63,6 +63,9 @@
     const sendLabel = document.getElementById('ct-send-label');
 
     sendBtn.addEventListener('click', async () => {
+      document.getElementById('ct-sent-msg').style.display = 'none';
+      document.getElementById('ct-top-error').style.display = 'none';
+      sendLabel.textContent = 'Send Message';
       const errors = validate();
       fields.forEach((f) => {
         const el = document.getElementById('ct-' + f);
