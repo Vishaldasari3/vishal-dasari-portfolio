@@ -11,12 +11,14 @@
   let t = 0, mx = 0, my = 0;
   let typedChars = 0, typedNameChars = 0;
   let nameCursorVisible = false, roleTypingStarted = false;
+  let nameLine2Locked = false;
 
   const header = document.getElementById('vd-header');
   const navItems = document.getElementById('vd-nav-items');
   const blogWrap = document.querySelector('#vd-header-grid > div:last-child');
   const logo = document.querySelector('.logo');
   const headshotWrap = document.getElementById('vd-headshot-wrap');
+  const headshotShadow = document.getElementById('vd-headshot-shadow');
   const nameBlock = document.getElementById('vd-name-block');
   const introBlock = document.getElementById('vd-intro-block');
   const card = document.getElementById('vd-card');
@@ -57,6 +59,11 @@
     headshotWrap.style.transform = mounted
       ? `translateX(calc(-50% + ${parX}px)) translateY(${bob + my * 6}px)`
       : `translateX(calc(-50% + ${parX}px)) translateY(${bob + 24}px)`;
+    if (headshotShadow) {
+      const k = 1 - (bob + 6) / 24; // higher image -> smaller, lighter shadow
+      headshotShadow.style.transform = `translateX(calc(-50% + ${parX * 0.6}px)) scale(${0.88 + k * 0.12}, 1)`;
+      headshotShadow.style.opacity = mounted ? String(0.7 + k * 0.3) : '0';
+    }
 
     const blink = Math.floor(t * 2) % 2 === 0;
 
@@ -84,7 +91,13 @@
     const nameCursor1 = nameCursorVisible && !showNameLine2 && blink ? '|' : '';
     const nameCursor2 = nameCursorVisible && showNameLine2 && blink ? '|' : '';
     nameLine1El.innerHTML = `${escapeHtml(typedNameLine1)}<span style="opacity:${nameCursorVisible && !showNameLine2 ? 1 : 0}">${nameCursor1 || '|'}</span>`;
-    nameLine2El.innerHTML = showNameLine2 ? `${escapeHtml(typedNameLine2)}<span style="opacity:${nameCursorVisible && showNameLine2 ? 1 : 0}">${nameCursor2 || '|'}</span>` : '';
+    if (!nameLine2Locked) {
+      nameLine2El.innerHTML = showNameLine2 ? `${escapeHtml(typedNameLine2)}<span style="opacity:${nameCursorVisible && showNameLine2 ? 1 : 0}">${nameCursor2 || '|'}</span>` : '';
+      if (showNameLine2 && typedNameLine2 === nameLine2 && nameLine2El.classList.contains('gradname')) {
+        nameLine2El.innerHTML = escapeHtml(typedNameLine2);
+        nameLine2Locked = true;
+      }
+    }
 
     requestAnimationFrame(tick);
   }
@@ -127,7 +140,10 @@
           roleTypingStarted = true;
           const roleInterval = setInterval(() => {
             typedChars++;
-            if (typedChars >= fullText.length) clearInterval(roleInterval);
+            if (typedChars >= fullText.length) {
+              clearInterval(roleInterval);
+              nameLine2El.classList.add('gradname');
+            }
           }, 35);
         }, 500);
       }
@@ -135,16 +151,34 @@
   }
 
   function initHeaderScenes() {
-    if (!window.SharedScenes) { requestAnimationFrame(initHeaderScenes); return; }
-    const bgCanvas = document.getElementById('vd-header-bg-canvas');
-    if (bgCanvas) window.SharedScenes.createParticleFieldScene(bgCanvas, { layers: [{ n: 24, z: -2, size: 0.05, op: 0.5 }, { n: 16, z: -4, size: 0.03, op: 0.25 }] });
+    initBlogSweep();
+  }
+
+  function initBlogSweep() {
     const blogCanvas = document.getElementById('vd-blog-fx-canvas');
-    if (blogCanvas) window.SharedScenes.createSweepScene(blogCanvas);
+    if (!blogCanvas) return;
+    if (!window.SharedScenes) { setTimeout(initBlogSweep, 200); return; }
+    window.SharedScenes.createSweepScene(blogCanvas);
+  }
+
+  function initNavPill() {
+    const pill = document.getElementById('vd-nav-pill');
+    if (!pill || !navItems) return;
+    const links = [...navItems.querySelectorAll('a')];
+    const moveTo = (a) => {
+      pill.style.transform = `translate(${a.offsetLeft}px, ${a.offsetTop}px)`;
+      pill.style.width = a.offsetWidth + 'px';
+      pill.style.height = a.offsetHeight + 'px';
+      pill.style.opacity = '1';
+    };
+    links.forEach((a) => a.addEventListener('mouseenter', () => moveTo(a)));
+    navItems.addEventListener('mouseleave', () => { pill.style.opacity = '0'; });
   }
 
   function init() {
     startTime = Date.now();
     equalizeLogoLines();
+    initNavPill();
     requestAnimationFrame(() => requestAnimationFrame(() => { mounted = true; applyEntrance(); }));
     setTimeout(() => { mounted = true; applyEntrance(); }, 300);
 
