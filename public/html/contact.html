@@ -66,6 +66,20 @@
   .hv11:hover, .hv12:hover, .hv13:hover { transform: translateY(-3px); background: rgba(255,255,255,0.26); box-shadow: 0 0 18px rgba(255,255,255,0.55); }
   .hv14:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(54,84,224,0.42); }
   @keyframes ct-spin { to { transform: rotate(360deg); } }
+
+  /* premium form fields */
+  #ct-right input:not(#ct-hp), #ct-right textarea {
+    transition: border-color .25s, box-shadow .25s, background .25s;
+    outline: none;
+  }
+  #ct-right input:not(#ct-hp):hover, #ct-right textarea:hover { border-color: #c9d0e8 !important; }
+  #ct-right input:not(#ct-hp):focus, #ct-right textarea:focus {
+    border-color: #3654e0 !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 4px rgba(54,84,224,0.12), 0 8px 20px -8px rgba(54,84,224,0.25);
+  }
+  #ct-right input:focus + label, #ct-right textarea:focus + label { color: #3654e0 !important; }
+  #ct-right input:not(:placeholder-shown) + label, #ct-right textarea:not(:placeholder-shown) + label { color: #5a6284 !important; }
 </style>
 </head>
 <body data-page="contact">
@@ -187,7 +201,7 @@
       <div id="ct-message-error" style="display: none; font-size: 12px; color: #e0435a; margin-top: 6px;"></div>
     </div>
 
-    <button id="ct-send" class="hv14" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(135deg, #3654e0 0%, #2c46c9 100%); color: #ffffff; font-weight: 600; font-size: 15.5px; padding: 16px 26px; border-radius: 14px; border: none; cursor: pointer; margin-top: 6px; box-shadow: 0 14px 30px rgba(54,84,224,0.32); transition: transform 0.2s, box-shadow 0.2s; position: relative; z-index: 1;">
+    <button id="ct-send" class="hv14 cta-sheen" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(93deg, #1e3a8a 0%, #3654e0 34%, #2ea8ff 68%, #06d6f0 100%); background-size: 220% 100%; animation: hdhueflow 6s linear infinite; color: #ffffff; font-weight: 600; font-size: 15.5px; padding: 16px 26px; border-radius: 14px; border: none; cursor: pointer; margin-top: 6px; box-shadow: 0 14px 30px rgba(54,84,224,0.32); transition: transform 0.2s, box-shadow 0.2s; position: relative; z-index: 1;">
       <svg id="ct-spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" style="display: none; animation: ct-spin 0.7s linear infinite;"><circle cx="12" cy="12" r="9" stroke="rgba(255,255,255,0.35)" stroke-width="3"/><path d="M21 12a9 9 0 0 0-9-9" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/></svg>
       <span id="ct-send-label">Send Message</span>
       <svg id="ct-send-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>

@@ -30,6 +30,8 @@
     if (footerSlot) footerSlot.innerHTML = resolvedFooterHtml;
 
     setActiveNav();
+    initNavPill();
+    waitForThree(initNavGlow);
     initHeaderScroll();
     initSharedScenes();
     equalizeLogoLines();
@@ -46,19 +48,94 @@
     link.style.position = 'relative';
     link.style.color = '#fff';
     link.style.fontWeight = '600';
-    link.style.background = 'linear-gradient(135deg, #4a63e8, #2c46c9)';
+    link.style.background = 'linear-gradient(120deg, #3654e0, #7c5cff, #22ddf5, #3654e0)';
+    link.style.backgroundSize = '300% 100%';
     link.style.padding = '9px 18px';
-    link.style.boxShadow = '0 4px 14px rgba(44,70,201,0.4)';
+    link.style.borderRadius = '999px';
+    link.style.boxShadow = 'inset 0 0 0 1px rgba(255,255,255,0.22), 0 8px 20px -8px rgba(54,84,224,0.55)';
+    link.style.display = 'inline-flex';
+    link.style.alignItems = 'center';
+    link.style.gap = '7px';
+    link.insertAdjacentHTML('afterbegin', '<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,#5b8cff,#22ddf5);box-shadow:0 0 8px rgba(34,221,245,.8);flex-shrink:0;"></span>');
+    link.classList.add('nav-active-chip');
     link.classList.remove(...[...link.classList].filter((c) => c.startsWith('hv')));
-    const canvas = document.getElementById('chroma-ring-canvas');
-    if (canvas) {
-      canvas.style.display = 'block';
-      canvas.style.left = '50%';
-      canvas.style.top = '50%';
-      canvas.style.transform = 'translate(-50%,-50%)';
-      link.style.zIndex = '1';
-      link.insertBefore(canvas, link.firstChild);
-    }
+  }
+
+  function initNavPill() {
+    const navItems = document.getElementById('site-nav-items');
+    const pill = document.getElementById('site-nav-pill');
+    if (!navItems || !pill) return;
+    const page = document.body.getAttribute('data-page');
+    const moveTo = (a) => {
+      pill.style.transform = `translate(${a.offsetLeft}px, ${a.offsetTop}px)`;
+      pill.style.width = a.offsetWidth + 'px';
+      pill.style.height = a.offsetHeight + 'px';
+      pill.style.opacity = '1';
+    };
+    navItems.querySelectorAll('a').forEach((a) => {
+      if (a.getAttribute('data-page') === page) return; // active chip has its own style
+      a.addEventListener('mouseenter', () => moveTo(a));
+    });
+    navItems.addEventListener('mouseleave', () => { pill.style.opacity = '0'; });
+  }
+
+  function initNavGlow() {
+    const nav = document.getElementById('site-nav-items');
+    if (!nav || !window.THREE) return;
+    const THREE = window.THREE;
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border-radius:999px;pointer-events:none;z-index:0;';
+    nav.insertBefore(canvas, nav.firstChild);
+    let rect = nav.getBoundingClientRect();
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    renderer.setSize(rect.width, rect.height, false);
+    const scene = new THREE.Scene();
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    const uniforms = { uX: { value: 0.5 }, uA: { value: 0 }, uT: { value: 0 }, uAspect: { value: rect.width / rect.height } };
+    scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
+      transparent: true,
+      depthWrite: false,
+      uniforms,
+      vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }',
+      fragmentShader: `
+        varying vec2 vUv; uniform float uX; uniform float uA; uniform float uT; uniform float uAspect;
+        void main(){
+          vec2 p = vec2(vUv.x * uAspect, vUv.y);
+          vec2 c = vec2(uX * uAspect, 0.5);
+          float d = distance(p, c);
+          float pulse = 1.0 + 0.12 * sin(uT * 2.2);
+          float glow = exp(-d * d * 9.0 / pulse);
+          vec3 col = mix(vec3(0.29, 0.39, 0.91), vec3(0.13, 0.71, 0.96), clamp(uX, 0.0, 1.0));
+          gl_FragColor = vec4(col, glow * uA * 0.30);
+        }`,
+    })));
+    let targetX = 0.5, targetA = 0.35, hovering = false;
+    const page = document.body.getAttribute('data-page');
+    const active = nav.querySelector(`a[data-page="${page}"]`);
+    const idleX = () => active ? (active.offsetLeft + active.offsetWidth / 2) / nav.offsetWidth : 0.5;
+    targetX = idleX();
+    nav.addEventListener('mousemove', (e) => {
+      rect = nav.getBoundingClientRect();
+      targetX = (e.clientX - rect.left) / rect.width;
+      targetA = 1;
+      hovering = true;
+    });
+    nav.addEventListener('mouseleave', () => { targetA = 0.35; hovering = false; });
+    window.addEventListener('resize', () => {
+      rect = nav.getBoundingClientRect();
+      renderer.setSize(rect.width, rect.height, false);
+      uniforms.uAspect.value = rect.width / rect.height;
+    }, { passive: true });
+    const loop = () => {
+      uniforms.uT.value += 0.016;
+      if (!hovering) targetX = idleX() + Math.sin(uniforms.uT.value * 0.6) * 0.02;
+      uniforms.uX.value += (targetX - uniforms.uX.value) * 0.09;
+      uniforms.uA.value += (targetA - uniforms.uA.value) * 0.07;
+      renderer.render(scene, camera);
+      requestAnimationFrame(loop);
+    };
+    loop();
   }
 
   function initHeaderScroll() {
@@ -66,12 +143,25 @@
     const navItems = document.getElementById('site-nav-items');
     const logo = document.querySelector('.logo');
     const blogWrap = document.querySelector('#site-header-grid > div:last-child');
+    const page = document.body.getAttribute('data-page');
     const onScroll = () => {
       const scrolled = window.scrollY > 24;
-      if (row) row.style.boxShadow = scrolled ? '0 6px 22px rgba(28,32,48,0.12)' : '0 4px 16px rgba(28,32,48,0.06)';
-      const scale = scrolled ? 0.88 : 1;
-      if (navItems) navItems.style.transform = `scale(${scale})`;
-      if (blogWrap) blogWrap.style.transform = `scale(${scale})`;
+      if (row) {
+        row.style.top = (scrolled ? 10 : 24) + 'px';
+        row.style.background = scrolled ? 'rgba(255,255,255,0.75)' : 'transparent';
+        row.style.backdropFilter = scrolled ? 'blur(16px)' : 'none';
+        row.style.boxShadow = scrolled ? '0 8px 24px rgba(28,32,48,0.1)' : 'none';
+      }
+      const scale = scrolled ? 0.86 : 1;
+      if (logo) { logo.style.transformOrigin = 'left center'; logo.style.transform = `scale(${scale})`; }
+      if (blogWrap) blogWrap.style.transform = `scale(${scrolled ? 0.88 : 1})`;
+      if (navItems) {
+        navItems.style.padding = scrolled ? '4px' : '7px';
+        navItems.querySelectorAll('a').forEach((a) => {
+          if (a.getAttribute('data-page') === page) return; // keep active chip padding
+          a.style.padding = scrolled ? '7px 13px' : '9px 16px';
+        });
+      }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
@@ -107,10 +197,6 @@
   }
 
   function initSharedScenes() {
-    const bgCanvas = document.getElementById('header-bg-canvas');
-    if (bgCanvas && window.SharedScenes) {
-      window.SharedScenes.createParticleFieldScene(bgCanvas, { layers: [{ n: 24, z: -2, size: 0.05, op: 0.35 }, { n: 16, z: -4, size: 0.03, op: 0.18 }] });
-    }
     const blogCanvas = document.getElementById('blog-fx-canvas');
     if (blogCanvas && window.SharedScenes) window.SharedScenes.createSweepScene(blogCanvas);
 

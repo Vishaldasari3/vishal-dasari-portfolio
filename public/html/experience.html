@@ -35,7 +35,6 @@
 
   @media (max-width: 900px) {
     #ex-projects-grid { grid-template-columns: 1fr !important; }
-    #ex-timeline-item { flex-direction: column !important; gap: 8px !important; }
     #ex-modal-panel { width: 92% !important; padding: 32px 24px !important; }
   }
   @media (max-width: 480px) {
@@ -60,6 +59,39 @@
   }
   .hv40:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(44,70,201,0.12); }
   .hv41:hover, .hv42:hover, .hv43:hover { transform: translateY(-3px) scale(1.08); box-shadow: 0 6px 16px rgba(54,84,224,0.35), 0 0 14px rgba(54,84,224,0.4); }
+
+  /* premium timeline */
+  .ex-item { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s cubic-bezier(.22,1,.36,1); }
+  .ex-item.ex-in { opacity: 1; transform: none; }
+  .ex-card { transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s, border-color .3s; }
+  .ex-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -14px rgba(40,50,90,.22); border-color: rgba(54,84,224,.25) !important; }
+  @keyframes ex-pulse { 0% { box-shadow: 0 0 0 0 rgba(54,84,224,.35); } 70% { box-shadow: 0 0 0 10px rgba(54,84,224,0); } 100% { box-shadow: 0 0 0 0 rgba(54,84,224,0); } }
+  .ex-dot-now { animation: ex-pulse 2.4s ease-out infinite; }
+  /* premium project cards */
+  .ex-proj { position: relative; overflow: hidden; }
+  .ex-proj::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%), rgba(54,84,224,0.07), transparent 65%);
+    opacity: 0;
+    transition: opacity .3s;
+    pointer-events: none;
+  }
+  .ex-proj:hover::before { opacity: 1; }
+  .ex-proj:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -14px rgba(40,50,90,.22); border-color: rgba(54,84,224,.25) !important; }
+  .ex-proj svg { transition: transform .25s cubic-bezier(.22,1,.36,1); }
+  .ex-proj:hover svg { transform: translateX(5px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ex-item { opacity: 1 !important; transform: none !important; transition: none; }
+    .ex-dot-now { animation: none; }
+  }
+  @media (max-width: 900px) {
+    .ex-item { flex-direction: column !important; gap: 8px !important; }
+    .ex-date { width: auto !important; padding-top: 0 !important; }
+    .ex-node, #ex-line { display: none !important; }
+  }
 </style>
 </head>
 <body data-page="experience">

@@ -88,24 +88,53 @@
     if (heroCanvas && window.createIcosaScene) window.createIcosaScene(heroCanvas, 0.25);
 
     const rolesEl = document.getElementById('ex-roles');
-    rolesEl.innerHTML = roles.map((role) => `
-      <div id="ex-timeline-item" style="display: flex; gap: 28px; padding-bottom: 32px; border-bottom: 1px solid #e6e8f0;">
-        <div style="width: 130px; flex-shrink: 0; font-size: 14px; color: #9096a8; font-weight: 500; padding-top: 3px;">${esc(role.dates)}</div>
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-          <div style="font-size: 18px; font-weight: 600; color: #1c2030;">${esc(role.title)}</div>
-          <div style="font-size: 15px; color: #3654e0; font-weight: 500;">${esc(role.company)}</div>
-          ${role.bullets.map((b) => `<div style="font-size: 15px; color: #5b6178; line-height: 1.7; display: flex; gap: 8px;"><span style="color: #3654e0;">&bull;</span><span>${esc(b)}</span></div>`).join('')}
+    rolesEl.innerHTML = `
+      <div id="ex-timeline" style="position: relative; display: flex; flex-direction: column; gap: 28px;">
+        <div id="ex-line" style="position: absolute; left: 157px; top: 8px; bottom: 8px; width: 2px; background: #e6e8f0; border-radius: 2px;">
+          <div id="ex-line-fill" style="width: 100%; height: 0%; background: linear-gradient(180deg, #3654e0, #2ea8ff); border-radius: 2px; transition: height 0.2s ease-out;"></div>
         </div>
-      </div>
-    `).join('');
+        ${roles.map((role, i) => `
+          <div class="ex-item" style="display: flex; position: relative; transition-delay: ${i * 0.08}s;">
+            <div class="ex-date" style="width: 130px; flex-shrink: 0; font-size: 13.5px; color: #9096a8; font-weight: 600; padding-top: 26px;">${esc(role.dates)}</div>
+            <div class="ex-node" style="width: 56px; flex-shrink: 0; display: flex; justify-content: center; padding-top: 28px;">
+              <span class="${i === 0 ? 'ex-dot-now' : ''}" style="width: 12px; height: 12px; border-radius: 50%; background: ${i === 0 ? '#3654e0' : '#ffffff'}; border: 2.5px solid #3654e0; position: relative; z-index: 1;"></span>
+            </div>
+            <div class="ex-card" style="flex: 1; background: #ffffff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 24px 28px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 6px 18px -8px rgba(40,50,90,.08);">
+              <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                <div style="font-size: 18px; font-weight: 600; color: #1c2030;">${esc(role.title)}</div>
+                ${i === 0 ? '<span style="font-size: 11px; font-weight: 600; color: #1f8a5b; background: #e9f7ef; padding: 4px 10px; border-radius: 12px; letter-spacing: .4px;">CURRENT</span>' : ''}
+              </div>
+              <div style="font-size: 15px; color: #3654e0; font-weight: 500;">${esc(role.company)}</div>
+              ${role.bullets.map((b) => `<div style="font-size: 15px; color: #5b6178; line-height: 1.7; display: flex; gap: 8px;"><span style="color: #3654e0;">&bull;</span><span>${esc(b)}</span></div>`).join('')}
+            </div>
+          </div>
+        `).join('')}
+      </div>`;
+
+    const items = rolesEl.querySelectorAll('.ex-item');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('ex-in'); io.unobserve(en.target); } });
+    }, { threshold: 0.15 });
+    items.forEach((el) => io.observe(el));
+
+    const tl = document.getElementById('ex-timeline');
+    const fill = document.getElementById('ex-line-fill');
+    const updateFill = () => {
+      const r = tl.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, (window.innerHeight * 0.72 - r.top) / r.height));
+      fill.style.height = (p * 100) + '%';
+    };
+    window.addEventListener('scroll', updateFill, { passive: true });
+    updateFill();
 
     const grid = document.getElementById('ex-projects-grid');
     grid.innerHTML = projectData.map((p, i) => `
-      <div data-project-index="${i}" class="hv40" style="cursor: pointer; background: #ffffff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 14px; transition: transform 0.15s, box-shadow 0.15s;">
-        <div style="font-size: 17px; font-weight: 600; color: #1c2030;">${esc(p.title)}</div>
+      <div data-project-index="${i}" class="ex-proj ex-item" style="cursor: pointer; background: #ffffff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 6px 18px -8px rgba(40,50,90,.08); transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s, border-color .3s, opacity .6s ease; transition-delay: ${(i % 2) * 0.08}s;">
+        <div style="position: absolute; top: 16px; right: 22px; font-family: 'Syne', sans-serif; font-size: 34px; font-weight: 800; color: #eef0fb; line-height: 1; pointer-events: none; user-select: none;">0${i + 1}</div>
+        <div style="font-size: 17px; font-weight: 600; color: #1c2030; padding-right: 48px;">${esc(p.title)}</div>
         <div style="font-size: 14px; color: #7a8199; line-height: 1.6;">${esc(p.summary)}</div>
         <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px;">
-          ${p.tags.map((t) => `<span style="font-size: 12px; color: #3654e0; background: #eef0fb; padding: 5px 10px; border-radius: 16px;">${esc(t)}</span>`).join('')}
+          ${p.tags.map((t) => `<span style="font-size: 12px; color: #3654e0; background: #eef0fb; border: 1px solid rgba(54,84,224,0.12); padding: 5px 10px; border-radius: 16px; white-space: nowrap;">${esc(t)}</span>`).join('')}
         </div>
         <div style="display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #3654e0; margin-top: 6px;">
           View details
@@ -113,13 +142,21 @@
         </div>
       </div>
     `).join('');
+    grid.querySelectorAll('.ex-proj').forEach((card) => {
+      card.addEventListener('pointermove', (e) => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+        card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+      });
+      io.observe(card);
+    });
 
     const overlay = document.getElementById('ex-modal-overlay');
     const panel = document.getElementById('ex-modal-panel');
     function openProject(i) {
       const p = projectData[i];
       document.getElementById('ex-modal-title').textContent = p.title;
-      document.getElementById('ex-modal-tags').innerHTML = p.tags.map((t) => `<span style="font-size: 12px; color: #3654e0; background: rgba(54,84,224,0.1); padding: 5px 10px; border-radius: 16px;">${esc(t)}</span>`).join('');
+      document.getElementById('ex-modal-tags').innerHTML = p.tags.map((t) => `<span style="font-size: 12px; color: #3654e0; background: rgba(54,84,224,0.1); padding: 5px 10px; border-radius: 16px; white-space: nowrap;">${esc(t)}</span>`).join('');
       document.getElementById('ex-modal-details').innerHTML = p.details.map((d) => `<div style="font-size: 15px; color: #3d4356; line-height: 1.7; display: flex; gap: 10px;"><span style="color: #3654e0; flex-shrink: 0;">&bull;</span><span>${esc(d)}</span></div>`).join('');
       overlay.style.display = 'flex';
     }
