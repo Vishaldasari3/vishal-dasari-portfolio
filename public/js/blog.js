@@ -81,7 +81,7 @@
 
   function init() {
     const heroCanvas = document.getElementById('hero-icosa-canvas');
-    if (heroCanvas && window.createIcosaScene) window.createIcosaScene(heroCanvas, 0.25);
+    if (heroCanvas && window.createIcosaScene) window.createIcosaScene(heroCanvas, 0.32);
     document.getElementById('bl-search').addEventListener('input', (e) => { query = e.target.value; render(); });
     render();
   }

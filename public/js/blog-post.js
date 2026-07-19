@@ -9,11 +9,11 @@
 
     document.title = p.title + ' — Vishal Dasari';
 
-    const heroBg = document.getElementById('bp-hero');
-    heroBg.style.background = `linear-gradient(155deg, oklch(55% 0.15 ${p.hue}) 0%, oklch(38% 0.15 ${p.hue}) 100%)`;
     document.getElementById('bp-tag').textContent = p.tag;
     document.getElementById('bp-title').textContent = p.title;
     document.getElementById('bp-meta').textContent = `${p.date} \u00b7 ${p.readTime}`;
+    const heroCanvas = document.getElementById('hero-icosa-canvas');
+    if (heroCanvas && window.createIcosaScene) window.createIcosaScene(heroCanvas, 0.4);
     const scriptSrc = SCRIPT_SRC;
     const publicRoot = new URL('../', scriptSrc); // public/js/ -> public/
     document.getElementById('bp-cover').src = new URL(p.coverImg, publicRoot).href;
