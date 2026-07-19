@@ -57,6 +57,7 @@
   @media (max-width: 640px) {
     #site-nav-items { flex-wrap: nowrap !important; justify-content: flex-start !important; }
   }
+  @media (max-width: 800px) { #hero-card { grid-template-columns: 1fr !important; padding: 36px 28px !important; } #hero-viewport { display: none; } }
 </style>
 </head>
 <body data-page="blog">
@@ -65,12 +66,16 @@
 <div id="site-header-spacer" style="height: 82px;"></div>
 
 <!-- hero band -->
-<div style="background: #f4f5fb; background-image: radial-gradient(rgba(54,84,224,0.1) 1px, transparent 1px); background-size: 22px 22px; padding: 36px 56px 40px; position: relative; overflow: hidden; border-bottom: 1.5px solid #dde1f0; box-shadow: 0 6px 20px rgba(28,32,48,0.05);">
-  <canvas id="hero-icosa-canvas" style="position: absolute; right: 40px; top: -20px; width: 220px; height: 220px; pointer-events: none;"></canvas>
-  <div style="max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; position: relative; z-index: 1;">
-    <span style="display: inline-flex; align-items: center; width: fit-content; font-size: 13px; font-weight: 600; color: #3654e0; letter-spacing: 1.5px; text-transform: uppercase;">Blog</span>
-    <div style="font-size: clamp(38px, 4.2vw, 54px); font-weight: 700; color: #1c2030; line-height: 1.1; letter-spacing: -1px;">Tech notes &amp; life notes.</div>
-    <div style="font-size: 16px; color: #6b7290; line-height: 1.65; max-width: 480px;">A mix of what I'm building with and what I'm thinking about &mdash; engineering, AI, and the occasional life update.</div>
+<div style="padding: 28px 24px 4px; position: relative; overflow: hidden;">
+  <canvas id="hero-icosa-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
+  <div style="position: absolute; top: -120px; left: 8%; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(54,84,224,0.16), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
+  <div style="position: absolute; bottom: -140px; right: 6%; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(124,92,255,0.13), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
+  <div id="hero-card" style="max-width: 1400px; margin: 0 auto; position: relative; background: linear-gradient(150deg, rgba(233,237,251,0.88) 0%, rgba(243,240,254,0.88) 52%, rgba(232,246,253,0.88) 100%); backdrop-filter: blur(24px) saturate(1.5); -webkit-backdrop-filter: blur(24px) saturate(1.5); border: 1px solid rgba(54,84,224,0.12); border-radius: 28px; padding: clamp(24px, 3vw, 36px) clamp(20px, 3.5vw, 44px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; box-shadow: 0 2px 0 rgba(255,255,255,0.65) inset, 0 40px 80px -32px rgba(30,40,80,0.25), 0 2px 24px rgba(30,40,80,0.05); z-index: 1;">
+    <div class="hx-icon" style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #3654e0, #7c5cff); display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 26px -10px rgba(54,84,224,0.55);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+    <div class="hx-crumb" style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: rgba(20,22,40,0.4); letter-spacing: 0.3px;">Vishal Dasari <span style="opacity: 0.5;">/</span> <span style="color: #3654e0;">Blog</span></div>
+    <div class="hx-title-line" style="overflow: hidden;"><div class="hx-title-inner" style="font-size: clamp(26px, 3vw, 40px); font-weight: 700; color: #101223; line-height: 1.1; letter-spacing: -1px; max-width: 640px;">Tech notes &amp; life notes.</div></div>
+    <div class="hx-desc" style="font-size: 14px; color: #63677c; line-height: 1.6; max-width: 480px;">A mix of what I'm building with and what I'm thinking about &mdash; engineering, AI, and the occasional life update.</div>
+    <div class="hx-divider" style="margin-top: 4px;"></div>
   </div>
 </div>
 

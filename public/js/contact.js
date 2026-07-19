@@ -8,7 +8,7 @@
 
   function init() {
     const heroCanvas = document.getElementById('hero-icosa-canvas');
-    if (heroCanvas && window.createIcosaScene) window.createIcosaScene(heroCanvas, 0.25);
+    if (heroCanvas && window.createIcosaScene) window.createIcosaScene(heroCanvas, 0.32);
 
     const fields = ['name', 'email', 'subject', 'message'];
     const borderDefault = '#e6e8f0';

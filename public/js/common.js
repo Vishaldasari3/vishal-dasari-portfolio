@@ -87,8 +87,8 @@
     canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border-radius:999px;pointer-events:none;z-index:0;';
     nav.insertBefore(canvas, nav.firstChild);
     let rect = nav.getBoundingClientRect();
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false, powerPreference: 'low-power' });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.25));
     renderer.setSize(rect.width, rect.height, false);
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
@@ -127,13 +127,15 @@
       renderer.setSize(rect.width, rect.height, false);
       uniforms.uAspect.value = rect.width / rect.height;
     }, { passive: true });
+    const visible = window.SharedScenes && window.SharedScenes.makeVisibilityGate ? window.SharedScenes.makeVisibilityGate(canvas) : () => !document.hidden;
     const loop = () => {
+      requestAnimationFrame(loop);
+      if (!visible()) return;
       uniforms.uT.value += 0.016;
       if (!hovering) targetX = idleX() + Math.sin(uniforms.uT.value * 0.6) * 0.02;
       uniforms.uX.value += (targetX - uniforms.uX.value) * 0.09;
       uniforms.uA.value += (targetA - uniforms.uA.value) * 0.07;
       renderer.render(scene, camera);
-      requestAnimationFrame(loop);
     };
     loop();
   }
@@ -200,6 +202,12 @@
     const blogCanvas = document.getElementById('blog-fx-canvas');
     if (blogCanvas && window.SharedScenes) window.SharedScenes.createSweepScene(blogCanvas);
 
+    const heroCanvas = document.getElementById('hero-icosa-canvas');
+    if (heroCanvas && !heroCanvas.dataset.vdInit && window.createIcosaScene) {
+      heroCanvas.dataset.vdInit = '1';
+      window.createIcosaScene(heroCanvas, 0.13);
+    }
+
     waitForThree(() => {
       const THREE = window.THREE;
       const clockState = { t: 0 };
@@ -209,8 +217,8 @@
       if (ringCanvas) {
         const rect = ringCanvas.getBoundingClientRect();
         const w = rect.width || 116, h = rect.height || 54;
-        const renderer = new THREE.WebGLRenderer({ canvas: ringCanvas, alpha: true, antialias: true });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+        const renderer = new THREE.WebGLRenderer({ canvas: ringCanvas, alpha: true, antialias: false, powerPreference: 'low-power' });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.25));
         renderer.setSize(w, h, false);
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(50, w / h, 0.1, 100);
@@ -225,15 +233,15 @@
           scene.add(mesh);
           segs.push(mesh);
         });
-        renderers.push({ renderer, scene, camera, update: () => { segs.forEach((s) => { s.rotation.z += 0.008; }); } });
+        renderers.push({ renderer, scene, camera, visible: window.SharedScenes.makeVisibilityGate(ringCanvas), update: () => { segs.forEach((s) => { s.rotation.z += 0.008; }); } });
       }
 
       const footerCanvas = document.getElementById('footer-canvas');
       if (footerCanvas) {
         const rect3 = footerCanvas.getBoundingClientRect();
         const w3 = rect3.width || 150, h3 = rect3.height || 46;
-        const renderer3 = new THREE.WebGLRenderer({ canvas: footerCanvas, alpha: true, antialias: true });
-        renderer3.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+        const renderer3 = new THREE.WebGLRenderer({ canvas: footerCanvas, alpha: true, antialias: false, powerPreference: 'low-power' });
+        renderer3.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.25));
         renderer3.setSize(w3, h3, false);
         const scene3 = new THREE.Scene();
         const camera3 = new THREE.PerspectiveCamera(50, w3 / h3, 0.1, 100);
@@ -245,7 +253,7 @@
         const fMat = new THREE.PointsMaterial({ color: 0xffd77a, size: 0.08, transparent: true, opacity: 0.95 });
         const fPoints = new THREE.Points(fGeo, fMat);
         scene3.add(fPoints);
-        renderers.push({ renderer: renderer3, scene: scene3, camera: camera3, update: () => {
+        renderers.push({ renderer: renderer3, scene: scene3, camera: camera3, visible: window.SharedScenes.makeVisibilityGate(footerCanvas), update: () => {
           const posF = fPoints.geometry.attributes.position;
           for (let i = 0; i < fCount; i++) {
             const a = clockState.t * 1.1 + (i / fCount) * Math.PI * 2;
@@ -259,9 +267,10 @@
       }
 
       const animate = () => {
-        clockState.t += 0.016;
-        renderers.forEach((r) => { r.update(); r.renderer.render(r.scene, r.camera); });
         requestAnimationFrame(animate);
+        if (document.hidden) return;
+        clockState.t += 0.016;
+        renderers.forEach((r) => { if (!r.visible || r.visible()) { r.update(); r.renderer.render(r.scene, r.camera); } });
       };
       animate();
     });

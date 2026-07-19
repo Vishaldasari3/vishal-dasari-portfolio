@@ -63,6 +63,16 @@
 
   .hv20:hover, .hv21:hover, .hv22:hover, .hv23:hover, .hv24:hover, .hv25:hover, .hv26:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(28,32,48,0.1); border-color: #b9c2ee; }
   .hv27:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0,0,0,0.24); }
+  .ab-skill { position: relative; overflow: hidden; background: #ffffff; border: 1px solid #e6e8f0; border-radius: 18px; padding: 28px; transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s, border-color .3s; }
+  .ab-skill::before { content: ''; position: absolute; inset: 0; background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(54,84,224,0.08), transparent 65%); opacity: 0; transition: opacity .3s; pointer-events: none; }
+  .ab-skill:hover::before { opacity: 1; }
+  .ab-skill:hover { transform: translateY(-5px); box-shadow: 0 20px 44px -16px rgba(40,50,90,.24); border-color: rgba(54,84,224,.3); }
+  .ab-skill .sk-num { position: absolute; top: 14px; right: 20px; font-size: 46px; font-weight: 800; color: rgba(28,32,48,0.05); line-height: 1; letter-spacing: -2px; pointer-events: none; }
+  .ab-skill .sk-icon { width: 44px; height: 44px; border-radius: 13px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; transition: transform .35s cubic-bezier(.34,1.56,.64,1); position: relative; }
+  .ab-skill:hover .sk-icon { transform: scale(1.1) rotate(-4deg); }
+  .sk-chip { font-size: 13px; color: #3a3f5c; background: #f7f8fc; border: 1px solid #e6e8f0; padding: 6px 12px; border-radius: 20px; transition: background .2s, color .2s, border-color .2s, transform .2s; cursor: default; }
+  .sk-chip:hover { background: #3654e0; color: #ffffff; border-color: #3654e0; transform: translateY(-2px); }
+  @media (prefers-reduced-motion: reduce) { .ab-skill, .sk-chip, .ab-skill .sk-icon { transition: none; } }
 </style>
 </head>
 <body data-page="about">
@@ -71,17 +81,16 @@
 <div id="site-header-spacer" style="height: 82px;"></div>
 
 <!-- hero band -->
-<div style="background: #f4f5fb; background-image: radial-gradient(rgba(54,84,224,0.1) 1px, transparent 1px); background-size: 22px 22px; padding: 36px 56px 40px; position: relative; overflow: hidden; border-bottom: 1.5px solid #dde1f0; box-shadow: 0 6px 20px rgba(28,32,48,0.05);">
-  <canvas id="hero-icosa-canvas" style="position: absolute; right: 40px; top: -20px; width: 220px; height: 220px; pointer-events: none;"></canvas>
-  <div id="ab-hero-inner" style="max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 48px; position: relative; z-index: 1;">
-    <div id="ab-hero-text" style="display: flex; flex-direction: column; gap: 22px; max-width: 620px;">
-      <span style="display: inline-flex; align-items: center; gap: 8px; width: fit-content; font-size: 13px; font-weight: 600; color: #3654e0; letter-spacing: 1.5px; text-transform: uppercase;">About Me</span>
-      <div style="font-size: clamp(40px, 4.6vw, 60px); font-weight: 700; color: #1c2030; line-height: 1.08; letter-spacing: -1px;"><span style="white-space: nowrap;">Senior Software Engineer,</span><br/>building at scale.</div>
-      <div style="font-size: 17px; color: #6b7290; line-height: 1.75; max-width: 480px;">9+ years across the full SDLC, currently on the Revenue Reporting application team at JPMorgan Chase &mdash; turning complex data and infrastructure problems into reliable, production-grade systems.</div>
-    </div>
-    <div id="ab-hero-photo" style="width: 30%; max-width: 320px; flex-shrink: 0;">
-      <img src="../assets/headshot.png" alt="Vishal Dasari" style="width: 100%; height: auto; display: block;" />
-    </div>
+<div style="padding: 28px 24px 4px; position: relative; overflow: hidden;">
+  <canvas id="hero-icosa-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
+  <div style="position: absolute; top: -120px; left: 8%; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(54,84,224,0.16), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
+  <div style="position: absolute; bottom: -140px; right: 6%; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(124,92,255,0.13), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
+  <div id="hero-card" style="max-width: 1400px; margin: 0 auto; position: relative; background: linear-gradient(150deg, rgba(233,237,251,0.88) 0%, rgba(243,240,254,0.88) 52%, rgba(232,246,253,0.88) 100%); backdrop-filter: blur(24px) saturate(1.5); -webkit-backdrop-filter: blur(24px) saturate(1.5); border: 1px solid rgba(54,84,224,0.12); border-radius: 28px; padding: clamp(24px, 3vw, 36px) clamp(20px, 3.5vw, 44px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; box-shadow: 0 2px 0 rgba(255,255,255,0.65) inset, 0 40px 80px -32px rgba(30,40,80,0.25), 0 2px 24px rgba(30,40,80,0.05); z-index: 1;">
+    <div class="hx-icon" style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #3654e0, #7c5cff); display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 26px -10px rgba(54,84,224,0.55);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+    <div class="hx-crumb" style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: rgba(20,22,40,0.4); letter-spacing: 0.3px;">Vishal Dasari <span style="opacity: 0.5;">/</span> <span style="color: #3654e0;">About</span></div>
+    <div class="hx-title-line" style="overflow: hidden;"><div class="hx-title-inner" style="font-size: clamp(26px, 3vw, 40px); font-weight: 700; color: #101223; line-height: 1.1; letter-spacing: -1px; max-width: 640px;">Senior Software Engineer, building at scale.</div></div>
+    <div class="hx-desc" style="font-size: 14px; color: #63677c; line-height: 1.6; max-width: 480px;">9+ years across the full SDLC, currently on the Revenue Reporting application team at JPMorgan Chase &mdash; turning complex data and infrastructure problems into reliable, production-grade systems.</div>
+    <div class="hx-divider" style="margin-top: 4px;"></div>
   </div>
 </div>
 
@@ -119,63 +128,66 @@
   <div style="display: flex; flex-direction: column; gap: 28px;">
     <div style="font-size: 13px; font-weight: 600; color: #3654e0; letter-spacing: 1.5px; text-transform: uppercase;">Skills &amp; Tech Stack</div>
     <div id="ab-skills-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
-
-      <div class="hv20" style="background: #ffffff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 28px; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;">
-        <div style="width: 40px; height: 40px; border-radius: 11px; background: linear-gradient(135deg, #3654e0 0%, #2c46c9 100%); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/><path d="M9 9h6v6H9z"/></svg>
+      <div class="ab-skill">
+        <div class="sk-num">01</div>
+        <div class="sk-icon" style="background: linear-gradient(135deg, #3654e0, #2c46c9); box-shadow: 0 10px 22px -8px rgba(54,84,224,.45);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="7" rx="2"/><rect x="2" y="14" width="20" height="7" rx="2"/><path d="M6.5 6.5h.01M6.5 17.5h.01" stroke-width="2.4"/></svg>
         </div>
-        <div style="font-size: 16px; font-weight: 600; color: #1c2030; margin-bottom: 16px;">Backend</div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">Java</span>
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">Spring Boot</span>
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">Spring MVC</span>
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">Hibernate</span>
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">REST / SOAP</span>
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">JUnit / Mockito</span>
-        </div>
-      </div>
-
-      <div class="hv21" style="background: #ffffff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 28px; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;">
-        <div style="width: 40px; height: 40px; border-radius: 11px; background: linear-gradient(135deg, #3654e0 0%, #2c46c9 100%); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><path d="M12 2a4 4 0 0 0-4 4v2H6a2 2 0 0 0-2 2v2a4 4 0 0 0 4 4h2v2a4 4 0 0 0 4 4 4 4 0 0 0 4-4v-2h2a2 2 0 0 0 2-2v-2a4 4 0 0 0-4-4h-2V6a4 4 0 0 0-4-4z"/></svg>
-        </div>
-        <div style="font-size: 16px; font-weight: 600; color: #1c2030; margin-bottom: 16px;">Python &amp; Data</div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">Flask</span>
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">FastAPI</span>
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">SQLAlchemy</span>
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">Pandas</span>
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">NumPy</span>
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">SQL / PL-SQL</span>
+        <div style="font-size: 16px; font-weight: 600; color: #1c2030; margin-bottom: 16px; position: relative;">Backend</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; position: relative;">
+          <span class="sk-chip">Java</span>
+          <span class="sk-chip">Spring Boot</span>
+          <span class="sk-chip">Spring MVC</span>
+          <span class="sk-chip">Hibernate</span>
+          <span class="sk-chip">REST / SOAP</span>
+          <span class="sk-chip">JUnit / Mockito</span>
         </div>
       </div>
 
-      <div class="hv22" style="background: #ffffff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 28px; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;">
-        <div style="width: 40px; height: 40px; border-radius: 11px; background: linear-gradient(135deg, #3654e0 0%, #2c46c9 100%); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+      <div class="ab-skill">
+        <div class="sk-num">02</div>
+        <div class="sk-icon" style="background: linear-gradient(135deg, #7c5cff, #5a3de0); box-shadow: 0 10px 22px -8px rgba(124,92,255,.45);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>
         </div>
-        <div style="font-size: 16px; font-weight: 600; color: #1c2030; margin-bottom: 16px;">Cloud &amp; Infra</div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">AWS Certified Developer</span>
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">S3 / EC2 / EKS</span>
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">Terraform</span>
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">Databricks</span>
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">Apache NiFi</span>
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">Linux</span>
+        <div style="font-size: 16px; font-weight: 600; color: #1c2030; margin-bottom: 16px; position: relative;">Python &amp; Data</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; position: relative;">
+          <span class="sk-chip">Flask</span>
+          <span class="sk-chip">FastAPI</span>
+          <span class="sk-chip">SQLAlchemy</span>
+          <span class="sk-chip">Pandas</span>
+          <span class="sk-chip">NumPy</span>
+          <span class="sk-chip">SQL / PL-SQL</span>
         </div>
       </div>
 
-      <div class="hv23" style="background: #ffffff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 28px; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;">
-        <div style="width: 40px; height: 40px; border-radius: 11px; background: linear-gradient(135deg, #3654e0 0%, #2c46c9 100%); display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      <div class="ab-skill">
+        <div class="sk-num">03</div>
+        <div class="sk-icon" style="background: linear-gradient(135deg, #22b8f5, #0e8fd0); box-shadow: 0 10px 22px -8px rgba(34,184,245,.45);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/><path d="M12 17v-5M9.5 14 12 11.5 14.5 14"/></svg>
         </div>
-        <div style="font-size: 16px; font-weight: 600; color: #1c2030; margin-bottom: 16px;">DevOps &amp; Tools</div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">Jenkins</span>
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">Maven / Gradle</span>
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">Git / GitHub</span>
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">Splunk / Grafana</span>
-          <span style="font-size: 13px; color: #3654e0; background: #eef0fb; padding: 6px 12px; border-radius: 20px;">Postman / Swagger</span>
+        <div style="font-size: 16px; font-weight: 600; color: #1c2030; margin-bottom: 16px; position: relative;">Cloud &amp; Infra</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; position: relative;">
+          <span class="sk-chip">AWS Certified Developer</span>
+          <span class="sk-chip">S3 / EC2 / EKS</span>
+          <span class="sk-chip">Terraform</span>
+          <span class="sk-chip">Databricks</span>
+          <span class="sk-chip">Apache NiFi</span>
+          <span class="sk-chip">Linux</span>
+        </div>
+      </div>
+
+      <div class="ab-skill">
+        <div class="sk-num">04</div>
+        <div class="sk-icon" style="background: linear-gradient(135deg, #4a63e8, #22ddf5); box-shadow: 0 10px 22px -8px rgba(63,182,255,.45);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m7 9 3 3-3 3M13 15h4"/></svg>
+        </div>
+        <div style="font-size: 16px; font-weight: 600; color: #1c2030; margin-bottom: 16px; position: relative;">DevOps &amp; Tools</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; position: relative;">
+          <span class="sk-chip">Jenkins</span>
+          <span class="sk-chip">Maven / Gradle</span>
+          <span class="sk-chip">Git / GitHub</span>
+          <span class="sk-chip">Splunk / Grafana</span>
+          <span class="sk-chip">Postman / Swagger</span>
         </div>
       </div>
 
@@ -257,5 +269,14 @@
 <script src="../js/three-scenes.js"></script>
 <script src="../js/common.js"></script>
 <script src="../js/cursor-effects.js"></script>
+<script>
+  document.querySelectorAll('.ab-skill').forEach(function (c) {
+    c.addEventListener('mousemove', function (e) {
+      var r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+</script>
 </body>
 </html>
