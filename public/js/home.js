@@ -75,10 +75,18 @@
       typedLine2 = combined.slice(splitIdx).replace(/^,?\s*/, '');
       showLine2 = true;
     }
-    const cursor1 = roleTypingStarted && !showLine2 && blink ? '|' : '';
-    const cursor2 = roleTypingStarted && showLine2 && blink ? '|' : '';
-    roleLineEl.innerHTML = `<span style="white-space: nowrap;">${escapeHtml(typedLine1)}</span><span>${cursor1}</span>` +
-      (showLine2 ? `<br/>${escapeHtml(typedLine2)}<span>${cursor2}</span>` : '');
+    const cursor1On = roleTypingStarted && !showLine2;
+    const cursor2On = roleTypingStarted && showLine2;
+    const isMobile = window.innerWidth <= 900;
+    if (isMobile) {
+      roleLineEl.innerHTML = `<span style="white-space: nowrap;">${escapeHtml(typedLine1)}</span><span style="opacity:${cursor1On && blink ? 1 : 0}">${cursor1On ? '|' : ''}</span>` +
+        (showLine2 ? `<br/>${escapeHtml(typedLine2)}<span style="opacity:${cursor2On && blink ? 1 : 0}">${cursor2On ? '|' : ''}</span>` : '');
+    } else {
+      const cursor1 = cursor1On && blink ? '|' : '';
+      const cursor2 = cursor2On && blink ? '|' : '';
+      roleLineEl.innerHTML = `<span style="white-space: nowrap;">${escapeHtml(typedLine1)}</span><span>${cursor1}</span>` +
+        (showLine2 ? `<br/>${escapeHtml(typedLine2)}<span>${cursor2}</span>` : '');
+    }
 
     const nameCombined = nameFullText.slice(0, typedNameChars);
     const nameSplitIdx = nameLine1.length;

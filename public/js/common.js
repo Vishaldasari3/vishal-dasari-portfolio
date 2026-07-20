@@ -36,6 +36,7 @@
     initSharedScenes();
     equalizeLogoLines();
     window.addEventListener('resize', equalizeLogoLines, { passive: true });
+    initMobileNav();
     if (window.__onPartialsReady) window.__onPartialsReady();
   }
 
@@ -138,6 +139,28 @@
       renderer.render(scene, camera);
     };
     loop();
+  }
+
+  function initMobileNav() {
+    const navToggle = document.getElementById('site-nav-toggle');
+    const headerRow = document.getElementById('site-header-row');
+    const backdrop = document.getElementById('site-nav-backdrop');
+    const navItems = document.getElementById('site-nav-items');
+    if (!navToggle || !headerRow) return;
+    const l1 = document.getElementById('burger-l1'), l2 = document.getElementById('burger-l2'), l3 = document.getElementById('burger-l3');
+    const setOpen = (open) => {
+      headerRow.classList.toggle('nav-open', open);
+      navToggle.setAttribute('aria-expanded', String(open));
+      if (backdrop) { backdrop.style.display = open ? 'block' : 'none'; requestAnimationFrame(() => { backdrop.style.opacity = open ? '1' : '0'; }); }
+      if (l1 && l2 && l3) {
+        l1.style.top = open ? '19px' : '15px'; l1.style.transform = open ? 'rotate(45deg)' : 'none';
+        l3.style.top = open ? '19px' : '23px'; l3.style.transform = open ? 'rotate(-45deg)' : 'none';
+        l2.style.opacity = open ? '0' : '1';
+      }
+    };
+    navToggle.addEventListener('click', () => setOpen(!headerRow.classList.contains('nav-open')));
+    if (backdrop) backdrop.addEventListener('click', () => setOpen(false));
+    if (navItems) navItems.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
   }
 
   function initHeaderScroll() {

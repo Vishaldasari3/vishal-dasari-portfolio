@@ -59,28 +59,35 @@
 
     const grid = document.getElementById('cert-grid');
     grid.innerHTML = certData.map((c, i) => `
-      <div class="cert-card" style="background: #ffffff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 16px; transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;">
-        <div style="display: flex; align-items: flex-start; gap: 16px;">
-          <div class="cert-logo-box logo-badge" style="position: relative; width: 96px; height: 96px; border-radius: 16px; flex-shrink: 0; overflow: hidden;">
-            <span style="position: absolute; inset: 2px; border-radius: 14px; background: #ffffff; z-index: 1;"></span>
-            <img src="${c.logo}" alt="${esc(c.issuer)} logo" style="position: relative; z-index: 2; width: 100%; height: 100%; object-fit: contain; padding: 8px; box-sizing: border-box;" />
+      <div class="cert-card">
+        <div class="cert-num">${String(i + 1).padStart(2, '0')}</div>
+        <div style="display: flex; align-items: flex-start; gap: 18px;">
+          <div class="cert-logo-box logo-badge" style="position: relative; width: 64px; height: 64px; border-radius: 14px; flex-shrink: 0; overflow: hidden;">
+            <span style="position: absolute; inset: 2px; border-radius: 12px; background: #ffffff; z-index: 1;"></span>
+            <img src="${c.logo}" alt="${esc(c.issuer)} logo" style="position: relative; z-index: 2; width: 100%; height: 100%; object-fit: contain; padding: 7px; box-sizing: border-box;" />
           </div>
-          <div style="display: flex; flex-direction: column; gap: 4px;">
-            <div style="font-size: 19px; font-weight: 600; color: #1c2030; line-height: 1.35;">${esc(c.title)}</div>
-            <div style="font-size: 16px; color: #7a8199;">${esc(c.issuer)}</div>
+          <div style="display: flex; flex-direction: column; gap: 6px; padding-right: 40px;">
+            <div style="font-size: 11.5px; font-weight: 600; color: #7a8199; letter-spacing: 1.2px; text-transform: uppercase;">${esc(c.issuer)}</div>
+            <div style="font-size: 17.5px; font-weight: 600; color: #14162b; line-height: 1.35; letter-spacing: -0.2px;">${esc(c.title)}</div>
           </div>
         </div>
-        <div style="font-size: 13px; color: #9096a8;">${esc(c.dateLine)}</div>
-        ${c.credentialId ? `<div style="font-size: 13px; color: #9096a8;">Credential ID ${esc(c.credentialId)}</div>` : ''}
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-          ${c.skills.map((s) => `<span style="font-size: 12px; color: #3654e0; background: #eef0fb; padding: 5px 10px; border-radius: 16px;">${esc(s)}</span>`).join('')}
+        <div style="font-size: 12.5px; color: #9096a8;">${esc(c.dateLine)}${c.credentialId ? ` \u00b7 ID ${esc(c.credentialId)}` : ''}</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 7px;">
+          ${c.skills.map((s) => `<span class="cert-chip">${esc(s)}</span>`).join('')}
         </div>
-        <a href="${c.url}" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #3654e0; margin-top: 6px;">
+        <a href="${c.url}" target="_blank" class="cert-link" style="display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; font-weight: 600; color: #3654e0; margin-top: auto; padding-top: 6px;">
           View credential
           <svg width="14" height="11" viewBox="0 0 16 12" fill="none"><path d="M1 6h13M9 1l5 5-5 5" stroke="#3654e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
     `).join('');
+    grid.querySelectorAll('.cert-card').forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

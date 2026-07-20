@@ -38,27 +38,34 @@
     #ex-modal-panel { width: 92% !important; padding: 32px 24px !important; }
   }
   @media (max-width: 480px) {
-    #site-nav-items { gap: 4px !important; flex-wrap: nowrap !important; justify-content: flex-start !important; }
-    #site-nav-items a { font-size: 12px !important; padding: 6px 8px !important; }
+    #site-nav-items { gap: 0 !important; flex-wrap: nowrap !important; justify-content: space-between !important; overflow: hidden !important; }
+    #site-nav-items a { font-size: 11px !important; padding: 6px 2px !important; }
   }
   @media (max-width: 1180px) {
     #site-header-row { padding: 18px 20px !important; gap: 12px !important; }
     #site-nav-items { gap: 1px !important; padding: 5px !important; }
     #site-nav-items a, #site-nav-items span { font-size: 12.5px !important; padding: 7px 9px !important; }
   }
-  @media (max-width: 860px) {
-    #site-header-row { flex-wrap: wrap !important; row-gap: 10px !important; padding: 14px 16px !important; justify-content: space-between !important; }
-    #site-header-grid { display: contents !important; }
-    #site-nav-items { flex: 1 1 auto !important; min-width: 0 !important; width: auto !important; max-width: none !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; justify-self: unset !important; gap: 2px !important; padding: 5px !important; }
-    #site-nav-items a { padding: 7px 10px !important; font-size: 12.5px !important; white-space: nowrap !important; }
-    #site-header-grid > div:last-child { flex: 1 1 100% !important; order: 3 !important; justify-content: center !important; }
-    #site-header-spacer { height: 132px !important; }
-  }
   @media (max-width: 640px) {
-    #site-nav-items { flex-wrap: nowrap !important; justify-content: flex-start !important; }
+    #site-nav-items { flex-wrap: nowrap !important; justify-content: space-between !important; overflow: hidden !important; }
+    div[style*="72px 56px 100px"] { padding-left: 16px !important; padding-right: 16px !important; padding-top: 44px !important; padding-bottom: 48px !important; }
+    div[style*="padding: 28px 24px 4px"] { padding: 16px 12px 4px !important; }
   }
   .hv40:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(44,70,201,0.12); }
   .hv41:hover, .hv42:hover, .hv43:hover { transform: translateY(-3px) scale(1.08); box-shadow: 0 6px 16px rgba(54,84,224,0.35), 0 0 14px rgba(54,84,224,0.4); }
+
+  /* editorial sections */
+  .ex-sec { display: grid; grid-template-columns: 220px 1fr; gap: 48px; padding: 64px 0; border-top: 1px solid rgba(28,32,48,0.09); }
+  .ex-sec:first-child { border-top: none; padding-top: 8px; }
+  .ex-label { position: sticky; top: 110px; align-self: start; display: flex; flex-direction: column; gap: 8px; }
+  .ex-label .num { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800; color: #3654e0; letter-spacing: 2px; }
+  .ex-label .ttl { font-size: 13px; font-weight: 600; color: #1c2030; letter-spacing: 1.8px; text-transform: uppercase; }
+  .ex-row { display: flex; gap: 32px; padding: 30px 6px; border-bottom: 1px solid rgba(28,32,48,0.09); border-radius: 6px; transition: background .25s, padding-left .3s cubic-bezier(.22,1,.36,1); }
+  .ex-row:first-of-type { border-top: 1px solid rgba(28,32,48,0.09); }
+  .ex-row:hover { background: rgba(54,84,224,0.04); padding-left: 16px; }
+  .ex-year { font-family: 'Syne', sans-serif; font-size: 19px; font-weight: 800; color: #3654e0; line-height: 1.2; }
+  .ex-chip { font-size: 12px; color: #3a3f5c; border: 1px solid rgba(28,32,48,0.14); padding: 5px 12px; border-radius: 20px; white-space: nowrap; transition: background .2s, color .2s, border-color .2s; }
+  .ex-chip:hover { background: #3654e0; color: #fff; border-color: #3654e0; }
 
   /* premium timeline */
   .ex-item { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s cubic-bezier(.22,1,.36,1); }
@@ -91,6 +98,9 @@
     .ex-item { flex-direction: column !important; gap: 8px !important; }
     .ex-date { width: auto !important; padding-top: 0 !important; }
     .ex-node, #ex-line { display: none !important; }
+    .ex-sec { grid-template-columns: 1fr !important; gap: 24px !important; padding: 44px 0 !important; }
+    .ex-label { position: static !important; }
+    .ex-row { flex-direction: column !important; gap: 10px !important; }
   }
   @media (max-width: 800px) { #hero-card { grid-template-columns: 1fr !important; padding: 36px 28px !important; } #hero-viewport { display: none; } }
 </style>
@@ -102,10 +112,10 @@
 
 <!-- hero band -->
 <div style="padding: 28px 24px 4px; position: relative; overflow: hidden;">
-  <canvas id="hero-icosa-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
-  <div style="position: absolute; top: -120px; left: 8%; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(54,84,224,0.16), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
-  <div style="position: absolute; bottom: -140px; right: 6%; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(124,92,255,0.13), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
-  <div id="hero-card" style="max-width: 1400px; margin: 0 auto; position: relative; background: linear-gradient(150deg, rgba(233,237,251,0.88) 0%, rgba(243,240,254,0.88) 52%, rgba(232,246,253,0.88) 100%); backdrop-filter: blur(24px) saturate(1.5); -webkit-backdrop-filter: blur(24px) saturate(1.5); border: 1px solid rgba(54,84,224,0.12); border-radius: 28px; padding: clamp(24px, 3vw, 36px) clamp(20px, 3.5vw, 44px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; box-shadow: 0 2px 0 rgba(255,255,255,0.65) inset, 0 40px 80px -32px rgba(30,40,80,0.25), 0 2px 24px rgba(30,40,80,0.05); z-index: 1;">
+  <div id="hero-card" style="max-width: 1400px; margin: 0 auto; position: relative; background: linear-gradient(150deg, rgba(233,237,251,0.88) 0%, rgba(243,240,254,0.88) 52%, rgba(232,246,253,0.88) 100%); backdrop-filter: blur(24px) saturate(1.5); -webkit-backdrop-filter: blur(24px) saturate(1.5); border: 1px solid rgba(54,84,224,0.12); border-radius: 28px; padding: clamp(18px, 2.2vw, 26px) clamp(18px, 3vw, 36px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; box-shadow: 0 2px 0 rgba(255,255,255,0.65) inset, 0 40px 80px -32px rgba(30,40,80,0.25), 0 2px 24px rgba(30,40,80,0.05); z-index: 1; overflow: hidden;">
+    <canvas id="hero-icosa-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;"></canvas>
+    <div style="position: absolute; top: -120px; left: 8%; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(54,84,224,0.16), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -140px; right: 6%; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(124,92,255,0.13), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
     <div class="hx-icon" style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #3654e0, #7c5cff); display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 26px -10px rgba(54,84,224,0.55);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1Z"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
     <div class="hx-crumb" style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: rgba(20,22,40,0.4); letter-spacing: 0.3px;">Vishal Dasari <span style="opacity: 0.5;">/</span> <span style="color: #3654e0;">Experience</span></div>
     <div class="hx-title-line" style="overflow: hidden;"><div class="hx-title-inner" style="font-size: clamp(26px, 3vw, 40px); font-weight: 700; color: #101223; line-height: 1.1; letter-spacing: -1px; max-width: 640px;">9+ years shipping production software.</div></div>
@@ -115,18 +125,18 @@
 </div>
 
 <!-- content -->
-<div style="max-width: 1100px; margin: 0 auto; padding: 72px 56px 100px; display: flex; flex-direction: column; gap: 80px;">
+<div style="max-width: 1160px; margin: 0 auto; padding: 72px 56px 100px; display: flex; flex-direction: column;">
 
-  <!-- timeline -->
-  <div style="display: flex; flex-direction: column; gap: 36px;">
-    <div style="font-size: 13px; font-weight: 600; color: #3654e0; letter-spacing: 1.5px; text-transform: uppercase;">Work History</div>
+  <!-- 01 timeline -->
+  <div class="ex-sec">
+    <div class="ex-label"><span class="num">01</span><span class="ttl">Work History</span></div>
     <div id="ex-roles"></div>
   </div>
 
-  <!-- projects -->
-  <div style="display: flex; flex-direction: column; gap: 28px;">
-    <div style="font-size: 13px; font-weight: 600; color: #3654e0; letter-spacing: 1.5px; text-transform: uppercase;">Featured Projects</div>
-    <div id="ex-projects-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;"></div>
+  <!-- 02 projects -->
+  <div class="ex-sec">
+    <div class="ex-label"><span class="num">02</span><span class="ttl">Featured Projects</span></div>
+    <div id="ex-projects-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;"></div>
   </div>
 
 </div>
