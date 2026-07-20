@@ -180,10 +180,12 @@
   }
 
   function renderCategories() {
+    const cnt = document.getElementById('ts-stat-count');
+    if (cnt) cnt.textContent = String(skillDefs.length).padStart(2, '0');
     const el = document.getElementById('ts-categories');
     el.innerHTML = categories.map((c) => {
       const active = activeCategory === c.key;
-      return `<div data-cat="${c.key}" style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 6px 13px; border-radius: 16px; cursor: pointer; background: ${active ? `oklch(52% 0.16 ${c.hue} / 0.16)` : '#eef0fb'}; color: ${active ? `oklch(30% 0.16 ${c.hue})` : '#5b6178'}; border: 1px solid rgba(0,0,0,0.04);">
+      return `<div data-cat="${c.key}" style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 6px 13px; border-radius: 16px; cursor: pointer; background: ${active ? `oklch(52% 0.16 ${c.hue} / 0.14)` : 'transparent'}; color: ${active ? `oklch(30% 0.16 ${c.hue})` : '#5b6178'}; border: 1px solid ${active ? `oklch(52% 0.16 ${c.hue} / 0.45)` : 'rgba(28,32,48,0.14)'}; transition: background .2s, border-color .2s, color .2s;">
         <span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(52% 0.16 ${c.hue}); flex-shrink: 0;"></span>
         ${c.label}
       </div>`;

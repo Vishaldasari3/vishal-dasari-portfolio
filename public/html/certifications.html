@@ -37,27 +37,33 @@
     #cert-grid { grid-template-columns: 1fr !important; }
   }
   @media (max-width: 480px) {
-    #site-nav-items { gap: 4px !important; flex-wrap: nowrap !important; justify-content: flex-start !important; }
-    #site-nav-items a { font-size: 12px !important; padding: 6px 8px !important; }
+    #site-nav-items { gap: 0 !important; flex-wrap: nowrap !important; justify-content: space-between !important; overflow: hidden !important; }
+    #site-nav-items a { font-size: 11px !important; padding: 6px 2px !important; }
   }
   @media (max-width: 1180px) {
     #site-header-row { padding: 18px 20px !important; gap: 12px !important; }
     #site-nav-items { gap: 1px !important; padding: 5px !important; }
     #site-nav-items a, #site-nav-items span { font-size: 12.5px !important; padding: 7px 9px !important; }
   }
-  @media (max-width: 860px) {
-    #site-header-row { flex-wrap: wrap !important; row-gap: 10px !important; padding: 14px 16px !important; justify-content: space-between !important; }
-    #site-header-grid { display: contents !important; }
-    #site-nav-items { flex: 1 1 auto !important; min-width: 0 !important; width: auto !important; max-width: none !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; justify-self: unset !important; gap: 2px !important; padding: 5px !important; }
-    #site-nav-items a { padding: 7px 10px !important; font-size: 12.5px !important; white-space: nowrap !important; }
-    #site-header-grid > div:last-child { flex: 1 1 100% !important; order: 3 !important; justify-content: center !important; }
-    #site-header-spacer { height: 132px !important; }
-  }
   @media (max-width: 640px) {
-    #site-nav-items { flex-wrap: nowrap !important; justify-content: flex-start !important; }
+    #site-nav-items { flex-wrap: nowrap !important; justify-content: space-between !important; overflow: hidden !important; }
+    div[style*="72px 56px 100px"] { padding-left: 16px !important; padding-right: 16px !important; padding-top: 44px !important; padding-bottom: 48px !important; }
+    div[style*="padding: 28px 24px 4px"] { padding: 16px 12px 4px !important; }
+    #cert-grid { grid-template-columns: 1fr !important; } #cert-grid > div { min-width: 0 !important; } .cert-card { padding: 20px !important; }
   }
 
-  .cert-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 24px 48px rgba(28,32,48,0.16); border-color: #b9c2ee; }
+  .cert-card { position: relative; overflow: hidden; background: rgba(255,255,255,0.75); border: 1px solid rgba(28,32,48,0.1); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px; transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s, border-color .35s; }
+  .cert-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%), rgba(54,84,224,0.07), transparent 65%); opacity: 0; transition: opacity .3s; pointer-events: none; }
+  .cert-card:hover::before { opacity: 1; }
+  .cert-card:hover { transform: translateY(-5px); box-shadow: 0 20px 44px -16px rgba(40,50,90,.22); border-color: rgba(54,84,224,.32); }
+  .cert-num { position: absolute; top: 16px; right: 22px; font-family: 'Syne', sans-serif; font-size: 44px; font-weight: 800; color: rgba(28,32,48,0.05); line-height: 1; letter-spacing: -2px; pointer-events: none; }
+  .cert-chip { font-size: 12px; color: #3a3f5c; border: 1px solid rgba(28,32,48,0.14); padding: 5px 12px; border-radius: 20px; transition: background .2s, color .2s, border-color .2s; }
+  .cert-chip:hover { background: #3654e0; color: #fff; border-color: #3654e0; }
+  .cert-link svg { transition: transform .25s cubic-bezier(.22,1,.36,1); }
+  .cert-card:hover .cert-link svg { transform: translateX(4px); }
+  .ct-stat .v { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; color: #14162b; letter-spacing: -1px; }
+  .ct-stat .k { font-size: 12px; font-weight: 500; color: #7a8199; letter-spacing: 0.8px; text-transform: uppercase; margin-top: 3px; }
+  @media (prefers-reduced-motion: reduce) { .cert-card, .cert-chip, .cert-link svg { transition: none; } }
   @media (max-width: 800px) { #hero-card { grid-template-columns: 1fr !important; padding: 36px 28px !important; } #hero-viewport { display: none; } }
 </style>
 </head>
@@ -68,10 +74,10 @@
 
 <!-- hero band -->
 <div style="padding: 28px 24px 4px; position: relative; overflow: hidden;">
-  <canvas id="hero-icosa-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
-  <div style="position: absolute; top: -120px; left: 8%; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(54,84,224,0.16), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
-  <div style="position: absolute; bottom: -140px; right: 6%; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(124,92,255,0.13), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
-  <div id="hero-card" style="max-width: 1400px; margin: 0 auto; position: relative; background: linear-gradient(150deg, rgba(233,237,251,0.88) 0%, rgba(243,240,254,0.88) 52%, rgba(232,246,253,0.88) 100%); backdrop-filter: blur(24px) saturate(1.5); -webkit-backdrop-filter: blur(24px) saturate(1.5); border: 1px solid rgba(54,84,224,0.12); border-radius: 28px; padding: clamp(24px, 3vw, 36px) clamp(20px, 3.5vw, 44px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; box-shadow: 0 2px 0 rgba(255,255,255,0.65) inset, 0 40px 80px -32px rgba(30,40,80,0.25), 0 2px 24px rgba(30,40,80,0.05); z-index: 1;">
+  <div id="hero-card" style="max-width: 1400px; margin: 0 auto; position: relative; background: linear-gradient(150deg, rgba(233,237,251,0.88) 0%, rgba(243,240,254,0.88) 52%, rgba(232,246,253,0.88) 100%); backdrop-filter: blur(24px) saturate(1.5); -webkit-backdrop-filter: blur(24px) saturate(1.5); border: 1px solid rgba(54,84,224,0.12); border-radius: 28px; padding: clamp(18px, 2.2vw, 26px) clamp(18px, 3vw, 36px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; box-shadow: 0 2px 0 rgba(255,255,255,0.65) inset, 0 40px 80px -32px rgba(30,40,80,0.25), 0 2px 24px rgba(30,40,80,0.05); z-index: 1; overflow: hidden;">
+    <canvas id="hero-icosa-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;"></canvas>
+    <div style="position: absolute; top: -120px; left: 8%; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(54,84,224,0.16), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -140px; right: 6%; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(124,92,255,0.13), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
     <div class="hx-icon" style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #3654e0, #7c5cff); display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 26px -10px rgba(54,84,224,0.55);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M8.5 13 7 21l5-3 5 3-1.5-8"/></svg></div>
     <div class="hx-crumb" style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: rgba(20,22,40,0.4); letter-spacing: 0.3px;">Vishal Dasari <span style="opacity: 0.5;">/</span> <span style="color: #3654e0;">Certifications</span></div>
     <div class="hx-title-line" style="overflow: hidden;"><div class="hx-title-inner" style="font-size: clamp(26px, 3vw, 40px); font-weight: 700; color: #101223; line-height: 1.1; letter-spacing: -1px; max-width: 640px;">Credentials earned along the way.</div></div>
@@ -81,8 +87,16 @@
 </div>
 
 <!-- grid -->
-<div style="max-width: 1100px; margin: 0 auto; padding: 72px 56px 100px;">
-  <div id="cert-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;"></div>
+<div style="max-width: 1160px; margin: 0 auto; padding: 72px 56px 100px; display: flex; flex-direction: column; gap: 40px;">
+  <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; flex-wrap: wrap; border-bottom: 1px solid rgba(28,32,48,0.09); padding-bottom: 30px;">
+    <div style="font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800; color: #3654e0; letter-spacing: 2px;">01 <span style="color: #1c2030; font-family: 'Poppins', sans-serif; font-weight: 600; letter-spacing: 1.8px; text-transform: uppercase; margin-left: 8px;">The record</span></div>
+    <div style="display: flex; gap: 44px; flex-wrap: wrap;">
+      <div class="ct-stat"><div class="v">06</div><div class="k">Credentials</div></div>
+      <div class="ct-stat"><div class="v">05</div><div class="k">Issuers</div></div>
+      <div class="ct-stat"><div class="v">12</div><div class="k">Years of learning</div></div>
+    </div>
+  </div>
+  <div id="cert-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;"></div>
 </div>
 
 <div id="site-footer"></div>

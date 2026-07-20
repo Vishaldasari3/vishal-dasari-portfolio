@@ -165,6 +165,12 @@
     pointer-events: none;
   }
   .btn:hover .sheen { animation: sheen .8s cubic-bezier(.22,1,.36,1); }
+  .vd-touch-link:hover { color: #14162B; }
+  .vd-touch-link:hover .vd-touch-arrow { transform: translateX(3px); }
+  .vd-outline-btn:hover { border-color: #3654e0; background: #3654e0; color: #ffffff; transform: translateY(-2px); box-shadow: 0 12px 30px -10px rgba(54,84,224,0.55); }
+  .vd-btn-sheen { position: absolute; top: 0; left: -80%; width: 50%; height: 100%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.65), transparent); transform: skewX(-20deg); pointer-events: none; }
+  .vd-outline-btn:hover .vd-btn-sheen { animation: sheen .8s cubic-bezier(.22,1,.36,1); }
+  @media (prefers-reduced-motion: reduce) { .vd-outline-btn:hover .vd-btn-sheen { animation: none; } }
   @keyframes sheen { to { left: 130%; } }
   @media (prefers-reduced-motion: reduce) {
     .btn-primary { animation: none; }
@@ -176,31 +182,41 @@
     #vd-header { padding: 0 8px !important; gap: 12px !important; }
   }
   @media (max-width: 860px) {
-    #vd-header { flex-wrap: wrap !important; row-gap: 10px !important; justify-content: space-between !important; }
+    #vd-header { flex-wrap: wrap !important; row-gap: 10px !important; justify-content: flex-start !important; gap: 10px !important; }
     #vd-header-grid { display: contents !important; }
-    #vd-nav-items { flex: 1 1 auto !important; min-width: 0 !important; width: auto !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; justify-self: unset !important; gap: 2px !important; padding: 5px !important; }
-    #vd-nav-items a { padding: 7px 10px !important; font-size: 12.5px !important; white-space: nowrap !important; }
-    #vd-header-grid > div:last-child { flex: 1 1 100% !important; order: 3 !important; justify-content: flex-end !important; }
+    #vd-nav-toggle { display: inline-flex !important; order: 3 !important; }
+    #vd-nav-items { order: 4 !important; flex: 1 1 100% !important; min-width: 0 !important; width: auto !important; overflow: hidden !important; flex-direction: column !important; align-items: stretch !important; justify-self: unset !important; gap: 2px !important; max-height: 0 !important; opacity: 0 !important; padding: 0 !important; border-width: 0 !important; border-radius: 16px !important; transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.3s ease !important; }
+    #vd-header.nav-open #vd-nav-items { max-height: 340px !important; opacity: 1 !important; padding: 6px !important; border-width: 1px !important; }
+    #vd-nav-items a { flex: 0 0 auto !important; text-align: left !important; padding: 11px 14px !important; font-size: 14px !important; white-space: nowrap !important; min-width: 0 !important; border-radius: 12px !important; }
+    #vd-header-grid > div:last-child { order: 2 !important; flex: 0 0 auto !important; justify-content: flex-end !important; margin-left: auto !important; }
     #vd-header-grid a[data-cursor-label="BLOG"] { font-size: 12px !important; padding: 8px 14px !important; }
   }
-  @media (max-width: 900px) {
+  @media (max-width: 1180px) {
     #vd-card {
       aspect-ratio: unset !important; min-height: 100vh !important; display: flex !important;
       flex-direction: column !important; align-items: center !important; justify-content: flex-start !important;
-      padding: 28px 24px 48px !important; gap: 28px !important;
+      padding: 92px 20px 48px !important; gap: 28px !important;
     }
-    #vd-header { position: static !important; width: 100% !important; top: auto !important; left: auto !important; right: auto !important; order: 0 !important; }
+    #vd-header { position: fixed !important; top: 10px !important; left: 10px !important; right: 10px !important; width: auto !important; flex-wrap: wrap !important; row-gap: 8px !important; padding: 10px 12px !important; border-radius: 16px !important; background: rgba(244,246,253,0.92) !important; backdrop-filter: blur(18px) saturate(1.4) !important; -webkit-backdrop-filter: blur(18px) saturate(1.4) !important; box-shadow: 0 14px 32px -18px rgba(40,50,90,0.35) !important; z-index: 50 !important; }
     #vd-nav-items { flex-wrap: nowrap !important; }
-    #vd-headshot-wrap { position: static !important; width: 62% !important; max-width: 300px !important; height: auto !important; transform: none !important; order: 2 !important; }
+    #vd-headshot-wrap { position: static !important; width: 46% !important; max-width: 240px !important; height: auto !important; transform: none !important; order: 2 !important; }
     #vd-name-block { position: static !important; max-width: 100% !important; align-items: center !important; text-align: center !important; order: 1 !important; }
-    #vd-name-block > div:first-child { text-align: center !important; }
-    #vd-name-block > div:first-child > div { font-size: 42px !important; }
+    #vd-name-block > div:first-child { justify-content: center !important; }
+    #vd-name-block > div:nth-child(2) { text-align: center !important; }
+    #vd-name-block > div:nth-child(2) > div { font-size: 42px !important; }
     #vd-intro-block { position: static !important; width: 100% !important; max-width: 440px !important; align-items: center !important; text-align: center !important; order: 3 !important; }
+    #vd-role-line { max-width: 100% !important; white-space: normal !important; overflow-wrap: anywhere !important; }
+    #vd-role-line * { white-space: normal !important; }
+    #vd-headshot-shadow { display: none !important; }
+  }
+  @media (max-width: 640px) {
+    #vd-card { padding: 84px 20px 40px !important; gap: 22px !important; }
+    #vd-headshot-wrap { width: 42% !important; max-width: 190px !important; }
+    #vd-name-block > div:nth-child(2) > div { font-size: 36px !important; }
   }
   @media (max-width: 480px) {
-    #vd-nav-items { gap: 4px !important; }
-    #vd-nav-items a { font-size: 13px !important; padding: 6px 10px !important; }
-    #vd-headshot-wrap { width: 74% !important; }
+    #vd-nav-items { gap: 2px !important; }
+    #vd-headshot-wrap { width: 38% !important; max-width: 155px !important; }
   }
 </style>
 </head>
@@ -237,22 +253,26 @@
           <a href="/blog" target="_blank" rel="noopener" data-cursor-label="BLOG" style="position: relative; font-size: 11px; font-weight: 700; font-family: 'Poppins', sans-serif; color: #fff; background: linear-gradient(93deg, #4a63e8 0%, #5b8cff 34%, #3fb6ff 68%, #22ddf5 100%); background-size: 220% 100%; animation: hueflow 6s linear infinite; padding: 11px 20px; border-radius: 999px; box-shadow: 0 10px 24px -10px rgba(74,99,232,0.55); transition: transform 0.15s, box-shadow 0.3s; display: inline-block; line-height: 1.3;">Blog ↗</a>
         </div>
       </div>
+      <button id="vd-nav-toggle" aria-label="Menu" style="display: none; flex-direction: column; justify-content: center; align-items: center; gap: 4px; width: 40px; height: 40px; background: rgba(244,246,253,0.9); border: 1px solid #e0e4f5; border-radius: 12px; cursor: pointer; padding: 0; flex-shrink: 0;"><span style="width: 16px; height: 2px; background: #22264a; border-radius: 2px;"></span><span style="width: 16px; height: 2px; background: #22264a; border-radius: 2px;"></span><span style="width: 16px; height: 2px; background: #22264a; border-radius: 2px;"></span></button>
     </div>
 
     <!-- headshot -->
     <div id="vd-headshot-shadow" style="position: absolute; bottom: 26px; left: 51%; transform: translateX(-50%); width: 300px; height: 34px; border-radius: 50%; background: radial-gradient(ellipse, rgba(20,26,48,0.32) 0%, rgba(20,26,48,0) 68%); z-index: 1; pointer-events: none;"></div>
-    <div id="vd-headshot-wrap" style="position: absolute; bottom: 0; left: 51%; width: 41%; height: 105%; display: flex; align-items: flex-end; justify-content: center; z-index: 1; opacity: 0; transition: opacity 0.8s ease 0.15s, transform 0.35s ease-out;">
+    <div id="vd-headshot-wrap" style="position: absolute; bottom: 0; left: 51%; width: 34%; height: 92%; display: flex; align-items: flex-end; justify-content: center; z-index: 1; opacity: 0; transition: opacity 0.8s ease 0.15s, transform 0.35s ease-out;">
       <img src="../assets/headshot.png" alt="Vishal Dasari" style="position: relative; max-width: 100%; max-height: 100%; display: block; filter: drop-shadow(0 24px 44px rgba(20,26,48,0.35));" />
     </div>
 
     <!-- left name block -->
     <div id="vd-name-block" style="position: absolute; left: 56px; top: 38%; display: flex; flex-direction: column; gap: 28px; max-width: 30%; z-index: 2; opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease 0.25s, transform 0.7s ease 0.25s;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 800; color: #22264a; letter-spacing: 2px;">01</span>
+        <span style="width: 22px; height: 1.5px; background: rgba(34,38,74,0.45); flex-shrink: 0;"></span>
+        <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 2px; color: #464c6b; text-transform: uppercase; white-space: nowrap;">Hello</span>
+      </div>
       <div>
         <div id="vd-name-line1" style="font-size: clamp(40px, 4.6vw, 68px); font-weight: 700; color: #f5f6fa; line-height: 1.02; letter-spacing: -1px;"></div>
         <div id="vd-name-line2" style="font-size: clamp(40px, 4.6vw, 68px); font-weight: 700; color: #f5f6fa; line-height: 1.02; letter-spacing: -1px; white-space: nowrap;"></div>
       </div>
-      <div style="width: 64px; height: 5px; background: #3654e0; border-radius: 3px;"></div>
-
       <div id="vd-social" style="display: flex; align-items: center; gap: 18px; margin-top: 12px;">
         <a href="https://github.com/Vishaldasari3" target="_blank" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s, box-shadow 0.2s;">
           <img src="../assets/icon-github.png" alt="GitHub" style="width: 100%; height: 100%; object-fit: cover;" />
@@ -264,21 +284,38 @@
           <img src="../assets/icon-topmate.png" alt="Topmate" style="width: 100%; height: 100%; object-fit: cover;" />
         </a>
       </div>
-    </div>
 
-    <!-- right intro block -->
-    <div id="vd-intro-block" style="position: absolute; right: 40px; top: 38%; width: 27%; display: flex; flex-direction: column; gap: 16px; z-index: 2; opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease 0.4s, transform 0.7s ease 0.4s;">
-      <div id="vd-role-line" style="font-size: clamp(24px, 2vw, 32px); font-weight: 600; color: #f4f5f9; line-height: 1.35; min-height: 2.7em;"></div>
-      <div style="font-size: 15px; color: #3f4560; line-height: 1.7;">I’m passionate about technology, data science, problem-solving, AI and learning. Experienced Associate Software Engineer with a demonstrated history of working in financial services and Logistics domains. Skilled in Object Oriented programming languages(Python,Java), SQL Database, Web Applications, backend Development, AWS and leveraging AI..</div>
-      <a href="/about" id="vd-about-link" class="btn btn-primary" style="margin-top: 8px; align-self: flex-start; padding: 11px 20px; font-size: 11px; gap: 8px;">
-        <span class="sheen"></span>
-        <span class="btn-label">About me →</span>
-      </a>
+      <div id="vd-stats" style="display: flex; align-items: center; gap: 32px; margin-top: 10px; padding-top: 22px; border-top: 1px solid rgba(70,76,107,0.22);">
+        <div><div style="font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; color: #f5f6fa; letter-spacing: -1px; line-height: 1;">9+</div><div style="font-size: 10.5px; font-weight: 600; color: #464c6b; letter-spacing: 1.2px; text-transform: uppercase; margin-top: 6px;">Years</div></div>
+        <div style="width: 1px; height: 34px; background: rgba(70,76,107,0.22);"></div>
+        <div><div style="font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; color: #f5f6fa; letter-spacing: -1px; line-height: 1;">AWS</div><div style="font-size: 10.5px; font-weight: 600; color: #464c6b; letter-spacing: 1.2px; text-transform: uppercase; margin-top: 6px;">Certified</div></div>
+        <div style="width: 1px; height: 34px; background: rgba(70,76,107,0.22);"></div>
+        <div><div style="font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; color: #f5f6fa; letter-spacing: -1px; line-height: 1;">58</div><div style="font-size: 10.5px; font-weight: 600; color: #464c6b; letter-spacing: 1.2px; text-transform: uppercase; margin-top: 6px;">Tools</div></div>
+      </div>
+    </div>
+    <div id="vd-intro-block" style="position: absolute; right: 40px; top: 38%; width: 27%; display: flex; flex-direction: column; gap: 22px; z-index: 2; opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease 0.4s, transform 0.7s ease 0.4s;">
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: nowrap;">
+        <span style="font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 800; color: #22264a; letter-spacing: 2px;">02</span>
+        <span style="width: 22px; height: 1.5px; background: rgba(34,38,74,0.45); flex-shrink: 0;"></span>
+        <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 2px; color: #464c6b; text-transform: uppercase; white-space: nowrap;">What I Do</span>
+      </div>
+      <div id="vd-role-line" style="font-size: clamp(24px, 2vw, 32px); font-weight: 600; color: #f4f5f9; line-height: 1.3; letter-spacing: -0.3px; min-height: 2.6em;"></div>
+      <div style="font-size: 14.5px; color: #464c6b; line-height: 1.75; max-width: 38em; padding-top: 2px; border-top: 1px solid rgba(70,76,107,0.18);">
+        <p style="margin: 18px 0 0;">9+ years across the full SDLC, building reliable backend systems in Java and Python. I care about clean architecture as much as clean code — services that scale, and teams that ship them with confidence.</p>
+      </div>
+      <div style="display: flex; align-items: center; gap: 28px; margin-top: 4px;">
+        <a href="/about" id="vd-about-link" class="vd-outline-btn" style="position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; font-size: 11px; font-weight: 700; font-family: 'Poppins', sans-serif; letter-spacing: 0.3px; color: #f4f5f9; border: 2.5px solid rgba(244,245,249,0.4); border-radius: 999px; text-decoration: none; transition: border-color 0.25s, background 0.25s, color 0.25s, transform 0.25s;">
+          <span class="vd-btn-sheen"></span>
+          <span class="btn-label">About me →</span>
+        </a>
+        <a href="/contact" class="vd-outline-btn" style="position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; font-size: 11px; font-weight: 700; font-family: 'Poppins', sans-serif; letter-spacing: 0.3px; color: #f4f5f9; border: 2.5px solid rgba(244,245,249,0.4); border-radius: 999px; text-decoration: none; transition: border-color 0.25s, background 0.25s, color 0.25s, transform 0.25s;"><span class="vd-btn-sheen"></span>Get in touch →</a>
+      </div>
     </div>
 
   </div>
 </div>
 
 <script src="../js/home.js"></script>
+<script>(function(){var t=document.getElementById('vd-nav-toggle'),h=document.getElementById('vd-header');if(t&&h)t.addEventListener('click',function(){h.classList.toggle('nav-open');});})();</script>
 </body>
 </html>

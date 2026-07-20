@@ -38,10 +38,16 @@
     #ab-hero-text { align-items: center !important; max-width: 100% !important; }
     #ab-hero-photo { width: 60% !important; max-width: 260px !important; }
     #ab-skills-grid { grid-template-columns: 1fr !important; }
+    .ab-sec { grid-template-columns: 1fr !important; gap: 24px !important; padding: 44px 0 !important; }
+    .ab-label { position: static !important; }
+    .ab-lead { font-size: 22px !important; }
+    .ab-stats { grid-template-columns: 1fr 1fr !important; }
+    .ab-cols { column-count: 1 !important; }
+    .ab-edu-year { font-size: 15px !important; min-width: 52px !important; }
   }
   @media (max-width: 480px) {
-    #site-nav-items { gap: 4px !important; flex-wrap: nowrap !important; justify-content: flex-start !important; }
-    #site-nav-items a { font-size: 12px !important; padding: 6px 8px !important; }
+    #site-nav-items { gap: 0 !important; flex-wrap: nowrap !important; justify-content: space-between !important; overflow: hidden !important; }
+    #site-nav-items a { font-size: 11px !important; padding: 6px 2px !important; }
     #ab-skills-grid { grid-template-columns: 1fr !important; }
   }
   @media (max-width: 1180px) {
@@ -49,28 +55,40 @@
     #site-nav-items { gap: 1px !important; padding: 5px !important; }
     #site-nav-items a, #site-nav-items span { font-size: 12.5px !important; padding: 7px 9px !important; }
   }
-  @media (max-width: 860px) {
-    #site-header-row { flex-wrap: wrap !important; row-gap: 10px !important; padding: 14px 16px !important; justify-content: space-between !important; }
-    #site-header-grid { display: contents !important; }
-    #site-nav-items { flex: 1 1 auto !important; min-width: 0 !important; width: auto !important; max-width: none !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; justify-self: unset !important; gap: 2px !important; padding: 5px !important; }
-    #site-nav-items a { padding: 7px 10px !important; font-size: 12.5px !important; white-space: nowrap !important; }
-    #site-header-grid > div:last-child { flex: 1 1 100% !important; order: 3 !important; justify-content: center !important; }
-    #site-header-spacer { height: 132px !important; }
-  }
   @media (max-width: 640px) {
-    #site-nav-items { flex-wrap: nowrap !important; justify-content: flex-start !important; }
+    #site-nav-items { flex-wrap: nowrap !important; justify-content: space-between !important; overflow: hidden !important; }
+    div[style*="72px 56px 100px"] { padding-left: 16px !important; padding-right: 16px !important; padding-top: 44px !important; padding-bottom: 48px !important; }
+    div[style*="padding: 28px 24px 4px"] { padding: 16px 12px 4px !important; }
+    #ab-skills-grid { grid-template-columns: 1fr !important; } #ab-skills-grid > div { min-width: 0 !important; }
   }
 
   .hv20:hover, .hv21:hover, .hv22:hover, .hv23:hover, .hv24:hover, .hv25:hover, .hv26:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(28,32,48,0.1); border-color: #b9c2ee; }
+  .ab-sec { display: grid; grid-template-columns: 220px 1fr; gap: 48px; padding: 64px 0; border-top: 1px solid rgba(28,32,48,0.09); }
+  .ab-sec:first-child { border-top: none; padding-top: 8px; }
+  .ab-label { position: sticky; top: 110px; align-self: start; display: flex; flex-direction: column; gap: 8px; }
+  .ab-label .num { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800; color: #3654e0; letter-spacing: 2px; }
+  .ab-label .ttl { font-size: 13px; font-weight: 600; color: #1c2030; letter-spacing: 1.8px; text-transform: uppercase; }
+  .ab-lead { font-size: clamp(22px, 2.6vw, 31px); font-weight: 600; color: #14162b; line-height: 1.42; letter-spacing: -0.5px; text-wrap: pretty; }
+  .ab-lead em { font-style: normal; background-image: linear-gradient(92deg, #3654e0, #7c5cff 55%, #22b8f5); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .ab-cols { column-count: 2; column-gap: 40px; font-size: 15px; color: #565d73; line-height: 1.85; }
+  .ab-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .ab-stat { border: 1px solid rgba(28,32,48,0.1); border-radius: 16px; padding: 20px 22px; background: rgba(255,255,255,0.6); transition: border-color .3s, transform .3s cubic-bezier(.22,1,.36,1); }
+  .ab-stat:hover { border-color: rgba(54,84,224,.4); transform: translateY(-3px); }
+  .ab-stat .v { font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 800; color: #14162b; letter-spacing: -1px; }
+  .ab-stat .k { font-size: 12px; font-weight: 500; color: #7a8199; letter-spacing: 0.8px; text-transform: uppercase; margin-top: 4px; }
+  .ab-edu-row { display: flex; align-items: baseline; gap: 28px; padding: 24px 6px; border-bottom: 1px solid rgba(28,32,48,0.09); transition: background .25s, padding-left .3s cubic-bezier(.22,1,.36,1); border-radius: 6px; }
+  .ab-edu-row:hover { background: rgba(54,84,224,0.04); padding-left: 16px; }
+  .ab-edu-year { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 800; color: #3654e0; min-width: 64px; flex-shrink: 0; }
+  @media (prefers-reduced-motion: reduce) { .ab-stat, .ab-edu-row { transition: none; } }
   .hv27:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0,0,0,0.24); }
-  .ab-skill { position: relative; overflow: hidden; background: #ffffff; border: 1px solid #e6e8f0; border-radius: 18px; padding: 28px; transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s, border-color .3s; }
+  .ab-skill { position: relative; overflow: hidden; background: rgba(255,255,255,0.75); border: 1px solid rgba(28,32,48,0.1); border-radius: 20px; padding: 26px; transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s, border-color .3s; }
   .ab-skill::before { content: ''; position: absolute; inset: 0; background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(54,84,224,0.08), transparent 65%); opacity: 0; transition: opacity .3s; pointer-events: none; }
   .ab-skill:hover::before { opacity: 1; }
   .ab-skill:hover { transform: translateY(-5px); box-shadow: 0 20px 44px -16px rgba(40,50,90,.24); border-color: rgba(54,84,224,.3); }
   .ab-skill .sk-num { position: absolute; top: 14px; right: 20px; font-size: 46px; font-weight: 800; color: rgba(28,32,48,0.05); line-height: 1; letter-spacing: -2px; pointer-events: none; }
   .ab-skill .sk-icon { width: 44px; height: 44px; border-radius: 13px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; transition: transform .35s cubic-bezier(.34,1.56,.64,1); position: relative; }
   .ab-skill:hover .sk-icon { transform: scale(1.1) rotate(-4deg); }
-  .sk-chip { font-size: 13px; color: #3a3f5c; background: #f7f8fc; border: 1px solid #e6e8f0; padding: 6px 12px; border-radius: 20px; transition: background .2s, color .2s, border-color .2s, transform .2s; cursor: default; }
+  .sk-chip { font-size: 12.5px; color: #3a3f5c; background: transparent; border: 1px solid rgba(28,32,48,0.14); padding: 6px 13px; border-radius: 20px; transition: background .2s, color .2s, border-color .2s, transform .2s; cursor: default; }
   .sk-chip:hover { background: #3654e0; color: #ffffff; border-color: #3654e0; transform: translateY(-2px); }
   @media (prefers-reduced-motion: reduce) { .ab-skill, .sk-chip, .ab-skill .sk-icon { transition: none; } }
 </style>
@@ -82,10 +100,10 @@
 
 <!-- hero band -->
 <div style="padding: 28px 24px 4px; position: relative; overflow: hidden;">
-  <canvas id="hero-icosa-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
-  <div style="position: absolute; top: -120px; left: 8%; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(54,84,224,0.16), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
-  <div style="position: absolute; bottom: -140px; right: 6%; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(124,92,255,0.13), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
-  <div id="hero-card" style="max-width: 1400px; margin: 0 auto; position: relative; background: linear-gradient(150deg, rgba(233,237,251,0.88) 0%, rgba(243,240,254,0.88) 52%, rgba(232,246,253,0.88) 100%); backdrop-filter: blur(24px) saturate(1.5); -webkit-backdrop-filter: blur(24px) saturate(1.5); border: 1px solid rgba(54,84,224,0.12); border-radius: 28px; padding: clamp(24px, 3vw, 36px) clamp(20px, 3.5vw, 44px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; box-shadow: 0 2px 0 rgba(255,255,255,0.65) inset, 0 40px 80px -32px rgba(30,40,80,0.25), 0 2px 24px rgba(30,40,80,0.05); z-index: 1;">
+  <div id="hero-card" style="max-width: 1400px; margin: 0 auto; position: relative; background: linear-gradient(150deg, rgba(233,237,251,0.88) 0%, rgba(243,240,254,0.88) 52%, rgba(232,246,253,0.88) 100%); backdrop-filter: blur(24px) saturate(1.5); -webkit-backdrop-filter: blur(24px) saturate(1.5); border: 1px solid rgba(54,84,224,0.12); border-radius: 28px; padding: clamp(18px, 2.2vw, 26px) clamp(18px, 3vw, 36px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; box-shadow: 0 2px 0 rgba(255,255,255,0.65) inset, 0 40px 80px -32px rgba(30,40,80,0.25), 0 2px 24px rgba(30,40,80,0.05); z-index: 1; overflow: hidden;">
+    <canvas id="hero-icosa-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;"></canvas>
+    <div style="position: absolute; top: -120px; left: 8%; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(54,84,224,0.16), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -140px; right: 6%; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(124,92,255,0.13), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
     <div class="hx-icon" style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #3654e0, #7c5cff); display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 26px -10px rgba(54,84,224,0.55);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
     <div class="hx-crumb" style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: rgba(20,22,40,0.4); letter-spacing: 0.3px;">Vishal Dasari <span style="opacity: 0.5;">/</span> <span style="color: #3654e0;">About</span></div>
     <div class="hx-title-line" style="overflow: hidden;"><div class="hx-title-inner" style="font-size: clamp(26px, 3vw, 40px); font-weight: 700; color: #101223; line-height: 1.1; letter-spacing: -1px; max-width: 640px;">Senior Software Engineer, building at scale.</div></div>
@@ -95,39 +113,43 @@
 </div>
 
 <!-- content -->
-<div style="max-width: 1100px; margin: 0 auto; padding: 72px 56px 100px; display: flex; flex-direction: column; gap: 72px;">
+<div style="max-width: 1160px; margin: 0 auto; padding: 72px 56px 100px; display: flex; flex-direction: column;">
 
-  <!-- story -->
-  <div style="display: flex; flex-direction: column; gap: 20px; max-width: 780px;">
-    <div style="font-size: 13px; font-weight: 600; color: #3654e0; letter-spacing: 1.5px; text-transform: uppercase;">My Story</div>
-    <div style="font-size: 17px; color: #444b5e; line-height: 1.85;">
-      I'm a backend-focused engineer who enjoys the full lifecycle of building software &mdash; from designing services to shipping them reliably in production. My core stack is Java (Spring Boot, Hibernate, REST/SOAP services) alongside Python (Flask, SQLAlchemy, Pandas, NumPy) for data-heavy work.
-      <br/><br/>
-      I'm AWS Certified Developer &mdash; Associate, and spend a lot of my time hands-on with S3, EC2, and EKS, plus Terraform for infrastructure as code. One of the projects I'm proudest of is a Hadoop-to-cloud migration built on Apache NiFi and Databricks &mdash; modernizing a legacy data pipeline into something scalable and cloud-native.
-    </div>
-  </div>
-
-  <!-- current role -->
-  <div style="padding: 2px; border-radius: 19px; background: linear-gradient(135deg, #3654e0 0%, #d6dbe9 60%, #2c46c9 100%);">
-  <div style="display: flex; align-items: center; gap: 24px; background: #ffffff; border-radius: 17px; padding: 28px 32px;">
-    <div style="width: 52px; height: 52px; border-radius: 12px; background: linear-gradient(135deg, #3654e0 0%, #2c46c9 100%); display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 8px 18px rgba(54,84,224,0.3);">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-    </div>
-    <div>
-      <div style="display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: #1f8a5b; background: #e9f7ef; padding: 3px 9px; border-radius: 10px; margin-bottom: 6px;">
-        <span style="width: 6px; height: 6px; border-radius: 50%; background: #1f8a5b; display: inline-block;"></span>
-        Currently here
+  <!-- 01 story -->
+  <div class="ab-sec">
+    <div class="ab-label"><span class="num">01</span><span class="ttl">My Story</span></div>
+    <div style="display: flex; flex-direction: column; gap: 36px;">
+      <div class="ab-lead">I'm a backend-focused engineer who enjoys the <em>full lifecycle</em> of building software &mdash; from designing services to shipping them <em>reliably in production</em>.</div>
+      <div class="ab-cols">My core stack is Java (Spring Boot, Hibernate, REST/SOAP services) alongside Python (Flask, SQLAlchemy, Pandas, NumPy) for data-heavy work. I'm AWS Certified Developer &mdash; Associate, and spend a lot of my time hands-on with S3, EC2, and EKS, plus Terraform for infrastructure as code. One of the projects I'm proudest of is a Hadoop-to-cloud migration built on Apache NiFi and Databricks &mdash; modernizing a legacy data pipeline into something scalable and cloud-native.</div>
+      <div class="ab-stats">
+        <div class="ab-stat"><div class="v">9+</div><div class="k">Years shipping</div></div>
+        <div class="ab-stat"><div class="v">AWS</div><div class="k">Certified Developer</div></div>
+        <div class="ab-stat"><div class="v">3</div><div class="k">Degrees earned</div></div>
       </div>
-      <div style="font-size: 17px; font-weight: 600; color: #1c2030;">Senior Software Engineer &mdash; JPMorgan Chase</div>
-      <div style="font-size: 15px; color: #7a8199; margin-top: 4px;">Daily Revenue Reporting &amp; NBA Photon Framework teams</div>
     </div>
   </div>
+
+  <!-- 02 now -->
+  <div class="ab-sec">
+    <div class="ab-label"><span class="num">02</span><span class="ttl">Now</span></div>
+    <div style="position: relative; overflow: hidden; background: #14162b; border-radius: 22px; padding: 40px 44px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+      <div style="position: absolute; top: -80px; right: -40px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(74,99,232,0.35), transparent 70%); pointer-events: none;"></div>
+      <div style="position: absolute; bottom: -66px; left: -14px; font-family: 'Syne', sans-serif; font-size: 150px; font-weight: 800; color: rgba(255,255,255,0.045); line-height: 1; pointer-events: none;">VD</div>
+      <div style="position: relative; z-index: 1;">
+        <div style="display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 600; color: #7ee2ae; background: rgba(31,138,91,0.22); border: 1px solid rgba(126,226,174,0.25); padding: 4px 11px; border-radius: 12px; margin-bottom: 14px; letter-spacing: 0.6px; text-transform: uppercase;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #7ee2ae; display: inline-block; box-shadow: 0 0 8px rgba(126,226,174,0.9);"></span>Currently here</div>
+        <div style="font-family: 'Syne', sans-serif; font-size: 23px; font-weight: 800; color: #ffffff; letter-spacing: -0.4px;">Senior Software Engineer &mdash; JPMorgan Chase</div>
+        <div style="font-size: 14.5px; color: rgba(255,255,255,0.55); margin-top: 8px;">Daily Revenue Reporting &amp; NBA Photon Framework teams</div>
+      </div>
+      <a href="/experience" style="position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: #ffffff; border: 1.5px solid rgba(255,255,255,0.28); padding: 12px 22px; border-radius: 999px; transition: border-color .25s, background .25s;" onmouseover="this.style.background='rgba(255,255,255,0.1)';this.style.borderColor='rgba(255,255,255,0.55)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(255,255,255,0.28)'">See the work
+        <svg width="14" height="11" viewBox="0 0 16 12" fill="none"><path d="M1 6h13M9 1l5 5-5 5" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
   </div>
 
-  <!-- skills -->
-  <div style="display: flex; flex-direction: column; gap: 28px;">
-    <div style="font-size: 13px; font-weight: 600; color: #3654e0; letter-spacing: 1.5px; text-transform: uppercase;">Skills &amp; Tech Stack</div>
-    <div id="ab-skills-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+  <!-- 03 skills -->
+  <div class="ab-sec">
+    <div class="ab-label"><span class="num">03</span><span class="ttl">Skills &amp; Stack</span></div>
+    <div id="ab-skills-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;">
       <div class="ab-skill">
         <div class="sk-num">01</div>
         <div class="sk-icon" style="background: linear-gradient(135deg, #3654e0, #2c46c9); box-shadow: 0 10px 22px -8px rgba(54,84,224,.45);">
@@ -194,62 +216,43 @@
     </div>
   </div>
 
-  <!-- education -->
-  <div style="display: flex; flex-direction: column; gap: 28px;">
-    <div style="font-size: 13px; font-weight: 600; color: #3654e0; letter-spacing: 1.5px; text-transform: uppercase;">Education</div>
-    <div id="ab-edu-grid" style="position: relative; padding-left: 28px;">
-      <div style="position: absolute; left: 4px; top: 10px; bottom: 10px; width: 1.5px; background: linear-gradient(180deg, #3654e0 0%, #e6e8f0 100%);"></div>
-
-      <div style="position: relative; margin-bottom: 20px;">
-        <div style="position: absolute; left: -28px; top: 26px; width: 9px; height: 9px; border-radius: 50%; background: #3654e0;"></div>
-        <div class="hv24" style="background: #ffffff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 22px 26px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;">
-          <div>
-            <div style="font-size: 17px; font-weight: 600; color: #1c2030;">Post Graduate Program in AI &amp; ML</div>
-            <div style="font-size: 14.5px; color: #7a8199; margin-top: 6px;">The University of Texas at Austin &mdash; Austin, TX</div>
-          </div>
-          <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0;">
-            <span style="font-size: 12.5px; font-weight: 600; color: #2c46c9; background: #eef0fb; padding: 5px 12px; border-radius: 16px; white-space: nowrap;">April 2023</span>
-            <span style="font-size: 12.5px; color: #9096a8;">GPA 3.52</span>
-          </div>
+  <!-- 04 education -->
+  <div class="ab-sec">
+    <div class="ab-label"><span class="num">04</span><span class="ttl">Education</span></div>
+    <div style="display: flex; flex-direction: column;">
+      <div class="ab-edu-row" style="border-top: 1px solid rgba(28,32,48,0.09);">
+        <span class="ab-edu-year">2023</span>
+        <div style="flex: 1; min-width: 200px;">
+          <div style="font-size: 16.5px; font-weight: 600; color: #1c2030;">Post Graduate Program in AI &amp; ML</div>
+          <div style="font-size: 14px; color: #7a8199; margin-top: 5px;">The University of Texas at Austin &mdash; Austin, TX</div>
         </div>
+        <span style="font-size: 12.5px; color: #9096a8; flex-shrink: 0;">GPA 3.52</span>
       </div>
-
-      <div style="position: relative; margin-bottom: 20px;">
-        <div style="position: absolute; left: -28px; top: 26px; width: 9px; height: 9px; border-radius: 50%; background: #3654e0;"></div>
-        <div class="hv25" style="background: #ffffff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 22px 26px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;">
-          <div>
-            <div style="font-size: 17px; font-weight: 600; color: #1c2030;">M.S. Computer Information Systems</div>
-            <div style="font-size: 14.5px; color: #7a8199; margin-top: 6px;">Bellevue University &mdash; Bellevue, NE</div>
-          </div>
-          <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0;">
-            <span style="font-size: 12.5px; font-weight: 600; color: #2c46c9; background: #eef0fb; padding: 5px 12px; border-radius: 16px; white-space: nowrap;">June 2017</span>
-            <span style="font-size: 12.5px; color: #9096a8;">GPA 3.91</span>
-          </div>
+      <div class="ab-edu-row">
+        <span class="ab-edu-year">2017</span>
+        <div style="flex: 1; min-width: 200px;">
+          <div style="font-size: 16.5px; font-weight: 600; color: #1c2030;">M.S. Computer Information Systems</div>
+          <div style="font-size: 14px; color: #7a8199; margin-top: 5px;">Bellevue University &mdash; Bellevue, NE</div>
         </div>
+        <span style="font-size: 12.5px; color: #9096a8; flex-shrink: 0;">GPA 3.91</span>
       </div>
-
-      <div style="position: relative;">
-        <div style="position: absolute; left: -28px; top: 26px; width: 9px; height: 9px; border-radius: 50%; background: #3654e0;"></div>
-        <div class="hv26" style="background: #ffffff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 22px 26px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;">
-          <div>
-            <div style="font-size: 17px; font-weight: 600; color: #1c2030;">B.E. Electronics &amp; Communication Engineering</div>
-            <div style="font-size: 14.5px; color: #7a8199; margin-top: 6px;">JNT University &mdash; Hyderabad, India</div>
-          </div>
-          <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0;">
-            <span style="font-size: 12.5px; font-weight: 600; color: #2c46c9; background: #eef0fb; padding: 5px 12px; border-radius: 16px; white-space: nowrap;">May 2014</span>
-            <span style="font-size: 12.5px; color: #9096a8;">GPA 3.42</span>
-          </div>
+      <div class="ab-edu-row">
+        <span class="ab-edu-year">2014</span>
+        <div style="flex: 1; min-width: 200px;">
+          <div style="font-size: 16.5px; font-weight: 600; color: #1c2030;">B.E. Electronics &amp; Communication Engineering</div>
+          <div style="font-size: 14px; color: #7a8199; margin-top: 5px;">JNT University &mdash; Hyderabad, India</div>
         </div>
+        <span style="font-size: 12.5px; color: #9096a8; flex-shrink: 0;">GPA 3.42</span>
       </div>
+      <a href="/certifications" style="display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #3654e0; margin-top: 24px;">
+        View all certifications
+        <svg width="14" height="11" viewBox="0 0 16 12" fill="none"><path d="M1 6h13M9 1l5 5-5 5" stroke="#3654e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
-    <a href="/certifications" style="display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #3654e0;">
-      View all certifications
-      <svg width="14" height="11" viewBox="0 0 16 12" fill="none"><path d="M1 6h13M9 1l5 5-5 5" stroke="#3654e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
   </div>
 
   <!-- resume cta -->
-  <div style="display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; background: linear-gradient(165deg, #2c46c9 0%, #3654e0 55%, #4a63e8 100%); border-radius: 22px; padding: 44px; position: relative; overflow: hidden;">
+  <div style="margin-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; background: linear-gradient(165deg, #2c46c9 0%, #3654e0 55%, #4a63e8 100%); border-radius: 22px; padding: 44px; position: relative; overflow: hidden;">
     <div style="position: absolute; top: -60px; right: 40px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 70%);"></div>
     <div style="position: absolute; bottom: -50px; left: -10px; font-family: 'Syne', sans-serif; font-size: 140px; font-weight: 800; color: rgba(255,255,255,0.06); line-height: 1; pointer-events: none;">VD</div>
     <div style="position: relative; z-index: 1;">

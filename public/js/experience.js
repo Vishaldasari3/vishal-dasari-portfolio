@@ -89,26 +89,26 @@
 
     const rolesEl = document.getElementById('ex-roles');
     rolesEl.innerHTML = `
-      <div id="ex-timeline" style="position: relative; display: flex; flex-direction: column; gap: 28px;">
-        <div id="ex-line" style="position: absolute; left: 157px; top: 8px; bottom: 8px; width: 2px; background: #e6e8f0; border-radius: 2px;">
-          <div id="ex-line-fill" style="width: 100%; height: 0%; background: linear-gradient(180deg, #3654e0, #2ea8ff); border-radius: 2px; transition: height 0.2s ease-out;"></div>
-        </div>
-        ${roles.map((role, i) => `
-          <div class="ex-item" style="display: flex; position: relative; transition-delay: ${i * 0.08}s;">
-            <div class="ex-date" style="width: 130px; flex-shrink: 0; font-size: 13.5px; color: #9096a8; font-weight: 600; padding-top: 26px;">${esc(role.dates)}</div>
-            <div class="ex-node" style="width: 56px; flex-shrink: 0; display: flex; justify-content: center; padding-top: 28px;">
-              <span class="${i === 0 ? 'ex-dot-now' : ''}" style="width: 12px; height: 12px; border-radius: 50%; background: ${i === 0 ? '#3654e0' : '#ffffff'}; border: 2.5px solid #3654e0; position: relative; z-index: 1;"></span>
+      <div style="display: flex; flex-direction: column;">
+        ${roles.map((role, i) => {
+          const yr = (role.dates.match(/\d{4}/) || [''])[0];
+          const end = /Present/.test(role.dates) ? 'Now' : ((role.dates.match(/\d{4}/g) || []).pop() || '');
+          return `
+          <div class="ex-item ex-row" style="transition-delay: ${i * 0.08}s;">
+            <div style="width: 120px; flex-shrink: 0;">
+              <div class="ex-year">${yr}&ndash;${end}</div>
+              <div style="font-size: 12px; color: #9096a8; margin-top: 5px;">${esc(role.dates)}</div>
+              ${i === 0 ? '<span style="display: inline-flex; align-items: center; gap: 5px; font-size: 10.5px; font-weight: 600; color: #1f8a5b; background: #e9f7ef; padding: 3px 9px; border-radius: 10px; letter-spacing: .5px; margin-top: 8px;"><span class="ex-dot-now" style="width: 5px; height: 5px; border-radius: 50%; background: #1f8a5b; display: inline-block;"></span>CURRENT</span>' : ''}
             </div>
-            <div class="ex-card" style="flex: 1; background: #ffffff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 24px 28px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 6px 18px -8px rgba(40,50,90,.08);">
-              <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-                <div style="font-size: 18px; font-weight: 600; color: #1c2030;">${esc(role.title)}</div>
-                ${i === 0 ? '<span style="font-size: 11px; font-weight: 600; color: #1f8a5b; background: #e9f7ef; padding: 4px 10px; border-radius: 12px; letter-spacing: .4px;">CURRENT</span>' : ''}
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+              <div style="font-size: 11.5px; font-weight: 600; color: #7a8199; letter-spacing: 1.2px; text-transform: uppercase;">${esc(role.company)}</div>
+              <div style="font-size: 19px; font-weight: 600; color: #14162b; letter-spacing: -0.2px;">${esc(role.title)}</div>
+              <div style="display: flex; flex-direction: column; gap: 7px; margin-top: 4px;">
+                ${role.bullets.map((b) => `<div style="font-size: 14.5px; color: #5b6178; line-height: 1.7; display: flex; gap: 10px;"><span style="color: #3654e0; flex-shrink: 0;">&mdash;</span><span>${esc(b)}</span></div>`).join('')}
               </div>
-              <div style="font-size: 15px; color: #3654e0; font-weight: 500;">${esc(role.company)}</div>
-              ${role.bullets.map((b) => `<div style="font-size: 15px; color: #5b6178; line-height: 1.7; display: flex; gap: 8px;"><span style="color: #3654e0;">&bull;</span><span>${esc(b)}</span></div>`).join('')}
             </div>
-          </div>
-        `).join('')}
+          </div>`;
+        }).join('')}
       </div>`;
 
     const items = rolesEl.querySelectorAll('.ex-item');
@@ -117,26 +117,16 @@
     }, { threshold: 0.15 });
     items.forEach((el) => io.observe(el));
 
-    const tl = document.getElementById('ex-timeline');
-    const fill = document.getElementById('ex-line-fill');
-    const updateFill = () => {
-      const r = tl.getBoundingClientRect();
-      const p = Math.min(1, Math.max(0, (window.innerHeight * 0.72 - r.top) / r.height));
-      fill.style.height = (p * 100) + '%';
-    };
-    window.addEventListener('scroll', updateFill, { passive: true });
-    updateFill();
-
     const grid = document.getElementById('ex-projects-grid');
     grid.innerHTML = projectData.map((p, i) => `
-      <div data-project-index="${i}" class="ex-proj ex-item" style="cursor: pointer; background: #ffffff; border: 1px solid #e6e8f0; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 6px 18px -8px rgba(40,50,90,.08); transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s, border-color .3s, opacity .6s ease; transition-delay: ${(i % 2) * 0.08}s;">
-        <div style="position: absolute; top: 16px; right: 22px; font-family: 'Syne', sans-serif; font-size: 34px; font-weight: 800; color: #eef0fb; line-height: 1; pointer-events: none; user-select: none;">0${i + 1}</div>
-        <div style="font-size: 17px; font-weight: 600; color: #1c2030; padding-right: 48px;">${esc(p.title)}</div>
-        <div style="font-size: 14px; color: #7a8199; line-height: 1.6;">${esc(p.summary)}</div>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px;">
-          ${p.tags.map((t) => `<span style="font-size: 12px; color: #3654e0; background: #eef0fb; border: 1px solid rgba(54,84,224,0.12); padding: 5px 10px; border-radius: 16px; white-space: nowrap;">${esc(t)}</span>`).join('')}
+      <div data-project-index="${i}" class="ex-proj ex-item" style="cursor: pointer; background: rgba(255,255,255,0.75); border: 1px solid rgba(28,32,48,0.1); border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 13px; transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s, border-color .3s, opacity .6s ease; transition-delay: ${(i % 2) * 0.08}s;">
+        <div style="position: absolute; top: 16px; right: 22px; font-family: 'Syne', sans-serif; font-size: 40px; font-weight: 800; color: rgba(28,32,48,0.05); line-height: 1; letter-spacing: -2px; pointer-events: none; user-select: none;">0${i + 1}</div>
+        <div style="font-size: 16.5px; font-weight: 600; color: #14162b; padding-right: 48px; letter-spacing: -0.2px;">${esc(p.title)}</div>
+        <div style="font-size: 13.5px; color: #7a8199; line-height: 1.65;">${esc(p.summary)}</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 7px; margin-top: 2px;">
+          ${p.tags.map((t) => `<span class="ex-chip">${esc(t)}</span>`).join('')}
         </div>
-        <div style="display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #3654e0; margin-top: 6px;">
+        <div style="display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; font-weight: 600; color: #3654e0; margin-top: auto; padding-top: 4px;">
           View details
           <svg width="14" height="11" viewBox="0 0 16 12" fill="none"><path d="M1 6h13M9 1l5 5-5 5" stroke="#3654e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
