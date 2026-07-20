@@ -28,7 +28,7 @@
 <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
 <link rel="stylesheet" href="../partials/partials.css">
 <style>
-  html, body { margin: 0; background: #f4f5f9; }
+  html { overflow-x: hidden; } html, body { margin: 0; max-width: 100%; background: #f4f5f9; background-image: radial-gradient(rgba(54,84,224,0.05) 1px, transparent 1px); background-size: 26px 26px; }
   * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
   a { color: #3654e0; text-decoration: none; }
   a:hover { color: #24399e; }
@@ -62,7 +62,7 @@
   }
   @media (max-width: 640px) {
     #site-nav-items { flex-wrap: nowrap !important; justify-content: space-between !important; overflow: hidden !important; }
-    div[style*="64px 56px 100px"] { padding-left: 16px !important; padding-right: 16px !important; padding-top: 44px !important; padding-bottom: 48px !important; }
+    div[style*="64px 56px 32px"] { padding-left: 16px !important; padding-right: 16px !important; padding-top: 44px !important; padding-bottom: 48px !important; }
     div[style*="padding: 28px 24px 4px"] { padding: 16px 12px 4px !important; }
     #bl-grid { grid-template-columns: 1fr !important; } #bl-grid > div { min-width: 0 !important; }
   }
@@ -89,7 +89,7 @@
 </div>
 
 <!-- posts -->
-<div style="max-width: 1160px; margin: 0 auto; padding: 64px 56px 100px;">
+<div style="max-width: 1400px; margin: 0 auto; padding: 64px 56px 32px;">
   <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; flex-wrap: wrap; border-bottom: 1px solid rgba(28,32,48,0.09); padding-bottom: 30px; margin-bottom: 30px;">
     <div style="font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800; color: #3654e0; letter-spacing: 2px;">01 <span style="color: #1c2030; font-family: 'Poppins', sans-serif; font-weight: 600; letter-spacing: 1.8px; text-transform: uppercase; margin-left: 8px;">The Journal</span></div>
     <div style="display: flex; gap: 44px; flex-wrap: wrap;">
