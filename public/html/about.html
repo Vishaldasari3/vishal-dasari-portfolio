@@ -28,7 +28,7 @@
 <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
 <link rel="stylesheet" href="../partials/partials.css">
 <style>
-  html, body { margin: 0; background: #f4f5f9; }
+  html { overflow-x: hidden; } html, body { margin: 0; max-width: 100%; background: #f4f5f9; background-image: radial-gradient(rgba(54,84,224,0.05) 1px, transparent 1px); background-size: 26px 26px; }
   * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
   a { color: #3654e0; text-decoration: none; }
   a:hover { color: #24399e; }
@@ -43,7 +43,7 @@
     .ab-lead { font-size: 22px !important; }
     .ab-stats { grid-template-columns: 1fr 1fr !important; }
     .ab-cols { column-count: 1 !important; }
-    .ab-edu-year { font-size: 15px !important; min-width: 52px !important; }
+    .ab-edu-year { font-size: 13px !important; min-width: 60px !important; }
   }
   @media (max-width: 480px) {
     #site-nav-items { gap: 0 !important; flex-wrap: nowrap !important; justify-content: space-between !important; overflow: hidden !important; }
@@ -57,7 +57,7 @@
   }
   @media (max-width: 640px) {
     #site-nav-items { flex-wrap: nowrap !important; justify-content: space-between !important; overflow: hidden !important; }
-    div[style*="72px 56px 100px"] { padding-left: 16px !important; padding-right: 16px !important; padding-top: 44px !important; padding-bottom: 48px !important; }
+    div[style*="72px 56px 32px"] { padding-left: 16px !important; padding-right: 16px !important; padding-top: 44px !important; padding-bottom: 48px !important; }
     div[style*="padding: 28px 24px 4px"] { padding: 16px 12px 4px !important; }
     #ab-skills-grid { grid-template-columns: 1fr !important; } #ab-skills-grid > div { min-width: 0 !important; }
   }
@@ -78,8 +78,17 @@
   .ab-stat .k { font-size: 12px; font-weight: 500; color: #7a8199; letter-spacing: 0.8px; text-transform: uppercase; margin-top: 4px; }
   .ab-edu-row { display: flex; align-items: baseline; gap: 28px; padding: 24px 6px; border-bottom: 1px solid rgba(28,32,48,0.09); transition: background .25s, padding-left .3s cubic-bezier(.22,1,.36,1); border-radius: 6px; }
   .ab-edu-row:hover { background: rgba(54,84,224,0.04); padding-left: 16px; }
-  .ab-edu-year { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 800; color: #3654e0; min-width: 64px; flex-shrink: 0; }
-  @media (prefers-reduced-motion: reduce) { .ab-stat, .ab-edu-row { transition: none; } }
+  .ab-edu-year { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 800; color: #3654e0; min-width: 78px; flex-shrink: 0; }
+  .ab-edu-item { position: relative; display: flex; gap: 22px; padding: 14px 6px; }
+  .ab-edu-node { position: relative; z-index: 1; flex-shrink: 0; width: 16px; display: flex; justify-content: center; padding-top: 6px; }
+  .ab-edu-dot { width: 15px; height: 15px; border-radius: 50%; background: #f7f9ff; border: 2px solid #3654e0; display: block; transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s; }
+  .ab-edu-card { flex: 1; min-width: 0; background: rgba(255,255,255,0.7); border: 1px solid rgba(28,32,48,0.08); border-radius: 16px; padding: 18px 22px; transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s, border-color .3s; }
+  .ab-edu-gpa { font-size: 11.5px; font-weight: 700; color: #3654e0; background: rgba(54,84,224,0.08); border: 1px solid rgba(54,84,224,0.2); padding: 3px 10px; border-radius: 999px; flex-shrink: 0; }
+  .ab-edu-verify { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 700; color: #3654e0; background: rgba(54,84,224,0.08); border: 1px solid rgba(54,84,224,0.2); padding: 3px 10px; border-radius: 999px; width: fit-content; transition: background .2s, color .2s, border-color .2s; }
+  .ab-edu-verify:hover { background: #3654e0; color: #ffffff; border-color: #3654e0; }
+  .ab-edu-item:hover .ab-edu-card { transform: translateX(4px); box-shadow: 0 12px 28px -14px rgba(28,32,48,0.22); border-color: rgba(54,84,224,0.25); }
+  .ab-edu-item:hover .ab-edu-dot { transform: scale(1.25); box-shadow: 0 0 0 5px rgba(54,84,224,0.14); }
+  @media (prefers-reduced-motion: reduce) { .ab-stat, .ab-edu-row, .ab-edu-card, .ab-edu-dot { transition: none; } }
   .hv27:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0,0,0,0.24); }
   .ab-skill { position: relative; overflow: hidden; background: rgba(255,255,255,0.75); border: 1px solid rgba(28,32,48,0.1); border-radius: 20px; padding: 26px; transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s, border-color .3s; }
   .ab-skill::before { content: ''; position: absolute; inset: 0; background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(54,84,224,0.08), transparent 65%); opacity: 0; transition: opacity .3s; pointer-events: none; }
@@ -90,7 +99,25 @@
   .ab-skill:hover .sk-icon { transform: scale(1.1) rotate(-4deg); }
   .sk-chip { font-size: 12.5px; color: #3a3f5c; background: transparent; border: 1px solid rgba(28,32,48,0.14); padding: 6px 13px; border-radius: 20px; transition: background .2s, color .2s, border-color .2s, transform .2s; cursor: default; }
   .sk-chip:hover { background: #3654e0; color: #ffffff; border-color: #3654e0; transform: translateY(-2px); }
+  #resume-cta-btn:hover { background: #3654e0 !important; color: #ffffff !important; transform: translateY(-2px); box-shadow: 0 10px 22px -8px rgba(54,84,224,0.5); }
+  #resume-cta-btn:hover svg { stroke: #ffffff; }
+  #resume-cta-btn:hover #resume-cta-arrow { transform: translateY(2px); }
+  @keyframes rcta-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  @keyframes rcta-sheen { 0% { transform: translateX(-160%) skewX(-18deg); } 100% { transform: translateX(340%) skewX(-18deg); } }
+  @keyframes rcta-line { 0%, 100% { width: 55%; opacity: 0.35; } 50% { width: 80%; opacity: 0.7; } }
+  @keyframes rcta-dot { 0%, 100% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.6); opacity: 1; } }
+  #resume-cta-sheets { animation: rcta-float 4.5s ease-in-out infinite; }
+  #resume-sheet-front span:last-child { animation: rcta-line 3.2s ease-in-out infinite; background: #3654e0 !important; }
+  #resume-cta-sheen { position: absolute; top: 0; bottom: 0; width: 22%; background: linear-gradient(90deg, transparent, rgba(54,84,224,0.06), transparent); animation: rcta-sheen 5s ease-in-out infinite; pointer-events: none; }
+  #resume-cta-dot { animation: rcta-dot 2.4s ease-in-out infinite; }
+  #resume-cta:hover #resume-sheet-back { transform: rotate(-12deg) translateX(-3px); }
+  #resume-cta:hover #resume-sheet-front { transform: rotate(0deg) translateY(-2px); }
+  @media (prefers-reduced-motion: reduce) { #resume-sheet-back, #resume-sheet-front, #resume-cta-btn { transition: none; } #resume-cta-sheets, #resume-sheet-front span:last-child, #resume-cta-sheen, #resume-cta-dot { animation: none; } }
   @media (prefers-reduced-motion: reduce) { .ab-skill, .sk-chip, .ab-skill .sk-icon { transition: none; } }
+  @keyframes ab-now-dot { 0%, 100% { box-shadow: 0 0 0 0 rgba(31,138,91,0.5); } 50% { box-shadow: 0 0 0 5px rgba(31,138,91,0); } }
+  #ab-now-dot { animation: ab-now-dot 2s ease-out infinite; }
+  #ab-now-btn:hover { background: #3654e0; color: #ffffff; border-color: #3654e0; transform: translateY(-2px); }
+  @media (prefers-reduced-motion: reduce) { #ab-now-dot { animation: none; } }
 </style>
 </head>
 <body data-page="about">
@@ -113,7 +140,7 @@
 </div>
 
 <!-- content -->
-<div style="max-width: 1160px; margin: 0 auto; padding: 72px 56px 100px; display: flex; flex-direction: column;">
+<div style="max-width: 1400px; margin: 0 auto; padding: 72px 56px 32px; display: flex; flex-direction: column;">
 
   <!-- 01 story -->
   <div class="ab-sec">
@@ -132,16 +159,16 @@
   <!-- 02 now -->
   <div class="ab-sec">
     <div class="ab-label"><span class="num">02</span><span class="ttl">Now</span></div>
-    <div style="position: relative; overflow: hidden; background: #14162b; border-radius: 22px; padding: 40px 44px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
-      <div style="position: absolute; top: -80px; right: -40px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(74,99,232,0.35), transparent 70%); pointer-events: none;"></div>
-      <div style="position: absolute; bottom: -66px; left: -14px; font-family: 'Syne', sans-serif; font-size: 150px; font-weight: 800; color: rgba(255,255,255,0.045); line-height: 1; pointer-events: none;">VD</div>
+    <div id="ab-now-card" style="position: relative; overflow: hidden; background: linear-gradient(160deg, #eef2ff 0%, #f7f9ff 55%, #eafaff 100%); border: 1px solid rgba(54,84,224,0.14); border-radius: 22px; padding: 40px 44px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+      <div style="position: absolute; top: -80px; right: -40px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(54,84,224,0.12), transparent 70%); pointer-events: none;"></div>
+      <div style="position: absolute; inset: 0; background-image: linear-gradient(rgba(54,84,224,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(54,84,224,0.05) 1px, transparent 1px); background-size: 40px 40px; mask-image: radial-gradient(ellipse 70% 100% at 70% 0%, #000 30%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 70% 100% at 70% 0%, #000 30%, transparent 100%); pointer-events: none;"></div>
       <div style="position: relative; z-index: 1;">
-        <div style="display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 600; color: #7ee2ae; background: rgba(31,138,91,0.22); border: 1px solid rgba(126,226,174,0.25); padding: 4px 11px; border-radius: 12px; margin-bottom: 14px; letter-spacing: 0.6px; text-transform: uppercase;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #7ee2ae; display: inline-block; box-shadow: 0 0 8px rgba(126,226,174,0.9);"></span>Currently here</div>
-        <div style="font-family: 'Syne', sans-serif; font-size: 23px; font-weight: 800; color: #ffffff; letter-spacing: -0.4px;">Senior Software Engineer &mdash; JPMorgan Chase</div>
-        <div style="font-size: 14.5px; color: rgba(255,255,255,0.55); margin-top: 8px;">Daily Revenue Reporting &amp; NBA Photon Framework teams</div>
+        <div style="display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 700; color: #1f8a5b; background: rgba(31,138,91,0.1); border: 1px solid rgba(31,138,91,0.28); padding: 4px 11px; border-radius: 12px; margin-bottom: 14px; letter-spacing: 0.6px; text-transform: uppercase;"><span id="ab-now-dot" style="width: 6px; height: 6px; border-radius: 50%; background: #1f8a5b; display: inline-block;"></span>Currently here</div>
+        <div style="font-family: 'Syne', sans-serif; font-size: 23px; font-weight: 800; color: #1c2030; letter-spacing: -0.4px;">Senior Software Engineer &mdash; JPMorgan Chase</div>
+        <div style="font-size: 14.5px; color: #6b7290; margin-top: 8px;">Daily Revenue Reporting &amp; NBA Photon Framework teams</div>
       </div>
-      <a href="/experience" style="position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: #ffffff; border: 1.5px solid rgba(255,255,255,0.28); padding: 12px 22px; border-radius: 999px; transition: border-color .25s, background .25s;" onmouseover="this.style.background='rgba(255,255,255,0.1)';this.style.borderColor='rgba(255,255,255,0.55)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(255,255,255,0.28)'">See the work
-        <svg width="14" height="11" viewBox="0 0 16 12" fill="none"><path d="M1 6h13M9 1l5 5-5 5" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <a href="/experience" id="ab-now-btn" style="position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: #3654e0; border: 1.5px solid rgba(54,84,224,0.35); padding: 12px 22px; border-radius: 999px; transition: background .25s, border-color .25s, color .25s, transform .25s cubic-bezier(.22,1,.36,1);">See the work
+        <svg width="14" height="11" viewBox="0 0 16 12" fill="none" stroke="currentColor"><path d="M1 6h13M9 1l5 5-5 5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
   </div>
@@ -219,32 +246,49 @@
   <!-- 04 education -->
   <div class="ab-sec">
     <div class="ab-label"><span class="num">04</span><span class="ttl">Education</span></div>
-    <div style="display: flex; flex-direction: column;">
-      <div class="ab-edu-row" style="border-top: 1px solid rgba(28,32,48,0.09);">
-        <span class="ab-edu-year">2023</span>
-        <div style="flex: 1; min-width: 200px;">
-          <div style="font-size: 16.5px; font-weight: 600; color: #1c2030;">Post Graduate Program in AI &amp; ML</div>
-          <div style="font-size: 14px; color: #7a8199; margin-top: 5px;">The University of Texas at Austin &mdash; Austin, TX</div>
+    <div style="position: relative; display: flex; flex-direction: column; gap: 4px; padding-left: 8px;">
+      <div style="position: absolute; left: 29px; top: 10px; bottom: 30px; width: 1.5px; background: linear-gradient(180deg, rgba(54,84,224,0.35), rgba(54,84,224,0.08));"></div>
+      <div class="ab-edu-item">
+        <div class="ab-edu-node"><span class="ab-edu-dot"></span></div>
+        <div class="ab-edu-card">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 200px;">
+              <span class="ab-edu-year">Apr 2023</span>
+              <div style="font-size: 16.5px; font-weight: 600; color: #1c2030; margin-top: 6px;">Post Graduate Program in AI &amp; ML</div>
+              <div style="font-size: 14px; color: #7a8199; margin-top: 4px;">The University of Texas at Austin &mdash; Austin, TX</div>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 24px; flex-shrink: 0;">
+              <span class="ab-edu-gpa">GPA 3.52</span>
+              <a href="https://la.utexas.edu/texasexeced/digitalVerification.html?key=SMxtM" target="_blank" rel="noopener" class="ab-edu-verify">Verify credential
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
-        <span style="font-size: 12.5px; color: #9096a8; flex-shrink: 0;">GPA 3.52</span>
       </div>
-      <div class="ab-edu-row">
-        <span class="ab-edu-year">2017</span>
-        <div style="flex: 1; min-width: 200px;">
-          <div style="font-size: 16.5px; font-weight: 600; color: #1c2030;">M.S. Computer Information Systems</div>
-          <div style="font-size: 14px; color: #7a8199; margin-top: 5px;">Bellevue University &mdash; Bellevue, NE</div>
+      <div class="ab-edu-item">
+        <div class="ab-edu-node"><span class="ab-edu-dot"></span></div>
+        <div class="ab-edu-card">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+            <span class="ab-edu-year">Jun 2017</span>
+            <span class="ab-edu-gpa">GPA 3.91</span>
+          </div>
+          <div style="font-size: 16.5px; font-weight: 600; color: #1c2030; margin-top: 6px;">Master of Science in Computer Information Systems</div>
+          <div style="font-size: 14px; color: #7a8199; margin-top: 4px;">Bellevue University &mdash; Bellevue, NE</div>
         </div>
-        <span style="font-size: 12.5px; color: #9096a8; flex-shrink: 0;">GPA 3.91</span>
       </div>
-      <div class="ab-edu-row">
-        <span class="ab-edu-year">2014</span>
-        <div style="flex: 1; min-width: 200px;">
-          <div style="font-size: 16.5px; font-weight: 600; color: #1c2030;">B.E. Electronics &amp; Communication Engineering</div>
-          <div style="font-size: 14px; color: #7a8199; margin-top: 5px;">JNT University &mdash; Hyderabad, India</div>
+      <div class="ab-edu-item">
+        <div class="ab-edu-node"><span class="ab-edu-dot"></span></div>
+        <div class="ab-edu-card">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+            <span class="ab-edu-year">Jun 2014</span>
+            <span class="ab-edu-gpa">GPA 3.42</span>
+          </div>
+          <div style="font-size: 16.5px; font-weight: 600; color: #1c2030; margin-top: 6px;">Bachelor of Technology in Electronics &amp; Communication Engineering</div>
+          <div style="font-size: 14px; color: #7a8199; margin-top: 4px;">JNT University &mdash; Hyderabad, India</div>
         </div>
-        <span style="font-size: 12.5px; color: #9096a8; flex-shrink: 0;">GPA 3.42</span>
       </div>
-      <a href="/certifications" style="display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #3654e0; margin-top: 24px;">
+      <a href="/certifications" style="display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #3654e0; margin-top: 20px; margin-left: 52px;">
         View all certifications
         <svg width="14" height="11" viewBox="0 0 16 12" fill="none"><path d="M1 6h13M9 1l5 5-5 5" stroke="#3654e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -252,16 +296,26 @@
   </div>
 
   <!-- resume cta -->
-  <div style="margin-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; background: linear-gradient(165deg, #2c46c9 0%, #3654e0 55%, #4a63e8 100%); border-radius: 22px; padding: 44px; position: relative; overflow: hidden;">
-    <div style="position: absolute; top: -60px; right: 40px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 70%);"></div>
-    <div style="position: absolute; bottom: -50px; left: -10px; font-family: 'Syne', sans-serif; font-size: 140px; font-weight: 800; color: rgba(255,255,255,0.06); line-height: 1; pointer-events: none;">VD</div>
-    <div style="position: relative; z-index: 1;">
-      <div style="font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: #ffffff; letter-spacing: -0.5px;">Want the full picture?</div>
-      <div style="font-size: 15px; color: rgba(255,255,255,0.85); margin-top: 6px;">Download my resume for the complete work history.</div>
+  <div id="resume-cta" style="margin-top: 8px; position: relative; overflow: hidden; display: flex; align-items: center; gap: 22px; padding: 26px 28px; background: rgba(255,255,255,0.75); border: 1px solid rgba(28,32,48,0.1); border-radius: 20px; flex-wrap: wrap;">
+    <div style="position: absolute; inset: 0; background-image: linear-gradient(rgba(54,84,224,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(54,84,224,0.04) 1px, transparent 1px); background-size: 28px 28px; mask-image: radial-gradient(ellipse 60% 130% at 0% 50%, #000 20%, transparent 90%); -webkit-mask-image: radial-gradient(ellipse 60% 130% at 0% 50%, #000 20%, transparent 90%); pointer-events: none;"></div>
+    <div id="resume-cta-sheen"></div>
+    <div id="resume-cta-sheets" style="position: relative; width: 52px; height: 64px; flex-shrink: 0;">
+      <div id="resume-sheet-back" style="position: absolute; inset: 0; background: #eef2ff; border: 1px solid rgba(54,84,224,0.25); border-radius: 8px; transform: rotate(-7deg); transition: transform 0.35s cubic-bezier(.22,1,.36,1);"></div>
+      <div id="resume-sheet-front" style="position: absolute; inset: 0; background: #ffffff; border: 1px solid rgba(28,32,48,0.14); border-radius: 8px; padding: 9px 8px; display: flex; flex-direction: column; gap: 5px; transform: rotate(3deg); box-shadow: 0 6px 14px -6px rgba(28,32,48,0.2); transition: transform 0.35s cubic-bezier(.22,1,.36,1);">
+        <span style="font-family: 'Syne', sans-serif; font-size: 8px; font-weight: 800; color: #3654e0; letter-spacing: 0.5px;">VD</span>
+        <span style="height: 3px; width: 90%; background: rgba(28,32,48,0.18); border-radius: 2px;"></span>
+        <span style="height: 3px; width: 70%; background: rgba(28,32,48,0.14); border-radius: 2px;"></span>
+        <span style="height: 3px; width: 82%; background: rgba(28,32,48,0.14); border-radius: 2px;"></span>
+        <span style="height: 3px; width: 55%; background: rgba(54,84,224,0.35); border-radius: 2px;"></span>
+      </div>
     </div>
-    <a href="/resume.pdf" download class="hv27 cta-sheen" style="position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 10px; background: #ffffff; color: #2c46c9; font-weight: 600; font-size: 16px; padding: 15px 28px; border-radius: 12px; flex-shrink: 0; box-shadow: 0 14px 30px rgba(0,0,0,0.18); transition: transform 0.2s, box-shadow 0.2s;">
+    <div style="position: relative; display: flex; flex-direction: column; gap: 2px; flex: 1 1 240px; min-width: 0;">
+      <div style="font-family: 'Syne', sans-serif; font-size: 19px; font-weight: 800; color: #1c2030; letter-spacing: -0.4px; display: flex; align-items: center; gap: 10px;">Want the full picture? <span id="resume-cta-dot" style="width: 7px; height: 7px; border-radius: 50%; background: #22ddf5; display: inline-block;"></span></div>
+      <div style="font-size: 13.5px; color: #6b7290; text-wrap: pretty;">Complete work history, projects, and credentials — one page.</div>
+    </div>
+    <a href="/resume.pdf" download id="resume-cta-btn" style="display: inline-flex; align-items: center; gap: 10px; color: #3654e0; font-weight: 600; font-size: 15px; padding: 11px 20px; border: 1px solid rgba(54,84,224,0.35); border-radius: 999px; flex-shrink: 0; transition: background 0.25s, color 0.25s, transform 0.25s cubic-bezier(.22,1,.36,1), box-shadow 0.25s;">
       Download Resume
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2c46c9" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
+      <svg id="resume-cta-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.25s;"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
     </a>
   </div>
 
