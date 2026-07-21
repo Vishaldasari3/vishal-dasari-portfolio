@@ -51,22 +51,17 @@
   @media (max-width: 900px) {
     #bl-grid { grid-template-columns: 1fr !important; }
   }
-  @media (max-width: 480px) {
-    #site-nav-items { gap: 0 !important; flex-wrap: nowrap !important; justify-content: space-between !important; overflow: hidden !important; }
-    #site-nav-items a { font-size: 11px !important; padding: 6px 2px !important; }
-  }
   @media (max-width: 1180px) {
     #site-header-row { padding: 18px 20px !important; gap: 12px !important; }
-    #site-nav-items { gap: 1px !important; padding: 5px !important; }
-    #site-nav-items a, #site-nav-items span { font-size: 12.5px !important; padding: 7px 9px !important; }
   }
   @media (max-width: 640px) {
-    #site-nav-items { flex-wrap: nowrap !important; justify-content: space-between !important; overflow: hidden !important; }
     div[style*="64px 56px 32px"] { padding-left: 16px !important; padding-right: 16px !important; padding-top: 44px !important; padding-bottom: 48px !important; }
     div[style*="padding: 28px 24px 4px"] { padding: 16px 12px 4px !important; }
     #bl-grid { grid-template-columns: 1fr !important; } #bl-grid > div { min-width: 0 !important; }
   }
   @media (max-width: 800px) { #hero-card { grid-template-columns: 1fr !important; padding: 36px 28px !important; } #hero-viewport { display: none; } }
+@media (max-width: 860px) { body[data-page="blog"] #site-nav-toggle { margin-left: auto !important; } }
+body[data-page="blog"]:not([data-slug]) #site-header-grid > div:last-child { display: none !important; }
 </style>
 </head>
 <body data-page="blog">
