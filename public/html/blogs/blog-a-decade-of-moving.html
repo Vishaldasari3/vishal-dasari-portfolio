@@ -33,17 +33,10 @@
   a { color: #3654e0; text-decoration: none; }
   a:hover { color: #24399e; }
 
-  @media (max-width: 480px) {
-    #site-nav-items { gap: 0 !important; flex-wrap: nowrap !important; justify-content: space-between !important; overflow: hidden !important; }
-    #site-nav-items a { font-size: 11px !important; padding: 6px 2px !important; }
-  }
   @media (max-width: 1180px) {
     #site-header-row { padding: 18px 20px !important; gap: 12px !important; }
-    #site-nav-items { gap: 1px !important; padding: 5px !important; }
-    #site-nav-items a, #site-nav-items span { font-size: 12.5px !important; padding: 7px 9px !important; }
   }
   @media (max-width: 640px) {
-    #site-nav-items { flex-wrap: nowrap !important; justify-content: space-between !important; overflow: hidden !important; }
     div[style*="padding: 28px 24px 4px"] { padding: 16px 12px 4px !important; }
     #bp-content { padding: 28px 16px 56px !important; gap: 16px !important; }
     #bp-body div { font-size: 15.5px !important; line-height: 1.7 !important; }
@@ -51,6 +44,8 @@
   @media (max-width: 420px) {
     #bp-body div { font-size: 15px !important; }
   }
+  @media (max-width: 860px) { body[data-page="blog"] #site-nav-toggle { margin-left: auto !important; } }
+body[data-page="blog"] #site-header-grid > div:last-child { display: none !important; }
 </style>
 </head>
 <body data-page="blog" data-slug="a-decade-of-moving">

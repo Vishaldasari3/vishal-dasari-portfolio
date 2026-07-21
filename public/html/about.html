@@ -46,17 +46,12 @@
     .ab-edu-year { font-size: 13px !important; min-width: 60px !important; }
   }
   @media (max-width: 480px) {
-    #site-nav-items { gap: 0 !important; flex-wrap: nowrap !important; justify-content: space-between !important; overflow: hidden !important; }
-    #site-nav-items a { font-size: 11px !important; padding: 6px 2px !important; }
     #ab-skills-grid { grid-template-columns: 1fr !important; }
   }
   @media (max-width: 1180px) {
     #site-header-row { padding: 18px 20px !important; gap: 12px !important; }
-    #site-nav-items { gap: 1px !important; padding: 5px !important; }
-    #site-nav-items a, #site-nav-items span { font-size: 12.5px !important; padding: 7px 9px !important; }
   }
   @media (max-width: 640px) {
-    #site-nav-items { flex-wrap: nowrap !important; justify-content: space-between !important; overflow: hidden !important; }
     div[style*="72px 56px 32px"] { padding-left: 16px !important; padding-right: 16px !important; padding-top: 44px !important; padding-bottom: 48px !important; }
     div[style*="padding: 28px 24px 4px"] { padding: 16px 12px 4px !important; }
     #ab-skills-grid { grid-template-columns: 1fr !important; } #ab-skills-grid > div { min-width: 0 !important; }
@@ -118,6 +113,12 @@
   #ab-now-dot { animation: ab-now-dot 2s ease-out infinite; }
   #ab-now-btn:hover { background: #3654e0; color: #ffffff; border-color: #3654e0; transform: translateY(-2px); }
   @media (prefers-reduced-motion: reduce) { #ab-now-dot { animation: none; } }
+  @media (max-width: 640px) {
+    #ab-now-card { padding: 22px 20px !important; gap: 16px !important; border-radius: 18px !important; }
+    #ab-now-card [style*="font-size: 23px"] { font-size: 18px !important; }
+    #ab-now-card [style*="font-size: 14.5px"] { font-size: 13px !important; }
+    #ab-now-btn { font-size: 12.5px !important; padding: 9px 16px !important; }
+  }
 </style>
 </head>
 <body data-page="about">
@@ -251,19 +252,15 @@
       <div class="ab-edu-item">
         <div class="ab-edu-node"><span class="ab-edu-dot"></span></div>
         <div class="ab-edu-card">
-          <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
-            <div style="flex: 1; min-width: 200px;">
-              <span class="ab-edu-year">Apr 2023</span>
-              <div style="font-size: 16.5px; font-weight: 600; color: #1c2030; margin-top: 6px;">Post Graduate Program in AI &amp; ML</div>
-              <div style="font-size: 14px; color: #7a8199; margin-top: 4px;">The University of Texas at Austin &mdash; Austin, TX</div>
-            </div>
-            <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 24px; flex-shrink: 0;">
-              <span class="ab-edu-gpa">GPA 3.52</span>
-              <a href="https://la.utexas.edu/texasexeced/digitalVerification.html?key=SMxtM" target="_blank" rel="noopener" class="ab-edu-verify">Verify credential
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
-              </a>
-            </div>
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+            <span class="ab-edu-year">Apr 2023</span>
+            <span class="ab-edu-gpa">GPA 3.52</span>
           </div>
+          <div style="font-size: 16.5px; font-weight: 600; color: #1c2030; margin-top: 6px;">Post Graduate Program in AI &amp; ML</div>
+          <div style="font-size: 14px; color: #7a8199; margin-top: 4px;">The University of Texas at Austin &mdash; Austin, TX</div>
+          <a href="https://la.utexas.edu/texasexeced/digitalVerification.html?key=SMxtM" target="_blank" rel="noopener" class="ab-edu-verify" style="margin-top: 12px;">Verify credential
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+          </a>
         </div>
       </div>
       <div class="ab-edu-item">

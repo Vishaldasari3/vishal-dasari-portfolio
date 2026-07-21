@@ -35,32 +35,42 @@
   a:hover { color: #24399e; }
   input::placeholder, textarea::placeholder { color: #a7abc0; }
 
+  #ct-left a[href^="mailto"] { overflow-wrap: anywhere; word-break: break-word; }
+  .cf-turnstile { max-width: 100%; overflow: hidden; }
   @media (max-width: 980px) {
     #ct-split { grid-template-columns: 1fr !important; }
+    #ct-left, #ct-right { min-width: 0 !important; }
     #ct-left { min-height: unset !important; padding: 48px 32px !important; }
     #ct-right { padding: 44px 40px !important; }
   }
   @media (max-width: 700px) {
     #ct-field-row { grid-template-columns: 1fr !important; }
-    #ct-left { padding: 38px 26px !important; }
-    #ct-right { padding: 36px 26px !important; gap: 20px !important; }
+    #ct-section { padding: 0 12px !important; }
+    #ct-card { padding: 12px !important; border-radius: 24px !important; }
+    #ct-left { padding: 30px 20px !important; }
+    #ct-right { padding: 28px 20px !important; gap: 16px !important; }
     #ct-send { width: 100% !important; min-width: 0 !important; }
   }
   @media (max-width: 480px) {
-    #ct-left { padding: 32px 20px !important; }
-    #ct-right { padding: 30px 20px !important; }
-    #ct-left [style*="font-size: 34px"] { font-size: 27px !important; }
-    #ct-right input, #ct-right textarea, #ct-inquiry { font-size: 16px !important; }
-  }
-  @media (max-width: 480px) {
-    #site-nav-items { gap: 0 !important; flex-wrap: nowrap !important; justify-content: space-between !important; overflow: hidden !important; }
-    #site-nav-items a { font-size: 11px !important; padding: 6px 2px !important; }
+    #ct-section { padding: 0 8px !important; }
+    #ct-card { padding: 8px !important; border-radius: 20px !important; }
+    #ct-left { padding: 24px 16px !important; }
+    #ct-right { padding: 22px 16px !important; }
+    #ct-left [style*="font-size: 34px"] { font-size: 24px !important; }
+    #ct-left [style*="font-size: 15px"] { font-size: 13.5px !important; }
+    #ct-right input, #ct-right textarea, #ct-inquiry { font-size: 16px !important; padding-top: 20px !important; padding-bottom: 8px !important; padding-left: 14px !important; border-radius: 12px !important; }
+    #ct-right textarea { padding-top: 24px !important; }
+    #ct-send { font-size: 14px !important; padding-left: 16px !important; }
+    #ct-send .ct-send-ico { width: 32px !important; height: 32px !important; }
+    .ct-chan { padding: 10px 11px !important; gap: 10px !important; }
+    .ct-chan > div:first-child { width: 38px !important; height: 38px !important; }
+    .cf-turnstile { transform: scale(0.86); transform-origin: left center; }
+    #ct-socials { display: none !important; }
   }
   @media (max-width: 1180px) {
     #site-header-row { padding: 18px 20px !important; gap: 12px !important; }
   }
   @media (max-width: 640px) {
-    #site-nav-items { flex-wrap: nowrap !important; justify-content: space-between !important; overflow: hidden !important; }
     div[style*="56px 40px"], div[style*="56px 100px"], div[style*="56px 47px"] { padding-left: 20px !important; padding-right: 20px !important; }
   }
   @media (max-width: 480px) {
@@ -198,8 +208,8 @@
 </div>
 
 <!-- ===== Get in touch (redesigned: aurora + glass card) ===== -->
-<div style="max-width: 1400px; margin: 52px auto 40px; padding: 0 24px; position: relative; z-index: 2;">
-  <div style="position: relative; border-radius: 36px; overflow: hidden; padding: clamp(20px, 3vw, 42px); background: linear-gradient(135deg, #eef2ff 0%, #f3f0ff 46%, #f0ecff 72%, #eafaff 100%); box-shadow: 0 44px 110px -44px rgba(40,50,90,0.28), 0 2px 0 rgba(255,255,255,0.7) inset; border: 1px solid rgba(54,84,224,0.1);">
+<div id="ct-section" style="max-width: 1400px; margin: 52px auto 40px; padding: 0 24px; position: relative; z-index: 2;">
+  <div id="ct-card" style="position: relative; border-radius: 36px; overflow: hidden; padding: clamp(20px, 3vw, 42px); background: linear-gradient(135deg, #eef2ff 0%, #f3f0ff 46%, #f0ecff 72%, #eafaff 100%); box-shadow: 0 44px 110px -44px rgba(40,50,90,0.28), 0 2px 0 rgba(255,255,255,0.7) inset; border: 1px solid rgba(54,84,224,0.1);">
 
     <div class="ct-blob" style="position:absolute; top:-150px; left:-90px; width:540px; height:540px; border-radius:50%; background:radial-gradient(circle, rgba(54,84,224,0.28), transparent 65%); filter:blur(30px); animation:ct-aurora1 14s ease-in-out infinite; pointer-events:none;"></div>
     <div class="ct-blob" style="position:absolute; bottom:-170px; right:-70px; width:480px; height:480px; border-radius:50%; background:radial-gradient(circle, rgba(124,92,255,0.24), transparent 65%); filter:blur(30px); animation:ct-aurora2 17s ease-in-out infinite; pointer-events:none;"></div>
@@ -267,7 +277,7 @@
         </div>
       </div>
 
-      <div style="display: flex; align-items: center; gap: 12px; margin-top: 14px;">
+      <div id="ct-socials" style="display: flex; align-items: center; gap: 12px; margin-top: 14px;">
         <a href="https://www.linkedin.com/in/vishaldasari3/" target="_blank" aria-label="LinkedIn" data-tip="LinkedIn" class="hv7 ct-tip" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; overflow: visible;">
           <img src="../assets/icon-linkedin.png" alt="LinkedIn" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
         </a>
@@ -291,7 +301,7 @@
     </div>
 
     <div id="ct-field-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-      <div style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
+      <div style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;" aria-hidden="true">
         <label for="ct-hp">Leave this field empty</label>
         <input type="text" id="ct-hp" name="_gotcha" tabindex="-1" autocomplete="off" />
       </div>
@@ -315,7 +325,7 @@
 
     <div>
       <div style="position: relative;">
-        <select id="ct-inquiry" name="inquiry" style="width: 100%; border: 1.5px solid rgba(28,32,48,0.12); border-radius: 14px; padding: 26px 40px 10px 16px; font-size: 14px; color: #1c2030; background: rgba(250,251,253,0.7); font-family: 'Poppins', sans-serif; appearance: none; -webkit-appearance: none; -moz-appearance: none; cursor: pointer; transition: border-color .25s, box-shadow .25s, background .25s; outline: none;">
+        <select id="ct-inquiry" name="inquiry" style="width: 100%; border: 1.5px solid rgba(28,32,48,0.12); border-radius: 14px; padding: 31px 40px 11px 16px; font-size: 14px; color: #1c2030; background: rgba(250,251,253,0.7); font-family: 'Poppins', sans-serif; appearance: none; -webkit-appearance: none; -moz-appearance: none; cursor: pointer; transition: border-color .25s, box-shadow .25s, background .25s; outline: none;">
           <option value="General inquiry">General inquiry</option>
           <option value="Job opportunity">Job opportunity</option>
           <option value="Project / collaboration">Project / collaboration</option>
