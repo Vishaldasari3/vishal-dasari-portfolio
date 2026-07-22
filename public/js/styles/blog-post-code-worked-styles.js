@@ -9,6 +9,11 @@
   @media (max-width: 1180px) {
     #site-header-row { padding: 18px 20px !important; gap: 12px !important; }
   }
+  @media (max-width: 1150px) {
+    #bp-content { grid-template-columns: 1fr !important; gap: 32px !important; }
+    #bp-sidebar { position: static !important; flex-direction: row !important; flex-wrap: wrap !important; }
+    #bp-toc { display: none !important; }
+  }
   @media (max-width: 640px) {
     div[style*="padding: 28px 24px 4px"] { padding: 16px 12px 4px !important; }
     #bp-content { padding: 28px 16px 56px !important; gap: 16px !important; }

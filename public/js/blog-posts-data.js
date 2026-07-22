@@ -262,7 +262,7 @@ window.BLOG_POSTS = {
   'what-is-happiness': {
     title: 'What Does It Mean to Be Happy in Life?',
     subtitle: 'A Buddhist framework splits happiness into four parts \u2014 and the most important one has nothing to do with money.',
-    tag: 'Personal',
+    tag: 'Life',
     hue: 95,
     date: 'Jul 2026',
     readTime: '2 min read',

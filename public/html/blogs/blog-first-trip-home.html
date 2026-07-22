@@ -54,27 +54,34 @@
 </div>
 
 <!-- body -->
-<div id="bp-content" style="max-width: 740px; margin: 0 auto; padding: 56px 24px 32px; display: flex; flex-direction: column; gap: 24px;">
-  <div style="width: 100%; aspect-ratio: 16/9; border-radius: 18px; overflow: hidden; margin-bottom: 8px; border: 1px solid rgba(28,32,48,0.08); box-shadow: 0 24px 48px -28px rgba(30,40,80,0.3);">
-    <img id="bp-cover" alt="" style="width:100%;height:100%;object-fit:cover;display:block;" />
-  </div>
-  <div id="bp-body" style="display: flex; flex-direction: column; gap: 22px;"></div>
-  <div id="bp-reactions" style="margin-top: 4px;"></div>
-
-  <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 20px; padding: 22px 24px; border-radius: 18px; background: rgba(255,255,255,0.7); border: 1px solid rgba(28,32,48,0.1);">
-    <div style="display: flex; align-items: center; gap: 14px;">
-      <div style="width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #3654e0, #7c5cff); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 800; color: #fff;">VD</div>
-      <div>
-        <div style="font-size: 14.5px; font-weight: 600; color: #14162b;">Vishal Dasari</div>
-        <div style="font-size: 12.5px; color: #9096a8;">Senior Software Engineer</div>
-      </div>
+<div id="bp-content" style="max-width: 1180px; margin: 0 auto; padding: 56px 24px 40px; display: grid; grid-template-columns: minmax(0, 720px) 260px; gap: 56px; align-items: start; justify-content: center;">
+  <article style="display: flex; flex-direction: column; gap: 24px; min-width: 0;">
+    <div style="width: 100%; aspect-ratio: 16/9; border-radius: 18px; overflow: hidden; margin-bottom: 8px; border: 1px solid rgba(28,32,48,0.08); box-shadow: 0 24px 48px -28px rgba(30,40,80,0.3);">
+      <img id="bp-cover" alt="" style="width:100%;height:100%;object-fit:cover;display:block;" />
     </div>
-    <a href="/blog" style="display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: #3654e0; flex-shrink: 0;">
-      More posts
-      <svg width="14" height="11" viewBox="0 0 16 12" fill="none"><path d="M1 6h13M9 1l5 5-5 5" stroke="#3654e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-  </div>
-  <div id="bp-comments" style="margin-top: 8px; padding-top: 28px; border-top: 1px solid rgba(28,32,48,0.08);"></div>
+    <div id="bp-body" style="display: flex; flex-direction: column; gap: 22px;"></div>
+    <div id="bp-reactions" style="margin-top: 4px;"></div>
+    <div id="bp-comments" style="margin-top: 12px; padding-top: 28px; border-top: 1px solid rgba(28,32,48,0.08);"></div>
+  </article>
+  <aside id="bp-sidebar" style="position: sticky; top: 104px; display: flex; flex-direction: column; gap: 18px;">
+    <div id="bp-toc" style="display: none; flex-direction: column; gap: 10px; padding: 18px 20px; border-radius: 16px; background: rgba(255,255,255,0.7); border: 1px solid rgba(28,32,48,0.08);">
+      <div style="font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #9096a8;">On This Page</div>
+      <div id="bp-toc-list" style="display: flex; flex-direction: column; gap: 8px;"></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px; padding: 20px; border-radius: 16px; background: rgba(255,255,255,0.7); border: 1px solid rgba(28,32,48,0.1);">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 11px; background: linear-gradient(135deg, #3654e0, #7c5cff); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800; color: #fff;">VD</div>
+        <div>
+          <div style="font-size: 13.5px; font-weight: 600; color: #14162b;">Vishal Dasari</div>
+          <div style="font-size: 11.5px; color: #9096a8;">Senior Software Engineer</div>
+        </div>
+      </div>
+      <a href="/blog" style="display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: #3654e0;">
+        More posts
+        <svg width="14" height="11" viewBox="0 0 16 12" fill="none"><path d="M1 6h13M9 1l5 5-5 5" stroke="#3654e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </aside>
 </div>
 
 <div id="site-footer"></div>
