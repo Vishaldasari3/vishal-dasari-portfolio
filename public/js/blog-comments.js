@@ -17,12 +17,12 @@
 
     mount.innerHTML =
       '<div style="font-size:18px;font-weight:700;color:#14162b;margin-bottom:16px;font-family:Poppins,sans-serif;">Comments</div>' +
-      '<form id="bp-comment-form" style="display:flex;flex-direction:column;gap:10px;margin-bottom:26px;">' +
-        '<input type="text" id="bp-comment-name" placeholder="Your name" maxlength="60" required style="font-size:14px;padding:11px 14px;border-radius:10px;border:1px solid rgba(28,32,48,0.15);font-family:inherit;">' +
-        '<textarea id="bp-comment-text" placeholder="Add a comment..." maxlength="1000" required rows="3" style="font-size:14px;padding:11px 14px;border-radius:10px;border:1px solid rgba(28,32,48,0.15);font-family:inherit;resize:vertical;"></textarea>' +
+      '<form id="bp-comment-form" style="display:flex;flex-direction:column;gap:10px;margin-bottom:26px;padding:18px;border-radius:16px;background:rgba(255,255,255,0.6);border:1.5px solid rgba(54,84,224,0.35);box-shadow:0 0 0 1px rgba(54,84,224,0.15),0 0 22px rgba(54,84,224,0.22);">' +
+        '<input type="text" id="bp-comment-name" placeholder="Your name" maxlength="60" required style="font-size:14px;padding:11px 14px;border-radius:10px;border:1px solid rgba(28,32,48,0.15);font-family:inherit;transition:border-color .15s,box-shadow .15s;">' +
+        '<textarea id="bp-comment-text" placeholder="Add a comment..." maxlength="1000" required rows="3" style="font-size:14px;padding:11px 14px;border-radius:10px;border:1px solid rgba(28,32,48,0.15);font-family:inherit;resize:vertical;transition:border-color .15s,box-shadow .15s;"></textarea>' +
         '<input type="text" id="bp-comment-hp" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" tabindex="-1" autocomplete="off">' +
         '<div style="display:flex;align-items:center;gap:12px;">' +
-          '<button type="submit" style="font-size:13px;font-weight:600;font-family:Poppins,sans-serif;padding:10px 20px;border-radius:20px;background:#3654e0;color:#fff;border:none;cursor:pointer;">Post comment</button>' +
+          '<button type="submit" id="bp-comment-submit" style="font-size:13px;font-weight:600;font-family:Poppins,sans-serif;padding:10px 20px;border-radius:20px;background:#3654e0;color:#fff;border:none;cursor:pointer;transition:transform .15s,box-shadow .15s,background .15s;">\u{1F4AC} Post comment</button>' +
           '<span id="bp-comment-status" style="font-size:12.5px;color:#9096a8;"></span>' +
         '</div>' +
       '</form>' +
@@ -31,6 +31,17 @@
     var list = document.getElementById('bp-comment-list');
     var form = document.getElementById('bp-comment-form');
     var status = document.getElementById('bp-comment-status');
+    var submitBtn = document.getElementById('bp-comment-submit');
+    submitBtn.addEventListener('mouseenter', function () {
+      submitBtn.style.transform = 'translateY(-3px) scale(1.04)';
+      submitBtn.style.boxShadow = '0 0 18px rgba(54,84,224,0.65), 0 12px 26px -8px rgba(54,84,224,0.6)';
+      submitBtn.style.background = '#2c46c4';
+    });
+    submitBtn.addEventListener('mouseleave', function () {
+      submitBtn.style.transform = 'translateY(0) scale(1)';
+      submitBtn.style.boxShadow = 'none';
+      submitBtn.style.background = '#3654e0';
+    });
 
     function renderComments(comments) {
       if (!comments || !comments.length) {

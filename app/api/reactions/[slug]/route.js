@@ -10,7 +10,7 @@ const redis = new Redis({
   url: findEnv('UPSTASH_REDIS_REST_URL') || findEnv('KV_REST_API_URL'),
   token: findEnv('UPSTASH_REDIS_REST_TOKEN') || findEnv('KV_REST_API_TOKEN'),
 });
-const TYPES = ['insightful', 'relatable', 'mindblown'];
+const TYPES = ['insightful', 'relatable', 'mindblown', 'inspiring'];
 
 function counts(data) {
   const out = {};
