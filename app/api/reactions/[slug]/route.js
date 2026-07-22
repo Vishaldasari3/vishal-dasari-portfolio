@@ -1,6 +1,15 @@
 import { Redis } from '@upstash/redis';
 
-const redis = Redis.fromEnv();
+function findEnv(suffix) {
+  if (process.env[suffix]) return process.env[suffix];
+  const key = Object.keys(process.env).find((k) => k.endsWith(suffix));
+  return key ? process.env[key] : undefined;
+}
+
+const redis = new Redis({
+  url: findEnv('UPSTASH_REDIS_REST_URL') || findEnv('KV_REST_API_URL'),
+  token: findEnv('UPSTASH_REDIS_REST_TOKEN') || findEnv('KV_REST_API_TOKEN'),
+});
 const TYPES = ['insightful', 'relatable', 'mindblown'];
 
 function counts(data) {
