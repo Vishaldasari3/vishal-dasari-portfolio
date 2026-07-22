@@ -20,6 +20,13 @@
 
   function boot() {
     var gsap = window.gsap;
+    var arrowSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">' +
+      '<defs><filter id="glow" x="-70%" y="-70%" width="240%" height="240%">' +
+      '<feGaussianBlur stdDeviation="1.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>' +
+      '</filter></defs>' +
+      '<path d="M4 2 L4 22 L9.5 17 L13 25 L16.5 23.5 L13 15.5 L20 15 Z" fill="#ffffff" stroke="#ffffff" stroke-width="1.4" stroke-linejoin="round" filter="url(#glow)"/>' +
+      '</svg>';
+    document.documentElement.style.cursor = 'url(\'data:image/svg+xml;utf8,' + encodeURIComponent(arrowSvg) + '\') 3 2, auto';
     var mouse = { x: -100, y: -100 };
     var ring = { x: -100, y: -100 };
     var particles = [];
@@ -48,6 +55,35 @@
     gsap.set(ringEl, { opacity: 1 });
 
     window.addEventListener('pointermove', function (e) { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+
+    var devSymbols = ['</>', '{}', '()', ';', '0', '1', '=', '^'];
+    var lastSymbolX = mouse.x, lastSymbolY = mouse.y;
+    var symbolThreshold = 28 + Math.random() * 24;
+    function spawnDevSymbol(x, y) {
+      var el = document.createElement('div');
+      var txt = devSymbols[Math.floor(Math.random() * devSymbols.length)];
+      el.textContent = txt;
+      el.style.cssText = 'position:fixed;top:0;left:0;font-family:monospace;font-weight:700;font-size:' + (11 + Math.random() * 5) + 'px;color:' + ACCENT + ';text-shadow:0 0 6px rgba(54,84,224,.8),0 0 12px rgba(54,84,224,.5);pointer-events:none;z-index:999996;opacity:0.85;transform:translate3d(' + x + 'px,' + y + 'px,0) translate(-50%,-50%);';
+      document.body.appendChild(el);
+      var dy = -10 - Math.random() * 14;
+      var dx = (Math.random() - 0.5) * 16;
+      gsap.to(el, {
+        duration: 0.9 + Math.random() * 0.3, ease: 'power1.out', opacity: 0,
+        onUpdate: function () {
+          var p = this.progress();
+          el.style.transform = 'translate3d(' + (x + dx * p) + 'px,' + (y + dy * p) + 'px,0) translate(-50%,-50%) scale(' + (1 - p * 0.3) + ')';
+        },
+        onComplete: function () { el.remove(); }
+      });
+    }
+    window.addEventListener('pointermove', function (e) {
+      var dist = Math.hypot(e.clientX - lastSymbolX, e.clientY - lastSymbolY);
+      if (dist > symbolThreshold) {
+        lastSymbolX = e.clientX; lastSymbolY = e.clientY;
+        symbolThreshold = 28 + Math.random() * 24;
+        spawnDevSymbol(e.clientX, e.clientY);
+      }
+    }, { passive: true });
 
     document.addEventListener('pointerover', function (e) {
       var target = e.target.closest('a, button, [data-cursor-label]');
@@ -181,6 +217,69 @@
       });
       ctx.globalAlpha = 1;
     }
+
+    function spawnClickBurst(x, y) {
+      var rippleEl = document.createElement('div');
+      rippleEl.style.cssText = 'position:fixed;top:0;left:0;width:16px;height:16px;margin:0;border-radius:50%;border:2px solid ' + ACCENT + ';pointer-events:none;z-index:999997;transform:translate3d(' + x + 'px,' + y + 'px,0) translate(-50%,-50%);opacity:0.8;';
+      document.body.appendChild(rippleEl);
+      gsap.to(rippleEl, {
+        width: 70, height: 70, opacity: 0, duration: 0.55, ease: 'power2.out',
+        onUpdate: function () { rippleEl.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0) translate(-50%,-50%)'; },
+        onComplete: function () { rippleEl.remove(); }
+      });
+      var colors = ['#3654e0', '#2c46c9', '#6f80f0', '#14b8a6'];
+      for (var i = 0; i < 8; i++) {
+        var ang = (Math.PI * 2 * i) / 8 + Math.random() * 0.4;
+        var dist = 24 + Math.random() * 26;
+        var spark = document.createElement('div');
+        var sz = 3 + Math.random() * 2;
+        spark.style.cssText = 'position:fixed;top:0;left:0;width:' + sz + 'px;height:' + sz + 'px;margin:0;border-radius:50%;background:' + colors[i % colors.length] + ';pointer-events:none;z-index:999997;transform:translate3d(' + x + 'px,' + y + 'px,0) translate(-50%,-50%);opacity:1;';
+        document.body.appendChild(spark);
+        (function (el, ang, dist) {
+          gsap.to(el, {
+            duration: 0.5 + Math.random() * 0.2, ease: 'power2.out', opacity: 0,
+            onUpdate: function () {
+              var p = this.progress();
+              var cx = x + Math.cos(ang) * dist * p;
+              var cy = y + Math.sin(ang) * dist * p;
+              el.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0) translate(-50%,-50%) scale(' + (1 - p * 0.6) + ')';
+            },
+            onComplete: function () { el.remove(); }
+          });
+        })(spark, ang, dist);
+      }
+    }
+    window.addEventListener('pointerdown', function (e) { spawnClickBurst(e.clientX, e.clientY); }, { passive: true });
+
+    var lastScrollY = window.scrollY;
+    var scrollSparkFrame = 0;
+    function spawnScrollSparkle() {
+      var colors = ['#3654e0', '#2c46c9', '#6f80f0', '#14b8a6'];
+      var x = mouse.x + (Math.random() - 0.5) * 30;
+      var y = mouse.y + (Math.random() - 0.5) * 30;
+      var spark = document.createElement('div');
+      var sz = 2 + Math.random() * 2;
+      spark.style.cssText = 'position:fixed;top:0;left:0;width:' + sz + 'px;height:' + sz + 'px;margin:0;border-radius:50%;background:' + colors[Math.floor(Math.random() * colors.length)] + ';pointer-events:none;z-index:999997;transform:translate3d(' + x + 'px,' + y + 'px,0) translate(-50%,-50%);opacity:0.9;';
+      document.body.appendChild(spark);
+      var dy = (Math.random() - 0.5) * 20;
+      gsap.to(spark, {
+        duration: 0.6, ease: 'power1.out', opacity: 0,
+        onUpdate: function () {
+          var p = this.progress();
+          spark.style.transform = 'translate3d(' + x + 'px,' + (y + dy * p) + 'px,0) translate(-50%,-50%) scale(' + (1 - p * 0.5) + ')';
+        },
+        onComplete: function () { spark.remove(); }
+      });
+    }
+    window.addEventListener('scroll', function () {
+      var delta = Math.abs(window.scrollY - lastScrollY);
+      lastScrollY = window.scrollY;
+      scrollSparkFrame += delta;
+      if (scrollSparkFrame > 40) {
+        scrollSparkFrame = 0;
+        spawnScrollSparkle();
+      }
+    }, { passive: true });
 
     gsap.ticker.add(function (time, deltaTime) {
       var dt = Math.min(deltaTime, 50) / 1000;
