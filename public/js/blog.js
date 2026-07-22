@@ -81,16 +81,24 @@
       coverImg: '../assets/blog-ai-coding-cover.jpg',
     },
   ];
+  window.__BLOG_POST_DATA__ = postData;
 
   function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
   let activeTag = 'All';
   let query = '';
+  let hiddenSlugs = [];
+  let visiblePostData = postData;
+
+  function applyVisibility() {
+    visiblePostData = postData.filter((p) => !hiddenSlugs.includes(p.slug));
+  }
+  applyVisibility();
 
   function render() {
-    const tags = ['All', ...Array.from(new Set(postData.map((p) => p.tag)))];
+    const tags = ['All', ...Array.from(new Set(visiblePostData.map((p) => p.tag)))];
     const cnt = document.getElementById('bl-stat-count');
-    if (cnt) cnt.textContent = String(postData.length).padStart(2, '0');
+    if (cnt) cnt.textContent = String(visiblePostData.length).padStart(2, '0');
     const tcnt = document.getElementById('bl-stat-tags');
     if (tcnt) tcnt.textContent = String(tags.length - 1).padStart(2, '0');
     const tagsEl = document.getElementById('bl-tags');
@@ -101,7 +109,7 @@
       btn.addEventListener('click', () => { activeTag = btn.getAttribute('data-tag'); render(); });
     });
 
-    const tagFiltered = activeTag === 'All' ? postData : postData.filter((p) => p.tag === activeTag);
+    const tagFiltered = activeTag === 'All' ? visiblePostData : visiblePostData.filter((p) => p.tag === activeTag);
     const q = query.trim().toLowerCase();
     const filtered = !q ? tagFiltered : tagFiltered.filter((p) =>
       p.title.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q) || p.tag.toLowerCase().includes(q)
@@ -141,8 +149,17 @@
   function init() {
     const heroCanvas = document.getElementById('hero-icosa-canvas');
     if (heroCanvas && window.createIcosaScene) window.createIcosaScene(heroCanvas, 0.32);
-    document.getElementById('bl-search').addEventListener('input', (e) => { query = e.target.value; render(); });
-    render();
+    const searchEl = document.getElementById('bl-search');
+    if (searchEl) searchEl.addEventListener('input', (e) => { query = e.target.value; render(); });
+    if (document.getElementById('bl-tags')) render();
+    fetch('/api/posts-visibility')
+      .then((r) => r.json())
+      .then((data) => {
+        hiddenSlugs = data.hidden || [];
+        applyVisibility();
+        if (document.getElementById('bl-tags')) render();
+      })
+      .catch(() => {});
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

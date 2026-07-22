@@ -26,6 +26,9 @@
     #bp-body h2 { font-size: 17.5px !important; }
     #bp-body li { font-size: 15px !important; }
   }
+  @media (max-width: 640px) {
+    #bp-author-card { flex-direction: row !important; align-items: center !important; justify-content: space-between !important; gap: 14px !important; padding: 12px 16px !important; }
+  }
   @media (max-width: 860px) { body[data-page="blog"] #site-nav-toggle { margin-left: auto !important; } }
 body[data-page="blog"] #site-header-grid > div:last-child { display: none !important; }
 `;

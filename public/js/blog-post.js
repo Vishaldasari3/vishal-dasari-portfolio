@@ -2,10 +2,37 @@
   const SCRIPT_SRC = document.currentScript.src;
   function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
+  function show404(reason) {
+    document.title = 'Post not found — Vishal Dasari';
+    const main = document.getElementById('bp-content') || document.body;
+    main.innerHTML = `
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:110px 20px;text-align:center;">
+        <div style="position:relative;display:inline-block;animation:bp404-float 2.6s ease-in-out infinite;">
+          <div style="font-size:64px;line-height:1;">\uD83D\uDC15</div>
+          <div style="position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);background:#f5c518;color:#5c4400;font-family:'Syne',sans-serif;font-size:10px;font-weight:800;padding:3px 9px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.15);white-space:nowrap;">404</div>
+        </div>
+        <div style="position:relative;font-family:'Syne',sans-serif;font-size:88px;font-weight:800;letter-spacing:-4px;background:linear-gradient(135deg,#3654e0,#7c5cff);-webkit-background-clip:text;background-clip:text;color:transparent;margin-top:6px;">404</div>
+        <div style="font-size:23px;font-weight:700;color:#14162b;">Whoops \u2014 this post ghosted us</div>
+        <div style="font-size:14.5px;color:#7a8199;max-width:420px;">${esc(reason || 'It\u2019s been hidden or removed by the author. Maybe it\u2019ll be back, maybe it won\u2019t \u2014 who\u2019s to say.')}</div>
+        <a href="/blog" style="margin-top:10px;display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:#fff;background:linear-gradient(135deg,#3654e0,#7c5cff);padding:11px 22px;border-radius:24px;box-shadow:0 10px 24px -10px rgba(54,84,224,0.6);transition:transform .15s;" onmouseenter="this.style.transform='translateY(-2px)'" onmouseleave="this.style.transform='translateY(0)'">
+          Take me back
+          <svg width="14" height="11" viewBox="0 0 16 12" fill="none"><path d="M1 6h13M9 1l5 5-5 5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <style>@keyframes bp404-float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-10px) rotate(4deg)}}</style>`;
+  }
+
   function init() {
     const slug = document.body.getAttribute('data-slug');
     const p = window.BLOG_POSTS[slug];
     if (!p) return;
+
+    fetch('/api/posts-visibility')
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.hidden && data.hidden.indexOf(slug) !== -1) show404();
+      })
+      .catch(() => {});
 
     document.title = p.title + ' — Vishal Dasari';
 

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Post Visibility — Vishal Dasari</title>
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html { overflow-x: hidden; }
+  html, body { margin: 0; max-width: 100%; background: #f4f5f9; background-image: radial-gradient(rgba(54,84,224,0.05) 1px, transparent 1px); background-size: 26px 26px; color: #14162b; }
+  * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 56px 20px 80px; }
+  .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 32px; }
+  .brand-badge { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, #3654e0, #7c5cff); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; color: #fff; }
+  .brand-name { font-size: 14.5px; font-weight: 600; color: #14162b; }
+  h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; margin: 0 0 6px; }
+  .sub { font-size: 13.5px; color: #7a8199; margin: 0 0 28px; }
+  .card { display: flex; align-items: center; justify-content: space-between; gap: 16px; background: rgba(255,255,255,0.75); backdrop-filter: blur(16px); border: 1px solid rgba(28,32,48,0.08); box-shadow: 0 12px 30px -18px rgba(30,40,80,0.25); border-radius: 16px; padding: 16px 20px; margin-bottom: 12px; }
+  .p-title { font-size: 14px; font-weight: 600; color: #14162b; }
+  .p-meta { font-size: 12px; color: #9096a8; margin-top: 3px; }
+  .switch { position: relative; width: 46px; height: 26px; flex-shrink: 0; border-radius: 14px; background: rgba(28,32,48,0.15); cursor: pointer; transition: background .15s; border: none; }
+  .switch.on { background: #3654e0; }
+  .switch .knob { position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; transition: transform .15s; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+  .switch.on .knob { transform: translateX(20px); }
+  .section-title { font-size: 15px; font-weight: 700; color: #14162b; margin: 32px 0 14px; }
+  .cbox { padding: 14px 16px; border-radius: 12px; background: rgba(255,255,255,0.7); border: 1px solid rgba(28,32,48,0.08); margin-bottom: 10px; }
+  .cbox .meta { font-size: 12px; color: #9096a8; margin-bottom: 6px; }
+  .cbox .slug-pill { font-size: 11px; font-weight: 600; color: #3654e0; background: rgba(54,84,224,0.1); border: 1px solid rgba(54,84,224,0.15); padding: 2px 8px; border-radius: 10px; margin-right: 6px; }
+  .cbox .text { font-size: 14px; color: #4a5069; line-height: 1.55; margin-bottom: 10px; }
+  .cbox button { font-size: 12px; font-weight: 600; padding: 7px 14px; border-radius: 8px; border: none; cursor: pointer; margin-right: 8px; font-family: 'Poppins', sans-serif; }
+  .cbox .approve { background: #1fa363; color: #fff; }
+  .cbox .reject { background: #d64545; color: #fff; }
+  #gate { max-width: 360px; margin: 120px auto 0; text-align: center; }
+  #gate p { font-size: 14px; color: #565c78; margin-bottom: 16px; }
+  input { font-size: 14px; padding: 11px 14px; border-radius: 10px; border: 1px solid rgba(28,32,48,0.15); width: 100%; box-sizing: border-box; margin-bottom: 12px; font-family: 'Poppins', sans-serif; }
+  #unlock-btn { width: 100%; background: #3654e0; color: #fff; font-size: 13px; font-weight: 600; font-family: 'Poppins', sans-serif; padding: 11px 0; border-radius: 10px; border: none; cursor: pointer; }
+</style>
+</head>
+<body>
+<div id="gate">
+  <div class="brand" style="justify-content: center;">
+    <div class="brand-badge">VD</div>
+    <div class="brand-name">Vishal Dasari</div>
+  </div>
+  <p>Enter the admin secret to manage post visibility.</p>
+  <input type="password" id="secret" placeholder="Admin secret">
+  <button id="unlock-btn" onclick="loadPosts()">Unlock</button>
+</div>
+<div class="wrap" id="list" style="display:none;">
+  <div id="posts-section"></div>
+  <div id="comments-section"></div>
+</div>
+<script src="../js/blog.js"></script>
+<script>
+  function loadPosts() {
+    var secret = document.getElementById('secret').value.trim();
+    if (!secret) return;
+    localStorage.setItem('admin_secret_temp', secret);
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('list').style.display = 'block';
+    fetch('/api/posts-visibility')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var hidden = data.hidden || [];
+        var section = document.getElementById('posts-section');
+        var posts = window.__BLOG_POST_DATA__ || [];
+        var activeCount = posts.filter(function (p) { return hidden.indexOf(p.slug) === -1; }).length;
+        var hiddenCount = posts.length - activeCount;
+        section.innerHTML =
+          '<div class="brand"><div class="brand-badge">VD</div><div class="brand-name">Vishal Dasari</div></div>' +
+          '<h1>Post Visibility</h1>' +
+          '<p class="sub">Toggle off to hide a post from the blog listing immediately.</p>' +
+          '<div style="display:flex;gap:10px;margin-bottom:22px;">' +
+            '<div style="font-size:12px;font-weight:600;color:#1fa363;background:rgba(31,163,99,0.1);border:1px solid rgba(31,163,99,0.2);padding:5px 12px;border-radius:14px;">' + activeCount + ' active</div>' +
+            '<div style="font-size:12px;font-weight:600;color:#d64545;background:rgba(214,69,69,0.1);border:1px solid rgba(214,69,69,0.2);padding:5px 12px;border-radius:14px;">' + hiddenCount + ' hidden</div>' +
+          '</div>';
+        posts.forEach(function (p) {
+          var isHidden = hidden.indexOf(p.slug) !== -1;
+          var card = document.createElement('div');
+          card.className = 'card';
+          var titleEl = document.createElement('div');
+          var t = document.createElement('div'); t.className = 'p-title'; t.textContent = p.title;
+          var m = document.createElement('div'); m.className = 'p-meta';
+          var mCount = document.createElement('span'); mCount.textContent = '\u2026';
+          m.appendChild(document.createTextNode(p.tag + ' \u00b7 ' + p.date + ' \u00b7 '));
+          m.appendChild(mCount);
+          titleEl.appendChild(t); titleEl.appendChild(m);
+          fetch('/api/comments/' + encodeURIComponent(p.slug))
+            .then(function (r) { return r.json(); })
+            .then(function (rows) { mCount.textContent = (rows.length || 0) + (rows.length === 1 ? ' comment' : ' comments'); })
+            .catch(function () { mCount.textContent = '\u2013'; });
+          var sw = document.createElement('button');
+          sw.className = 'switch' + (isHidden ? '' : ' on');
+          sw.innerHTML = '<span class="knob"></span>';
+          sw.addEventListener('click', function () {
+            var nowHidden = sw.classList.contains('on');
+            sw.classList.toggle('on');
+            fetch('/api/posts-visibility', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ slug: p.slug, hidden: nowHidden, secret: secret }),
+            }).then(function () { loadPosts(); }).catch(function () { sw.classList.toggle('on'); });
+          });
+          card.appendChild(titleEl);
+          card.appendChild(sw);
+          section.appendChild(card);
+        });
+      })
+      .catch(function () {
+        document.getElementById('posts-section').innerHTML =
+          '<div class="brand"><div class="brand-badge">VD</div><div class="brand-name">Vishal Dasari</div></div>' +
+          '<h1>Post Visibility</h1>' +
+          '<p class="sub" style="color:#d64545;">Couldn\u2019t load posts \u2014 check the API is deployed and try again.</p>';
+      });
+    loadComments(secret);
+  }
+
+  function loadComments(secret) {
+    var box = document.getElementById('comments-section');
+    fetch('/api/comments/admin?secret=' + encodeURIComponent(secret))
+      .then(function (r) { return r.json(); })
+      .then(function (rows) {
+        if (rows.error) { box.innerHTML = '<div class="section-title">Pending Comments</div><div class="sub" style="color:#d64545;">Wrong secret.</div>'; return; }
+        box.innerHTML = '<div class="section-title">Pending Comments (' + rows.length + ')</div>';
+        if (!rows.length) {
+          box.innerHTML += '<div class="sub">Nothing to review right now.</div>';
+          return;
+        }
+        rows.forEach(function (c) {
+          var cbox = document.createElement('div');
+          cbox.className = 'cbox';
+          cbox.innerHTML = '<div class="meta"><span class="slug-pill"></span><span></span></div><div class="text"></div>';
+          cbox.querySelector('.slug-pill').textContent = c.slug;
+          cbox.querySelector('.meta span:last-child').textContent = c.name;
+          cbox.querySelector('.text').textContent = c.text;
+          var approveBtn = document.createElement('button');
+          approveBtn.className = 'approve'; approveBtn.textContent = 'Approve';
+          var rejectBtn = document.createElement('button');
+          rejectBtn.className = 'reject'; rejectBtn.textContent = 'Reject';
+          approveBtn.addEventListener('click', function () { actComment(c.id, 'approve', secret, cbox); });
+          rejectBtn.addEventListener('click', function () { actComment(c.id, 'reject', secret, cbox); });
+          cbox.appendChild(approveBtn);
+          cbox.appendChild(rejectBtn);
+          box.appendChild(cbox);
+        });
+      })
+      .catch(function () {
+        box.innerHTML = '<div class="section-title">Pending Comments</div><div class="sub" style="color:#d64545;">Couldn\u2019t load comments.</div>';
+      });
+  }
+
+  function actComment(id, action, secret, cbox) {
+    fetch('/api/comments/admin', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: id, action: action, secret: secret }),
+    }).then(function () { cbox.remove(); });
+  }
+</script>
+</body>
+</html>
