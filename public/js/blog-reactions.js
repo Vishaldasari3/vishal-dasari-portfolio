@@ -30,9 +30,9 @@
 
         var btn = document.createElement('button');
         btn.type = 'button';
-        btn.disabled = !!reacted;
-        btn.style.cssText = 'position:relative;width:100%;height:64px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:' + (reacted ? 'default' : 'pointer') + ';transform-style:preserve-3d;perspective:400px;transition:transform .25s cubic-bezier(.2,.8,.3,1.4),box-shadow .25s,background .2s,border-color .2s;font-family:Poppins,sans-serif;background:' + (active ? 'rgba(54,84,224,0.08)' : '#ffffff') + ';border:1.5px solid ' + (active ? '#3654e0' : 'rgba(54,84,224,0.3)') + ';box-shadow:' + (active ? '0 0 16px rgba(54,84,224,0.55),0 10px 24px -10px rgba(54,84,224,0.5)' : '0 0 8px rgba(54,84,224,0.18),0 2px 6px rgba(20,22,43,0.05)') + ';';
-        btn.innerHTML = '<span style="font-size:19px;' + (active ? '' : 'opacity:.8;') + '">' + t.emoji + '</span><span style="font-size:9px;color:' + (active ? '#3654e0' : '#9096a8') + ';font-weight:' + (active ? '700' : '400') + ';">' + (counts[t.key] || 0) + '</span>' + (active ? '<span style="position:absolute;top:6px;right:6px;width:7px;height:7px;border-radius:50%;background:#3654e0;"></span>' : '');
+        if (reacted) btn.setAttribute('aria-disabled', 'true');
+        btn.style.cssText = 'position:relative;width:100%;height:64px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:' + (reacted ? 'default' : 'pointer') + ';opacity:1;-webkit-appearance:none;appearance:none;color:inherit;transform-style:preserve-3d;perspective:400px;transition:transform .25s cubic-bezier(.2,.8,.3,1.4),box-shadow .25s,background .2s,border-color .2s;font-family:Poppins,sans-serif;background:' + (active ? 'rgba(54,84,224,0.08)' : '#ffffff') + ';border:1.5px solid ' + (active ? '#3654e0' : 'rgba(54,84,224,0.3)') + ';box-shadow:' + (active ? '0 0 16px rgba(54,84,224,0.55),0 10px 24px -10px rgba(54,84,224,0.5)' : '0 0 8px rgba(54,84,224,0.18),0 2px 6px rgba(20,22,43,0.05)') + ';';
+        btn.innerHTML = '<span style="font-size:19px;opacity:1;">' + t.emoji + '</span><span style="font-size:9px;color:' + (active ? '#3654e0' : '#9096a8') + ';font-weight:' + (active ? '700' : '400') + ';">' + (counts[t.key] || 0) + '</span>' + (active ? '<span style="position:absolute;top:6px;right:6px;width:7px;height:7px;border-radius:50%;background:#3654e0;"></span>' : '');
 
         if (!reacted) {
           btn.addEventListener('mouseenter', function () {
