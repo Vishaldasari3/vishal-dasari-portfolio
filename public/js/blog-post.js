@@ -16,8 +16,11 @@
     if (heroCanvas && window.createIcosaScene) window.createIcosaScene(heroCanvas, 0.4);
     const scriptSrc = SCRIPT_SRC;
     const publicRoot = new URL('../', scriptSrc); // public/js/ -> public/
-    document.getElementById('bp-cover').src = new URL(p.coverImg, publicRoot).href;
-    document.getElementById('bp-cover').alt = p.title;
+    const coverEl = document.getElementById('bp-cover');
+    if (coverEl && coverEl.tagName === 'IMG') {
+      coverEl.src = new URL(p.coverImg, publicRoot).href;
+      coverEl.alt = p.title;
+    }
     document.getElementById('bp-body').innerHTML = p.paragraphs.map((para, i) =>
       i === 0
         ? `<div class="bp-lead" style="font-size: 19.5px; color: #2b3050; line-height: 1.8; font-weight: 500;">${esc(para)}</div>`
