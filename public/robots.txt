@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /admin-posts
-Disallow: /admin-comments
+Disallow: /pdplknrhydus
 
 Sitemap: https://vishaldasari.dev/sitemap.xml
