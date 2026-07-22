@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comment Moderation — Vishal Dasari</title>
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html { overflow-x: hidden; }
+  html, body { margin: 0; max-width: 100%; background: #f4f5f9; background-image: radial-gradient(rgba(54,84,224,0.05) 1px, transparent 1px); background-size: 26px 26px; color: #14162b; }
+  * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 56px 20px 80px; }
+  .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 32px; }
+  .brand-badge { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, #3654e0, #7c5cff); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; color: #fff; }
+  .brand-name { font-size: 14.5px; font-weight: 600; color: #14162b; }
+  h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; margin: 0 0 6px; }
+  .sub { font-size: 13.5px; color: #7a8199; margin: 0 0 28px; }
+  .card { background: rgba(255,255,255,0.75); backdrop-filter: blur(16px); border: 1px solid rgba(28,32,48,0.08); box-shadow: 0 12px 30px -18px rgba(30,40,80,0.25); border-radius: 16px; padding: 18px 20px; margin-bottom: 14px; }
+  .meta { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #9096a8; margin-bottom: 10px; }
+  .slug-pill { font-size: 11px; font-weight: 600; color: #3654e0; background: rgba(54,84,224,0.1); border: 1px solid rgba(54,84,224,0.15); padding: 3px 10px; border-radius: 12px; }
+  .name { font-weight: 600; color: #14162b; }
+  .text { font-size: 14.5px; line-height: 1.65; color: #4a5069; margin-bottom: 16px; }
+  .actions { display: flex; gap: 10px; }
+  button { font-size: 13px; font-weight: 600; font-family: 'Poppins', sans-serif; padding: 9px 18px; border-radius: 10px; border: none; cursor: pointer; transition: transform .15s; }
+  button:hover { transform: translateY(-1px); }
+  .approve { background: #1fa363; color: #fff; }
+  .reject { background: #d64545; color: #fff; }
+  .empty { font-size: 14px; color: #9096a8; text-align: center; padding: 40px 0; }
+  #gate { max-width: 360px; margin: 120px auto 0; text-align: center; }
+  #gate p { font-size: 14px; color: #565c78; margin-bottom: 16px; }
+  input { font-size: 14px; padding: 11px 14px; border-radius: 10px; border: 1px solid rgba(28,32,48,0.15); width: 100%; box-sizing: border-box; margin-bottom: 12px; font-family: 'Poppins', sans-serif; }
+  #unlock-btn { width: 100%; background: #3654e0; color: #fff; }
+</style>
+</head>
+<body>
+<div id="gate">
+  <div class="brand" style="justify-content: center;">
+    <div class="brand-badge">VD</div>
+    <div class="brand-name">Vishal Dasari</div>
+  </div>
+  <p>Enter the admin secret to view pending comments.</p>
+  <input type="password" id="secret" placeholder="Admin secret">
+  <button id="unlock-btn" onclick="loadPending()">Unlock</button>
+</div>
+<div class="wrap" id="list" style="display:none;"></div>
+<script>
+  function loadPending() {
+    var secret = document.getElementById('secret').value.trim();
+    if (!secret) return;
+    localStorage.setItem('admin_secret_temp', secret);
+    fetch('/api/comments/admin?secret=' + encodeURIComponent(secret))
+      .then(function (r) { return r.json(); })
+      .then(function (rows) {
+        if (rows.error) { alert('Wrong secret'); return; }
+        document.getElementById('gate').style.display = 'none';
+        var list = document.getElementById('list');
+        list.style.display = 'block';
+        list.innerHTML =
+          '<div class="brand"><div class="brand-badge">VD</div><div class="brand-name">Vishal Dasari</div></div>' +
+          '<h1>Pending Comments</h1>' +
+          '<p class="sub">' + rows.length + ' awaiting review</p>';
+        if (!rows.length) {
+          list.innerHTML += '<div class="card"><div class="empty">Nothing to review right now.</div></div>';
+          return;
+        }
+        var cardsHtml = rows.map(function (c) {
+          return '<div class="card">' +
+            '<div class="meta"><span class="slug-pill"></span><span class="name"></span><span></span></div>' +
+            '<div class="text"></div>' +
+            '<div class="actions">' +
+              '<button class="approve" onclick="act(' + c.id + ',\'approve\',this)">Approve</button>' +
+              '<button class="reject" onclick="act(' + c.id + ',\'reject\',this)">Reject</button>' +
+            '</div>' +
+          '</div>';
+        }).join('');
+        list.insertAdjacentHTML('beforeend', cardsHtml);
+        var cards = list.querySelectorAll('.card');
+        rows.forEach(function (c, i) {
+          var card = cards[i];
+          card.querySelector('.slug-pill').textContent = c.slug;
+          card.querySelector('.name').textContent = c.name;
+          card.querySelector('.text').textContent = c.text;
+        });
+      });
+  }
+  function act(id, action, btn) {
+    var secret = localStorage.getItem('admin_secret_temp');
+    fetch('/api/comments/admin', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: id, action: action, secret: secret }),
+    }).then(function () { btn.closest('.card').remove(); });
+  }
+</script>
+</body>
+</html>

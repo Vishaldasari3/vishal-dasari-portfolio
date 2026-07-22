@@ -27,26 +27,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
 <link rel="stylesheet" href="../../partials/partials.css">
-<style>
-  html { overflow-x: hidden; } html, body { margin: 0; max-width: 100%; background: #f4f5f9; }
-  * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-  a { color: #3654e0; text-decoration: none; }
-  a:hover { color: #24399e; }
-
-  @media (max-width: 1180px) {
-    #site-header-row { padding: 18px 20px !important; gap: 12px !important; }
-  }
-  @media (max-width: 640px) {
-    div[style*="padding: 28px 24px 4px"] { padding: 16px 12px 4px !important; }
-    #bp-content { padding: 28px 16px 56px !important; gap: 16px !important; }
-    #bp-body div { font-size: 15.5px !important; line-height: 1.7 !important; }
-  }
-  @media (max-width: 420px) {
-    #bp-body div { font-size: 15px !important; }
-  }
-  @media (max-width: 860px) { body[data-page="blog"] #site-nav-toggle { margin-left: auto !important; } }
-body[data-page="blog"] #site-header-grid > div:last-child { display: none !important; }
-</style>
+<script src="../../js/styles/blog-post-ai-2026-styles.js"></script>
 </head>
 <body data-page="blog" data-slug="ai-in-2026">
 
@@ -65,6 +46,7 @@ body[data-page="blog"] #site-header-grid > div:last-child { display: none !impor
       </a>
       <span id="bp-tag" style="font-size: 11px; font-weight: 600; color: #3654e0; background: rgba(54,84,224,0.1); border: 1px solid rgba(54,84,224,0.15); padding: 4px 11px; border-radius: 16px;"></span>
       <div class="hx-title-line" style="overflow: hidden;"><div id="bp-title" class="hx-title-inner" style="font-size: clamp(21px, 1.9vw, 28px); font-weight: 700; color: #101223; line-height: 1.24; letter-spacing: -0.4px;"></div></div>
+      <div id="bp-subtitle" style="font-size: 15px; color: #565c78; line-height: 1.55; max-width: 46em;"></div>
       <div id="bp-meta" class="hx-desc" style="font-size: 13px; color: #63677c;"></div>
       <div class="hx-divider" style="margin-top: 2px;"></div>
     </div>
@@ -77,6 +59,7 @@ body[data-page="blog"] #site-header-grid > div:last-child { display: none !impor
     <img id="bp-cover" alt="" style="width:100%;height:100%;object-fit:cover;display:block;" />
   </div>
   <div id="bp-body" style="display: flex; flex-direction: column; gap: 22px;"></div>
+  <div id="bp-reactions" style="margin-top: 4px;"></div>
 
   <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 20px; padding: 22px 24px; border-radius: 18px; background: rgba(255,255,255,0.7); border: 1px solid rgba(28,32,48,0.1);">
     <div style="display: flex; align-items: center; gap: 14px;">
@@ -91,6 +74,7 @@ body[data-page="blog"] #site-header-grid > div:last-child { display: none !impor
       <svg width="14" height="11" viewBox="0 0 16 12" fill="none"><path d="M1 6h13M9 1l5 5-5 5" stroke="#3654e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
   </div>
+  <div id="bp-comments" style="margin-top: 8px; padding-top: 28px; border-top: 1px solid rgba(28,32,48,0.08);"></div>
 </div>
 
 <div id="site-footer"></div>
@@ -100,5 +84,7 @@ body[data-page="blog"] #site-header-grid > div:last-child { display: none !impor
 <script src="../../js/cursor-effects.js"></script>
 <script src="../../js/blog-posts-data.js"></script>
 <script src="../../js/blog-post.js"></script>
+<script src="../../js/blog-reactions.js"></script>
+<script src="../../js/blog-comments.js"></script>
 </body>
 </html>
