@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /pdplknrhydus
 
 Sitemap: https://vishaldasari.dev/sitemap.xml

@@ -18,15 +18,16 @@
   .brand-name { font-size: 14.5px; font-weight: 600; color: #14162b; }
   h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; margin: 0 0 6px; }
   .sub { font-size: 13.5px; color: #7a8199; margin: 0 0 28px; }
-  .card { display: flex; align-items: center; justify-content: space-between; gap: 16px; background: rgba(255,255,255,0.75); backdrop-filter: blur(16px); border: 1px solid rgba(28,32,48,0.08); box-shadow: 0 12px 30px -18px rgba(30,40,80,0.25); border-radius: 16px; padding: 16px 20px; margin-bottom: 12px; }
+  .card { display: flex; align-items: center; justify-content: space-between; gap: 16px; background: rgba(255,255,255,0.75); backdrop-filter: blur(16px); border: 1.5px solid rgba(54,84,224,0.22); box-shadow: 0 0 0 1px rgba(54,84,224,0.08), 0 12px 30px -18px rgba(30,40,80,0.25); border-radius: 16px; padding: 16px 20px; margin-bottom: 12px; transition: border-color .15s, box-shadow .15s; }
+  .card:hover { border-color: rgba(54,84,224,0.4); box-shadow: 0 0 0 1px rgba(54,84,224,0.14), 0 0 18px rgba(54,84,224,0.16), 0 12px 30px -18px rgba(30,40,80,0.25); }
   .p-title { font-size: 14px; font-weight: 600; color: #14162b; }
   .p-meta { font-size: 12px; color: #9096a8; margin-top: 3px; }
   .switch { position: relative; width: 46px; height: 26px; flex-shrink: 0; border-radius: 14px; background: rgba(28,32,48,0.15); cursor: pointer; transition: background .15s; border: none; }
-  .switch.on { background: #3654e0; }
+  .switch.on { background: linear-gradient(135deg, #3654e0, #7c5cff); box-shadow: 0 0 10px rgba(54,84,224,0.5); }
   .switch .knob { position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; transition: transform .15s; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
   .switch.on .knob { transform: translateX(20px); }
-  .section-title { font-size: 15px; font-weight: 700; color: #14162b; margin: 32px 0 14px; }
-  .cbox { padding: 14px 16px; border-radius: 12px; background: rgba(255,255,255,0.7); border: 1px solid rgba(28,32,48,0.08); margin-bottom: 10px; }
+  .section-title { font-size: 15px; font-weight: 700; color: #14162b; margin: 36px 0 14px; padding-left: 12px; border-left: 3px solid #3654e0; }
+  .cbox { padding: 14px 16px; border-radius: 12px; background: rgba(255,255,255,0.7); border: 1.5px solid rgba(54,84,224,0.22); box-shadow: 0 0 0 1px rgba(54,84,224,0.08); margin-bottom: 10px; }
   .cbox .meta { font-size: 12px; color: #9096a8; margin-bottom: 6px; }
   .cbox .slug-pill { font-size: 11px; font-weight: 600; color: #3654e0; background: rgba(54,84,224,0.1); border: 1px solid rgba(54,84,224,0.15); padding: 2px 8px; border-radius: 10px; margin-right: 6px; }
   .cbox .text { font-size: 14px; color: #4a5069; line-height: 1.55; margin-bottom: 10px; }
@@ -36,7 +37,8 @@
   #gate { max-width: 360px; margin: 120px auto 0; text-align: center; }
   #gate p { font-size: 14px; color: #565c78; margin-bottom: 16px; }
   input { font-size: 14px; padding: 11px 14px; border-radius: 10px; border: 1px solid rgba(28,32,48,0.15); width: 100%; box-sizing: border-box; margin-bottom: 12px; font-family: 'Poppins', sans-serif; }
-  #unlock-btn { width: 100%; background: #3654e0; color: #fff; font-size: 13px; font-weight: 600; font-family: 'Poppins', sans-serif; padding: 11px 0; border-radius: 10px; border: none; cursor: pointer; }
+  #unlock-btn { width: 100%; background: linear-gradient(135deg, #3654e0, #7c5cff); color: #fff; font-size: 13px; font-weight: 600; font-family: 'Poppins', sans-serif; padding: 11px 0; border-radius: 10px; border: none; cursor: pointer; box-shadow: 0 10px 22px -8px rgba(54,84,224,0.5); transition: transform .15s; }
+  #unlock-btn:hover { transform: translateY(-1px); }
 </style>
 </head>
 <body>
