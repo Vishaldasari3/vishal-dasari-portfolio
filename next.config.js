@@ -19,7 +19,7 @@ const nextConfig = {
         { source: '/blog/emotional-side-of-engineering', destination: '/html/blogs/blog-emotional-side-of-engineering.html' },
         { source: '/blog/code-worked-but-wrong', destination: '/html/blogs/blog-code-worked-but-wrong.html' },
         { source: '/admin-posts', destination: '/html/admin-posts.html' },
-        { source: '/admin-comments', destination: '/html/admin-comments.html' },
+        { source: '/admin-comments', destination: '/html/admin-posts.html' },
       ],
     };
   },

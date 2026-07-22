@@ -1,8 +1,5 @@
 import { sql } from '@vercel/postgres';
-
-if (!process.env.POSTGRES_URL && process.env.vd_portfolio_POSTGRES_URL) {
-  process.env.POSTGRES_URL = process.env.vd_portfolio_POSTGRES_URL;
-}
+import '../../_lib/env.js';
 
 function unauthorized() {
   return Response.json({ error: 'unauthorized' }, { status: 401 });
