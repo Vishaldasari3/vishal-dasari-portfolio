@@ -44,8 +44,8 @@ function B3d({ href, children }) {
       onMouseEnter={() => { ref.current.style.transform = 'rotateX(14deg) translateY(-6px) scale(1.06)'; ref.current.style.boxShadow = '0 26px 46px -14px rgba(54,84,224,0.6), 0 0 24px -2px rgba(34,221,245,0.5)'; ref.current.style.backgroundPosition = '100% center'; ref.current.style.letterSpacing = '0.6px'; }}
       onMouseLeave={() => { ref.current.style.transform = ''; ref.current.style.boxShadow = '0 14px 30px -10px rgba(54,84,224,0.5)'; ref.current.style.backgroundPosition = '0% center'; ref.current.style.letterSpacing = '0.2px'; }}
       style={{
-        position: 'relative', display: 'inline-flex', alignItems: 'center', gap: 9, fontSize: 13.5, fontWeight: 700, color: '#fff', letterSpacing: '0.2px',
-        background: 'linear-gradient(135deg,#3654e0,#7c5cff,#22ddf5)', backgroundSize: '220% auto', backgroundPosition: '0% center', padding: '13px 26px', borderRadius: 26, textDecoration: 'none',
+        position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 170, gap: 8, fontSize: 12.5, fontWeight: 700, color: '#fff', letterSpacing: '0.2px',
+        background: 'linear-gradient(135deg,#3654e0,#7c5cff,#22ddf5)', backgroundSize: '220% auto', backgroundPosition: '0% center', padding: '11px 20px', borderRadius: 24, textDecoration: 'none',
         boxShadow: '0 14px 30px -10px rgba(54,84,224,0.5)', transformStyle: 'preserve-3d',
         transition: 'transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease, background-position .5s ease, letter-spacing .3s ease', opacity: 0, animation: 'fadeUp .7s ease .6s forwards',
       }}>
