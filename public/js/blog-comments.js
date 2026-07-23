@@ -1,4 +1,19 @@
 (function () {
+  function confettiBurst(x, y) {
+    var colors = ['#3654e0','#7c5cff','#22ddf5','#ff5fae','#4f6bff','#00e0c6'];
+    for (var i = 0; i < 22; i++) {
+      var c = document.createElement('span');
+      var col = colors[Math.floor(Math.random() * colors.length)];
+      var ang = Math.random() * Math.PI * 2, dist = 50 + Math.random() * 70;
+      var dx = Math.cos(ang) * dist, dy = Math.sin(ang) * dist - 30;
+      c.style.cssText = 'position:fixed;left:' + x + 'px;top:' + y + 'px;width:' + (5 + Math.random() * 4) + 'px;height:' + (5 + Math.random() * 4) + 'px;background:' + col + ';border-radius:' + (Math.random() > 0.5 ? '50%' : '2px') + ';pointer-events:none;z-index:999;opacity:1;transition:transform .7s cubic-bezier(.2,.8,.3,1), opacity .7s ease;';
+      document.body.appendChild(c);
+      requestAnimationFrame(function (el, ddx, ddy) {
+        return function () { el.style.transform = 'translate(' + ddx + 'px,' + ddy + 'px) rotate(' + (Math.random() * 360) + 'deg)'; el.style.opacity = '0'; };
+      }(c, dx, dy));
+      setTimeout(function (el) { return function () { el.remove(); }; }(c), 750);
+    }
+  }
   function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
   function timeAgo(iso) {
@@ -22,7 +37,7 @@
         '<textarea id="bp-comment-text" placeholder="Add a comment..." maxlength="1000" required rows="3" style="font-size:14px;padding:11px 14px;border-radius:10px;border:1px solid rgba(28,32,48,0.15);font-family:inherit;resize:vertical;transition:border-color .15s,box-shadow .15s;"></textarea>' +
         '<input type="text" id="bp-comment-hp" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" tabindex="-1" autocomplete="off">' +
         '<div style="display:flex;align-items:center;gap:12px;">' +
-          '<button type="submit" id="bp-comment-submit" style="font-size:13px;font-weight:600;font-family:Poppins,sans-serif;padding:10px 20px;border-radius:20px;background:#3654e0;color:#fff;border:none;cursor:pointer;transition:transform .15s,box-shadow .15s,background .15s;">\u{1F4AC} Post comment</button>' +
+          '<button type="submit" id="bp-comment-submit" data-no-confetti style="font-size:13px;font-weight:600;font-family:Poppins,sans-serif;padding:10px 20px;border-radius:20px;background:#3654e0;color:#fff;border:none;cursor:pointer;transition:transform .15s,box-shadow .15s,background .15s;">\u{1F4AC} Post comment</button>' +
           '<span id="bp-comment-status" style="font-size:12.5px;color:#9096a8;"></span>' +
         '</div>' +
       '</form>' +
@@ -72,6 +87,8 @@
       var text = document.getElementById('bp-comment-text').value.trim();
       var hp = document.getElementById('bp-comment-hp').value;
       if (!name || !text) return;
+      var r = submitBtn.getBoundingClientRect();
+      confettiBurst(r.left + r.width / 2, r.top + r.height / 2);
       status.textContent = 'Posting\u2026';
       fetch('/api/comments/' + encodeURIComponent(slug), {
         method: 'POST',

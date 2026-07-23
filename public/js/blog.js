@@ -103,7 +103,7 @@
     if (tcnt) tcnt.textContent = String(tags.length - 1).padStart(2, '0');
     const tagsEl = document.getElementById('bl-tags');
     tagsEl.innerHTML = tags.map((t) => `
-      <button data-tag="${esc(t)}" style="font-size: 12.5px; font-weight: 600; padding: 7px 15px; border-radius: 20px; cursor: pointer; background: ${t === activeTag ? '#2c46c9' : 'transparent'}; color: ${t === activeTag ? '#ffffff' : '#5b6178'}; border: 1px solid ${t === activeTag ? '#2c46c9' : 'rgba(28,32,48,0.14)'}; transition: background 0.15s, color 0.15s, border-color 0.15s;">${esc(t)}</button>
+      <button data-tag="${esc(t)}" data-no-confetti style="font-size: 12.5px; font-weight: 600; padding: 7px 15px; border-radius: 20px; cursor: pointer; background: ${t === activeTag ? '#2c46c9' : 'transparent'}; color: ${t === activeTag ? '#ffffff' : '#5b6178'}; border: 1px solid ${t === activeTag ? '#2c46c9' : 'rgba(28,32,48,0.14)'}; transition: background 0.15s, color 0.15s, border-color 0.15s;">${esc(t)}</button>
     `).join('');
     tagsEl.querySelectorAll('button').forEach((btn) => {
       btn.addEventListener('click', () => { activeTag = btn.getAttribute('data-tag'); render(); });
