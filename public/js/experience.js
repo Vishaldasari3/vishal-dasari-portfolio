@@ -65,19 +65,19 @@
       'Orchestrated ingestion and transformation flows with Apache NiFi, and built Delta tables, clusters, and workflows in Databricks.',
       'Enabled self-service analytics for multiple downstream teams, reducing processing time and operational overhead versus the legacy Hadoop cluster.',
     ] },
-    { title: 'Vanguard Global International Sites', summary: 'Modernization of customer-facing international investment platforms, spanning personal investor, retail, institutional, and B2B lines.', tags: ['Angular 10', 'Java 11', 'AWS ECS', 'Redis'], details: [
+    { title: 'Vanguard Global International Sites', summary: 'Modernization of customer-facing international investment platforms, spanning personal investor, retail, institutional, and B2B lines.', tags: ['Angular 10', 'Java 11', 'AWS ECS', 'Redis', 'JAX-RS'], details: [
       'Migrated Vanguard\u2019s Australian site (vanguard.com.au) to Amazon ECS while upgrading the frontend to Angular 10 and backend to Java 11.',
       'Built Spring Boot services and JAX-RS APIs powering real-time fund pricing and performance data \u2014 mutual fund and ETF pricing, index fund NAVs, and historical performance \u2014 for global investors.',
       'Introduced Redis-backed caching for high-traffic fund pricing pages, improving responsiveness during peak market hours.',
       'Led adoption of a Selenium/JUnit regression suite across the international site portfolio, and covered Angular components using Karma and Jasmine.',
     ] },
-    { title: 'GFBO — FedEx Global Billing Online', summary: 'Worldwide web-based billing platform serving customers across 5 regions (US, Canada, APAC, EMEA, LAC).', tags: ['Java', 'AngularJS', 'SOAP', 'REST'], details: [
+    { title: 'GFBO — FedEx Global Billing Online', summary: 'Worldwide web-based billing platform serving customers across 5 regions (US, Canada, APAC, EMEA, LAC).', tags: ['Java', 'AngularJS', 'SOAP', 'REST', 'Oracle'], details: [
       'Built and maintained FedEx\u2019s Global Billing Online (GFBO) platform across specification, design, integration, testing, and deployment.',
       'Developed and integrated RESTful and SOAP web services (JAX-RS/JAX-WS) with reusable JAXB-based transformation utilities, reducing duplicate integration code.',
       'Implemented backend services and SQL/PL-SQL solutions on Oracle databases, using Log4J for application logging and debugging.',
       'Automated builds and deployments to WebLogic using Jenkins and Ant build scripts.',
     ] },
-    { title: 'Wireless Sensor Parameter Logger', summary: 'Real-time sensor monitoring and data logging system built for missile systems testing at DRDL.', tags: ['Java', 'Struts', 'MySQL', 'Embedded'], details: [
+    { title: 'Wireless Sensor Parameter Logger', summary: 'Real-time sensor monitoring and data logging system built for missile systems testing at DRDL.', tags: ['Java', 'Struts', 'MySQL', 'Embedded', 'GUI'], details: [
       'Designed, developed, and tested a Java-based GUI (Struts, jQuery, Applets) for real-time monitoring of temperature and pressure sensor data.',
       'Performed embedded coding to interface sensor hardware with the GUI software.',
       'Persisted readings to a MySQL database for historical analysis and reporting.',
