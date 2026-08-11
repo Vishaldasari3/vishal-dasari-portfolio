@@ -388,7 +388,7 @@
   function init() {
     const slug = document.body.getAttribute('data-slug');
     const p = window.BLOG_POSTS[slug];
-    if (!p) return;
+    if (!p) { show404(); return; }
 
     // Render immediately — don't block first paint on a network round trip.
     // If the post turns out to be hidden, swap to the 404 view once we know.
