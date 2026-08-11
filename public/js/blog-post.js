@@ -415,10 +415,9 @@
     const publicRoot = new URL('../', scriptSrc); // public/js/ -> public/
     const coverEl = document.getElementById('bp-cover');
     if (coverEl && coverEl.tagName === 'IMG') {
-      coverEl.src = new URL(p.coverImg, publicRoot).href;
+      const coverUrl = new URL(p.coverImg, publicRoot).href;
+      if (!coverEl.src || coverEl.getAttribute('src') === '') coverEl.src = coverUrl;
       coverEl.alt = p.title;
-      coverEl.setAttribute('fetchpriority', 'high');
-      coverEl.setAttribute('decoding', 'async');
     }
     const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
     const headings = [];
