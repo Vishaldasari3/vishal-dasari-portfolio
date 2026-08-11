@@ -122,7 +122,7 @@
       const tagColor = `oklch(30% 0.16 ${p.hue})`;
       const href = `/blog/${p.slug}`;
       const img = `<div class="${featured ? 'bl-fimg' : ''}" style="${featured ? 'width: 46%; flex-shrink: 0;' : 'width: 100%;'} aspect-ratio: 16/9; border-radius: 14px; overflow: hidden; background: linear-gradient(155deg, oklch(55% 0.15 ${p.hue}) 0%, oklch(42% 0.15 ${p.hue}) 100%);">
-          <img src="${p.coverImg}" alt="${esc(p.title)}" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <img src="${p.coverImg}" alt="${esc(p.title)}" loading="${featured ? 'eager' : 'lazy'}" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;" />
         </div>`;
       const body = `<div style="display: flex; flex-direction: column; gap: 12px; flex: 1; min-width: 0; ${featured ? 'justify-content: center; padding: 8px 12px 8px 0;' : ''}">
           <div style="display: flex; align-items: center; gap: 10px;">
