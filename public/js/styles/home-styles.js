@@ -114,6 +114,10 @@
   }
   .btn-primary:hover { box-shadow: 0 22px 48px -14px rgba(46,168,255,.6); }
   @keyframes hueflow { to { background-position: 220% 0; } }
+  @keyframes vd-marquee { to { transform: translateX(-50%); } }
+  #vd-skills-marquee { animation: vd-marquee 16s linear infinite; }
+  .vd-skill-dot { width: 4px; height: 4px; border-radius: 1px; background: linear-gradient(135deg, #4a63e8, #22ddf5); transform: rotate(45deg); flex-shrink: 0; }
+  @media (prefers-reduced-motion: reduce) { #vd-skills-marquee { animation: none; } }
   .btn .sheen {
     position: absolute;
     top: 0;
@@ -188,6 +192,7 @@
     #vd-name-block > div:first-child { justify-content: center !important; order: 1 !important; }
     #vd-name-block > div:nth-child(2) { text-align: center !important; order: 2 !important; max-width: 100% !important; min-height: 88px !important; }
     #vd-name-block > div:nth-child(2) > div { font-size: 42px !important; }
+    #vd-name-block > div:nth-child(3) { order: 3 !important; justify-content: center !important; }
     #vd-social { order: 4 !important; margin-top: 0 !important; }
     #vd-stats { order: 5 !important; margin-top: 0 !important; flex-wrap: wrap !important; justify-content: center !important; }
     #vd-intro-block { position: static !important; width: 100% !important; max-width: 440px !important; align-items: center !important; text-align: center !important; order: 6 !important; }
