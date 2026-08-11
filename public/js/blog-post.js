@@ -390,13 +390,15 @@
     const p = window.BLOG_POSTS[slug];
     if (!p) return;
 
+    // Render immediately — don't block first paint on a network round trip.
+    // If the post turns out to be hidden, swap to the 404 view once we know.
+    renderPost(p);
     fetch('/api/posts-visibility')
       .then((r) => r.json())
       .then((data) => {
         if (data.hidden && data.hidden.indexOf(slug) !== -1) show404();
-        else renderPost(p);
       })
-      .catch(() => renderPost(p));
+      .catch(() => {});
   }
 
   function renderPost(p) {
@@ -415,6 +417,8 @@
     if (coverEl && coverEl.tagName === 'IMG') {
       coverEl.src = new URL(p.coverImg, publicRoot).href;
       coverEl.alt = p.title;
+      coverEl.setAttribute('fetchpriority', 'high');
+      coverEl.setAttribute('decoding', 'async');
     }
     const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
     const headings = [];

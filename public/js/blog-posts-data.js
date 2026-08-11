@@ -105,7 +105,7 @@ window.BLOG_POSTS = {
     hue: 150,
     date: 'Aug 2026',
     readTime: '3 min read',
-    coverImg: 'assets/blog-api-mcp-cover.png',
+    coverImg: 'assets/blog-api-mcp-cover.jpg',
     content: [
       { h: 'What an API Actually Is' },
       { p: 'An API is a contract. You call a specific endpoint in a specific shape, and you get back a specific response. A bank\u2019s GET /accounts/{id}/balance either returns a number or throws an error you can catch and handle.' },
@@ -278,7 +278,7 @@ window.BLOG_POSTS = {
     hue: 95,
     date: 'Jul 2026',
     readTime: '2 min read',
-    coverImg: 'assets/blog-happiness-cover.png',
+    coverImg: 'assets/blog-happiness-cover.jpg',
     content: [
       { p: 'For most of my life, I treated happiness as one vague thing to chase, without ever really breaking down what it\u2019s made of.' },
       { p: 'A Buddhist teaching I came across recently splits it in a way that\u2019s stuck with me since. There\u2019s material happiness \u2014 the state of your money, your health, your household \u2014 and there\u2019s spiritual happiness, which lives closer to inner peace and a clean conscience.' },
