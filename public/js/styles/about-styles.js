@@ -84,7 +84,11 @@
   @media (prefers-reduced-motion: reduce) { .ab-skill, .sk-chip, .ab-skill .sk-icon { transition: none; } }
   @keyframes ab-now-dot { 0%, 100% { box-shadow: 0 0 0 0 rgba(31,138,91,0.5); } 50% { box-shadow: 0 0 0 5px rgba(31,138,91,0); } }
   #ab-now-dot { animation: ab-now-dot 2s ease-out infinite; }
-  #ab-now-btn:hover { background: #3654e0; color: #ffffff; border-color: #3654e0; transform: translateY(-2px); }
+  #ab-now-btn:hover { background: #3654e0 !important; color: #ffffff !important; border-color: #3654e0; transform: translateY(-2px); }
+  #ab-certs-link:hover { transform: scale(1.06) translateY(-3px); text-shadow: 0 8px 18px rgba(54,84,224,0.35); animation: ab-certs-float 1.6s ease-in-out infinite; }
+  #ab-certs-link svg { transition: transform .3s cubic-bezier(.34,1.56,.64,1); }
+  #ab-certs-link:hover svg { transform: translateX(5px); }
+  @keyframes ab-certs-float { 0%, 100% { transform: scale(1.06) translateY(-3px); } 50% { transform: scale(1.06) translateY(-8px); } }
   @media (prefers-reduced-motion: reduce) { #ab-now-dot { animation: none; } }
   @media (max-width: 640px) {
     #ab-now-card { padding: 22px 20px !important; gap: 16px !important; border-radius: 18px !important; }
