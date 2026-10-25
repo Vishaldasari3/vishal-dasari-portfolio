@@ -1,104 +1,11 @@
 (function () {
-  const categories = [
-    { key: 'backend', label: 'Languages & Backend', hue: 264 },
-    { key: 'frontend', label: 'Frontend & Web', hue: 305 },
-    { key: 'data', label: 'Data & Messaging', hue: 195 },
-    { key: 'cloud', label: 'Cloud & DevOps', hue: 230 },
-    { key: 'tools', label: 'Testing & Tools', hue: 160 },
-    { key: 'ai', label: 'AI & Productivity', hue: 340 },
-  ];
+  const categories = window.VD_DATA.categories;
 
-  const skillDefs = [
-    { name: 'Java', size: 108, hue: 264, light: 40, category: 'backend' },
-    { name: 'Spring Boot', size: 96, hue: 264, light: 36, category: 'backend' },
-    { name: 'Python', size: 90, hue: 264, light: 46, category: 'backend' },
-    { name: 'JavaScript', size: 80, hue: 264, light: 50, category: 'backend' },
-    { name: 'SQL', size: 62, hue: 264, light: 56, category: 'backend' },
-    { name: 'PL-SQL', size: 56, hue: 264, light: 58, category: 'backend' },
-    { name: 'Hibernate', size: 68, hue: 264, light: 58, category: 'backend' },
-    { name: 'Spring MVC', size: 56, hue: 264, light: 52, category: 'backend' },
-    { name: 'Spring IOC', size: 52, hue: 264, light: 54, category: 'backend' },
-    { name: 'Flask', size: 60, hue: 264, light: 48, category: 'backend' },
-    { name: 'SQLAlchemy', size: 58, hue: 264, light: 42, category: 'backend' },
-    { name: 'J2EE', size: 54, hue: 264, light: 62, category: 'backend' },
-    { name: 'JAX-RS', size: 50, hue: 264, light: 66, category: 'backend' },
-    { name: 'JAX-WS', size: 50, hue: 264, light: 64, category: 'backend' },
-    { name: 'SLF4J', size: 48, hue: 264, light: 54, category: 'backend' },
-    { name: 'Logback', size: 48, hue: 264, light: 56, category: 'backend' },
-    { name: 'Angular', size: 78, hue: 305, light: 40, category: 'frontend' },
-    { name: 'React', size: 74, hue: 305, light: 44, category: 'frontend' },
-    { name: 'TypeScript', size: 68, hue: 305, light: 48, category: 'frontend' },
-    { name: 'Next.js', size: 64, hue: 305, light: 52, category: 'frontend' },
-    { name: 'HTML5', size: 54, hue: 305, light: 56, category: 'frontend' },
-    { name: 'CSS3', size: 54, hue: 305, light: 58, category: 'frontend' },
-    { name: 'Node.js', size: 60, hue: 305, light: 60, category: 'frontend' },
-    { name: 'AngularJS', size: 56, hue: 305, light: 58, category: 'frontend' },
-    { name: 'Salt Design System', size: 58, hue: 305, light: 38, category: 'frontend' },
-    { name: 'Bootstrap', size: 50, hue: 305, light: 62, category: 'frontend' },
-    { name: 'jQuery', size: 48, hue: 305, light: 64, category: 'frontend' },
-    { name: 'Kafka', size: 82, hue: 195, light: 38, category: 'data' },
-    { name: 'Aurora PostgreSQL', size: 76, hue: 195, light: 42, category: 'data' },
-    { name: 'Redis', size: 70, hue: 195, light: 46, category: 'data' },
-    { name: 'Databricks', size: 70, hue: 195, light: 50, category: 'data' },
-    { name: 'Oracle', size: 68, hue: 195, light: 36, category: 'data' },
-    { name: 'SQL Server', size: 64, hue: 195, light: 54, category: 'data' },
-    { name: 'Apache NiFi', size: 62, hue: 195, light: 60, category: 'data' },
-    { name: 'MySQL', size: 60, hue: 195, light: 58, category: 'data' },
-    { name: 'Pandas', size: 56, hue: 195, light: 44, category: 'data' },
-    { name: 'NumPy', size: 52, hue: 195, light: 46, category: 'data' },
-    { name: 'Apache Airflow', size: 56, hue: 195, light: 64, category: 'data' },
-    { name: 'JDBC', size: 52, hue: 195, light: 48, category: 'data' },
-    { name: 'Cassandra', size: 50, hue: 195, light: 66, category: 'data' },
-    { name: 'AWS EKS', size: 84, hue: 230, light: 38, category: 'cloud' },
-    { name: 'Terraform', size: 74, hue: 230, light: 56, category: 'cloud' },
-    { name: 'Docker', size: 72, hue: 230, light: 44, category: 'cloud' },
-    { name: 'ECS', size: 58, hue: 230, light: 50, category: 'cloud' },
-    { name: 'Fargate', size: 54, hue: 230, light: 52, category: 'cloud' },
-    { name: 'Jenkins', size: 66, hue: 230, light: 62, category: 'cloud' },
-    { name: 'AWS S3', size: 64, hue: 230, light: 40, category: 'cloud' },
-    { name: 'IAM', size: 52, hue: 230, light: 46, category: 'cloud' },
-    { name: 'CloudWatch', size: 52, hue: 230, light: 48, category: 'cloud' },
-    { name: 'Spinnaker', size: 58, hue: 230, light: 34, category: 'cloud' },
-    { name: 'AWS RDS', size: 56, hue: 230, light: 60, category: 'cloud' },
-    { name: 'Maven', size: 50, hue: 230, light: 54, category: 'cloud' },
-    { name: 'Gradle', size: 48, hue: 230, light: 56, category: 'cloud' },
-    { name: 'Bamboo', size: 52, hue: 230, light: 68, category: 'cloud' },
-    { name: 'Linux', size: 58, hue: 230, light: 42, category: 'cloud' },
-    { name: 'GAIA', size: 48, hue: 230, light: 64, category: 'cloud' },
-    { name: 'PCF', size: 46, hue: 230, light: 66, category: 'cloud' },
-    { name: 'JUnit 5', size: 62, hue: 160, light: 42, category: 'tools' },
-    { name: 'Mockito', size: 54, hue: 160, light: 44, category: 'tools' },
-    { name: 'Selenium', size: 58, hue: 160, light: 48, category: 'tools' },
-    { name: 'Playwright', size: 54, hue: 160, light: 50, category: 'tools' },
-    { name: 'Git', size: 60, hue: 160, light: 38, category: 'tools' },
-    { name: 'GitHub', size: 60, hue: 160, light: 40, category: 'tools' },
-    { name: 'TestContainers', size: 50, hue: 160, light: 54, category: 'tools' },
-    { name: 'RestAssured', size: 48, hue: 160, light: 56, category: 'tools' },
-    { name: 'WireMock', size: 46, hue: 160, light: 60, category: 'tools' },
-    { name: 'JMeter', size: 46, hue: 160, light: 62, category: 'tools' },
-    { name: 'Bitbucket', size: 54, hue: 160, light: 44, category: 'tools' },
-    { name: 'Jira', size: 52, hue: 160, light: 50, category: 'tools' },
-    { name: 'Confluence', size: 50, hue: 160, light: 52, category: 'tools' },
-    { name: 'Splunk', size: 56, hue: 160, light: 62, category: 'tools' },
-    { name: 'Grafana', size: 54, hue: 160, light: 34, category: 'tools' },
-    { name: 'Prometheus', size: 52, hue: 160, light: 36, category: 'tools' },
-    { name: 'Postman', size: 56, hue: 160, light: 66, category: 'tools' },
-    { name: 'Swagger', size: 52, hue: 160, light: 46, category: 'tools' },
-    { name: 'Bruno', size: 48, hue: 160, light: 52, category: 'tools' },
-    { name: 'IntelliJ', size: 52, hue: 160, light: 56, category: 'tools' },
-    { name: 'Eclipse', size: 50, hue: 160, light: 58, category: 'tools' },
-    { name: 'VS Code', size: 52, hue: 160, light: 40, category: 'tools' },
-    { name: 'PyCharm', size: 48, hue: 160, light: 42, category: 'tools' },
-    { name: 'STS', size: 46, hue: 160, light: 44, category: 'tools' },
-    { name: 'GitHub Copilot', size: 68, hue: 340, light: 44, category: 'ai' },
-    { name: 'Prompting', size: 62, hue: 340, light: 50, category: 'ai' },
-    { name: 'Automating', size: 62, hue: 340, light: 56, category: 'ai' },
-    { name: 'Agents', size: 60, hue: 340, light: 40, category: 'ai' },
-  ];
+  const skillDefs = window.VD_DATA.skills;
 
   let activeCategory = null;
-  let soundOn = true;
-  let paused = false;
+  let soundOn = false;
+  let paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let audioCtx = null;
   let dragging = null, dragMoved = false, dragStart = { x: 0, y: 0 };
   const refs = [], popped = [];
@@ -134,6 +41,8 @@
   function popBubble(i) {
     if (popped[i]) return;
     popped[i] = true;
+    const status = document.getElementById('playground-status');
+    if (status) status.textContent = skillDefs[i].name + ' revealed.';
     playPop();
     const el = refs[i];
     const b = balls[i];
@@ -167,7 +76,8 @@
   }
 
   function makeBall(def) {
-    const w = 1000, h = 760;
+    const field = document.getElementById('ts-ball-field');
+    const w = field.clientWidth, h = field.clientHeight;
     const r = def.size / 2;
     return {
       x: r + Math.random() * (w - def.size),
@@ -182,14 +92,21 @@
     const field = document.getElementById('ts-ball-field');
     field.innerHTML = '';
     skillDefs.forEach((def, i) => {
-      const el = document.createElement('div');
+      const el = document.createElement('button');
+      el.type = 'button';
+      el.setAttribute('aria-label', 'Reveal ' + def.name);
       el.className = 'ts-ball';
       el.style.cssText = `position:absolute;top:0;left:0;will-change:transform;width:${def.size}px;height:${def.size}px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px;background:linear-gradient(155deg, oklch(${def.light}% 0.16 ${def.hue} / 0.34) 0%, oklch(${def.light}% 0.16 ${def.hue} / 0.16) 100%);border:1px solid rgba(255,255,255,0.75);box-shadow:0 8px 20px rgba(28,32,48,0.1), inset 0 12px 18px rgba(255,255,255,0.55), inset 0 -12px 20px rgba(28,32,48,0.06);cursor:grab;user-select:none;transition:box-shadow 0.2s, filter 0.2s, transform 0.22s ease-out, opacity 0.22s ease-out;`;
       const span = document.createElement('span');
       span.textContent = def.name;
       span.style.cssText = `font-size:${Math.max(11, Math.round(def.size / 7.2))}px;font-weight:700;color:oklch(${Math.max(24, def.light - 20)}% 0.13 ${def.hue});line-height:1.15;text-shadow:0 1px 1px rgba(255,255,255,0.4);`;
       el.appendChild(span);
-      el.addEventListener('mousedown', (e) => { dragging = i; dragMoved = false; dragStart = { x: e.clientX, y: e.clientY }; });
+      el.addEventListener('pointerdown', (e) => {
+        if (e.button !== 0) return;
+        dragging = i; dragMoved = false; dragStart = { x: e.clientX, y: e.clientY };
+        el.setPointerCapture(e.pointerId);
+      });
+      el.addEventListener('click', (e) => { if (e.detail === 0 && !popped[i]) popBubble(i); });
       field.appendChild(el);
       refs[i] = el;
     });
@@ -203,6 +120,7 @@
       const dimmed = activeCategory !== null && def.category !== activeCategory;
       el.style.filter = dimmed ? 'grayscale(0.85) opacity(0.28)' : '';
       el.style.pointerEvents = dimmed ? 'none' : '';
+      el.disabled = dimmed;
     });
   }
 
@@ -212,7 +130,7 @@
     const el = document.getElementById('ts-categories');
     el.innerHTML = categories.map((c) => {
       const active = activeCategory === c.key;
-      return `<div data-cat="${c.key}" style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 6px 13px; border-radius: 16px; cursor: pointer; background: ${active ? `oklch(52% 0.16 ${c.hue} / 0.14)` : 'transparent'}; color: ${active ? `oklch(30% 0.16 ${c.hue})` : '#5b6178'}; border: 1px solid ${active ? `oklch(52% 0.16 ${c.hue} / 0.45)` : 'rgba(28,32,48,0.14)'}; transition: background .2s, border-color .2s, color .2s;">
+      return `<button type="button" aria-pressed="${active}" data-cat="${c.key}" style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 6px 13px; border-radius: 16px; cursor: pointer; background: ${active ? `oklch(52% 0.16 ${c.hue} / 0.14)` : 'transparent'}; color: ${active ? `oklch(30% 0.16 ${c.hue})` : '#5b6178'}; border: 1px solid ${active ? `oklch(52% 0.16 ${c.hue} / 0.45)` : 'rgba(28,32,48,0.14)'}; transition: background .2s, border-color .2s, color .2s;">
         <span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(52% 0.16 ${c.hue}); flex-shrink: 0;"></span>
         ${c.label}
       </div>`;
@@ -223,6 +141,7 @@
         activeCategory = activeCategory === key ? null : key;
         renderCategories();
         applyDim();
+        el.querySelector(`[data-cat="${key}"]`).focus();
       });
     });
   }
@@ -230,6 +149,9 @@
   function renderControls() {
     document.getElementById('ts-sound-btn').innerHTML = soundOn ? ICON_SOUND_ON : ICON_SOUND_OFF;
     document.getElementById('ts-pause-btn').innerHTML = paused ? ICON_PLAY : ICON_PAUSE;
+    document.getElementById('ts-sound-btn').setAttribute('aria-pressed', String(soundOn));
+    document.getElementById('ts-pause-btn').setAttribute('aria-pressed', String(paused));
+    document.getElementById('ts-pause-btn').setAttribute('aria-label', paused ? 'Resume motion' : 'Pause motion');
   }
 
   function resetAll() {
@@ -257,7 +179,7 @@
   }
 
   function step() {
-    if (fieldEl && !paused) {
+    if (fieldEl && !paused && !document.hidden && !document.getElementById('stack-playground').hidden) {
       const w = fieldEl.clientWidth, h = fieldEl.clientHeight;
       balls.forEach((b, i) => {
         if (i === dragging || popped[i]) return;
@@ -323,7 +245,7 @@
     document.getElementById('ts-pause-btn').addEventListener('click', () => { paused = !paused; renderControls(); });
     document.getElementById('ts-reset-btn').addEventListener('click', resetAll);
 
-    window.addEventListener('mousemove', (e) => {
+    window.addEventListener('pointermove', (e) => {
       if (dragging === null) return;
       const dx = e.clientX - dragStart.x, dy = e.clientY - dragStart.y;
       if (Math.abs(dx) + Math.abs(dy) > 5) dragMoved = true;
@@ -332,10 +254,11 @@
       b.x = e.clientX - rect.left; b.y = e.clientY - rect.top;
       b.vx = 0; b.vy = 0;
     });
-    window.addEventListener('mouseup', () => {
+    window.addEventListener('pointerup', () => {
       if (dragging !== null && !dragMoved) popBubble(dragging);
       dragging = null;
     });
+    window.addEventListener('pointercancel', () => { dragging = null; });
 
     requestAnimationFrame(step);
   }

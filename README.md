@@ -1,5 +1,31 @@
 # Vishal Dasari Portfolio — Next.js
 
+## Colorful redesign (`develop-redesign`)
+
+The homepage is a focused landing page. Navigation leads to separate About,
+Experience (including six project dialogs), Certifications, Tech Stack, Contact,
+and Blog pages. The journal and article pages use the same navigation as the rest
+of the site. Existing portraits, credential logos, article covers, résumé, article
+bodies, contact integration, and server APIs are retained.
+
+- `public/css/redesign.css`: shared palette, typography, responsive layout, and reduced-motion support.
+- `public/js/redesign.js`: mobile navigation, accessible project dialogs, tool-list/playground switch, journal search and filters, and presentation accessibility.
+- `public/js/portfolio-data.js`: shared roles, projects, credentials, tool definitions, and journal index metadata.
+- `public/html/`: static page markup and metadata; edit this markup when changing page content.
+- `public/js/blog-posts-data.js`: original article bodies and interactive content.
+- `public/js/tech-stack.js`: optional playground, loaded only when selected; sound starts off and reduced-motion preferences are honored.
+- `app/not-found.js`: matching error page with the original dog mascot.
+
+Run `npm run check:site` to validate page landmarks, headings, linked local
+assets/routes, and article title consistency. Run `npm run build` before pushing.
+Never enter production credentials into committed files. Live database reads and
+writes require the existing Vercel environment variables; contact verification
+also depends on the configured Cloudflare Turnstile hostname allowlist.
+
+This redesign belongs only on `develop-redesign` until explicitly promoted.
+The retained older page-specific style modules and partials still support the
+administration interface; public redesigned pages use the shared stylesheet.
+
 Static, framework-free HTML/JS site served through Next.js rewrites (so it deploys anywhere Next.js does, with clean URLs).
 
 ## Run it

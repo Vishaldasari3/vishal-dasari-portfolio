@@ -1,99 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<!-- Google Analytics (GA4) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-S73TQJT3TC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-S73TQJT3TC');
-</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Blog — Vishal Dasari</title>
-<link rel="icon" type="image/png" href="../../favicon.png">
-<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
-<meta name="description" content="A look at how AI agents have changed day-to-day software engineering in 2026.">
+<title>What Coding With AI Agents Actually Looks Like in 2026 — Vishal Dasari</title>
+<meta name="description" content="Less typing, more deciding — a year of working alongside agents changed the actual shape of my job.">
+<link rel="canonical" href="https://www.dasarivishal.com/blog/ai-in-2026">
 <meta property="og:title" content="What Coding With AI Agents Actually Looks Like in 2026 — Vishal Dasari">
-<meta property="og:description" content="A look at how AI agents have changed day-to-day software engineering in 2026.">
+<meta property="og:description" content="Less typing, more deciding — a year of working alongside agents changed the actual shape of my job.">
 <meta property="og:type" content="article">
-<meta property="og:image" content="../../apple-touch-icon.png">
+<meta property="og:url" content="https://www.dasarivishal.com/blog/ai-in-2026">
+<meta property="og:image" content="https://www.dasarivishal.com/apple-touch-icon.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="What Coding With AI Agents Actually Looks Like in 2026 — Vishal Dasari">
-<meta name="twitter:description" content="A look at how AI agents have changed day-to-day software engineering in 2026.">
+<link rel="icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-<link rel="preload" as="image" href="../../assets/blog-ai-coding-cover.jpg">
-<link rel="stylesheet" href="../../partials/partials.css">
-<script src="../../js/styles/blog-post-shared-styles.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="/js/styles/blog-post-shared-styles.js">
+</script>
+<link rel="stylesheet" href="/css/redesign.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S73TQJT3TC">
+</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S73TQJT3TC');</script>
 </head>
-<body data-page="blog" data-slug="ai-in-2026">
-
-<div id="site-header"></div>
-<div id="site-header-spacer" style="height: 82px;"></div>
-<div style="position: fixed; top: 82px; left: 0; right: 0; height: 3px; background: rgba(28,32,48,0.06); z-index: 49;"><div id="bp-progress" style="height: 100%; width: 100%; transform-origin: left; transform: scaleX(0); background: linear-gradient(90deg, #3654e0, #7c5cff); transition: transform .1s linear;"></div></div>
-
-<!-- hero band -->
-<div style="padding: 28px 24px 4px; position: relative; overflow: hidden;">
-  <div id="bp-hero" style="max-width: 1400px; margin: 0 auto; position: relative; overflow: hidden; background: linear-gradient(150deg, rgba(233,237,251,0.88) 0%, rgba(243,240,254,0.88) 52%, rgba(232,246,253,0.88) 100%); backdrop-filter: blur(24px) saturate(1.5); -webkit-backdrop-filter: blur(24px) saturate(1.5); border: 1px solid rgba(54,84,224,0.12); border-radius: 24px; padding: clamp(16px, 1.8vw, 22px) clamp(18px, 3vw, 36px); box-shadow: 0 2px 0 rgba(255,255,255,0.65) inset, 0 40px 80px -32px rgba(30,40,80,0.25), 0 2px 24px rgba(30,40,80,0.05); z-index: 1;">
-    <canvas id="hero-icosa-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
-    <div style="max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; position: relative; z-index: 1;">
-      <a href="/blog" style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: #3654e0; width: fit-content;">
-        <svg width="14" height="11" viewBox="0 0 16 12" fill="none"><path d="M15 6H2M6 1 1 6l5 5" stroke="#3654e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        All posts
-      </a>
-      <span id="bp-tag" style="font-size: 11px; font-weight: 600; color: #3654e0; background: rgba(54,84,224,0.1); border: 1px solid rgba(54,84,224,0.15); padding: 4px 11px; border-radius: 16px;"></span>
-      <div class="hx-title-line" style="overflow: hidden;"><div id="bp-title" class="hx-title-inner" style="font-size: clamp(21px, 1.9vw, 28px); font-weight: 700; color: #101223; line-height: 1.24; letter-spacing: -0.4px;"></div></div>
-      <div id="bp-subtitle" style="font-size: 15px; color: #565c78; line-height: 1.55; max-width: 46em;"></div>
-      <div id="bp-meta" class="hx-desc" style="font-size: 13px; color: #63677c;"></div>
-      <div class="hx-divider" style="margin-top: 2px;"></div>
-    </div>
-  </div>
+<body id="top" data-page="blog" data-slug="ai-in-2026">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="nav-wrap">
+<a class="brand" href="/" aria-label="Vishal Dasari — home">
+<span class="brand-mark">VD</span>
+<span>Vishal Dasari</span>
+</a>
+<button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
+<span>
+</span>
+<span>
+</span>
+</button>
+<nav id="primary-nav" aria-label="Main navigation">
+<a href="/about" >About</a>
+<a href="/experience" >Experience</a>
+<a href="/certifications" >Certs</a>
+<a href="/tech-stack" >Tech Stack</a>
+<a href="/blog" aria-current="page">Blog</a>
+<a class="nav-contact" href="/contact" >Let’s talk <span aria-hidden="true">↗</span>
+</a>
+</nav>
 </div>
-
-<!-- body -->
-<div id="bp-content" style="max-width: 1180px; margin: 0 auto; padding: 56px 24px 40px; display: grid; grid-template-columns: minmax(0, 720px) 260px; gap: 56px; align-items: start; justify-content: center;">
-  <article style="display: flex; flex-direction: column; gap: 24px; min-width: 0;">
-    <div style="width: 100%; aspect-ratio: 16/9; border-radius: 18px; overflow: hidden; margin-bottom: 8px; border: 1px solid rgba(28,32,48,0.08); box-shadow: 0 24px 48px -28px rgba(30,40,80,0.3);">
-      <img id="bp-cover" src="../../assets/blog-ai-coding-cover.jpg" alt="" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;" />
-    </div>
-    <div id="bp-body" style="display: flex; flex-direction: column; gap: 22px;"></div>
-    <div id="bp-reactions" style="margin-top: 4px;"></div>
-    <div id="bp-comments" style="margin-top: 12px; padding-top: 28px; border-top: 1px solid rgba(28,32,48,0.08);"></div>
-  </article>
-  <aside id="bp-sidebar" style="position: sticky; top: 104px; display: flex; flex-direction: column; gap: 18px;">
-    <div id="bp-toc" style="display: none; flex-direction: column; gap: 10px; padding: 18px 20px; border-radius: 16px; background: rgba(255,255,255,0.7); border: 1px solid rgba(28,32,48,0.08);">
-      <div style="font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #9096a8;">On This Page</div>
-      <div id="bp-toc-list" style="display: flex; flex-direction: column; gap: 8px;"></div>
-    </div>
-    <div id="bp-author-card" style="display: flex; flex-direction: column; gap: 12px; padding: 20px; border-radius: 16px; background: rgba(255,255,255,0.7); border: 1.5px solid rgba(54,84,224,0.35); box-shadow: 0 0 0 1px rgba(54,84,224,0.15), 0 0 22px rgba(54,84,224,0.22); width: 100%;">
-      <div style="display: flex; align-items: center; gap: 12px;">
-        <div style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 11px; background: linear-gradient(135deg, #3654e0, #7c5cff); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800; color: #fff;">VD</div>
-        <div>
-          <div style="font-size: 13.5px; font-weight: 600; color: #14162b;">Vishal Dasari</div>
-          <div style="font-size: 11.5px; color: #9096a8;">Senior Software Engineer</div>
-        </div>
-      </div>
-      <a href="/blog" style="display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: #3654e0;">
-        More posts
-        <svg width="14" height="11" viewBox="0 0 16 12" fill="none"><path d="M1 6h13M9 1l5 5-5 5" stroke="#3654e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-  </aside>
+</header>
+<main id="main" class="page-main">
+<div class="reading-progress" aria-hidden="true">
+<div id="bp-progress">
 </div>
-
-<div id="site-footer"></div>
-
-<script src="../../js/three-scenes.js"></script>
-<script src="../../js/blog-header.js"></script>
-<script src="../../js/common.js"></script>
-<script src="../../js/cursor-effects.js"></script>
-<script src="../../js/blog-posts-data.js"></script>
-<script src="../../js/blog-post.js"></script>
-<script src="../../js/blog-reactions.js"></script>
-<script src="../../js/blog-comments.js"></script>
+</div>
+<section class="article-hero" id="bp-hero">
+<a class="text-link" href="/blog">← All notes</a>
+<p class="eyebrow" id="bp-tag">Tech</p>
+<h1 id="bp-title">What Coding With AI Agents Actually Looks Like in 2026</h1>
+<p id="bp-subtitle">Less typing, more deciding — a year of working alongside agents changed the actual shape of my job.</p>
+<p class="article-meta" id="bp-meta">Apr 2026 · 2 min read</p>
+</section>
+<div id="bp-content" class="article-layout">
+<article>
+<img class="article-cover" id="bp-cover" src="/assets/blog-ai-coding-cover.jpg" alt="What Coding With AI Agents Actually Looks Like in 2026" fetchpriority="high" width="1600" height="900">
+<div id="bp-body" class="article-body">
+</div>
+<div id="bp-reactions">
+</div>
+<div id="bp-comments">
+</div>
+</article>
+<aside id="bp-sidebar">
+<div id="bp-toc" style="display:none">
+<p class="eyebrow">On this page</p>
+<nav id="bp-toc-list" aria-label="Article contents">
+</nav>
+</div>
+<div id="bp-author-card">
+<img src="/assets/headshot.png" alt="" width="56" height="56">
+<h3>Vishal Dasari</h3>
+<p>Senior Software Engineer.<br>Always building, always learning.</p>
+<a class="text-link" href="/about">Meet the author <span aria-hidden="true">↗</span>
+</a>
+</div>
+</aside>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-top">
+<a class="brand" href="/">
+<span class="brand-mark">VD</span>
+<span>Vishal Dasari</span>
+</a>
+<p>Always building. Always learning.</p>
+<div class="social-links">
+<a href="https://github.com/Vishaldasari3" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span>
+</a>
+<a href="https://www.linkedin.com/in/vishaldasari3/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span>
+</a>
+<a href="https://topmate.io/vishal_dasari3" target="_blank" rel="noopener noreferrer">Topmate <span aria-hidden="true">↗</span>
+</a>
+</div>
+</div>
+<div class="footer-bottom">
+<span>© 2026 Vishal Dasari</span>
+<span>Built with curiosity. Made to last.</span>
+<a href="#top">Back to top ↑</a>
+</div>
+</footer>
+<script src="/js/portfolio-data.js">
+</script>
+<script src="/js/redesign.js">
+</script>
+<script src="/js/blog-posts-data.js">
+</script>
+<script src="/js/blog-post.js">
+</script>
+<script src="/js/blog-reactions.js">
+</script>
+<script src="/js/blog-comments.js">
+</script>
 </body>
 </html>

@@ -1,243 +1,198 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<!-- Google Analytics (GA4) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-S73TQJT3TC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-S73TQJT3TC');
-</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact — Vishal Dasari</title>
-<link rel="icon" type="image/png" href="../favicon.png">
-<link rel="apple-touch-icon" href="../apple-touch-icon.png">
-<meta name="description" content="Get in touch with Vishal Dasari for opportunities, collaborations, or a conversation.">
+<meta name="description" content="Get in touch with Vishal Dasari for opportunities, collaborations, or mentoring.">
+<link rel="canonical" href="https://www.dasarivishal.com/contact">
 <meta property="og:title" content="Contact — Vishal Dasari">
-<meta property="og:description" content="Get in touch with Vishal Dasari for opportunities, collaborations, or a conversation.">
+<meta property="og:description" content="Get in touch with Vishal Dasari for opportunities, collaborations, or mentoring.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="../apple-touch-icon.png">
+<meta property="og:url" content="https://www.dasarivishal.com/contact">
+<meta property="og:image" content="https://www.dasarivishal.com/apple-touch-icon.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Contact — Vishal Dasari">
-<meta name="twitter:description" content="Get in touch with Vishal Dasari for opportunities, collaborations, or a conversation.">
+<link rel="icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-<link rel="stylesheet" href="../partials/partials.css">
-<script src="../js/styles/contact-styles.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/redesign.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S73TQJT3TC">
+</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S73TQJT3TC');</script>
 </head>
-<body data-page="contact">
-
-<div id="site-header"></div>
-<div id="site-header-spacer" style="height: 82px;"></div>
-
-<!-- hero band -->
-<div style="padding: 28px 24px 4px; position: relative; overflow: hidden;">
-  <div id="hero-card" style="max-width: 1400px; margin: 0 auto; position: relative; background: linear-gradient(150deg, rgba(233,237,251,0.88) 0%, rgba(243,240,254,0.88) 52%, rgba(232,246,253,0.88) 100%); backdrop-filter: blur(24px) saturate(1.5); -webkit-backdrop-filter: blur(24px) saturate(1.5); border: 1px solid rgba(54,84,224,0.12); border-radius: 28px; padding: clamp(18px, 2.2vw, 26px) clamp(18px, 3vw, 36px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; box-shadow: 0 2px 0 rgba(255,255,255,0.65) inset, 0 40px 80px -32px rgba(30,40,80,0.25), 0 2px 24px rgba(30,40,80,0.05); z-index: 1; overflow: hidden;">
-    <canvas id="hero-icosa-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;"></canvas>
-    <div style="position: absolute; top: -120px; left: 8%; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(54,84,224,0.16), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
-    <div style="position: absolute; bottom: -140px; right: 6%; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(124,92,255,0.13), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
-    <div class="hx-icon" style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #3654e0, #7c5cff); display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 26px -10px rgba(54,84,224,0.55);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7L22 6"/></svg></div>
-    <div class="hx-crumb" style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: rgba(20,22,40,0.4); letter-spacing: 0.3px;">Vishal Dasari <span style="opacity: 0.5;">/</span> <span style="color: #3654e0;">Contact</span></div>
-    <div class="hx-title-line" style="overflow: hidden;"><div class="hx-title-inner" style="font-size: clamp(26px, 3vw, 40px); font-weight: 700; color: #101223; line-height: 1.1; letter-spacing: -1px; max-width: 640px;">Let's build something great.</div></div>
-    <div class="hx-desc" style="font-size: 14px; color: #63677c; line-height: 1.6; max-width: 480px;">Open to new opportunities, collaborations, career mentoring, and interesting conversations about software, cloud, and AI.</div>
-    <div class="hx-divider" style="margin-top: 4px;"></div>
-  </div>
+<body id="top" data-page="contact" >
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="nav-wrap">
+<a class="brand" href="/" aria-label="Vishal Dasari — home">
+<span class="brand-mark">VD</span>
+<span>Vishal Dasari</span>
+</a>
+<button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
+<span>
+</span>
+<span>
+</span>
+</button>
+<nav id="primary-nav" aria-label="Main navigation">
+<a href="/about" >About</a>
+<a href="/experience" >Experience</a>
+<a href="/certifications" >Certs</a>
+<a href="/tech-stack" >Tech Stack</a>
+<a href="/blog" >Blog</a>
+<a class="nav-contact" href="/contact" aria-current="page">Let’s talk <span aria-hidden="true">↗</span>
+</a>
+</nav>
 </div>
-
-<!-- ===== Get in touch (redesigned: aurora + glass card) ===== -->
-<div id="ct-section" style="max-width: 1400px; margin: 52px auto 40px; padding: 0 24px; position: relative; z-index: 2;">
-  <div id="ct-card" style="position: relative; border-radius: 36px; overflow: hidden; padding: clamp(20px, 3vw, 42px); background: linear-gradient(135deg, #eef2ff 0%, #f3f0ff 46%, #f0ecff 72%, #eafaff 100%); box-shadow: 0 44px 110px -44px rgba(40,50,90,0.28), 0 2px 0 rgba(255,255,255,0.7) inset; border: 1px solid rgba(54,84,224,0.1);">
-
-    <div class="ct-blob" style="position:absolute; top:-150px; left:-90px; width:540px; height:540px; border-radius:50%; background:radial-gradient(circle, rgba(54,84,224,0.28), transparent 65%); filter:blur(30px); animation:ct-aurora1 14s ease-in-out infinite; pointer-events:none;"></div>
-    <div class="ct-blob" style="position:absolute; bottom:-170px; right:-70px; width:480px; height:480px; border-radius:50%; background:radial-gradient(circle, rgba(124,92,255,0.24), transparent 65%); filter:blur(30px); animation:ct-aurora2 17s ease-in-out infinite; pointer-events:none;"></div>
-    <div class="ct-blob" style="position:absolute; top:28%; right:24%; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle, rgba(34,221,245,0.2), transparent 65%); filter:blur(42px); animation:ct-aurora3 20s ease-in-out infinite; pointer-events:none;"></div>
-    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(54,84,224,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(54,84,224,0.05) 1px, transparent 1px); background-size:44px 44px; mask-image:radial-gradient(ellipse 80% 80% at 50% 25%, #000 20%, transparent 92%); -webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 25%, #000 20%, transparent 92%); pointer-events:none;"></div>
-
-    <!-- eyebrow -->
-    <div style="position:relative; z-index:1; display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap; margin:4px 10px 24px;">
-      <div style="display:flex; align-items:center; gap:12px;">
-        <span style="font-family:'Syne',sans-serif; font-size:13px; font-weight:800; color:#3654e0; letter-spacing:2px;">01</span>
-        <span style="font-size:12px; font-weight:600; letter-spacing:1.8px; text-transform:uppercase; color:#1c2030;">Get in touch</span>
-      </div>
-      <div style="display:inline-flex; align-items:center; gap:8px; font-size:12.5px; color:#9096a8;">
-        <span style="width:6px; height:6px; border-radius:50%; background:#22ddf5; box-shadow:0 0 10px #22ddf5;"></span>
-        Usually replies within 24 hours
-      </div>
-    </div>
-
-    <!-- glass card -->
-    <div id="ct-split" style="position:relative; z-index:1; display:grid; grid-template-columns:0.85fr 1.15fr; border-radius:28px; overflow:hidden; border:1px solid rgba(255,255,255,0.16); background:rgba(255,255,255,0.06); backdrop-filter:blur(22px) saturate(1.4); -webkit-backdrop-filter:blur(22px) saturate(1.4); background:rgba(255,255,255,0.55); border:1px solid rgba(54,84,224,0.14); box-shadow:0 34px 80px -34px rgba(40,50,90,0.3), 0 1px 0 rgba(255,255,255,0.8) inset;">
-
-  <!-- left: info panel -->
-  <div id="ct-left" style="background: linear-gradient(160deg, rgba(238,242,255,0.85) 0%, rgba(247,249,255,0.7) 55%, rgba(234,250,255,0.85) 100%); padding: 56px 48px; min-height: 560px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; color: #1c2030; border-right: 1px solid rgba(28,32,48,0.08);">
-
-    <div style="position: relative; z-index: 1; display: flex; flex-direction: column; gap: 22px;">
-      <span style="display: inline-flex; align-items: center; gap: 9px; width: fit-content; font-size: 13px; font-weight: 600; color: #1f8a5b; background: rgba(31,138,91,0.1); border: 1px solid rgba(31,138,91,0.28); padding: 8px 15px; border-radius: 22px;">
-        <span id="ct-avail-dot" style="width: 7px; height: 7px; border-radius: 50%; background: #1f8a5b; display: inline-block;"></span>
-        Open to opportunities
-      </span>
-      <div style="font-family: 'Syne', sans-serif; font-size: 34px; font-weight: 800; line-height: 1.15; letter-spacing: -0.8px; color: #14162b;">Let's turn ideas<br/>into <span style="background: linear-gradient(93deg, #3654e0, #22a8d8); -webkit-background-clip: text; background-clip: text; color: transparent;">impact.</span></div>
-      <div style="font-size: 15px; color: #565d73; line-height: 1.75; max-width: 380px;">Whether it's a role, a project, career mentoring, or just a good conversation about tech &mdash; I'd love to hear from you. Every great build starts with a simple hello.</div>
-      <div style="font-size: 13.5px; color: #9096a8; line-height: 1.6; max-width: 380px;">Typically replies within 24 hours &mdash; reach out through any of the channels below.</div>
-    </div>
-
-    <div style="position: relative; z-index: 1; display: flex; flex-direction: column; gap: 12px; margin-top: 40px;">
-      <div class="ct-chan" style="display: flex; align-items: center; gap: 14px; padding: 13px 15px; border-radius: 16px; background: rgba(255,255,255,0.72); border: 1px solid rgba(28,32,48,0.1);">
-        <div style="width: 44px; height: 44px; border-radius: 13px; background: rgba(54,84,224,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3654e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ct-anim-mail" style="overflow: visible;"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path class="mail-flap" d="M3 7l9 6 9-6"/></svg>
-        </div>
-        <div style="min-width: 0;">
-          <div style="font-size: 11.5px; color: #9096a8;">Email</div>
-          <a href="mailto:hello@dasarivishal.com" style="font-size: 14.5px; font-weight: 500; color: #1c2030;">hello@dasarivishal.com</a>
-        </div>
-        <button id="ct-copy-email" type="button" data-email="hello@dasarivishal.com" aria-label="Copy email address" style="margin-left: auto; flex-shrink: 0;">
-          <svg class="ic-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-          <svg class="ic-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-        </button>
-      </div>
-      <div class="ct-chan" style="display: flex; align-items: center; gap: 14px; padding: 13px 15px; border-radius: 16px; background: rgba(255,255,255,0.72); border: 1px solid rgba(28,32,48,0.1);">
-        <div style="width: 44px; height: 44px; border-radius: 13px; background: rgba(54,84,224,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3654e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ct-anim-pin" style="overflow: visible;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
-        <div>
-          <div style="font-size: 11.5px; color: #9096a8;">Location</div>
-          <div style="font-size: 14.5px; font-weight: 500;">United States</div>
-        </div>
-      </div>
-      <div class="ct-chan" style="display: flex; align-items: center; gap: 14px; padding: 13px 15px; border-radius: 16px; background: rgba(255,255,255,0.72); border: 1px solid rgba(28,32,48,0.1);">
-        <div style="width: 44px; height: 44px; border-radius: 13px; background: rgba(54,84,224,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3654e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path class="clock-hr" d="M12 12l3 1.6" style="transform-box: view-box; transform-origin: 12px 12px;"/><path class="clock-min" d="M12 12V6.6" style="transform-box: view-box; transform-origin: 12px 12px;"/></svg>
-        </div>
-        <div>
-          <div style="font-size: 11.5px; color: #9096a8;">Local time</div>
-          <div style="font-size: 14.5px; font-weight: 500;"><span id="ct-tz-time">&mdash;</span></div>
-        </div>
-      </div>
-
-      <div id="ct-socials" style="display: flex; align-items: center; gap: 12px; margin-top: 14px;">
-        <a href="https://www.linkedin.com/in/vishaldasari3/" target="_blank" aria-label="LinkedIn" data-tip="LinkedIn" class="hv7 ct-tip" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; overflow: visible;">
-          <img src="../assets/icon-linkedin.png" alt="LinkedIn" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
-        </a>
-        <a href="https://github.com/Vishaldasari3" target="_blank" aria-label="GitHub" data-tip="GitHub" class="hv8 ct-tip" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; overflow: visible;">
-          <img src="../assets/icon-github.png" alt="GitHub" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
-        </a>
-        <a href="https://topmate.io/vishal_dasari3" target="_blank" aria-label="Topmate" data-tip="Book on Topmate" class="hv9 ct-tip" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; overflow: visible;">
-          <img src="../assets/icon-topmate.png" alt="Topmate" style="width: 100%; height: 100%; object-fit: cover;" />
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- right: form -->
-  <div id="ct-right" style="background: rgba(255,255,255,0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding: 56px 60px; display: flex; flex-direction: column; justify-content: center; gap: 22px; position: relative;">
-    <div style="position: absolute; bottom: 24px; right: 32px; font-family: 'Syne', sans-serif; font-size: 64px; font-weight: 800; color: rgba(28,32,48,0.05); line-height: 1; pointer-events: none; user-select: none; z-index: 0;">&#10148;</div>
-    <div style="position: relative; z-index: 1;">
-      <div style="font-size: 11.5px; font-weight: 600; color: #7a8199; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 10px;">02 &mdash; Direct Line</div>
-      <div style="font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: #14162b; letter-spacing: -0.5px;">Send a message</div>
-      <div style="font-size: 14px; color: #9096a8; margin-top: 8px;">Fill in the form and I'll get back to you shortly.</div>
-    </div>
-
-    <div id="ct-field-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-      <div style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;" aria-hidden="true">
-        <label for="ct-hp">Leave this field empty</label>
-        <input type="text" id="ct-hp" name="_gotcha" tabindex="-1" autocomplete="off" />
-      </div>
-      <div>
-        <div style="position: relative;">
-          <input type="text" placeholder=" " id="ct-name" name="name" style="width: 100%; border: 1.5px solid rgba(28,32,48,0.12); border-radius: 14px; padding: 26px 42px 10px 16px; font-size: 14px; color: #1c2030; background: rgba(250,251,253,0.7);" />
-          <label for="ct-name" style="position: absolute; left: 16px; top: 10px; font-size: 11px; font-weight: 600; color: #9096a8; pointer-events: none; transition: 0.15s;">Name</label>
-          <span id="ct-name-status" class="ct-status" style="display: none;"></span>
-        </div>
-        <div id="ct-name-error" style="display: none; font-size: 12px; color: #e0435a; margin-top: 6px;"></div>
-      </div>
-      <div>
-        <div style="position: relative;">
-          <input type="email" placeholder=" " id="ct-email" name="email" style="width: 100%; border: 1.5px solid rgba(28,32,48,0.12); border-radius: 14px; padding: 26px 42px 10px 16px; font-size: 14px; color: #1c2030; background: rgba(250,251,253,0.7);" />
-          <label for="ct-email" style="position: absolute; left: 16px; top: 10px; font-size: 11px; font-weight: 600; color: #9096a8; pointer-events: none; transition: 0.15s;">Email</label>
-          <span id="ct-email-status" class="ct-status" style="display: none;"></span>
-        </div>
-        <div id="ct-email-error" style="display: none; font-size: 12px; color: #e0435a; margin-top: 6px;"></div>
-      </div>
-    </div>
-
-    <div>
-      <div style="position: relative;">
-        <select id="ct-inquiry" name="inquiry" style="width: 100%; border: 1.5px solid rgba(28,32,48,0.12); border-radius: 14px; padding: 31px 40px 11px 16px; font-size: 14px; color: #1c2030; background: rgba(250,251,253,0.7); font-family: 'Poppins', sans-serif; appearance: none; -webkit-appearance: none; -moz-appearance: none; cursor: pointer; transition: border-color .25s, box-shadow .25s, background .25s; outline: none;">
-          <option value="General inquiry">General inquiry</option>
-          <option value="Job opportunity">Job opportunity</option>
-          <option value="Project / collaboration">Project / collaboration</option>
-          <option value="Career mentoring">Career mentoring</option>
-          <option value="Other">Other</option>
-        </select>
-        <label for="ct-inquiry" style="position: absolute; left: 16px; top: 10px; font-size: 11px; font-weight: 600; color: #9096a8; pointer-events: none;">Inquiry type</label>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9096a8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); pointer-events: none;"><path d="M6 9l6 6 6-6"/></svg>
-      </div>
-    </div>
-
-    <div>
-      <div style="position: relative;">
-        <input type="text" placeholder=" " id="ct-subject" name="subject" style="width: 100%; border: 1.5px solid rgba(28,32,48,0.12); border-radius: 14px; padding: 26px 42px 10px 16px; font-size: 14px; color: #1c2030; background: rgba(250,251,253,0.7);" />
-        <label for="ct-subject" style="position: absolute; left: 16px; top: 10px; font-size: 11px; font-weight: 600; color: #9096a8; pointer-events: none; transition: 0.15s;">Subject</label>
-        <span id="ct-subject-status" class="ct-status" style="display: none;"></span>
-      </div>
-      <div id="ct-subject-error" style="display: none; font-size: 12px; color: #e0435a; margin-top: 6px;"></div>
-    </div>
-
-    <div>
-      <div style="position: relative;">
-        <textarea placeholder=" " id="ct-message" name="message" rows="5" style="width: 100%; border: 1.5px solid rgba(28,32,48,0.12); border-radius: 14px; padding: 30px 42px 12px 16px; font-size: 14px; color: #1c2030; background: rgba(250,251,253,0.7); resize: vertical;"></textarea>
-        <label for="ct-message" style="position: absolute; left: 16px; top: 10px; font-size: 11px; font-weight: 600; color: #9096a8; pointer-events: none; transition: 0.15s;">Message</label>
-        <span id="ct-message-status" class="ct-status" style="display: none; top: 24px; transform: none;"></span>
-      </div>
-      <div id="ct-message-error" style="display: none; font-size: 12px; color: #e0435a; margin-top: 6px;"></div>
-    </div>
-
-    <button id="ct-send" class="hv14 cta-sheen ct-send-btn" style="width: auto; min-width: 250px; align-self: center; display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; background: linear-gradient(100deg, #3654e0 0%, #2ea8ff 56%, #06d6f0 100%); color: #ffffff; font-weight: 600; font-size: 14.5px; letter-spacing: 0.2px; padding: 6px 6px 6px 22px; border-radius: 14px; border: none; cursor: pointer; margin-top: 6px; box-shadow: 0 12px 26px -12px rgba(54,84,224,0.55), inset 0 1px 0 rgba(255,255,255,0.3); transition: transform 0.2s, box-shadow 0.2s, background 0.3s; position: relative; z-index: 1; overflow: hidden;">
-      <span id="ct-send-label">Send it my way</span>
-      <span class="ct-send-ico" style="display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 11px; background: #ffffff; box-shadow: 0 8px 20px -6px rgba(6,20,60,0.35); transition: transform 0.3s cubic-bezier(.22,1,.36,1), box-shadow 0.3s; flex-shrink: 0;">
-        <svg id="ct-spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" style="display: none; animation: ct-spin 0.7s linear infinite;"><circle cx="12" cy="12" r="9" stroke="rgba(54,84,224,0.25)" stroke-width="3"/><path d="M21 12a9 9 0 0 0-9-9" stroke="#3654e0" stroke-width="3" stroke-linecap="round"/></svg>
-        <svg id="ct-send-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3654e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-      </span>
-    </button>
-    <div class="cf-turnstile" data-sitekey="0x4AAAAAAD4AxnTPERnJq4UL" style="position: relative; z-index: 1;"></div>
-
-    <div id="ct-sent-msg" style="display: none; font-size: 14px; color: #1f8a5b; background: #e9f7ef; border-radius: 10px; padding: 12px 16px;">Thanks &mdash; this is a demo form, but your message would be on its way!</div>
-    <div id="ct-top-error" style="display: none; font-size: 14px; color: #e0435a; background: #fdecee; border-radius: 10px; padding: 12px 16px;">Please fix the highlighted fields above.</div>
-
-    <div id="ct-success" style="display: none; position: absolute; inset: 0; z-index: 5; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 16px; padding: 40px;">
-      <div class="ct-s-badge" style="position: relative; width: 108px; height: 108px; border-radius: 50%; background: radial-gradient(circle at 50% 40%, rgba(31,138,91,0.16), rgba(31,138,91,0.06)); display: flex; align-items: center; justify-content: center;">
-        <span class="ct-s-ring" style="position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(31,138,91,0.5);"></span>
-        <svg width="72" height="72" viewBox="0 0 88 88">
-          <circle class="ct-s-circle" cx="44" cy="44" r="38" fill="none" stroke="#1f8a5b" stroke-width="5" pathLength="1" style="stroke-dasharray: 1; stroke-dashoffset: 1;"/>
-          <path class="ct-s-check" d="M28 46 L40 58 L62 32" fill="none" stroke="#1f8a5b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" pathLength="1" style="stroke-dasharray: 1; stroke-dashoffset: 1;"/>
-        </svg>
-        <span class="ct-conf" style="--tx:-64px;--ty:-40px; position:absolute; top:50%; left:50%; width:8px; height:8px; border-radius:2px; background:#3654e0;"></span>
-        <span class="ct-conf" style="--tx:60px;--ty:-48px; position:absolute; top:50%; left:50%; width:7px; height:7px; border-radius:50%; background:#7c5cff;"></span>
-        <span class="ct-conf" style="--tx:-72px;--ty:26px; position:absolute; top:50%; left:50%; width:6px; height:6px; border-radius:50%; background:#22ddf5;"></span>
-        <span class="ct-conf" style="--tx:70px;--ty:34px; position:absolute; top:50%; left:50%; width:8px; height:8px; border-radius:2px; background:#2ee6a0;"></span>
-        <span class="ct-conf" style="--tx:8px;--ty:-74px; position:absolute; top:50%; left:50%; width:7px; height:7px; border-radius:50%; background:#3654e0;"></span>
-        <span class="ct-conf" style="--tx:-20px;--ty:72px; position:absolute; top:50%; left:50%; width:6px; height:6px; border-radius:2px; background:#7c5cff;"></span>
-      </div>
-      <div class="ct-s-title" style="font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; color: #14162b; letter-spacing: -0.5px;">Message sent!</div>
-      <div class="ct-s-sub" style="font-size: 14.5px; color: #565d73; line-height: 1.6; max-width: 320px;">Thanks for reaching out &mdash; I'll get back to you within 24 hours.</div>
-      <button id="ct-success-again" class="ct-s-btn" style="margin-top: 6px; display: inline-flex; align-items: center; gap: 8px; background: rgba(54,84,224,0.08); color: #3654e0; font-weight: 600; font-size: 14px; font-family: 'Poppins', sans-serif; padding: 11px 20px; border-radius: 12px; border: 1px solid rgba(54,84,224,0.22); cursor: pointer; transition: background .2s, transform .2s;">Send another</button>
-    </div>
-  </div>
-
+</header>
+<main id="main" class="page-main">
+<section class="page-hero peach">
+<div class="hero-orb" aria-hidden="true">
+</div>
+<p class="eyebrow">05 / Say hello</p>
+<h1>A good conversation.<br>
+<span class="gradient-text">A great place to start.</span>
+</h1>
+<p class="hero-description">Open to opportunities, collaborations, career mentoring, and interesting conversations about software, cloud, and AI.</p>
+</section>
+<section class="section contact-layout">
+<div class="contact-copy">
+<span class="availability">
+<span class="status-dot">
+</span>Open to conversations</span>
+<h2>Let’s turn ideas<br>into impact.</h2>
+<p>Whether it’s a role, a project, or a question you’ve been thinking about, I’d love to hear from you.</p>
+<div class="contact-detail">
+<p class="eyebrow">Email me directly</p>
+<div>
+<a href="mailto:hello@dasarivishal.com">hello@dasarivishal.com</a>
+<button class="icon-button" id="ct-copy-email" data-email="hello@dasarivishal.com" type="button" aria-label="Copy email address">⧉</button>
+</div>
+<span id="copy-status" class="section-note" role="status">
+</span>
+</div>
+<div class="contact-detail">
+<p class="eyebrow">Based in</p>
+<p>United States <span class="contact-time" id="ct-tz-time">
+</span>
+</p>
+</div>
+<a class="text-link" href="https://topmate.io/vishal_dasari3" target="_blank" rel="noopener noreferrer">Book a mentoring conversation <span aria-hidden="true">↗</span>
+</a>
+<p class="section-note">Usually replies within 24 hours.</p>
+</div>
+<div class="contact-form-panel">
+<p class="eyebrow">The direct line</p>
+<h2>Send a message.</h2>
+<form id="ct-form">
+<div class="honeypot" aria-hidden="true">
+<label for="ct-hp">Leave this field empty</label>
+<input id="ct-hp" name="_gotcha" tabindex="-1" autocomplete="off">
+</div>
+<div class="form-row">
+<div class="form-field">
+<label for="ct-name">Your name</label>
+<div class="field-wrap">
+<input id="ct-name" name="name" type="text" autocomplete="name" aria-describedby="ct-name-error" required>
+<span id="ct-name-status" class="field-status" aria-hidden="true">
+</span>
+</div>
+<p id="ct-name-error" class="field-error" style="display:none">
+</p>
+</div>
+<div class="form-field">
+<label for="ct-email">Email address</label>
+<div class="field-wrap">
+<input id="ct-email" name="email" type="email" autocomplete="email" aria-describedby="ct-email-error" required>
+<span id="ct-email-status" class="field-status" aria-hidden="true">
+</span>
+</div>
+<p id="ct-email-error" class="field-error" style="display:none">
+</p>
 </div>
 </div>
+<div class="form-field">
+<label for="ct-inquiry">What’s on your mind?</label>
+<select id="ct-inquiry" name="inquiry">
+<option>General inquiry</option>
+<option>Job opportunity</option>
+<option>Project / collaboration</option>
+<option>Career mentoring</option>
+<option>Other</option>
+</select>
 </div>
-
-<div id="site-footer"></div>
-
-<script src="../js/three-scenes.js"></script>
-<script src="../js/common.js"></script>
-<script src="../js/cursor-effects.js"></script>
-<script src="../js/contact.js"></script>
+<div class="form-field">
+<label for="ct-subject">Subject</label>
+<div class="field-wrap">
+<input id="ct-subject" name="subject" type="text" autocomplete="off" aria-describedby="ct-subject-error" required>
+<span id="ct-subject-status" class="field-status" aria-hidden="true">
+</span>
+</div>
+<p id="ct-subject-error" class="field-error" style="display:none">
+</p>
+</div>
+<div class="form-field">
+<label for="ct-message">Your message</label>
+<div class="field-wrap">
+<textarea id="ct-message" name="message" rows="5" aria-describedby="ct-message-error" required minlength="10">
+</textarea>
+<span id="ct-message-status" class="field-status" aria-hidden="true">
+</span>
+</div>
+<p id="ct-message-error" class="field-error" style="display:none">
+</p>
+</div>
+<div class="cf-turnstile" data-sitekey="0x4AAAAAAD4AxnTPERnJq4UL" data-size="compact">
+</div>
+<p id="ct-top-error" class="field-error" style="display:none" role="alert">Please check the highlighted fields.</p>
+<p id="ct-sent-msg" style="display:none" role="status">
+</p>
+<button id="ct-send" type="button" class="button primary">
+<span id="ct-send-label">Send it my way</span>
+<span id="ct-spinner" style="display:none" aria-hidden="true">◌</span>
+<span id="ct-send-icon" aria-hidden="true">↗</span>
+</button>
+</form>
+<div id="ct-success" class="contact-success" style="display:none" role="status">
+<span class="success-mark">✓</span>
+<h2>Message sent!</h2>
+<p>Thanks for reaching out. I’ll get back to you shortly.</p>
+<button id="ct-success-again" type="button" class="button secondary">Send another</button>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="footer-top">
+<a class="brand" href="/">
+<span class="brand-mark">VD</span>
+<span>Vishal Dasari</span>
+</a>
+<p>Always building. Always learning.</p>
+<div class="social-links">
+<a href="https://github.com/Vishaldasari3" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span>
+</a>
+<a href="https://www.linkedin.com/in/vishaldasari3/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span>
+</a>
+<a href="https://topmate.io/vishal_dasari3" target="_blank" rel="noopener noreferrer">Topmate <span aria-hidden="true">↗</span>
+</a>
+</div>
+</div>
+<div class="footer-bottom">
+<span>© 2026 Vishal Dasari</span>
+<span>Built with curiosity. Made to last.</span>
+<a href="#top">Back to top ↑</a>
+</div>
+</footer>
+<script src="/js/portfolio-data.js">
+</script>
+<script src="/js/redesign.js">
+</script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer>
+</script>
+<script src="/js/contact.js">
+</script>
 </body>
 </html>

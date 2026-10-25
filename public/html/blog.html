@@ -1,81 +1,118 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<!-- Google Analytics (GA4) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-S73TQJT3TC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-S73TQJT3TC');
-</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Blog — Vishal Dasari</title>
-<link rel="icon" type="image/png" href="../favicon.png">
-<link rel="apple-touch-icon" href="../apple-touch-icon.png">
-<meta name="description" content="Tech notes and life notes from Vishal Dasari — engineering, AI, and career reflections.">
+<meta name="description" content="Tech notes and life notes: engineering, AI, career reflections, and life beyond the screen.">
+<link rel="canonical" href="https://www.dasarivishal.com/blog">
 <meta property="og:title" content="Blog — Vishal Dasari">
-<meta property="og:description" content="Tech notes and life notes from Vishal Dasari — engineering, AI, and career reflections.">
+<meta property="og:description" content="Tech notes and life notes: engineering, AI, career reflections, and life beyond the screen.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="../apple-touch-icon.png">
+<meta property="og:url" content="https://www.dasarivishal.com/blog">
+<meta property="og:image" content="https://www.dasarivishal.com/apple-touch-icon.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog — Vishal Dasari">
-<meta name="twitter:description" content="Tech notes and life notes from Vishal Dasari — engineering, AI, and career reflections.">
+<link rel="icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-<link rel="stylesheet" href="../partials/partials.css">
-<link rel="preload" as="image" href="../assets/blog-code-worked-cover.jpg">
-<script src="../js/styles/blog-styles.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/redesign.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S73TQJT3TC">
+</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S73TQJT3TC');</script>
 </head>
-<body data-page="blog">
-
-<div id="site-header"></div>
-<div id="site-header-spacer" style="height: 82px;"></div>
-
-<!-- hero band -->
-<div style="padding: 28px 24px 4px; position: relative; overflow: hidden;">
-  <div id="hero-card" style="max-width: 1400px; margin: 0 auto; position: relative; background: linear-gradient(150deg, rgba(233,237,251,0.88) 0%, rgba(243,240,254,0.88) 52%, rgba(232,246,253,0.88) 100%); backdrop-filter: blur(24px) saturate(1.5); -webkit-backdrop-filter: blur(24px) saturate(1.5); border: 1px solid rgba(54,84,224,0.12); border-radius: 28px; padding: clamp(18px, 2.2vw, 26px) clamp(18px, 3vw, 36px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; box-shadow: 0 2px 0 rgba(255,255,255,0.65) inset, 0 40px 80px -32px rgba(30,40,80,0.25), 0 2px 24px rgba(30,40,80,0.05); z-index: 1; overflow: hidden;">
-    <canvas id="hero-icosa-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;"></canvas>
-    <div style="position: absolute; top: -120px; left: 8%; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(54,84,224,0.16), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
-    <div style="position: absolute; bottom: -140px; right: 6%; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(124,92,255,0.13), transparent 70%); filter: blur(10px); pointer-events: none;"></div>
-    <div class="hx-icon" style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #3654e0, #7c5cff); display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 26px -10px rgba(54,84,224,0.55);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
-    <div class="hx-crumb" style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: rgba(20,22,40,0.4); letter-spacing: 0.3px;">Vishal Dasari <span style="opacity: 0.5;">/</span> <span style="color: #3654e0;">Blog</span></div>
-    <div class="hx-title-line" style="overflow: hidden;"><div class="hx-title-inner" style="font-size: clamp(26px, 3vw, 40px); font-weight: 700; color: #101223; line-height: 1.1; letter-spacing: -1px; max-width: 640px;">Tech notes &amp; life notes.</div></div>
-    <div class="hx-desc" style="font-size: 14px; color: #63677c; line-height: 1.6; max-width: 480px;">A mix of what I'm building with and what I'm thinking about &mdash; engineering, AI, and the occasional life update.</div>
-    <div class="hx-divider" style="margin-top: 4px;"></div>
-  </div>
+<body id="top" data-page="blog" >
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="nav-wrap">
+<a class="brand" href="/" aria-label="Vishal Dasari — home">
+<span class="brand-mark">VD</span>
+<span>Vishal Dasari</span>
+</a>
+<button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
+<span>
+</span>
+<span>
+</span>
+</button>
+<nav id="primary-nav" aria-label="Main navigation">
+<a href="/about" >About</a>
+<a href="/experience" >Experience</a>
+<a href="/certifications" >Certs</a>
+<a href="/tech-stack" >Tech Stack</a>
+<a href="/blog" aria-current="page">Blog</a>
+<a class="nav-contact" href="/contact" >Let’s talk <span aria-hidden="true">↗</span>
+</a>
+</nav>
 </div>
-
-<!-- posts -->
-<div style="max-width: 1400px; margin: 0 auto; padding: 64px 56px 32px;">
-  <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; flex-wrap: wrap; border-bottom: 1px solid rgba(28,32,48,0.09); padding-bottom: 30px; margin-bottom: 30px;">
-    <div style="font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800; color: #3654e0; letter-spacing: 2px;">01 <span style="color: #1c2030; font-family: 'Poppins', sans-serif; font-weight: 600; letter-spacing: 1.8px; text-transform: uppercase; margin-left: 8px;">The Journal</span></div>
-    <div style="display: flex; gap: 44px; flex-wrap: wrap;">
-      <div class="bl-stat"><div class="v" id="bl-stat-count">03</div><div class="k">Posts</div></div>
-      <div class="bl-stat"><div class="v" id="bl-stat-tags">02</div><div class="k">Topics</div></div>
-    </div>
-  </div>
-  <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 30px;">
-    <div id="bl-tags" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
-    <input type="text" id="bl-search" placeholder="Search posts…" style="font-size: 13.5px; padding: 9px 18px; border-radius: 20px; border: 1px solid rgba(28,32,48,0.14); background: rgba(255,255,255,0.75); color: #1c2030; min-width: 220px; outline: none; transition: border-color .2s, box-shadow .2s;" onfocus="this.style.borderColor='#3654e0';this.style.boxShadow='0 0 0 4px rgba(54,84,224,0.1)'" onblur="this.style.borderColor='rgba(28,32,48,0.14)';this.style.boxShadow='none'" />
-  </div>
-  <div id="bl-empty" style="display: none; flex-direction: column; align-items: center; gap: 8px; padding: 80px 20px; text-align: center;">
-    <div style="font-size: 19px; font-weight: 700; color: #1c2030;">No posts found</div>
-    <div style="font-size: 15px; color: #9096a8;">Try a different keyword or tag.</div>
-  </div>
-  <div id="bl-featured" style="margin-bottom: 18px;"></div>
-  <div id="bl-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;"></div>
+</header>
+<main id="main" class="page-main">
+<section class="page-hero violet">
+<div class="hero-orb" aria-hidden="true">
 </div>
-
-<div id="site-footer"></div>
-
-<script src="../js/three-scenes.js"></script>
-<script src="../js/blog-header.js"></script>
-<script src="../js/common.js"></script>
-<script src="../js/cursor-effects.js"></script>
-<script src="../js/blog.js"></script>
+<p class="eyebrow">06 / The journal</p>
+<h1>Ideas beyond<br>
+<span class="gradient-text">the code.</span>
+</h1>
+<p class="hero-description">What I’m building with. What I’m thinking about. Engineering, AI, and life beyond the screen.</p>
+</section>
+<section class="section blog-section">
+<div class="blog-toolbar">
+<div id="journal-filters" class="filter-buttons" role="group" aria-label="Filter articles by topic">
+</div>
+<label class="search-field">
+<span class="sr-only">Search articles</span>
+<span aria-hidden="true">⌕</span>
+<input type="search" id="journal-search" placeholder="Find something to read…">
+</label>
+</div>
+<p id="journal-status" class="section-note" aria-live="polite">Loading the journal…</p>
+<div id="journal-grid" class="journal-grid">
+</div>
+<div id="journal-empty" class="empty-state" hidden>
+<h2>No matching notes.</h2>
+<p>Try a different word or topic.</p>
+<button class="button secondary" id="journal-reset" type="button">Show all articles</button>
+</div>
+<noscript>
+<p>JavaScript is needed to search the journal. You can still <a href="/blog/code-worked-but-wrong">read the latest article</a>.</p>
+</noscript>
+</section>
+<section class="contact-banner">
+<div>
+<p class="eyebrow">A conversation is a good start</p>
+<h2>Have a challenging problem?<br>Let’s talk.</h2>
+</div>
+<a class="button primary" href="/contact">Get in touch <span aria-hidden="true">↗</span>
+</a>
+</section>
+</main>
+<footer class="site-footer">
+<div class="footer-top">
+<a class="brand" href="/">
+<span class="brand-mark">VD</span>
+<span>Vishal Dasari</span>
+</a>
+<p>Always building. Always learning.</p>
+<div class="social-links">
+<a href="https://github.com/Vishaldasari3" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span>
+</a>
+<a href="https://www.linkedin.com/in/vishaldasari3/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span>
+</a>
+<a href="https://topmate.io/vishal_dasari3" target="_blank" rel="noopener noreferrer">Topmate <span aria-hidden="true">↗</span>
+</a>
+</div>
+</div>
+<div class="footer-bottom">
+<span>© 2026 Vishal Dasari</span>
+<span>Built with curiosity. Made to last.</span>
+<a href="#top">Back to top ↑</a>
+</div>
+</footer>
+<script src="/js/portfolio-data.js">
+</script>
+<script src="/js/redesign.js">
+</script>
 </body>
 </html>

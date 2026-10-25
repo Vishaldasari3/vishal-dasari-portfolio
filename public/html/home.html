@@ -1,144 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<!-- Google Analytics (GA4) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-S73TQJT3TC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-S73TQJT3TC');
-</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vishal Dasari — Senior Software Engineer</title>
-<link rel="icon" type="image/png" href="../favicon.png">
-<link rel="apple-touch-icon" href="../apple-touch-icon.png">
-<meta name="description" content="Senior Software Engineer specializing in Java, Python, cloud, and AI — portfolio, experience, and projects of Vishal Dasari.">
-<meta property="og:title" content="Vishal Dasari — Senior Software Engineer">
-<meta property="og:description" content="Senior Software Engineer specializing in Java, Python, cloud, and AI — portfolio, experience, and projects of Vishal Dasari.">
+<title>Senior Software Engineer — Vishal Dasari</title>
+<meta name="description" content="Vishal Dasari — 9+ years building cloud platforms and distributed systems with Java, Python, and AWS.">
+<link rel="canonical" href="https://www.dasarivishal.com/">
+<meta property="og:title" content="Senior Software Engineer — Vishal Dasari">
+<meta property="og:description" content="Vishal Dasari — 9+ years building cloud platforms and distributed systems with Java, Python, and AWS.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="../apple-touch-icon.png">
+<meta property="og:url" content="https://www.dasarivishal.com/">
+<meta property="og:image" content="https://www.dasarivishal.com/apple-touch-icon.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vishal Dasari — Senior Software Engineer">
-<meta name="twitter:description" content="Senior Software Engineer specializing in Java, Python, cloud, and AI — portfolio, experience, and projects of Vishal Dasari.">
+<link rel="icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-<script src="../js/cursor-effects.js"></script>
-<script src="../js/styles/home-styles.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/redesign.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S73TQJT3TC">
+</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S73TQJT3TC');</script>
 </head>
-<body>
-
-<div style="min-height: 100vh;">
-  <div id="vd-card" style="width: 100%; min-height: 100vh; overflow: hidden; position: relative; background: #aeb8d2;">
-
-    <div id="vd-orb1" style="position: absolute; top: -80px; right: -60px; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0) 70%); pointer-events: none; z-index: 0;"></div>
-    <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.14) 1px, transparent 1px); background-size: 26px 26px; opacity: 0.35; pointer-events: none; z-index: 0;"></div>
-
-    <!-- header -->
-    <div id="vd-header" style="position: fixed; top: 24px; left: 56px; right: 56px; display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; padding: 8px 16px; border-radius: 20px; background: transparent; box-shadow: none; opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease 0.05s, transform 0.35s ease, top 0.35s ease, background 0.35s ease, box-shadow 0.35s ease; z-index: 50;">
-
-      <a href="/" class="logo" style="display: flex; align-items: center; gap: 10px; z-index: 1; flex-shrink: 0; transform-origin: left center; transition: transform 0.35s ease; text-decoration: none;">
-        <span id="vd-logo-badge" class="logo-badge" style="position: relative; overflow: hidden; width: 46px; height: 46px; border-radius: 13px; flex-shrink: 0;">
-          <span style="position: absolute; inset: 2px; border-radius: 11px; background: #171130; z-index: 1;"></span>
-          <span style="position: relative; z-index: 2; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; color: #fff;">VD</span>
-        </span>
-        <span id="vd-logo-word" style="font-weight: 600; font-size: 14px; line-height: 1.18; text-transform: uppercase; white-space: nowrap; color: #22264a; display: flex; flex-direction: column; align-items: flex-start;"><span id="vd-logo-line1">Vishal</span><span id="vd-logo-line2">Dasari</span></span>
-      </a>
-
-      <div id="vd-header-grid" style="flex: 1; display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 16px; z-index: 1;">
-        <div id="vd-nav-items" style="display: flex; align-items: center; gap: 4px; white-space: nowrap; background: rgba(255,255,255,0.55); backdrop-filter: blur(20px) saturate(1.4); border: 1px solid rgba(255,255,255,0.8); padding: 7px; border-radius: 999px; box-shadow: 0 18px 40px -18px rgba(40,50,90,0.35), 0 1px 0 rgba(255,255,255,0.9) inset; justify-self: center; transition: padding 0.35s ease;">
-          <div id="vd-nav-pill"></div>
-          <a href="/about" style="font-size: 14px; font-weight: 500; color: #3a3f5c; padding: 9px 16px; border-radius: 20px; transition: color 0.15s, background 0.15s, padding 0.35s ease;">About</a>
-          <a href="/experience" style="font-size: 14px; font-weight: 500; color: #3a3f5c; padding: 9px 16px; border-radius: 20px; transition: color 0.15s, background 0.15s, padding 0.35s ease;">Experience</a>
-          <a href="/certifications" style="font-size: 14px; font-weight: 500; color: #3a3f5c; padding: 9px 16px; border-radius: 20px; transition: color 0.15s, background 0.15s, padding 0.35s ease;">Certs</a>
-          <a href="/tech-stack" style="font-size: 14px; font-weight: 500; color: #3a3f5c; padding: 9px 16px; border-radius: 20px; transition: color 0.15s, background 0.15s, padding 0.35s ease;">Tech Stack</a>
-          <a href="/contact" style="font-size: 14px; font-weight: 500; color: #3a3f5c; padding: 9px 16px; border-radius: 20px; transition: color 0.15s, background 0.15s, padding 0.35s ease;">Contact</a>
-        </div>
-        <div style="position: relative; display: flex; align-items: center; justify-self: end;">
-          <canvas id="vd-blog-fx-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; border-radius: 999px; overflow: hidden;"></canvas>
-          <a href="/blog" target="_blank" rel="noopener" style="position: relative; font-size: 11px; font-weight: 700; font-family: 'Poppins', sans-serif; color: #fff; background: linear-gradient(93deg, #4a63e8 0%, #5b8cff 34%, #3fb6ff 68%, #22ddf5 100%); background-size: 220% 100%; animation: hueflow 6s linear infinite; padding: 11px 20px; border-radius: 999px; box-shadow: 0 10px 24px -10px rgba(74,99,232,0.55); transition: transform 0.15s, box-shadow 0.3s; display: inline-block; line-height: 1.3;">Blog ↗</a>
-        </div>
-      </div>
-      <button id="vd-nav-toggle" data-no-confetti aria-label="Menu" style="display: none; flex-direction: column; justify-content: center; align-items: center; gap: 4px; width: 40px; height: 40px; background: rgba(244,246,253,0.9); border: 1px solid #e0e4f5; border-radius: 12px; cursor: pointer; padding: 0; flex-shrink: 0;"><span style="width: 16px; height: 2px; background: #22264a; border-radius: 2px;"></span><span style="width: 16px; height: 2px; background: #22264a; border-radius: 2px;"></span><span style="width: 16px; height: 2px; background: #22264a; border-radius: 2px;"></span></button>
-    </div>
-
-    <!-- headshot -->
-    <div id="vd-headshot-shadow" style="position: absolute; bottom: 26px; left: 51%; transform: translateX(-50%); width: 300px; height: 34px; border-radius: 50%; background: radial-gradient(ellipse, rgba(20,26,48,0.32) 0%, rgba(20,26,48,0) 68%); z-index: 1; pointer-events: none;"></div>
-    <div id="vd-headshot-wrap" style="position: absolute; bottom: 0; left: 51%; width: 34%; height: 92%; display: flex; align-items: flex-end; justify-content: center; z-index: 1; opacity: 0; transition: opacity 0.8s ease 0.15s, transform 0.35s ease-out;">
-      <img src="../assets/headshot.png" alt="Vishal Dasari" style="position: relative; max-width: 100%; max-height: 100%; display: block; filter: drop-shadow(0 24px 44px rgba(20,26,48,0.35));" />
-    </div>
-
-    <!-- left name block -->
-    <div id="vd-name-block" style="position: absolute; left: 56px; top: 38%; display: flex; flex-direction: column; gap: 28px; max-width: 30%; z-index: 2; opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease 0.25s, transform 0.7s ease 0.25s;">
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <span style="font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 800; color: #22264a; letter-spacing: 2px;">01</span>
-        <span style="width: 22px; height: 1.5px; background: rgba(34,38,74,0.45); flex-shrink: 0;"></span>
-        <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 2px; color: #464c6b; text-transform: uppercase; white-space: nowrap;">Hello</span>
-      </div>
-      <div>
-        <div id="vd-name-line1" style="font-size: clamp(40px, 4.6vw, 68px); font-weight: 700; color: #f5f6fa; line-height: 1.02; letter-spacing: -1px;"></div>
-        <div id="vd-name-line2" style="font-size: clamp(40px, 4.6vw, 68px); font-weight: 700; color: #f5f6fa; line-height: 1.02; letter-spacing: -1px; white-space: nowrap;"></div>
-      </div>
-      <div style="position: relative; overflow: hidden; width: 100%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);">
-        <div id="vd-skills-marquee" style="display: flex; align-items: center; gap: 22px; white-space: nowrap; width: max-content;">
-          <span style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #f5f6fa; text-transform: uppercase;">Java</span><span class="vd-skill-dot"></span>
-          <span style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #f5f6fa; text-transform: uppercase;">Microservices</span><span class="vd-skill-dot"></span>
-          <span style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #f5f6fa; text-transform: uppercase;">Distributed Systems</span><span class="vd-skill-dot"></span>
-          <span style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #f5f6fa; text-transform: uppercase;">Cloud</span><span class="vd-skill-dot"></span>
-          <span style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #f5f6fa; text-transform: uppercase;">Data</span><span class="vd-skill-dot"></span>
-          <span style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #f5f6fa; text-transform: uppercase;">Java</span><span class="vd-skill-dot"></span>
-          <span style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #f5f6fa; text-transform: uppercase;">Microservices</span><span class="vd-skill-dot"></span>
-          <span style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #f5f6fa; text-transform: uppercase;">Distributed Systems</span><span class="vd-skill-dot"></span>
-          <span style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #f5f6fa; text-transform: uppercase;">Cloud</span><span class="vd-skill-dot"></span>
-          <span style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #f5f6fa; text-transform: uppercase;">Data</span><span class="vd-skill-dot"></span>
-        </div>
-      </div>
-      <div id="vd-social" style="display: flex; align-items: center; gap: 18px; margin-top: 12px;">
-        <a href="https://github.com/Vishaldasari3" target="_blank" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s, box-shadow 0.2s;">
-          <img src="../assets/icon-github.png" alt="GitHub" style="width: 100%; height: 100%; object-fit: cover;" />
-        </a>
-        <a href="https://www.linkedin.com/in/vishaldasari3/" target="_blank" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s, box-shadow 0.2s;">
-          <img src="../assets/icon-linkedin.png" alt="LinkedIn" style="width: 100%; height: 100%; object-fit: cover;" />
-        </a>
-        <a href="https://topmate.io/vishal_dasari3" target="_blank" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s, box-shadow 0.2s;">
-          <img src="../assets/icon-topmate.png" alt="Topmate" style="width: 100%; height: 100%; object-fit: cover;" />
-        </a>
-      </div>
-
-      <div id="vd-stats" style="display: flex; align-items: center; gap: 32px; margin-top: 10px; padding-top: 22px; border-top: 1px solid rgba(70,76,107,0.22);">
-        <div><div style="font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; color: #f5f6fa; letter-spacing: -1px; line-height: 1;">9+</div><div style="font-size: 10.5px; font-weight: 600; color: #464c6b; letter-spacing: 1.2px; text-transform: uppercase; margin-top: 6px;">Years</div></div>
-        <div style="width: 1px; height: 34px; background: rgba(70,76,107,0.22);"></div>
-        <div><div style="font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; color: #f5f6fa; letter-spacing: -1px; line-height: 1;">AWS</div><div style="font-size: 10.5px; font-weight: 600; color: #464c6b; letter-spacing: 1.2px; text-transform: uppercase; margin-top: 6px;">Certified</div></div>
-        <div style="width: 1px; height: 34px; background: rgba(70,76,107,0.22);"></div>
-        <div><div style="font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; color: #f5f6fa; letter-spacing: -1px; line-height: 1;">84</div><div style="font-size: 10.5px; font-weight: 600; color: #464c6b; letter-spacing: 1.2px; text-transform: uppercase; margin-top: 6px;">Tools</div></div>
-      </div>
-    </div>
-    <div id="vd-intro-block" style="position: absolute; right: 40px; top: 38%; width: 27%; display: flex; flex-direction: column; gap: 22px; z-index: 2; opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease 0.4s, transform 0.7s ease 0.4s;">
-      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: nowrap;">
-        <span style="font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 800; color: #22264a; letter-spacing: 2px;">02</span>
-        <span style="width: 22px; height: 1.5px; background: rgba(34,38,74,0.45); flex-shrink: 0;"></span>
-        <span style="font-size: 11.5px; font-weight: 600; letter-spacing: 2px; color: #464c6b; text-transform: uppercase; white-space: nowrap;">What I Do</span>
-      </div>
-      <div id="vd-role-line" style="font-size: clamp(24px, 2vw, 32px); font-weight: 600; color: #f4f5f9; line-height: 1.3; letter-spacing: -0.3px; min-height: 2.6em;"></div>
-      <div style="font-size: 14.5px; color: #464c6b; line-height: 1.75; max-width: 38em; padding-top: 2px; border-top: 1px solid rgba(70,76,107,0.18);">
-        <p style="margin: 18px 0 0;">9+ years across the full SDLC, building reliable backend systems in Java and Python. I care about clean architecture as much as clean code — services that scale, and teams that ship them with confidence.</p>
-      </div>
-      <div style="display: flex; align-items: center; gap: 28px; margin-top: 4px;">
-        <a href="/about" id="vd-about-link" class="vd-outline-btn" style="position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; font-size: 11px; font-weight: 700; font-family: 'Poppins', sans-serif; letter-spacing: 0.3px; color: #f4f5f9; border: 2.5px solid rgba(244,245,249,0.4); border-radius: 999px; text-decoration: none; transition: border-color 0.25s, background 0.25s, color 0.25s, transform 0.25s;">
-          <span class="vd-btn-sheen"></span>
-          <span class="btn-label">About me →</span>
-        </a>
-        <a href="/contact" class="vd-outline-btn" style="position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; font-size: 11px; font-weight: 700; font-family: 'Poppins', sans-serif; letter-spacing: 0.3px; color: #f4f5f9; border: 2.5px solid rgba(244,245,249,0.4); border-radius: 999px; text-decoration: none; transition: border-color 0.25s, background 0.25s, color 0.25s, transform 0.25s;"><span class="vd-btn-sheen"></span>Get in touch →</a>
-      </div>
-    </div>
-
-  </div>
+<body id="top" data-page="home" >
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="nav-wrap">
+<a class="brand" href="/" aria-label="Vishal Dasari — home">
+<span class="brand-mark">VD</span>
+<span>Vishal Dasari</span>
+</a>
+<button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
+<span>
+</span>
+<span>
+</span>
+</button>
+<nav id="primary-nav" aria-label="Main navigation">
+<a href="/about" >About</a>
+<a href="/experience" >Experience</a>
+<a href="/certifications" >Certs</a>
+<a href="/tech-stack" >Tech Stack</a>
+<a href="/blog" >Blog</a>
+<a class="nav-contact" href="/contact" >Let’s talk <span aria-hidden="true">↗</span>
+</a>
+</nav>
 </div>
-
-<script src="../js/home.js"></script>
-<script>(function(){var t=document.getElementById('vd-nav-toggle'),h=document.getElementById('vd-header');if(t&&h)t.addEventListener('click',function(){h.classList.toggle('nav-open');});})();</script>
+</header>
+<main id="main" class="landing-main">
+<section class="landing-hero">
+<div class="landing-copy">
+<p class="eyebrow">
+<span class="status-dot">
+</span>Vishal Dasari · Senior Software Engineer</p>
+<h1>Building reliable<br>systems.<br>Creating <span class="gradient-text">lasting impact.</span>
+</h1>
+<p class="landing-description">9+ years turning complex challenges into dependable software. Working at the intersection of <strong>cloud, data, and distributed systems.</strong>
+</p>
+<div class="hero-actions">
+<a class="button primary" href="/experience">Explore my work <span aria-hidden="true">↗</span>
+</a>
+<a class="button secondary" href="/resume.pdf" download>Download résumé <span aria-hidden="true">↓</span>
+</a>
+</div>
+<div class="landing-socials">
+<a href="https://github.com/Vishaldasari3" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span>
+</a>
+<a href="https://www.linkedin.com/in/vishaldasari3/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span>
+</a>
+<a href="https://topmate.io/vishal_dasari3" target="_blank" rel="noopener noreferrer">Topmate <span aria-hidden="true">↗</span>
+</a>
+</div>
+</div>
+<div class="portrait-composition">
+<div class="portrait-blob blob-peach">
+</div>
+<div class="portrait-blob blob-violet">
+</div>
+<div class="portrait-orbit">
+</div>
+<span class="portrait-spark" aria-hidden="true">✳</span>
+<span class="portrait-cube" aria-hidden="true">
+</span>
+<img src="/assets/headshot.png" alt="Vishal Dasari" fetchpriority="high" width="746" height="717">
+<div class="portrait-note">
+<span class="status-dot">
+</span>Currently building at JPMorgan Chase</div>
+</div>
+</section>
+<div class="landing-bottom">
+<div>
+<span class="metric-icon teal">↗</span>
+<p>
+<strong>9+ years</strong>
+<span>of hands-on engineering</span>
+</p>
+</div>
+<div>
+<span class="metric-icon violet">&lt;/&gt;</span>
+<p>
+<strong>Java · Python · AWS</strong>
+<span>From services to cloud platforms</span>
+</p>
+</div>
+<div>
+<span class="metric-icon amber">◎</span>
+<p>
+<strong>Ideas beyond the code</strong>
+<a href="/blog">Read my journal <span aria-hidden="true">↗</span>
+</a>
+</p>
+</div>
+</div>
+<div class="landing-footnote">
+<span>Based in the United States</span>
+<a href="/about">A little more about me <span aria-hidden="true">↗</span>
+</a>
+</div>
+</main>
+<script src="/js/portfolio-data.js">
+</script>
+<script src="/js/redesign.js">
+</script>
 </body>
 </html>
