@@ -284,7 +284,8 @@
     { name: 'Milo', img: SCRIPT_SRC.replace(/js\/blog-post\.js.*/, 'assets/404-dogs/milo.jpg'), tag: "Too cute to be mad at, even about this 404." },
   ];
   function show404() {
-    const blogHost = ['blog.dasarivishal.com', 'blog.localhost'].includes(location.hostname);
+    const site = window.VD_SITE.resolve(location.hostname, location.port);
+    const blogHost = site.isBlog;
     document.title = 'Post not found — Vishal Dasari';
     const hero = document.getElementById('bp-hero');
     if (hero) hero.remove();
@@ -295,7 +296,7 @@
     main.innerHTML = '<img src="' + dog.img + '" alt="' + esc(dog.name) + ', the page guard" width="170" height="170">' +
       '<p class="eyebrow">404 / A little off the trail</p><h1>This note isn’t here.</h1>' +
       '<p>' + esc(dog.name) + ' checked everywhere. This article is hidden or no longer available.</p>' +
-      '<div class="hero-actions"><a class="button primary" href="' + (blogHost ? '/' : '/blog') + '">Back to the journal ↗</a><a class="button secondary" href="' + (blogHost ? 'https://www.dasarivishal.com/' : '/') + '">Back to home</a></div>';
+      '<div class="hero-actions"><a class="button primary" href="' + (blogHost ? '/' : '/blog') + '">Back to the journal ↗</a><a class="button secondary" href="' + (blogHost ? site.portfolioOrigin + '/' : '/') + '">Back to home</a></div>';
   }
 
   function init() {

@@ -109,3 +109,5 @@ network round trip.
 `public/html/`. `/blog/<slug>` maps to `public/html/blogs/blog-<slug>.html`.
 
 Blog subdomain: blog.dasarivishal.com serves the journal at / and articles at /tech/slug or /personal/slug. Host-based rules live in next.config.js. Preview domains retain /blog/category/slug. For local subdomain testing run the built app on port 3013 and visit http://blog.localhost:3013. Run node scripts/check-blog-routing.mjs against that server to validate hostname routing and legacy redirects.
+
+Confirmed mapping (user correction, October 25, 2026): main serves both Production pairs: www.dasarivishal.com (bare domain redirects to www) + blog.dasarivishal.com, and vishaldasari.vercel.app + blogvishaldasari.vercel.app. develop has no dedicated deployed domain. develop-redesign serves vishaldasari1.vercel.app + blogvishaldasari1.vercel.app as temporary pre-production. Keep current Vercel assignments; no reassignment to develop is required. Retire pre-production only with user approval. Shared domain pairs live in public/js/site-environments.js and are used by server routing and browser navigation. Branch assignments remain configured in Vercel.

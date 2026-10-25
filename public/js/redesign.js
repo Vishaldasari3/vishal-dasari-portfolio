@@ -4,20 +4,22 @@
   const data = window.VD_DATA;
   const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-  const isBlogHost = ['blog.dasarivishal.com', 'blog.localhost'].includes(location.hostname);
+  const site = window.VD_SITE.resolve(location.hostname, location.port);
+  const isBlogHost = site.isBlog;
   const articleUrl = p => (isBlogHost ? '' : '/blog') + '/' + p.category + '/' + p.slug;
   function initBlogLinks() {
-    if (isBlogHost) {
-      document.querySelectorAll('a[href^="/"]').forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === '/blog') link.setAttribute('href', '/');
-        else if (href.startsWith('/blog/')) link.setAttribute('href', href.slice(5));
-        else if (['/', '/about', '/experience', '/certifications', '/tech-stack', '/contact'].includes(href)) link.setAttribute('href', 'https://www.dasarivishal.com' + href);
-      });
-      document.querySelectorAll('[data-blog-link]').forEach(link => { link.href = '/'; link.removeAttribute('target'); });
-    } else if (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.hostname.endsWith('.vercel.app')) {
-      document.querySelectorAll('[data-blog-link]').forEach(link => { link.href = '/blog'; });
-    }
+    document.querySelectorAll('a').forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href) return;
+      if (link.hasAttribute('data-blog-link') || href === '/blog') {
+        link.href = isBlogHost ? '/' : site.blogOrigin ? site.blogOrigin + '/' : '/blog';
+        if (isBlogHost && link.hasAttribute('data-blog-link')) link.removeAttribute('target');
+      } else if (isBlogHost && href.startsWith('/blog/')) {
+        link.href = href.slice(5);
+      } else if (isBlogHost && ['/', '/about', '/experience', '/certifications', '/tech-stack', '/contact'].includes(href)) {
+        link.href = site.portfolioOrigin + href;
+      }
+    });
   }
   function initNavigation() {
     const toggle = document.querySelector('.menu-toggle');

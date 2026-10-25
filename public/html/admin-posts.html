@@ -31,8 +31,12 @@
   <div id="comments-section"></div>
 </section>
 </main>
+<script src="/js/site-environments.js"></script>
 <script src="/js/portfolio-data.js"></script>
 <script>
+  const site = window.VD_SITE.resolve(location.hostname, location.port);
+  document.querySelector('.admin-brand').href = site.portfolioOrigin ? site.portfolioOrigin + '/' : '/';
+  document.querySelector('.preview-link').href = site.blogOrigin ? site.blogOrigin + '/' : '/blog';
   document.getElementById('secret').addEventListener('keydown', function (e) { if(e.key === 'Enter') loadPosts(); });
   document.getElementById('lock-btn').addEventListener('click', function () {
 

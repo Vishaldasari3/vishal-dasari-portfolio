@@ -41,8 +41,10 @@ const articles = [
     "file": "/html/blogs/blog-code-worked-but-wrong.html"
   }
 ];
-const blogHosts = ['blog.dasarivishal.com', 'blog.localhost'];
-const portfolioHosts = ['www.dasarivishal.com', 'dasarivishal.com'];
+const { environments } = require('./public/js/site-environments.js');
+const blogHosts = environments.map(e => e.blog);
+const portfolioHosts = environments.filter(e => e.name !== 'local').flatMap(e => [e.portfolio, ...e.aliases]);
+const pairedEnvironment = hostname => environments.find(e => [e.portfolio, e.blog, ...e.aliases].includes(hostname));
 const portfolioPaths = ['/about', '/experience', '/certifications', '/tech-stack', '/contact'];
 const host = value => [{ type: 'host', value: value.replaceAll('.', '\\.') }];
 const articlePath = article => '/' + article.category + '/' + article.slug;
@@ -56,13 +58,15 @@ module.exports = {
           rules.push({ source, destination: articlePath(article), permanent: true, has: host(hostname) });
         }
       }
-      for (const source of portfolioPaths) rules.push({ source, destination: 'https://www.dasarivishal.com' + source, permanent: false, has: host(hostname) });
+      if (pairedEnvironment(hostname).name !== 'local') {
+        for (const source of portfolioPaths) rules.push({ source, destination: 'https://' + pairedEnvironment(hostname).portfolio + source, permanent: false, has: host(hostname) });
+      }
     }
     for (const hostname of portfolioHosts) {
-      rules.push({ source: '/blog', destination: 'https://blog.dasarivishal.com/', permanent: true, has: host(hostname) });
+      rules.push({ source: '/blog', destination: 'https://' + pairedEnvironment(hostname).blog + '/', permanent: true, has: host(hostname) });
       for (const article of articles) {
         for (const source of ['/blog/' + article.slug, '/blog' + articlePath(article)]) {
-          rules.push({ source, destination: 'https://blog.dasarivishal.com' + articlePath(article), permanent: true, has: host(hostname) });
+          rules.push({ source, destination: 'https://' + pairedEnvironment(hostname).blog + articlePath(article), permanent: true, has: host(hostname) });
         }
       }
     }
