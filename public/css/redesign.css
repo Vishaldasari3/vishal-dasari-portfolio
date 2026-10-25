@@ -2830,3 +2830,46 @@ body[data-page=blog] h1,body[data-page=blog] h2,body[data-page=blog] h3,body[dat
 .journal-entrance{padding-top:48px}.journal-intro{margin-bottom:30px}.journal-intro h2,.journal-list-heading h2{font-size:clamp(28px,4vw,42px);margin:10px 0}.journal-intro>p:last-child{color:var(--muted,#62677d)}
 .journal-paths{display:grid;grid-template-columns:1fr 1fr;gap:24px}.journal-path{position:relative;overflow:hidden;display:block;padding:36px;border:1px solid #dce1ed;border-radius:24px;text-decoration:none;color:#151a36;transition:transform .2s,box-shadow .2s}.journal-path:hover{transform:translateY(-5px);box-shadow:0 18px 40px #151a3610}.journal-path:focus-visible{outline:3px solid #294af2;outline-offset:5px}.path-tech{background:linear-gradient(135deg,#eef2ff,#f8f9fd)}.path-personal{background:linear-gradient(135deg,#fbefe5,#fffcf7)}.path-number{font-size:12px;font-weight:700;letter-spacing:.13em}.path-art{height:130px;display:flex;align-items:center;font:500 68px Manrope,sans-serif;color:#5268b6}.path-personal .path-art{color:#ac7952;font-size:86px}.journal-path h2{font-size:32px;margin:12px 0}.journal-path p{max-width:330px;color:#62677d;line-height:1.75;margin-bottom:28px}.journal-list-heading{margin:32px 0}.journal-path .text-link{font-weight:700}
 @media(max-width:640px){.journal-paths{grid-template-columns:1fr}.journal-path{padding:28px}.path-art{height:90px}.journal-entrance{padding-top:30px}}
+
+
+/* Lightweight editorial navigation. */
+.site-header{position:sticky;top:0;padding:0 36px;background:#fcfaf7f5;backdrop-filter:blur(12px)}
+.nav-wrap{min-height:94px;gap:28px;border-bottom:1px solid #151a3614}
+.site-header .brand{gap:14px;font-size:17px;letter-spacing:-.055em}
+.site-header .brand-mark{font-size:30px;background:none;color:#151a36;padding-right:7px;transition:color .25s,transform .25s}
+.site-header .brand:hover .brand-mark{color:#294af2;transform:translateY(-2px)}
+.site-header nav{gap:27px}
+.site-header nav>a{padding:15px 0;font-size:13px;font-weight:500;color:#626676;transition:color .2s}
+.site-header nav>a:not(.nav-contact)::before{content:'';position:absolute;bottom:8px;left:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.site-header nav>a:not(.nav-contact):hover::before,.site-header nav>a:not(.nav-contact):focus-visible::before{transform:scaleX(1);transform-origin:left}
+.site-header nav>a:hover{color:#151a36}
+.site-header nav>a[aria-current=page]{color:#151a36;font-weight:700}
+.site-header nav>a[aria-current=page]:not(.nav-contact)::after{content:'';width:4px;height:4px;border-radius:50%;left:50%;right:auto;bottom:3px;background:#294af2}
+.site-header nav>a[href='/blog']{display:flex;align-items:center;gap:9px;margin-left:3px;padding-left:25px;color:#294af2}
+.site-header nav>a[href='/blog']::before{left:25px;width:calc(100% - 25px)}
+.site-header nav>a[href='/blog']::after,.site-header nav>a[href='/blog'][aria-current=page]::after{content:'↗';position:static;background:none;width:auto;height:auto;font-size:16px;border-radius:0;transition:transform .25s}
+.site-header nav>a[href='/blog']:hover::after{transform:translate(2px,-2px)}
+.site-header nav>a[href='/blog']{border-left:1px solid #151a3618}
+.site-header nav>a.nav-contact{background:none;color:#151a36;border:1px solid #151a3625;border-radius:5px;padding:9px 15px;margin-left:0;gap:17px;font-weight:600}
+.site-header nav>a.nav-contact:hover,.site-header nav>a.nav-contact[aria-current=page]{background:#151a36;color:#fff;border-color:#151a36}
+.site-header nav>a.nav-contact span{transition:transform .25s}
+.site-header nav>a.nav-contact:hover span{transform:translate(2px,-2px)}
+@media(min-width:821px) and (max-width:1050px){.site-header{padding:0 24px}.site-header nav{gap:18px}.site-header .brand{font-size:15px}.site-header nav>a[href='/blog']{padding-left:18px}.site-header nav>a[href='/blog']::before{left:18px;width:calc(100% - 18px)}}
+@media(max-width:820px){.site-header{padding:0 22px}.nav-wrap{min-height:78px;gap:0}.site-header .brand{font-size:16px}.menu-toggle{border:0;background:transparent;border-radius:0}.menu-toggle:hover{background:#f0eff4}.site-header nav{gap:0;padding:10px 0 22px}.site-header nav>a{font-size:17px;padding:14px 0}.site-header nav>a[aria-current=page]:not(.nav-contact)::after{left:auto;right:6px;bottom:24px}.site-header nav>a[href='/blog']{margin:8px 0;padding:18px 0;border-left:0;border-top:1px solid #151a3614;justify-content:space-between}.site-header nav>a[href='/blog']::before{left:0;width:100%}.site-header nav>a.nav-contact{padding:12px 15px;margin-top:8px;justify-content:space-between}}
+@media(prefers-reduced-motion:reduce){.site-header *,.site-header *::before,.site-header *::after{transition:none!important;transform:none!important}}
+
+/* Highlight the journal as the final navigation destination. */
+.site-header nav>a[href='/blog']{border:1px solid #294af2;background:#294af2;color:#fff;border-radius:5px;padding:10px 17px;margin-left:0;font-weight:700;box-shadow:0 3px 10px #294af216;transition:background .2s,box-shadow .2s,transform .2s}
+.site-header nav>a[href='/blog']::before{content:none}
+.site-header nav>a[href='/blog']:hover,.site-header nav>a[href='/blog']:focus-visible{background:#1d38c9;color:#fff;box-shadow:0 5px 15px #294af22a;transform:translateY(-1px)}
+.site-header nav>a[href='/blog'][aria-current=page]{color:#fff;background:#294af2}
+.site-header nav>a.nav-contact{border:0;padding:10px 0;font-weight:500;color:#626676}
+.site-header nav>a.nav-contact:hover{background:none;color:#151a36}
+@media(max-width:820px){.site-header nav>a[href='/blog']{margin-top:10px;padding:13px 16px;border-top:1px solid #294af2}.site-header nav>a.nav-contact{padding:14px 0;margin:0}}
+
+/* Soft journal pill. */
+.site-header nav>a[href='/blog'],.site-header nav>a[href='/blog'][aria-current=page]{background:#eeeaf7;color:#574278;border:1px solid #e1d8ef;border-radius:999px;padding:7px 8px 7px 19px;gap:14px;box-shadow:none}
+.site-header nav>a[href='/blog']::after,.site-header nav>a[href='/blog'][aria-current=page]::after{display:grid;place-items:center;width:29px;height:29px;background:#fff9;border:1px solid #ffffffb0;border-radius:50%;font-size:16px;color:#574278;transition:background .25s,transform .25s}
+.site-header nav>a[href='/blog']:hover,.site-header nav>a[href='/blog']:focus-visible{background:#e4dbf1;border-color:#d4c5e6;color:#43305f;box-shadow:0 4px 12px #57427810;transform:translateY(-1px)}
+.site-header nav>a[href='/blog']:hover::after{background:white;transform:rotate(45deg)}
+@media(max-width:820px){.site-header nav>a[href='/blog']{padding:9px 10px 9px 20px;margin-top:10px}}
