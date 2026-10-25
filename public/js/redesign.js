@@ -69,14 +69,29 @@
     const filters = document.getElementById('journal-filters');
     const status = document.getElementById('journal-status');
     let tag = 'All', posts = [], loaded = false;
+    const entrance = document.getElementById('journal-entrance');
+    const list = document.getElementById('journal-list');
+    let category = '';
+    const inCategory = p => p.category === category;
+    function routeJournal() {
+      category = ['tech', 'personal'].includes(location.hash.slice(1)) ? location.hash.slice(1) : '';
+      entrance.hidden = !!category;
+      list.hidden = !category;
+      tag = 'All'; input.value = '';
+      document.getElementById('journal-category').textContent = category === 'tech' ? '01 / Tech notes' : '02 / Personal life';
+      document.getElementById('journal-list-title').textContent = category === 'tech' ? 'Inside the build.' : 'Beyond the screen.';
+      render();
+      if (category) document.getElementById('journal-list-title').focus({preventScroll:true});
+    }
+    window.addEventListener('hashchange', routeJournal);
     function render() {
-      const tags = ['All', ...new Set(posts.map(p => p.tag))];
+      const tags = ['All', ...new Set(posts.filter(inCategory).map(p => p.tag))];
       filters.innerHTML = tags.map(t => `<button type="button" data-tag="${esc(t)}" aria-pressed="${t === tag}">${esc(t)}</button>`).join('');
       const query = input.value.trim().toLowerCase();
-      const filtered = posts.filter(p => (tag === 'All' || p.tag === tag) && (!query || (p.title + ' ' + p.excerpt + ' ' + p.tag).toLowerCase().includes(query)));
+      const filtered = posts.filter(p => inCategory(p) && (tag === 'All' || p.tag === tag) && (!query || (p.title + ' ' + p.excerpt + ' ' + p.tag).toLowerCase().includes(query)));
       const featured = tag === 'All' && !query && filtered.length > 1;
       grid.innerHTML = filtered.map((p, i) => `<article class="journal-card ${featured && i === 0 ? 'featured' : ''}"><a href="/blog/${esc(p.slug)}" aria-label="Read ${esc(p.title)}"><img src="${esc(p.coverImg)}" alt="" width="800" height="500" loading="${i === 0 ? 'eager' : 'lazy'}" decoding="async"></a><div class="journal-card-body"><div class="journal-meta"><span class="journal-tag">${esc(p.tag)}</span><span>${esc(p.date)} · ${esc(p.readTime)}</span></div><h2><a href="/blog/${esc(p.slug)}">${esc(p.title)}</a></h2><p>${esc(p.excerpt)}</p><a class="text-link" href="/blog/${esc(p.slug)}">Read the note <span aria-hidden="true">↗</span><span class="sr-only">: ${esc(p.title)}</span></a></div></article>`).join('');
-      status.textContent = `${filtered.length} ${filtered.length === 1 ? 'note' : 'notes'}${tag === 'All' ? ' across engineering and life' : ' in ' + tag}${query ? ' matching “' + input.value.trim() + '”' : ''}`;
+      status.textContent = `${filtered.length} ${filtered.length === 1 ? 'note' : 'notes'}${tag === 'All' ? (category === 'tech' ? ' about technology' : ' about life') : ' in ' + tag}${query ? ' matching “' + input.value.trim() + '”' : ''}`;
       document.getElementById('journal-empty').hidden = !loaded || filtered.length !== 0;
     }
     filters.addEventListener('click', e => {
@@ -88,6 +103,7 @@
     });
     input.addEventListener('input', render);
     document.getElementById('journal-reset').addEventListener('click', () => { tag = 'All'; input.value = ''; render(); input.focus(); });
+    routeJournal();
     fetch('/api/posts-visibility').then(r => { if (!r.ok) throw new Error('visibility unavailable'); return r.json(); }).then(result => {
       if (!Array.isArray(result.hidden)) throw new Error('invalid visibility response');
       posts = data.posts.filter(p => !result.hidden.includes(p.slug));

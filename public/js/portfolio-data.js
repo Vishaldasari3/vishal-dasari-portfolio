@@ -878,6 +878,7 @@ window.VD_DATA = {
   "posts": [
     {
       "slug": "code-worked-but-wrong",
+      "category": "tech",
       "title": "The Code Worked. But It Was Still Wrong.",
       "excerpt": "What a 2am production incident taught me about the gap between code that runs and software that lasts.",
       "tag": "Tech",
@@ -888,6 +889,7 @@ window.VD_DATA = {
     },
     {
       "slug": "emotional-side-of-engineering",
+      "category": "personal",
       "title": "Nobody Talks About the Emotional Side of Being a Software Engineer",
       "excerpt": "Imposter syndrome, the pressure to always be learning, and what actually separates confident engineers from everyone else.",
       "tag": "Career",
@@ -898,6 +900,7 @@ window.VD_DATA = {
     },
     {
       "slug": "api-vs-mcp",
+      "category": "tech",
       "title": "API vs MCP: Will MCP Replace APIs?",
       "excerpt": "A plain-English look at what each one actually does — with real banking examples, and an honest answer at the end.",
       "tag": "Tech",
@@ -908,6 +911,7 @@ window.VD_DATA = {
     },
     {
       "slug": "first-trip-home",
+      "category": "personal",
       "title": "The First Trip Back: Five Years, One Homecoming",
       "excerpt": "Five years without a visit, and what it actually felt like to land — the quiet at the gate, a smaller house, three weeks that were somehow enough.",
       "tag": "Personal",
@@ -918,6 +922,7 @@ window.VD_DATA = {
     },
     {
       "slug": "ai-agents-reshaping-tech",
+      "category": "tech",
       "title": "How AI Agents Are Reshaping Programming and Technology Automation",
       "excerpt": "From autocomplete to owning entire workflows — what changes when software starts making judgment calls.",
       "tag": "Tech",
@@ -928,6 +933,7 @@ window.VD_DATA = {
     },
     {
       "slug": "what-is-happiness",
+      "category": "personal",
       "title": "What Does It Mean to Be Happy in Life?",
       "excerpt": "A Buddhist framework splits happiness into four parts — and the most important one has nothing to do with money.",
       "tag": "Life",
@@ -938,6 +944,7 @@ window.VD_DATA = {
     },
     {
       "slug": "a-decade-of-moving",
+      "category": "personal",
       "title": "Leaving Home: What Ten Years Away From India Actually Felt Like",
       "excerpt": "Visa paperwork, culture shock, and the ordinary, unglamorous kind of missing someone across a very long distance.",
       "tag": "Personal",
@@ -948,6 +955,7 @@ window.VD_DATA = {
     },
     {
       "slug": "ai-in-2026",
+      "category": "tech",
       "title": "What Coding With AI Agents Actually Looks Like in 2026",
       "excerpt": "Less typing, more deciding — a year of working alongside agents changed the actual shape of my job.",
       "tag": "Tech",
