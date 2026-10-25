@@ -19,7 +19,10 @@ const exists = url => {
   return fs.existsSync(path.join(publicRoot, routeMap.get(pathname) || pathname));
 };
 
+const checkedFiles = new Set();
 for (const route of routes) {
+  if (checkedFiles.has(route.destination)) continue;
+  checkedFiles.add(route.destination);
   const file = path.join(publicRoot, route.destination);
   if (!fs.existsSync(file)) { errors.push(`${route.source}: rewrite target missing`); continue; }
   const html = fs.readFileSync(file, 'utf8');
@@ -44,13 +47,13 @@ vm.runInNewContext(fs.readFileSync(path.join(publicRoot,'js/portfolio-data.js'),
 vm.runInNewContext(fs.readFileSync(path.join(publicRoot,'js/blog-posts-data.js'),'utf8'),context);
 for (const post of context.window.VD_DATA.posts) {
   if (!exists(post.coverImg)) errors.push(`Missing article image ${post.coverImg}`);
-  if (!exists('/blog/' + post.slug)) errors.push(`Missing article route ${post.slug}`);
+  if (!exists('/blog/' + post.category + '/' + post.slug)) errors.push(`Missing article route ${post.slug}`);
   assert.equal(post.title, context.window.BLOG_POSTS[post.slug].title, `Index title differs from article ${post.slug}`);
 }
 const home = fs.readFileSync(path.join(publicRoot,'html/home.html'),'utf8');
 assert(!home.includes('class="project-grid"'), 'Landing page must not contain project listings');
 assert(!home.includes('class="career-list"'), 'Landing page must not contain work history');
-assert(!home.includes('target="_blank" href="/blog"'), 'Internal blog navigation must stay in the same tab');
+assert(/<a data-blog-link href="https:\/\/blog\.dasarivishal\.com\/"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/.test(home), 'Header blog link must open securely in a new tab');
 assert.equal(pages, 15, 'Expected seven main pages and eight article shells');
 if (errors.length) { console.error(errors.join('\n')); process.exitCode = 1; }
 else console.log(`Checked ${pages} pages, all referenced local assets and routes, heading/landmark structure, and article metadata consistency.`);

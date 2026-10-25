@@ -107,3 +107,5 @@ network round trip.
 
 `next.config.js` rewrites clean URLs to the matching static file under
 `public/html/`. `/blog/<slug>` maps to `public/html/blogs/blog-<slug>.html`.
+
+Blog subdomain: blog.dasarivishal.com serves the journal at / and articles at /tech/slug or /personal/slug. Host-based rules live in next.config.js. Preview domains retain /blog/category/slug. For local subdomain testing run the built app on port 3013 and visit http://blog.localhost:3013. Run node scripts/check-blog-routing.mjs against that server to validate hostname routing and legacy redirects.

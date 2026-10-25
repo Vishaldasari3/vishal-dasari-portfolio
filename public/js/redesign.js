@@ -4,6 +4,21 @@
   const data = window.VD_DATA;
   const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
+  const isBlogHost = ['blog.dasarivishal.com', 'blog.localhost'].includes(location.hostname);
+  const articleUrl = p => (isBlogHost ? '' : '/blog') + '/' + p.category + '/' + p.slug;
+  function initBlogLinks() {
+    if (isBlogHost) {
+      document.querySelectorAll('a[href^="/"]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === '/blog') link.setAttribute('href', '/');
+        else if (href.startsWith('/blog/')) link.setAttribute('href', href.slice(5));
+        else if (['/', '/about', '/experience', '/certifications', '/tech-stack', '/contact'].includes(href)) link.setAttribute('href', 'https://www.dasarivishal.com' + href);
+      });
+      document.querySelectorAll('[data-blog-link]').forEach(link => { link.href = '/'; link.removeAttribute('target'); });
+    } else if (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.hostname.endsWith('.vercel.app')) {
+      document.querySelectorAll('[data-blog-link]').forEach(link => { link.href = '/blog'; });
+    }
+  }
   function initNavigation() {
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.getElementById('primary-nav');
@@ -68,7 +83,7 @@
     const input = document.getElementById('journal-search');
     const filters = document.getElementById('journal-filters');
     const status = document.getElementById('journal-status');
-    let tag = 'All', posts = [], loaded = false;
+    let tag = 'All', posts = [], loaded = false, loadFailed = false;
     const entrance = document.getElementById('journal-entrance');
     const list = document.getElementById('journal-list');
     let category = '';
@@ -90,8 +105,9 @@
       const query = input.value.trim().toLowerCase();
       const filtered = posts.filter(p => inCategory(p) && (tag === 'All' || p.tag === tag) && (!query || (p.title + ' ' + p.excerpt + ' ' + p.tag).toLowerCase().includes(query)));
       const featured = tag === 'All' && !query && filtered.length > 1;
-      grid.innerHTML = filtered.map((p, i) => `<article class="journal-card ${featured && i === 0 ? 'featured' : ''}"><a href="/blog/${esc(p.slug)}" aria-label="Read ${esc(p.title)}"><img src="${esc(p.coverImg)}" alt="" width="800" height="500" loading="${i === 0 ? 'eager' : 'lazy'}" decoding="async"></a><div class="journal-card-body"><div class="journal-meta"><span class="journal-tag">${esc(p.tag)}</span><span>${esc(p.date)} · ${esc(p.readTime)}</span></div><h2><a href="/blog/${esc(p.slug)}">${esc(p.title)}</a></h2><p>${esc(p.excerpt)}</p><a class="text-link" href="/blog/${esc(p.slug)}">Read the note <span aria-hidden="true">↗</span><span class="sr-only">: ${esc(p.title)}</span></a></div></article>`).join('');
+      grid.innerHTML = filtered.map((p, i) => `<article class="journal-card ${featured && i === 0 ? 'featured' : ''}"><a href="${esc(articleUrl(p))}" aria-label="Read ${esc(p.title)}"><img src="${esc(p.coverImg)}" alt="" width="800" height="500" loading="${i === 0 ? 'eager' : 'lazy'}" decoding="async"></a><div class="journal-card-body"><div class="journal-meta"><span class="journal-tag">${esc(p.tag)}</span><span>${esc(p.date)} · ${esc(p.readTime)}</span></div><h2><a href="${esc(articleUrl(p))}">${esc(p.title)}</a></h2><p>${esc(p.excerpt)}</p><a class="text-link" href="${esc(articleUrl(p))}">Read the note <span aria-hidden="true">↗</span><span class="sr-only">: ${esc(p.title)}</span></a></div></article>`).join('');
       status.textContent = `${filtered.length} ${filtered.length === 1 ? 'note' : 'notes'}${tag === 'All' ? (category === 'tech' ? ' about technology' : ' about life') : ' in ' + tag}${query ? ' matching “' + input.value.trim() + '”' : ''}`;
+      if (!loaded) status.textContent = loadFailed ? 'The journal is temporarily unavailable. Please refresh to try again.' : 'Loading the journal…';
       document.getElementById('journal-empty').hidden = !loaded || filtered.length !== 0;
     }
     filters.addEventListener('click', e => {
@@ -109,7 +125,7 @@
       posts = data.posts.filter(p => !result.hidden.includes(p.slug));
       loaded = true;
       render();
-    }).catch(() => { status.textContent = 'The journal is temporarily unavailable. Please refresh to try again.'; });
+    }).catch(() => { loadFailed = true; render(); });
   }
 
   function initContact() {
@@ -155,6 +171,6 @@
     });
   }
 
-  function init() { initNavigation(); initProjects(); initStack(); initJournal(); initContact(); initArticleAccessibility(); }
+  function init() { initBlogLinks(); initNavigation(); initProjects(); initStack(); initJournal(); initContact(); initArticleAccessibility(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
