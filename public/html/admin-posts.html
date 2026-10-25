@@ -1,68 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
 <title>Post Visibility — Vishal Dasari</title>
 <link rel="icon" type="image/png" href="../favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  html { overflow-x: hidden; }
-  html, body { margin: 0; max-width: 100%; background: #f4f5f9; background-image: radial-gradient(rgba(54,84,224,0.05) 1px, transparent 1px); background-size: 26px 26px; color: #14162b; }
-  * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 56px 20px 80px; }
-  .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 32px; }
-  .brand-badge { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, #3654e0, #7c5cff); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; color: #fff; }
-  .brand-name { font-size: 14.5px; font-weight: 600; color: #14162b; }
-  h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; margin: 0 0 6px; }
-  .sub { font-size: 13.5px; color: #7a8199; margin: 0 0 28px; }
-  .card { display: flex; align-items: center; justify-content: space-between; gap: 16px; background: rgba(255,255,255,0.75); backdrop-filter: blur(16px); border: 1.5px solid rgba(54,84,224,0.22); box-shadow: 0 0 0 1px rgba(54,84,224,0.08), 0 12px 30px -18px rgba(30,40,80,0.25); border-radius: 16px; padding: 16px 20px; margin-bottom: 12px; transition: border-color .15s, box-shadow .15s; }
-  .card:hover { border-color: rgba(54,84,224,0.4); box-shadow: 0 0 0 1px rgba(54,84,224,0.14), 0 0 18px rgba(54,84,224,0.16), 0 12px 30px -18px rgba(30,40,80,0.25); }
-  .p-title { font-size: 14px; font-weight: 600; color: #14162b; }
-  .p-meta { font-size: 12px; color: #9096a8; margin-top: 3px; }
-  .switch { position: relative; width: 46px; height: 26px; flex-shrink: 0; border-radius: 14px; background: rgba(28,32,48,0.15); cursor: pointer; transition: background .15s; border: none; }
-  .switch.on { background: linear-gradient(135deg, #3654e0, #7c5cff); box-shadow: 0 0 10px rgba(54,84,224,0.5); }
-  .switch .knob { position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; transition: transform .15s; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-  .switch.on .knob { transform: translateX(20px); }
-  .section-title { font-size: 15px; font-weight: 700; color: #14162b; margin: 36px 0 14px; padding-left: 12px; border-left: 3px solid #3654e0; }
-  .cbox { padding: 14px 16px; border-radius: 12px; background: rgba(255,255,255,0.7); border: 1.5px solid rgba(54,84,224,0.22); box-shadow: 0 0 0 1px rgba(54,84,224,0.08); margin-bottom: 10px; }
-  .cbox .meta { font-size: 12px; color: #9096a8; margin-bottom: 6px; }
-  .cbox .slug-pill { font-size: 11px; font-weight: 600; color: #3654e0; background: rgba(54,84,224,0.1); border: 1px solid rgba(54,84,224,0.15); padding: 2px 8px; border-radius: 10px; margin-right: 6px; }
-  .cbox .text { font-size: 14px; color: #4a5069; line-height: 1.55; margin-bottom: 10px; }
-  .cbox button { font-size: 12px; font-weight: 600; padding: 7px 14px; border-radius: 8px; border: none; cursor: pointer; margin-right: 8px; font-family: 'Poppins', sans-serif; }
-  .cbox .approve { background: #1fa363; color: #fff; }
-  .cbox .reject { background: #d64545; color: #fff; }
-  #gate { max-width: 360px; margin: 120px auto 0; text-align: center; }
-  #gate p { font-size: 14px; color: #565c78; margin-bottom: 16px; }
-  input { font-size: 14px; padding: 11px 14px; border-radius: 10px; border: 1px solid rgba(28,32,48,0.15); width: 100%; box-sizing: border-box; margin-bottom: 12px; font-family: 'Poppins', sans-serif; }
-  #unlock-btn { width: 100%; background: linear-gradient(135deg, #3654e0, #7c5cff); color: #fff; font-size: 13px; font-weight: 600; font-family: 'Poppins', sans-serif; padding: 11px 0; border-radius: 10px; border: none; cursor: pointer; box-shadow: 0 10px 22px -8px rgba(54,84,224,0.5); transition: transform .15s; }
-  #unlock-btn:hover { transform: translateY(-1px); }
-  @media (max-width: 480px) {
-    .wrap { padding: 40px 14px 60px; }
-    .card { padding: 14px 16px; gap: 10px; }
-    .p-title { font-size: 13px; }
-    h1 { font-size: 19px; }
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/admin.css">
 </head>
 <body>
-<div id="gate">
+<header class="admin-header"><a class="admin-brand" href="/">VD <span>Vishal Dasari</span></a><span class="workspace-label">Journal workspace</span><a href="/blog" class="preview-link" target="_blank" rel="noopener noreferrer">View journal ↗</a></header>
+<main>
+<section id="gate" aria-labelledby="gate-title">
   <div class="brand" style="justify-content: center;">
     <div class="brand-badge">VD</div>
     <div class="brand-name">Vishal Dasari</div>
   </div>
-  <p>Enter the admin secret to manage post visibility.</p>
-  <input type="password" id="secret" placeholder="Admin secret">
-  <button id="unlock-btn" onclick="loadPosts()">Unlock</button>
-</div>
-<div class="wrap" id="list" style="display:none;">
+  <p class="eyebrow">PRIVATE WORKSPACE</p><h1 id="gate-title">Your words.<br>Your control.</h1><p>Manage article visibility and review conversations from one place.</p><label for="secret">Admin secret</label>
+  <input type="password" id="secret" placeholder="Enter your admin secret" autocomplete="current-password">
+  <button id="unlock-btn" onclick="loadPosts()">Open workspace <span aria-hidden="true">↗</span></button>
+<p class="gate-footnote">Article visibility & comment moderation</p>
+</section>
+<section class="wrap" id="list" style="display:none;">
+<div class="workspace-top"><p class="eyebrow">JOURNAL / CONTENT MANAGEMENT</p><button type="button" id="lock-btn">Lock workspace ↗</button></div>
+<p id="admin-status" role="status" aria-live="polite"></p>
   <div id="posts-section"></div>
   <div id="comments-section"></div>
-</div>
-<script src="../js/blog.js"></script>
+</section>
+</main>
+<script src="/js/portfolio-data.js"></script>
 <script>
+  document.getElementById('secret').addEventListener('keydown', function (e) { if(e.key === 'Enter') loadPosts(); });
+  document.getElementById('lock-btn').addEventListener('click', function () {
+
+    document.getElementById('secret').value = '';
+    document.getElementById('list').style.display = 'none';
+    document.getElementById('gate').style.display = 'block';
+    document.getElementById('secret').focus();
+    document.getElementById('posts-section').replaceChildren();
+    document.getElementById('comments-section').replaceChildren();
+    document.getElementById('unlock-btn').disabled = false;
+    document.getElementById('unlock-btn').textContent = 'Open workspace ↗';
+  });
   function loadPosts() {
     var secret = document.getElementById('secret').value.trim();
     if (!secret) return;
@@ -74,7 +56,7 @@
       .then(function (r) { if (!r.ok) throw new Error('unauthorized'); return r.json(); })
       .then(function () { unlockWith(secret); })
       .catch(function () {
-        btn.disabled = false; btn.textContent = 'Unlock';
+        btn.disabled = false; btn.textContent = 'Open workspace ↗';
         if (err) { err.style.display = 'block'; } else {
           var p = document.createElement('p');
           p.id = 'gate-err'; p.style.color = '#d64545'; p.style.marginTop = '-4px'; p.style.marginBottom = '12px';
@@ -85,7 +67,7 @@
   }
 
   function unlockWith(secret) {
-    localStorage.setItem('admin_secret_temp', secret);
+
     document.getElementById('gate').style.display = 'none';
     document.getElementById('list').style.display = 'block';
     fetch('/api/posts-visibility')
@@ -93,7 +75,7 @@
       .then(function (data) {
         var hidden = data.hidden || [];
         var section = document.getElementById('posts-section');
-        var posts = window.__BLOG_POST_DATA__ || [];
+        var posts = window.VD_DATA.posts || [];
         var activeCount = posts.filter(function (p) { return hidden.indexOf(p.slug) === -1; }).length;
         var hiddenCount = posts.length - activeCount;
         section.innerHTML =
@@ -112,7 +94,7 @@
           var t = document.createElement('div'); t.className = 'p-title'; t.textContent = p.title;
           var m = document.createElement('div'); m.className = 'p-meta';
           var mCount = document.createElement('span'); mCount.textContent = '\u2026';
-          m.appendChild(document.createTextNode(p.tag + ' \u00b7 ' + p.date + ' \u00b7 '));
+          m.appendChild(document.createTextNode((p.category === 'tech' ? 'Tech' : 'Personal life') + ' \u00b7 ' + p.date + ' \u00b7 '));
           m.appendChild(mCount);
           titleEl.appendChild(t); titleEl.appendChild(m);
           fetch('/api/comments/' + encodeURIComponent(p.slug))
@@ -122,14 +104,26 @@
           var sw = document.createElement('button');
           sw.className = 'switch' + (isHidden ? '' : ' on');
           sw.innerHTML = '<span class="knob"></span>';
+          sw.setAttribute('role','switch');
+          sw.setAttribute('aria-checked', String(!isHidden));
+          sw.setAttribute('aria-label', 'Publish ' + p.title);
+          sw.title = isHidden ? 'Hidden' : 'Published';
           sw.addEventListener('click', function () {
             var nowHidden = sw.classList.contains('on');
-            sw.classList.toggle('on');
+            sw.disabled = true;
+            document.getElementById('admin-status').textContent = 'Saving visibility…';
             fetch('/api/posts-visibility', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ slug: p.slug, hidden: nowHidden, secret: secret }),
-            }).then(function () { loadPosts(); }).catch(function () { sw.classList.toggle('on'); });
+            }).then(function (response) {
+              if (!response.ok) throw new Error('save failed');
+              document.getElementById('admin-status').textContent = 'Visibility updated.';
+              unlockWith(secret);
+            }).catch(function () {
+              sw.disabled = false;
+              document.getElementById('admin-status').textContent = 'Could not save. Please try again.';
+            });
           });
           card.appendChild(titleEl);
           card.appendChild(sw);
@@ -180,11 +174,19 @@
   }
 
   function actComment(id, action, secret, cbox) {
+    cbox.querySelectorAll('button').forEach(function(b) { b.disabled = true; });
     fetch('/api/comments/admin', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: id, action: action, secret: secret }),
-    }).then(function () { cbox.remove(); });
+    }).then(function (response) {
+      if (!response.ok) throw new Error('moderation failed');
+      document.getElementById('admin-status').textContent = 'Comment updated.';
+      loadComments(secret);
+    }).catch(function () {
+      cbox.querySelectorAll('button').forEach(function(b) { b.disabled = false; });
+      document.getElementById('admin-status').textContent = 'Could not update comment. Please try again.';
+    });
   }
 </script>
 </body>
