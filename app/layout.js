@@ -2,6 +2,7 @@ import { Analytics } from "@vercel/analytics/next";
 
 export const metadata = {
   title: 'Vishal Dasari Portfolio',
+  icons: { icon: '/assets/brand/vd-favicon.png', apple: '/assets/brand/vd-apple-touch.png' },
 };
 
 // This layout only wraps app-router pages. Every real route in this project

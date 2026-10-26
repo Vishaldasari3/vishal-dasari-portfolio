@@ -2,3 +2,8 @@
 
 /* Match the public site's readable supporting type. */
 body{font-size:16px}.workspace-label,.preview-link,#gate label,.p-meta,.meta,.cbox button,#admin-status,.workspace-top button{font-size:14px}#gate .gate-footnote,.eyebrow,.slug-pill{font-size:13px}.p-title{font-size:16px}.sub{font-size:16px}@media(max-width:600px){.p-title{font-size:15px}.workspace-top{flex-wrap:wrap}.admin-header{flex-wrap:wrap}.admin-brand span{font-size:15px}}
+
+.admin-brand .brand-logo{display:block;width:180px;height:60px;object-fit:contain;transition:transform .24s ease,filter .24s ease}
+.admin-brand:hover .brand-logo,.admin-brand:focus-visible .brand-logo{transform:translateY(-1px) scale(1.025);filter:brightness(1.08)}
+@media(max-width:600px){.admin-brand .brand-logo{width:150px;height:50px}}
+@media(prefers-reduced-motion:reduce){.admin-brand .brand-logo{transition:none}.admin-brand:hover .brand-logo,.admin-brand:focus-visible .brand-logo{transform:none;filter:none}}

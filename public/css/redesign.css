@@ -2976,3 +2976,14 @@ dialog li{font-size:16px;line-height:1.75}
   .page-main .stack-category:nth-child(5){grid-column:span 5}
   .page-main .stack-category:nth-child(6){grid-column:span 3}
 }
+
+/* Approved Midnight + blue-to-purple identity; the wordmark is artwork, not substituted type. */
+.brand .brand-logo{display:block;width:180px;height:60px;object-fit:contain;max-width:none;transition:transform .24s ease,filter .24s ease;transform-origin:left center}
+.brand:hover .brand-logo,.brand:focus-visible .brand-logo{transform:translateY(-1px) scale(1.025);filter:brightness(1.08)}
+.site-header .brand{flex-shrink:0}
+.site-footer .brand{flex-shrink:0}
+.error-brand{margin-bottom:24px}
+.redesign-error .brand-logo{width:216px;height:72px;max-width:none;border-radius:0;margin:0}
+@media(min-width:821px) and (max-width:1050px){.site-header .brand .brand-logo{width:156px;height:52px}}
+@media(max-width:820px){.site-header .brand .brand-logo{width:156px;height:52px}}
+@media(prefers-reduced-motion:reduce){.brand .brand-logo{transition:none}.brand:hover .brand-logo,.brand:focus-visible .brand-logo{transform:none;filter:none}}
