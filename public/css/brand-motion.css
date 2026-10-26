@@ -1,0 +1,18 @@
+/* Artwork-aligned masks preserve the approved letterforms and wordmark. */
+.brand-art{display:block;position:relative;flex-shrink:0;transition:transform .24s ease;transform-origin:left center;isolation:isolate}
+.brand .brand-art .brand-logo,.admin-brand .brand-art .brand-logo{transform:none!important;filter:none!important}
+.brand-art::before,.brand-art::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .25s ease;mask-size:100% 100%;-webkit-mask-size:100% 100%;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat}
+.brand-art::before{mask-image:url('/assets/brand/v-mask.png');-webkit-mask-image:url('/assets/brand/v-mask.png');background-color:#091b3c;background-image:repeating-radial-gradient(ellipse at 50% 50%,#091b3c 0%,#102747 8%,#285078 13%,#476c92 15%,#285078 17%,#102747 21%,#091b3c 28%);background-size:240% 320%;background-repeat:no-repeat;animation:brand-midnight-waves 5.77s linear infinite paused}
+.brand-art::after{mask-image:url('/assets/brand/d-mask.png');-webkit-mask-image:url('/assets/brand/d-mask.png');background-image:linear-gradient(125deg,#1538bf 8%,#4569f0 30%,#6657e3 46%,#863bd6 62%,#1538bf 86%);background-size:260% 200%;animation:brand-gradient-flow 3.69s ease-in-out infinite alternate paused}
+.brand:focus-visible .brand-art,.admin-brand:focus-visible .brand-art{transform:translateY(-1px) scale(1.025)}
+.brand:focus-visible .brand-art::before,.brand:focus-visible .brand-art::after,.admin-brand:focus-visible .brand-art::before,.admin-brand:focus-visible .brand-art::after{opacity:1;animation-play-state:running}
+@media(hover:hover){
+  .brand:hover .brand-art,.admin-brand:hover .brand-art{transform:translateY(-1px) scale(1.025)}
+  .brand:hover .brand-art::before,.brand:hover .brand-art::after,.admin-brand:hover .brand-art::before,.admin-brand:hover .brand-art::after{opacity:1;animation-play-state:running}
+}
+@keyframes brand-midnight-waves{from{background-position:100% 50%}to{background-position:0% 50%}}
+@keyframes brand-gradient-flow{from{background-position:0% 0%}to{background-position:100% 100%}}
+@media(prefers-reduced-motion:reduce){
+  .brand-art{transition:none!important;transform:none!important}
+  .brand-art::before,.brand-art::after{animation:none!important;transition:none!important}
+}
