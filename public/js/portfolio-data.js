@@ -836,6 +836,13 @@ window.VD_DATA = {
       "category": "ai"
     },
     {
+      "name": "MCP Server",
+      "size": 90,
+      "hue": 340,
+      "light": 48,
+      "category": "ai"
+    },
+    {
       "name": "Agents",
       "size": 60,
       "hue": 340,
