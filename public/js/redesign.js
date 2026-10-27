@@ -173,6 +173,43 @@
     });
   }
 
-  function init() { initBlogLinks(); initNavigation(); initProjects(); initStack(); initJournal(); initContact(); initArticleAccessibility(); }
+  function initUnifiedHover() {
+    const selector = '.site-header nav>a, .button, .text-button, .social-links a, .landing-socials a, .footer-bottom>a, .landing-footnote a, .landing-bottom a, .text-link, .journal-card h2 a, .education-list a, .contact-links a';
+    function enhance(root) {
+      const candidates = root.matches && root.matches(selector) ? [root] : [];
+      if (root.querySelectorAll) candidates.push(...root.querySelectorAll(selector));
+      candidates.forEach(link => {
+        if (link.classList.contains('vd-hover') || link.querySelector('img')) return;
+        link.classList.add('vd-hover');
+        Array.from(link.childNodes).forEach(node => {
+          if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+            const label = document.createElement('span');
+            label.className = 'vd-hover-label';
+            const trailingArrow = node.textContent.match(/^([\s\S]*?)([↗↑↓→])\s*$/);
+            if (trailingArrow) {
+              label.textContent = trailingArrow[1];
+              const arrow = document.createElement('span');
+              arrow.className = 'vd-hover-arrow';
+              arrow.setAttribute('aria-hidden', 'true');
+              arrow.textContent = trailingArrow[2];
+              node.replaceWith(label, arrow);
+            } else {
+              node.replaceWith(label); label.append(node);
+            }
+          } else if (node.nodeType === Node.ELEMENT_NODE) {
+            if (node.getAttribute('aria-hidden') === 'true') node.classList.add('vd-hover-arrow');
+            else if (!node.children.length && node.textContent.trim()) node.classList.add('vd-hover-label');
+          }
+        });
+      });
+    }
+    enhance(document);
+    // Journal lists can arrive after the visibility request completes.
+    new MutationObserver(records => records.forEach(record => record.addedNodes.forEach(node => {
+      if (node.nodeType === Node.ELEMENT_NODE) enhance(node);
+    }))).observe(document.body, {childList:true, subtree:true});
+  }
+
+  function init() { initBlogLinks(); initNavigation(); initProjects(); initStack(); initJournal(); initContact(); initArticleAccessibility(); initUnifiedHover(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
