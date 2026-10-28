@@ -7,3 +7,10 @@ body{font-size:16px}.workspace-label,.preview-link,#gate label,.p-meta,.meta,.cb
 .admin-brand:hover .brand-logo,.admin-brand:focus-visible .brand-logo{transform:translateY(-1px) scale(1.025);filter:brightness(1.08)}
 @media(max-width:600px){.admin-brand .brand-logo{width:150px;height:50px}}
 @media(prefers-reduced-motion:reduce){.admin-brand .brand-logo{transition:none}.admin-brand:hover .brand-logo,.admin-brand:focus-visible .brand-logo{transform:none;filter:none}}
+
+/* Comfortable mobile workspace controls and long article titles. */
+@media(max-width:600px){
+  #gate input{font-size:16px;min-height:44px;max-width:100%}
+  .preview-link,.workspace-top button,.cbox button{min-height:44px;display:inline-flex;align-items:center}
+  .p-title,.slug-pill,.meta{overflow-wrap:anywhere;min-width:0}
+}
