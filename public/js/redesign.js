@@ -210,6 +210,67 @@
     }))).observe(document.body, {childList:true, subtree:true});
   }
 
-  function init() { initBlogLinks(); initNavigation(); initProjects(); initStack(); initJournal(); initContact(); initArticleAccessibility(); initUnifiedHover(); }
+  function initHomeName() {
+    const name = document.querySelector(".home-name-visual");
+    if (!name || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    name.classList.add("name-typing");
+    [[".home-name-first", 0.2, 0.11], [".home-name-last", 1.15, 0.12]].forEach(([selector, start, pace]) => {
+      const word = name.querySelector(selector);
+      if (!word) return;
+      const letters = [...word.textContent];
+      word.replaceChildren(...letters.map((letter, index) => {
+        const character = document.createElement("span");
+        character.className = "name-character";
+        character.textContent = letter;
+        character.style.animationDelay = `${start + index * pace}s`;
+        return character;
+      }));
+    });
+    const cursor = document.createElement("span");
+    cursor.className = "home-typing-cursor";
+    cursor.setAttribute("aria-hidden", "true");
+    name.append(cursor);
+    name.addEventListener("animationstart", event => {
+      if (event.animationName !== "name-character-in") return;
+      const character = event.target;
+      const bounds = character.getBoundingClientRect();
+      cursor.style.left = (bounds.right - name.getBoundingClientRect().left + 3) + "px";
+    });
+    name.addEventListener("animationend", event => {
+      if (event.animationName === "name-character-in" && event.target === name.querySelector(".home-name-last .name-character:last-child")) {
+        name.classList.add("name-typed");
+        cursor.remove();
+      }
+    });
+  }
+
+  function initPortraitConnection() {
+    const scene = document.querySelector('.home-code-cloud');
+    if (!scene) return;
+    const lake = scene.querySelector('.home-node-lake');
+    if (!lake) return;
+    const connections = [
+      ['.home-lake-python-line', '.home-node-python'],
+      ['.home-lake-bricks-line', '.home-node-bricks']
+    ];
+    function align() {
+      connections.forEach(([selector, targetSelector]) => {
+        const svg = scene.querySelector(selector);
+        const target = scene.querySelector(targetSelector);
+        const line = svg?.querySelector('line');
+        if (!line || !target) return;
+        const x1 = lake.offsetLeft + lake.offsetWidth / 2;
+        const y1 = lake.offsetTop + lake.offsetHeight / 2;
+        const x2 = target.offsetLeft + target.offsetWidth / 2;
+        const y2 = target.offsetTop + target.offsetHeight / 2;
+        Object.entries({ x1, y1, x2, y2 }).forEach(([key, value]) => line.setAttribute(key, value));
+        svg.querySelector('animateMotion')?.setAttribute('path', `M ${x1} ${y1} L ${x2} ${y2}`);
+      });
+    }
+    new ResizeObserver(align).observe(scene);
+    align();
+  }
+
+  function init() { initPortraitConnection(); initHomeName(); initBlogLinks(); initNavigation(); initProjects(); initStack(); initJournal(); initContact(); initArticleAccessibility(); initUnifiedHover(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
