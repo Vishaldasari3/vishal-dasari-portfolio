@@ -3318,3 +3318,79 @@ a.vd-hover.vd-hover:is(:hover,:focus-visible),button.vd-hover.vd-hover:is(:hover
 .footer-soft-dock .footer-bottom>a[href="#top"]:is(:hover,:focus-visible){background:transparent;color:#294af2}
 .footer-soft-dock .footer-bottom>a[href="#top"]:is(:hover,:focus-visible) .vd-hover-arrow{transform:translateY(-4px)}
 @media(prefers-reduced-motion:reduce){.footer-soft-dock .footer-bottom>a[href="#top"] .vd-hover-arrow{transition:none;transform:none!important}}
+
+/* Headline bridge preview: one identity row joins the story and original portrait. */
+.home-editorial .home-headline-bridge{max-width:1528px;width:100%;margin-inline:auto;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:28px 36px;align-items:center}
+.home-headline-bridge .home-copy{display:contents}
+.home-headline-bridge .home-identity{grid-column:1/-1;width:100%;display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px 24px;padding-bottom:24px;margin:0;border-bottom:1px solid #e1e3ed}
+.home-headline-bridge .home-identity .home-location{grid-column:1/-1;max-width:480px;margin:0 0 4px}
+.home-headline-bridge .home-identity h1.home-name{grid-column:1/-1;margin:0 0 4px}
+.home-editorial .home-headline-bridge .home-identity .home-role{margin:0;align-self:center}
+.home-headline-bridge .home-identity .home-current-role{justify-self:start;align-self:center;width:auto;margin:0}
+.home-bridge-story{min-width:0;max-width:540px;padding:20px 0}
+.home-headline-bridge .home-portrait-column{width:100%;max-width:none;margin:0}
+@media(max-width:900px){.home-editorial .home-headline-bridge{grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:24px}.home-headline-bridge .home-identity{grid-template-columns:1fr}.home-headline-bridge .home-identity .home-current-role{justify-self:start}.home-bridge-story .home-statement{font-size:25px}.home-bridge-story .hero-actions{flex-wrap:wrap}}
+@media(max-width:640px){.home-editorial .home-headline-bridge{grid-template-columns:minmax(0,1fr);gap:18px}.home-headline-bridge .home-identity{padding-bottom:20px;gap:12px}.home-headline-bridge .home-identity .home-current-role{width:100%;justify-self:stretch}.home-bridge-story{padding:0}.home-headline-bridge .home-portrait-column{max-width:520px;margin-inline:auto}}
+
+/* Fill the bridge story column from the top instead of centering it beside the portrait. */
+.home-headline-bridge .home-bridge-story{align-self:start;padding:26px 0 12px;max-width:560px}
+.home-headline-bridge .home-statement{font-size:clamp(29px,2.65vw,38px);line-height:1.3;margin-bottom:26px}
+.home-headline-bridge .home-description{font-size:clamp(17px,1.35vw,19px);line-height:1.9;max-width:520px;margin-bottom:32px}
+.home-headline-bridge .home-socials{margin-top:26px}
+@media(min-width:641px) and (max-width:900px){.home-headline-bridge .home-bridge-story{padding-top:12px}.home-headline-bridge .home-statement{font-size:27px}.home-headline-bridge .home-description{font-size:16px;line-height:1.8}}
+@media(max-width:640px){.home-headline-bridge .home-bridge-story{padding:4px 0 0}.home-headline-bridge .home-statement{font-size:clamp(25px,6.4vw,30px);margin-bottom:20px}.home-headline-bridge .home-description{font-size:16px;line-height:1.8;margin-bottom:24px}.home-headline-bridge .home-socials{margin-top:18px}}
+
+/* Keep the story in a natural reading flow; do not distribute empty height between items. */
+.home-headline-bridge .home-ownership-line{display:block;margin-top:16px}
+.home-headline-bridge .home-bridge-story{display:block;align-self:start;padding:18px 0 0;max-width:620px}
+.home-headline-bridge .home-statement{margin:0 0 22px}
+.home-headline-bridge .home-description{max-width:590px;line-height:1.8;margin:0 0 26px}
+.home-headline-bridge .hero-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:16px;margin:0}
+.home-headline-bridge .hero-actions .button{min-width:190px;justify-content:center}
+.home-headline-bridge .home-socials{display:flex;align-items:center;justify-content:flex-start;gap:28px;margin:18px 0 0}
+@media(max-width:640px){.home-headline-bridge .home-bridge-story{padding:4px 0 0}.home-headline-bridge .hero-actions{gap:12px}.home-headline-bridge .hero-actions .button{min-width:0;flex:1 1 180px}.home-headline-bridge .home-socials{gap:22px;flex-wrap:wrap}}
+
+/* Editorial inset: remove the divider and let the portrait rise beside the identity. */
+.home-headline-bridge .home-identity{border-bottom:0;padding-bottom:10px}
+.home-headline-bridge .home-bridge-story{border-left:2px solid #d5ccf4;padding:8px 0 8px 22px}
+@media(min-width:901px){
+ .home-headline-bridge .home-portrait-column{margin-top:-180px;align-self:start}
+}
+@media(min-width:641px) and (max-width:900px){
+ .home-headline-bridge .home-portrait-column{margin-top:-80px;align-self:start}
+ .home-headline-bridge .home-bridge-story{padding-left:18px}
+}
+@media(max-width:640px){
+ .home-headline-bridge .home-identity{padding-bottom:4px}
+ .home-headline-bridge .home-bridge-story{padding:4px 0 4px 16px}
+ .home-headline-bridge .home-portrait-column{margin-top:0}
+}
+/* Keep the full-width identity clear of the portrait on narrower tablets/laptops. */
+@media(min-width:641px) and (max-width:1200px){.home-headline-bridge .home-portrait-column{margin-top:0}}
+
+/* Align the social row with the paired homepage actions. */
+.home-headline-bridge .hero-actions{width:396px;max-width:100%;gap:16px}
+.home-headline-bridge .hero-actions .button{flex:1 1 0;min-width:0}
+.home-headline-bridge .home-socials{width:396px;max-width:100%;justify-content:space-between;gap:16px}
+.home-headline-bridge .home-socials a{font-size:17px}
+@media(max-width:640px){.home-headline-bridge .hero-actions{gap:12px}.home-headline-bridge .hero-actions .button{flex:1 1 170px}.home-headline-bridge .home-socials{gap:12px}.home-headline-bridge .home-socials a{font-size:16px}}
+@media(max-width:360px){.home-headline-bridge .home-socials a{font-size:15px}}
+
+/* Give the two-line statement a little breathing room at every screen size. */
+.home-headline-bridge .home-statement strong{display:inline-block;margin-top:7px}
+@media(max-width:640px){.home-headline-bridge .home-statement strong{margin-top:5px}}
+/* Keep both action labels on one line while preserving social-row alignment. */
+.home-headline-bridge .hero-actions,.home-headline-bridge .home-socials{width:432px}
+.home-headline-bridge .hero-actions .vd-hover-label{white-space:nowrap}
+
+/* More breathing room between the editorial rule and its content. */
+.home-headline-bridge .home-bridge-story{padding-left:32px}
+@media(min-width:641px) and (max-width:900px){.home-headline-bridge .home-bridge-story{padding-left:26px}}
+@media(max-width:640px){.home-headline-bridge .home-bridge-story{padding-left:22px}}
+
+/* Enlarge the name by 12% and separate it from the location and role. */
+.home-headline-bridge .home-identity h1.home-name{font-size:clamp(48.94px,5.6672vw,87.584px);margin:12px 0 18px}
+@media(min-width:641px) and (max-width:900px){.home-headline-bridge .home-identity h1.home-name{font-size:77.28px}}
+@media(max-width:640px){.home-headline-bridge .home-identity h1.home-name{font-size:clamp(35px,12.1vw,69.55px);margin:10px 0 14px}}
+/* Avoid portrait overlap with the role capsule on medium desktop widths. */
+@media(min-width:1201px) and (max-width:1400px){.home-headline-bridge .home-portrait-column{margin-top:0}}
