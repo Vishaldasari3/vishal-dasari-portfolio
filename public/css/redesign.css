@@ -3190,30 +3190,30 @@ a.vd-hover.vd-hover:is(:hover,:focus-visible),button.vd-hover.vd-hover:is(:hover
 .home-identity .home-current-role{align-self:stretch;justify-content:center;margin:0;padding:11px 18px;box-shadow:none;border-color:#e1e6f2;background:linear-gradient(110deg,#f0f5fc,#f5f2fc)}
 @media(max-width:640px){.home-identity{width:100%;margin-bottom:26px}.home-identity .home-location{margin-bottom:16px}.home-editorial .home-identity .home-role{font-size:20px;margin-bottom:16px}.home-identity .home-current-role{padding:10px 12px;font-size:14px}}
 
-/* Homepage actions: gradient contour, satin interior, directional arrows. */
+/* Shared home and resume actions: gradient contour, satin interior, directional arrows. */
 .home-editorial .hero-actions{gap:20px;flex-wrap:wrap;margin-top:30px}
-.home-editorial .hero-actions .button{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:19px;min-height:60px;padding:0 25px;border:2px solid transparent;border-radius:30% 70% 24% 76% / 14% 21% 79% 86%;clip-path:none;background:linear-gradient(135deg,#fdfdff,#e9edfb 55%,#f5f0fd) padding-box,linear-gradient(120deg,#294af2,#7743c9) border-box;color:#13284e;font-size:15px;font-weight:600;box-shadow:inset 0 1px 0 #ffffff,0 5px 12px #253c7810;transition:border-radius .7s ease,box-shadow .4s,transform .4s}
-.home-editorial .hero-actions .button::after{content:none}
-.home-editorial .hero-actions .button>.vd-hover-arrow{display:inline-block;flex-shrink:0;width:auto;height:auto;border:0;border-radius:0;background:none;color:#294af2;font-size:22px;line-height:1;transition:transform .4s cubic-bezier(.2,.8,.2,1),color .3s}
-.home-editorial .hero-actions .button:hover,.home-editorial .hero-actions .button:focus-visible{border-color:transparent;border-radius:70% 30% 76% 24% / 21% 14% 86% 79%;background:linear-gradient(240deg,#ffffff,#e2e8fb 55%,#ede4fb) padding-box,linear-gradient(240deg,#294af2,#7743c9) border-box;color:#294af2;box-shadow:0 8px 20px #294af21a;transform:translateY(-1px)}
-.home-editorial .hero-actions .button:hover>.vd-hover-arrow,.home-editorial .hero-actions .button:focus-visible>.vd-hover-arrow{transform:translate(5px,-4px) scale(1.15);color:#663bce}
-.home-editorial .hero-actions .button[download]:hover>.vd-hover-arrow,.home-editorial .hero-actions .button[download]:focus-visible>.vd-hover-arrow{transform:translateY(5px) scale(1.15)}
-@media(max-width:640px){.home-editorial .hero-actions{gap:16px}.home-editorial .hero-actions .button{padding:0 22px;gap:16px;font-size:15px;min-height:58px}}
-@media(prefers-reduced-motion:reduce){.home-editorial .hero-actions .button,.home-editorial .hero-actions .button>.vd-hover-arrow{transition:none!important;transform:none!important}}
+:is(.home-editorial .hero-actions .button,.button.resume-satin){position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:19px;min-height:60px;padding:0 25px;border:2px solid transparent;border-radius:30% 70% 24% 76% / 14% 21% 79% 86%;clip-path:none;background:linear-gradient(135deg,#fdfdff,#e9edfb 55%,#f5f0fd) padding-box,linear-gradient(120deg,#294af2,#7743c9) border-box;color:#13284e;font-size:15px;font-weight:600;box-shadow:inset 0 1px 0 #ffffff,0 5px 12px #253c7810;transition:border-radius .7s ease,box-shadow .4s,transform .4s}
+:is(.home-editorial .hero-actions .button,.button.resume-satin)::after{content:none}
+:is(.home-editorial .hero-actions .button,.button.resume-satin)>.vd-hover-arrow{display:inline-block;flex-shrink:0;width:auto;height:auto;border:0;border-radius:0;background:none;color:#294af2;font-size:22px;line-height:1;transition:transform .4s cubic-bezier(.2,.8,.2,1),color .3s}
+:is(.home-editorial .hero-actions .button,.button.resume-satin):hover,:is(.home-editorial .hero-actions .button,.button.resume-satin):focus-visible{border-color:transparent;border-radius:70% 30% 76% 24% / 21% 14% 86% 79%;background:linear-gradient(240deg,#ffffff,#e2e8fb 55%,#ede4fb) padding-box,linear-gradient(240deg,#294af2,#7743c9) border-box;color:#294af2;box-shadow:0 8px 20px #294af21a;transform:translateY(-1px)}
+:is(.home-editorial .hero-actions .button,.button.resume-satin):hover>.vd-hover-arrow,:is(.home-editorial .hero-actions .button,.button.resume-satin):focus-visible>.vd-hover-arrow{transform:translate(5px,-4px) scale(1.15);color:#663bce}
+:is(.home-editorial .hero-actions .button,.button.resume-satin)[download]:hover>.vd-hover-arrow,:is(.home-editorial .hero-actions .button,.button.resume-satin)[download]:focus-visible>.vd-hover-arrow{transform:translateY(5px) scale(1.15)}
+@media(max-width:640px){.home-editorial .hero-actions{gap:16px}:is(.home-editorial .hero-actions .button,.button.resume-satin){padding:0 22px;gap:16px;font-size:15px;min-height:58px}}
+@media(prefers-reduced-motion:reduce){:is(.home-editorial .hero-actions .button,.button.resume-satin),:is(.home-editorial .hero-actions .button,.button.resume-satin)>.vd-hover-arrow{transition:none!important;transform:none!important}}
 
 /* Extra breathing room inside the asymmetric contour. */
-.home-editorial .hero-actions .button{padding:8px 34px;min-height:68px}
-@media(max-width:640px){.home-editorial .hero-actions .button{padding:8px 30px;min-height:66px}}
+:is(.home-editorial .hero-actions .button,.button.resume-satin){padding:8px 34px;min-height:68px}
+@media(max-width:640px){:is(.home-editorial .hero-actions .button,.button.resume-satin){padding:8px 30px;min-height:66px}}
 
 /* Final action silhouette: capsule with satin fill and gradient border. */
-.home-editorial .hero-actions .button{border-radius:999px;padding:0 26px;min-height:54px}
-.home-editorial .hero-actions .button:hover,.home-editorial .hero-actions .button:focus-visible{border-radius:999px}
-@media(max-width:640px){.home-editorial .hero-actions .button{padding:0 23px;min-height:52px;border-radius:999px}}
+:is(.home-editorial .hero-actions .button,.button.resume-satin){border-radius:999px;padding:0 26px;min-height:54px}
+:is(.home-editorial .hero-actions .button,.button.resume-satin):hover,:is(.home-editorial .hero-actions .button,.button.resume-satin):focus-visible{border-radius:999px}
+@media(max-width:640px){:is(.home-editorial .hero-actions .button,.button.resume-satin){padding:0 23px;min-height:52px;border-radius:999px}}
 
 /* Compact satin capsules. */
-.home-editorial .hero-actions .button{min-height:46px;padding:0 20px;gap:12px;font-size:14px}
-.home-editorial .hero-actions .button>.vd-hover-arrow{font-size:19px}
-@media(max-width:640px){.home-editorial .hero-actions .button{min-height:46px;padding:0 18px;gap:11px;font-size:14px}}
+:is(.home-editorial .hero-actions .button,.button.resume-satin){min-height:46px;padding:0 20px;gap:12px;font-size:14px}
+:is(.home-editorial .hero-actions .button,.button.resume-satin)>.vd-hover-arrow{font-size:19px}
+@media(max-width:640px){:is(.home-editorial .hero-actions .button,.button.resume-satin){min-height:46px;padding:0 18px;gap:11px;font-size:14px}}
 
 /* Align the role to the full name width without enlarging the type. */
 .home-identity .home-role{display:flex;justify-content:space-between;align-self:stretch;gap:10px}
