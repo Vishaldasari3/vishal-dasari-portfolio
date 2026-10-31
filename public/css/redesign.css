@@ -3411,3 +3411,8 @@ body[data-page="about"] .section-label .about-story-title{font-size:clamp(34px,3
 .education-list .education-credentials .education-gpa{font-size:16px;font-weight:600;color:#283957;margin:0;white-space:nowrap}
 .education-list .education-credentials .text-link{font-size:14px;margin:0;min-height:32px}
 @media(max-width:640px){.education-list .education-credentials{flex-basis:auto;margin-left:54px;padding-left:16px;min-height:52px}.education-list article>div{min-width:0;flex-basis:calc(100% - 60px)}}
+
+/* A quiet credential icon gives the education action a clearer purpose. */
+.education-section .certifications-link{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:16px;font-weight:600}
+.certifications-link .certifications-link-icon{flex-shrink:0;color:#6652bd}
+.certifications-link:is(:hover,:focus-visible) .certifications-link-icon{color:#294af2}
