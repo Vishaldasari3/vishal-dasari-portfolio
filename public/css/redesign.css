@@ -3326,7 +3326,7 @@ a.vd-hover.vd-hover:is(:hover,:focus-visible),button.vd-hover.vd-hover:is(:hover
 .home-headline-bridge .home-identity .home-location{grid-column:1/-1;max-width:480px;margin:0 0 4px}
 .home-headline-bridge .home-identity h1.home-name{grid-column:1/-1;margin:0 0 4px}
 .home-editorial .home-headline-bridge .home-identity .home-role{margin:0;align-self:center}
-.home-headline-bridge .home-identity .home-current-role{justify-self:start;align-self:center;width:auto;margin:0}
+.home-headline-bridge .home-identity .home-current-role{grid-column:1/-1;justify-self:start;align-self:center;width:auto;margin:4px 0 0}
 .home-bridge-story{min-width:0;max-width:540px;padding:20px 0}
 .home-headline-bridge .home-portrait-column{width:100%;max-width:none;margin:0}
 @media(max-width:900px){.home-editorial .home-headline-bridge{grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:24px}.home-headline-bridge .home-identity{grid-template-columns:1fr}.home-headline-bridge .home-identity .home-current-role{justify-self:start}.home-bridge-story .home-statement{font-size:25px}.home-bridge-story .hero-actions{flex-wrap:wrap}}
@@ -3354,7 +3354,7 @@ a.vd-hover.vd-hover:is(:hover,:focus-visible),button.vd-hover.vd-hover:is(:hover
 .home-headline-bridge .home-identity{border-bottom:0;padding-bottom:10px}
 .home-headline-bridge .home-bridge-story{border-left:2px solid #d5ccf4;padding:8px 0 8px 22px}
 @media(min-width:901px){
- .home-headline-bridge .home-portrait-column{margin-top:-180px;align-self:start}
+ .home-headline-bridge .home-portrait-column{margin-top:-220px;align-self:start}
 }
 @media(min-width:641px) and (max-width:900px){
  .home-headline-bridge .home-portrait-column{margin-top:-80px;align-self:start}
@@ -3366,7 +3366,8 @@ a.vd-hover.vd-hover:is(:hover,:focus-visible),button.vd-hover.vd-hover:is(:hover
  .home-headline-bridge .home-portrait-column{margin-top:0}
 }
 /* Keep the full-width identity clear of the portrait on narrower tablets/laptops. */
-@media(min-width:641px) and (max-width:1200px){.home-headline-bridge .home-portrait-column{margin-top:0}}
+@media(min-width:641px) and (max-width:900px){.home-headline-bridge .home-portrait-column{margin-top:0}}
+@media(min-width:901px) and (max-width:1200px){.home-headline-bridge .home-portrait-column{margin-top:-80px}}
 
 /* Keep social links grouped beneath the paired homepage actions. */
 .home-headline-bridge .hero-actions{width:396px;max-width:100%;gap:16px}
@@ -3388,15 +3389,19 @@ a.vd-hover.vd-hover:is(:hover,:focus-visible),button.vd-hover.vd-hover:is(:hover
 @media(min-width:641px) and (max-width:900px){.home-headline-bridge .home-bridge-story{padding-left:26px}}
 @media(max-width:640px){.home-headline-bridge .home-bridge-story{padding-left:22px}}
 
-/* Enlarge the name by 12% and separate it from the location and role. */
-.home-headline-bridge .home-identity h1.home-name{font-size:clamp(48.94px,5.6672vw,87.584px);margin:12px 0 18px}
-@media(min-width:641px) and (max-width:900px){.home-headline-bridge .home-identity h1.home-name{font-size:77.28px}}
+/* Increase the homepage name by 50%; cap narrow layouts to preserve one line. */
+.home-headline-bridge .home-identity h1.home-name{font-size:clamp(73.41px,8.5008vw,131.376px);margin:12px 0 18px}
+@media(min-width:641px) and (max-width:900px){.home-headline-bridge .home-identity h1.home-name{font-size:min(115.92px,12.1vw)}}
 @media(max-width:640px){.home-headline-bridge .home-identity h1.home-name{font-size:clamp(35px,12.1vw,69.55px);margin:10px 0 14px}}
 /* Avoid portrait overlap with the role capsule on medium desktop widths. */
-@media(min-width:1201px) and (max-width:1400px){.home-headline-bridge .home-portrait-column{margin-top:0}}
+@media(min-width:1201px) and (max-width:1400px){.home-headline-bridge .home-portrait-column{margin-top:-120px}}
 
 /* Give the About story heading more presence without changing other page headings. */
 body[data-page="about"] .section-label .about-story-title{font-size:clamp(34px,3vw,42px);line-height:1.25;letter-spacing:-.035em;font-weight:800;text-wrap:balance}
 .about-story-accent{color:#4835df;background:linear-gradient(110deg,#294af2 0%,#7137d8 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 @media(max-width:640px){body[data-page="about"] .section-label .about-story-title{font-size:clamp(30px,7.5vw,36px);line-height:1.28}}
 @media(forced-colors:active){.about-story-accent{background:none;-webkit-text-fill-color:currentColor}}
+/* The role text sets the shared width; the status capsule follows it. */
+.home-headline-bridge .home-role-group{grid-column:1/-1;display:grid;width:max-content;max-width:100%;justify-self:start;gap:14px}
+.home-headline-bridge .home-identity .home-role-group .home-current-role{width:0;min-width:100%;max-width:100%;justify-self:stretch;margin:0;padding:10px 12px;gap:8px;text-align:center}
+.home-role-group .home-current-role>span:last-child{min-width:0}
