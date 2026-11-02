@@ -49,8 +49,13 @@ const portfolioPaths = ['/about', '/experience', '/certifications', '/tech-stack
 const host = value => [{ type: 'host', value: value.replaceAll('.', '\\.') }];
 const articlePath = article => '/' + article.category + '/' + article.slug;
 module.exports = {
+  async headers() {
+    return [{ source: '/Vishal-Dasari-Resume.pdf', headers: [
+      { key: 'Content-Disposition', value: 'attachment; filename="Vishal-Dasari-Resume.pdf"' }
+    ] }];
+  },
   async redirects() {
-    const rules = [];
+    const rules = [{ source: '/resume.pdf', destination: '/Vishal-Dasari-Resume.pdf', permanent: true }];
     for (const hostname of blogHosts) {
       rules.push({ source: '/blog', destination: '/', permanent: true, has: host(hostname) });
       for (const article of articles) {
