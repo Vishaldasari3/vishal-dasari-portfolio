@@ -132,7 +132,7 @@ window.VD_DATA = {
     },
     {
       "title": "Wireless Sensor Parameter Logger",
-      "summary": "Real-time sensor monitoring and data logging system built for missile systems testing at DRDL.",
+      "summary": "Java-based GUI developed at DRDL to display live sensor telemetry and temperature and pressure readings, with data logging for historical analysis.",
       "tags": [
         "Java",
         "Struts",
