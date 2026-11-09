@@ -54,6 +54,6 @@ const home = fs.readFileSync(path.join(publicRoot,'html/home.html'),'utf8');
 assert(!home.includes('class="project-grid"'), 'Landing page must not contain project listings');
 assert(!home.includes('class="career-list"'), 'Landing page must not contain work history');
 assert(/<a data-blog-link href="https:\/\/blog\.dasarivishal\.com\/"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/.test(home), 'Header blog link must open securely in a new tab');
-assert.equal(pages, 15, 'Expected seven main pages and eight article shells');
+assert.equal(pages, 7 + context.window.VD_DATA.posts.length, 'Expected seven main pages and an article page for each post');
 if (errors.length) { console.error(errors.join('\n')); process.exitCode = 1; }
 else console.log(`Checked ${pages} pages, all referenced local assets and routes, heading/landmark structure, and article metadata consistency.`);

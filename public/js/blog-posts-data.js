@@ -1,4 +1,12 @@
 window.BLOG_POSTS = {
+  // This long-form guide is rendered in its HTML page to preserve tables and source links.
+  'databricks-data-engineer-associate-study-plan': {
+    title: 'Databricks Data Engineer Associate - 6 Week Study Plan',
+    subtitle: '6 Weeks · Associate level · Basic SQL and Python',
+    tag: 'Tech', date: 'Nov 2026', readTime: 'Study guide', hue: 245,
+    coverImg: 'assets/blog-databricks-study-cover.png',
+    staticContent: true
+  },
   'code-worked-but-wrong': {
     title: 'The Code Worked. But It Was Still Wrong.',
     subtitle: 'What a 2am production incident taught me about the gap between code that runs and software that lasts.',

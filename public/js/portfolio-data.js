@@ -883,6 +883,17 @@ window.VD_DATA = {
     }
   ],
   "posts": [
+{
+  "slug": "databricks-data-engineer-associate-study-plan",
+  "category": "tech",
+  "title": "Databricks Data Engineer Associate - 6 Week Study Plan",
+  "excerpt": "A six-week study plan covering Databricks, Spark SQL, Delta Lake, ingestion, governance, and practice exams—with resources and hands-on tasks.",
+  "tag": "Tech",
+  "hue": 245,
+  "date": "Nov 2026",
+  "readTime": "Study guide",
+  "coverImg": "/assets/blog-databricks-study-cover.png"
+},
     {
       "slug": "code-worked-but-wrong",
       "category": "tech",

@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
 const articles = [
+{
+  "slug": "databricks-data-engineer-associate-study-plan",
+  "category": "tech",
+  "file": "/html/blogs/blog-databricks-data-engineer-associate-study-plan.html"
+},
   {
     "slug": "ai-in-2026",
     "category": "tech",
