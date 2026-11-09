@@ -79,3 +79,12 @@
 .study-body .source-contents>details{background:#fff;border-color:#e4e6f0;padding:16px}
 .study-intro{border-left:3px solid #7862cb;box-shadow:none;background:linear-gradient(110deg,#f5f5fd,#fff)}
 @media(max-width:700px){.article-hero{padding:12px 0 0;margin:12px auto 24px}.article-hero h1{font-size:32px!important}.article-layout>article>.article-cover{border-radius:14px;margin-bottom:22px}.study-body .source-contents>ul,.study-body .source-contents>details ul{grid-template-columns:1fr}}
+/* Use the available screen width without letting the sidebar dominate. */
+body[data-slug="databricks-data-engineer-associate-study-plan"] .page-main{width:100%;max-width:1600px;margin-inline:auto;padding-inline:clamp(16px,2.5vw,48px)}
+.article-layout{width:100%;max-width:none;grid-template-columns:minmax(0,1fr) 260px!important;gap:clamp(24px,2.5vw,40px)!important}
+.article-hero{max-width:1200px}
+.article-hero h1{max-width:1120px}
+.study-body{max-width:none}
+@media(min-width:1400px){.study-body{font-size:18px}.study-body li{font-size:17px!important}.study-intro p{font-size:17px}.study-table table{font-size:15px}}
+@media(max-width:1000px){.article-layout{grid-template-columns:minmax(0,1fr)!important}.study-body{max-width:none;margin:0}}
+@media(max-width:600px){body[data-slug="databricks-data-engineer-associate-study-plan"] .page-main{padding-inline:16px}.article-layout{gap:20px!important}}
