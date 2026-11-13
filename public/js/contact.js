@@ -1,4 +1,7 @@
 (function () {
+  // Use the supported narrow widget on very small phones, before Turnstile loads.
+  const verification = document.querySelector('.cf-turnstile');
+  if (verification && window.matchMedia('(max-width: 380px)').matches) verification.setAttribute('data-size', 'compact');
   // 1. Sign up free at https://formspree.io
   // 2. Create a new form, set its recipient to your email (verify via the link they send)
   // 3. Copy the Form ID (the part after "/f/" in your form's endpoint) and paste it below.
@@ -148,6 +151,8 @@
     });
 
     sendBtn.addEventListener('click', async () => {
+      if (sendBtn.disabled) return;
+      document.getElementById('ct-top-error').textContent = 'Please check the highlighted fields.';
       document.getElementById('ct-sent-msg').style.display = 'none';
       document.getElementById('ct-top-error').style.display = 'none';
       sendLabel.textContent = 'Send message';
@@ -195,7 +200,6 @@
         return;
       }
 
-      if (sendBtn.disabled) return;
       buttonState('sending');
       sendBtn.disabled = true;
       sendLabel.textContent = 'Sending\u2026';
@@ -226,6 +230,7 @@
         showSuccess();
       } catch (err) {
         buttonState('idle');
+        if (window.turnstile) window.turnstile.reset();
         console.error(err);
         document.getElementById('ct-top-error').textContent = 'Something went wrong sending your message \u2014 please try again or email directly.';
         document.getElementById('ct-top-error').style.display = 'block';

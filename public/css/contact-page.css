@@ -49,3 +49,37 @@ body[data-page="contact"] .page-main{max-width:1400px;padding:30px clamp(18px,3v
 @keyframes contact-send-sheen{to{background-position:200% 0}}@keyframes contact-send-spin{to{transform:rotate(360deg)}}@keyframes contact-sent-pop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
 @media(max-width:480px){.contact-form-panel{padding:22px 18px}.contact-form-actions .cf-turnstile{flex:0 0 150px;width:150px}.contact-form-panel .contact-form-actions #ct-send{min-width:150px;padding:13px 18px;font-size:15px}.contact-topics{margin-top:18px}}
 @media(prefers-reduced-motion:reduce){#ct-send,#ct-spinner,.contact-success .success-mark{animation:none!important;transition:none}#ct-send-icon{transition:none}}
+
+.contact-work-note{margin:14px 0 22px;padding-left:14px;border-left:2px solid #c8c9ef;color:#485675;font-size:14px;line-height:1.65;max-width:68ch}
+/* Low-profile verification and a more expressive send action. */
+.contact-form-actions .cf-turnstile{flex:0 0 300px;width:300px;min-width:300px}
+.contact-form-panel .contact-form-actions #ct-send{min-height:60px;min-width:202px;padding:17px 28px;font-size:17px;isolation:isolate}
+#ct-send::after{content:"";position:absolute;inset:-60% -40%;background:linear-gradient(110deg,transparent 35%,#ffffff35 50%,transparent 65%);transform:translateX(-100%);pointer-events:none;transition:transform .7s}
+#ct-send:hover:not(:disabled),#ct-send:focus-visible{transform:translateY(-3px) scale(1.025);box-shadow:0 10px 26px #5048c544}
+#ct-send:hover:not(:disabled)::after,#ct-send:focus-visible::after{transform:translateX(100%)}
+#ct-send:active:not(:disabled){transform:translateY(0) scale(.98)}
+#ct-send:focus-visible{outline:3px solid #b7aff0;outline-offset:4px}
+#ct-send[data-state="sending"]::after{animation:contact-button-sweep 1.8s ease-in-out infinite}
+#ct-spinner{width:19px;height:19px;border:2px solid #ffffff55;border-top-color:white;border-radius:50%;font-size:0;flex-shrink:0}
+.contact-success.run{animation:contact-success-reveal .45s ease-out}
+.contact-success .success-mark svg{stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.contact-success.run .success-mark path{stroke-dasharray:45;stroke-dashoffset:45;animation:contact-check-draw .55s .15s ease forwards}
+@keyframes contact-button-sweep{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+@keyframes contact-success-reveal{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes contact-check-draw{to{stroke-dashoffset:0}}
+@media(max-width:380px){.contact-form-actions .cf-turnstile{flex-basis:150px;width:150px;min-width:150px}}
+@media(prefers-reduced-motion:reduce){#ct-send::after,.contact-success.run,.contact-success.run .success-mark path{animation:none;transition:none}.contact-success.run .success-mark path{stroke-dashoffset:0}#ct-send:hover:not(:disabled),#ct-send:focus-visible{transform:none}}
+/* Balanced panels: keep supporting context with the introduction, and the form compact. */
+.contact-layout.section{align-items:stretch}
+.contact-copy,.contact-form-panel{padding:26px 28px}
+.contact-copy .availability{margin-bottom:14px}
+.contact-copy>h2{margin-bottom:10px}
+.contact-copy>p{margin-bottom:14px;line-height:1.65}
+.contact-detail{padding:16px 0}
+.contact-topics{margin-top:18px;padding-top:16px}
+.contact-copy>.contact-work-note{font-size:14px;line-height:1.6;margin:20px 0 0;padding-left:14px;max-width:none}
+.contact-form-panel form{gap:12px}
+.contact-form-intro{margin-bottom:16px}
+@media(max-width:1000px){.contact-copy,.contact-form-panel{padding:24px}}
+@media(max-width:760px){.contact-layout.section{align-items:start}.contact-copy,.contact-form-panel{height:auto}}
+@media(max-width:480px){.contact-copy,.contact-form-panel{padding:22px 18px}}
