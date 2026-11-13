@@ -100,7 +100,7 @@
         setFieldState(f, 'neutral');
         document.getElementById('ct-sent-msg').style.display = 'none';
         document.getElementById('ct-top-error').style.display = 'none';
-        sendLabel.textContent = 'Send it my way';
+        sendLabel.textContent = 'Send message';
       });
       if (f !== 'message') {
         el.addEventListener('keydown', (e) => {
@@ -121,10 +121,17 @@
     const sendBtn = document.getElementById('ct-send');
     const sendLabel = document.getElementById('ct-send-label');
 
+    function buttonState(state) {
+      sendBtn.dataset.state = state;
+      sendBtn.setAttribute('aria-busy', String(state === 'sending'));
+      document.getElementById('ct-send-icon').textContent = state === 'sent' ? '✓' : '↗';
+    }
     function showSuccess() {
       const panel = document.getElementById('ct-success');
       if (!panel) return;
       panel.style.display = 'flex';
+      panel.setAttribute('tabindex', '-1');
+      panel.focus();
       panel.classList.remove('run');
       void panel.offsetWidth;
       panel.classList.add('run');
@@ -134,7 +141,8 @@
       const panel = document.getElementById('ct-success');
       panel.classList.remove('run');
       panel.style.display = 'none';
-      sendLabel.textContent = 'Send it my way';
+      buttonState('idle');
+      sendLabel.textContent = 'Send message';
       const first = document.getElementById('ct-name');
       if (first) first.focus();
     });
@@ -142,7 +150,7 @@
     sendBtn.addEventListener('click', async () => {
       document.getElementById('ct-sent-msg').style.display = 'none';
       document.getElementById('ct-top-error').style.display = 'none';
-      sendLabel.textContent = 'Send it my way';
+      sendLabel.textContent = 'Send message';
       const errors = validate();
       fields.forEach((f) => {
         setFieldState(f, errors[f] ? 'invalid' : 'valid', !!errors[f]);
@@ -187,6 +195,8 @@
         return;
       }
 
+      if (sendBtn.disabled) return;
+      buttonState('sending');
       sendBtn.disabled = true;
       sendLabel.textContent = 'Sending\u2026';
       document.getElementById('ct-spinner').style.display = 'inline-block';
@@ -208,17 +218,20 @@
         });
         if (!res.ok) throw new Error('Formspree responded ' + res.status);
         document.getElementById('ct-top-error').style.display = 'none';
-        sendLabel.textContent = 'Sent!';
+        buttonState('sent');
+        sendLabel.textContent = 'Message sent';
         fields.forEach((f) => { document.getElementById('ct-' + f).value = ''; setFieldState(f, 'neutral'); });
         const inqReset = document.getElementById('ct-inquiry'); if (inqReset) inqReset.selectedIndex = 0;
         if (window.turnstile) window.turnstile.reset();
         showSuccess();
       } catch (err) {
+        buttonState('idle');
         console.error(err);
         document.getElementById('ct-top-error').textContent = 'Something went wrong sending your message \u2014 please try again or email directly.';
         document.getElementById('ct-top-error').style.display = 'block';
-        sendLabel.textContent = 'Send it my way';
+        sendLabel.textContent = 'Send message';
       } finally {
+        sendBtn.setAttribute('aria-busy', 'false');
         sendBtn.disabled = false;
         document.getElementById('ct-spinner').style.display = 'none';
         document.getElementById('ct-send-icon').style.display = '';
